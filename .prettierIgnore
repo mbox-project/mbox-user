@@ -1,6 +1,6 @@
 
 build
-
+/package.json
 jest.config.js
 dist/
 node_modules/
