@@ -8,11 +8,13 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
+  "parser": "@babel/eslint-parser"
+  ,
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
     "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
     "sourceType": "module"
   },
   "plugins": ["react"],
