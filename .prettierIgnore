@@ -12,10 +12,11 @@ coverage
 .env.sample
 .eslintignore
 .gitignore
-.eslintrc.json
+# .eslintrc.json
 README.md
 package.json
 manifest.json
 commitlint.config.js
 postcss.config.js
 tailwind.config.js
+babelrc

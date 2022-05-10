@@ -6,18 +6,20 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "standard",
+    "plugin:react/jsx-runtime"
   ],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 8,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true,
-      "modules": true,
-      "experimentalObjectRestSpread": true
-    },
-    "requireConfigFile": false
+    // "ecmaVersion": 8,
+    "sourceType": "module"
+    // "ecmaFeatures": {
+    //   "jsx": true,
+    //   "modules": true,
+    //   "experimentalObjectRestSpread": true
+    // },
+    // "requireConfigFile": false
   },
   "plugins": ["react"],
   "rules": {
@@ -41,8 +43,7 @@
   },
   "settings": {
     "react": {
-      "pragma": "React",
-      "version": "15.6.1"
+      "version": "detect"
     }
   }
 }
