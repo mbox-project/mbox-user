@@ -8,12 +8,15 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": "latest",
+    "sourceType": "module",
     "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
       "experimentalObjectRestSpread": true
-    },
-    "sourceType": "module"
+    }
   },
   "plugins": ["react"],
   "rules": {
@@ -28,11 +31,16 @@
     "no-undef": 2,
     "no-unused-vars": 2,
     "no-console": 0,
-    "linebreak-style": [2, "unix"]
+    "linebreak-style": [2, "unix"],
+    "comma-dangle": 0,
+    "react/jsx-uses-vars": 1,
+    "react/display-name": 1,
+    "no-unexpected-multiline": "warn"
   },
   "settings": {
     "react": {
-      "version": "detect"
+      "pragma": "React",
+      "version": "15.6.1"
     }
   }
 }
