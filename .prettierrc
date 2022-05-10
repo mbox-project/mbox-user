@@ -5,5 +5,5 @@
   "trailingComma": "none",
   "bracketSpacing": true,
   "doubleQuote": "single",
-  "semi": false
+  "semi": true
 }
