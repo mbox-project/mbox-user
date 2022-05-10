@@ -12,7 +12,6 @@ coverage
 .env.sample
 .eslintignore
 .gitignore
-/tsconfig.json
 .eslintrc.json
 README.md
 package.json
