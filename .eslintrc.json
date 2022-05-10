@@ -26,12 +26,7 @@
     "no-undef": 2,
     "no-unused-vars": 2,
     "no-console": 0,
-    "linebreak-style": [2, "unix"],
-    "member-delimiter-style": "error",
-    "member-ordering": "error",
-    "type-annotation-spacing": "error",
-    "prefer-template": "error",
-    "prettier/prettier": "error"
+    "linebreak-style": [2, "unix"]
   },
   "settings": {
     "react": {
