@@ -30,5 +30,10 @@
     "no-unused-vars": 2,
     "no-console": 0,
     "linebreak-style": [2, "unix"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
