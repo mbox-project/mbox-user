@@ -17,18 +17,24 @@ const ForgotPassword = () => {
           Please enter a recovery email
         </p>
 
-        <form>
-          <label className="max-w-xs">
+        <form className="pl-24 max-w-xl">
+          <label>
             Email
             <input
               type="email"
-              className=" border-2 border-solid border-gray-200 rounded-md w-full  visible"
+              className="  border-2 border-solid border-gray-200 rounded-md w-full  visible"
             />
           </label>
-          <button>Proceed</button>
+          <button className="mt-6 inline-block px-8 py-2 text-sm font-medium text-white transition bg-orange-600 rounded-md active:bg-orange-500 w-full focus:outline-none  focus:ring">
+            Proceed
+          </button>
         </form>
-        <p>Check the email input for a recoverylink</p>
-        <p>Existing user? Back to login</p>
+        <p className="flex justify-center text-sm pt-2">
+          Check the email input for a recovery link
+        </p>
+        <p className="pl-24 pt-2 text-sm">
+          Existing user? <a className="text-orange-600">Back to login</a>
+        </p>
       </div>
     </section>
   );
