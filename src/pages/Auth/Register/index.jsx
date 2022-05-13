@@ -8,7 +8,7 @@ function Register() {
       </div>
       <div className="w-1/2 mx-auto bg-white p-12">
         <div className="w-full flex justify-center">
-          <h1 className="text-5xl text-orange-600">Login</h1>
+          <h1 className="text-5xl text-orange-600">Register</h1>
         </div>
       </div>
     </div>
