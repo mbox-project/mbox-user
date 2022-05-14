@@ -1,5 +1,6 @@
 import React from "react";
 import Heroimg from "../../images/Recoverypasswordimg.png";
+import InputForm from "../../components/InputForm";
 const ForgotPassword = () => {
   return (
     <section className=" grid grid-cols-2">
@@ -17,18 +18,7 @@ const ForgotPassword = () => {
           Please enter a recovery email
         </p>
 
-        <form className="pl-24 max-w-xl">
-          <label>
-            Email
-            <input
-              type="email"
-              className="  border-2 border-solid border-gray-200 rounded-md w-full  visible"
-            />
-          </label>
-          <button className="mt-6 inline-block px-8 py-2 text-sm font-medium text-white transition bg-orange-600 rounded-md active:bg-orange-500 w-full focus:outline-none  focus:ring">
-            Proceed
-          </button>
-        </form>
+        <InputForm />
         <p className="flex justify-center text-sm pt-2">
           Check the email input for a recovery link
         </p>
