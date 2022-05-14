@@ -18,10 +18,10 @@ function Login() {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="w-1/2 mx-auto p-12 bg-black">
+      <div className=" hidden lg:flex w-1/2 mx-auto p-12 bg-[url]">
         <img src={logo} />
       </div>
-      <div className="w-1/2 mx-auto my-auto bg-white p-12">
+      <div className="w-1/2 lg:mx-auto  md:my-auto bg-white p-12">
         <div className="w-full">
           <div className="text-center mb-10">
             <h1 className="text-5xl font-bold text-orange-600 mb-5">Login</h1>
@@ -32,14 +32,14 @@ function Login() {
           <form className="px-10">
             <div className="mb-6">
               <Label
-                className="w-full text-base text-gray-700"
+                className="w-full text-base text-[#9A9A9A]"
                 htmlFor="email"
                 title="Email"
               />
               <Input
                 name="email"
                 type="email"
-                className="w-full mt-2 p-4 text-sm border-gray-400 rounded-lg shadow-sm border-2"
+                className="lg:w-full md:w-[712px] mt-2 p-4 text-sm border-[#444444] rounded-lg shadow-sm border-2"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
@@ -47,7 +47,7 @@ function Login() {
             </div>
             <div className="mb-6">
               <Label
-                className="w-full text-base text-gray-700"
+                className="w-full text-base text-[#9A9A9A]"
                 htmlFor="password"
                 title="Password"
               />
@@ -62,7 +62,7 @@ function Login() {
               <div className="relative">
                 <input
                   type="password"
-                  className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                  className="w-full p-4 pr-12 text-sm border-[#444444] border-2 rounded-lg shadow-sm"
                   placeholder="Enter password"
                 />
 
@@ -98,7 +98,7 @@ function Login() {
                   required={false}
                   onChange={onChangeInput}
                 />
-                <span>Remember me</span>
+                <span>keep me Log in</span>
               </div>
               <div>
                 <Link className="underline" to={`/auth/forgot-password`}>
