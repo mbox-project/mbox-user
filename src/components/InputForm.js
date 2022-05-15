@@ -16,14 +16,14 @@ const InputForm = () => {
   };
   return (
     <form
-      className=" pl-0 max-w-xs lg:max-w-md pt-6 font-poppins font-light  m-auto"
+      className=" pl-0 max-w-xs  md:max-w-xl lg:max-w-md pt-12 font-poppins font-light  m-auto"
       onSubmit={submitHandler}
     >
-      <label className="text-sm">Email</label>
+      <label className=" text-lg  lg:text-sm">Email</label>
       <input
         type="email"
         onChange={addEmailHandler}
-        className=" border-2 border-solid border-gray-400 py-1 rounded-md w-full  visible"
+        className=" border-2 border-solid border-gray-400 py-2 md:py-3 lg:py-2 mt-2 rounded-md w-full  "
       />
 
       <Button />
