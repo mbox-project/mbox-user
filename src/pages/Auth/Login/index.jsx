@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import Button from "../../../components/Button";
+import Footer from "../../../components/Footer";
 import Input from "../../../components/Input";
 import Label from "../../../components/Label";
 
@@ -21,25 +22,27 @@ function Login() {
       <div className=" hidden lg:flex w-1/2 mx-auto p-12 bg-[url]">
         <img src={logo} />
       </div>
-      <div className="w-1/2 lg:mx-auto  md:my-auto bg-white p-12">
+      <div className="w-full lg:w-1/2 lg:mx-auto  md:my-auto bg-white p-12">
         <div className="w-full">
-          <div className="text-center mb-10">
-            <h1 className="text-5xl font-bold text-orange-600 mb-5">Login</h1>
-            <p className="text-base text-gray-700">
+          <div className="text-center pb-10">
+            <h1 className="text-3xl lg:text-5xl font-bold text-orange-600 mb-5">
+              Login
+            </h1>
+            <p className=" lg:text-base text-lg text-gray-700">
               Please enter your details.
             </p>
           </div>
-          <form className="px-10">
+          <form className=" px-0 lg:px-10">
             <div className="mb-6">
               <Label
-                className="w-full text-base text-[#9A9A9A]"
+                className="w-full text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="email"
                 title="Email"
               />
               <Input
                 name="email"
                 type="email"
-                className="lg:w-full md:w-[712px] mt-2 p-4 text-sm border-[#444444] rounded-lg shadow-sm border-2"
+                className="lg:w-full  w-full mt-2 p-4  text-sm border-[#444444] rounded-lg shadow-sm border-2"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
@@ -47,7 +50,7 @@ function Login() {
             </div>
             <div className="mb-6">
               <Label
-                className="w-full text-base text-[#9A9A9A]"
+                className="w-full text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="password"
                 title="Password"
               />
@@ -62,7 +65,7 @@ function Login() {
               <div className="relative">
                 <input
                   type="password"
-                  className="w-full p-4 pr-12 text-sm border-[#444444] border-2 rounded-lg shadow-sm"
+                  className="w-full p-4 pr-12 text-base lg:text-sm mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
                   placeholder="Enter password"
                 />
 
@@ -113,7 +116,7 @@ function Login() {
               Login
             </Button>
             <div className="flex justify-center mb-3">
-              <span className="text-gray-600 text-sm">
+              <span className="text-gray-600 text-base  lg:text-sm pt-3">
                 By Login, you’ve already agreed to our{" "}
                 <Link to="/" className="text-gray-900 font-bold">
                   Terms & Condition
@@ -121,14 +124,17 @@ function Login() {
               </span>
             </div>
             <div className="flex">
-              <p className="mr-3 text-gray-600 text-xl">New User?</p>
+              <p className="mr-3 text-gray-600 text-base lg:text-xl">
+                New User?
+              </p>
               <Link
                 to="/auth/register"
-                className="text-orange-600 text-xl underline"
+                className="text-orange-600 text-base lg:text-xl underline"
               >
                 Sign Up
               </Link>
             </div>
+            <Footer />
           </form>
         </div>
       </div>
