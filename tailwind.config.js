@@ -5,6 +5,9 @@ module.exports = {
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'] 
       },
+        // backgroundImage: {
+        //   'pack-train': "url('src/assets/images/bg_img.png')",
+        // },
     }
   },
   plugins: []
