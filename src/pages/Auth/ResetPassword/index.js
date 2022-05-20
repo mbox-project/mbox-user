@@ -36,7 +36,6 @@ function ResetPassword() {
                 <input
                   type="password"
                   className="w-full p-4 pr-12 text-base lg:text-sm mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
-                  placeholder="Enter password"
                 />
                 <span className="absolute inset-y-0 inline-flex items-center right-4">
                   <svg
@@ -74,7 +73,6 @@ function ResetPassword() {
                 <input
                   type="password"
                   className="w-full p-4 pr-12 text-base lg:text-sm mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
-                  placeholder="Enter password"
                 />
 
                 <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -106,7 +104,7 @@ function ResetPassword() {
               className="w-full bg-orange-600 h-16 mb-4 rounded-lg text-white text-2xl font-semibold"
               onClick={onSubmitHandler}
             >
-              Login
+              Reset my password
             </Button>
 
             <Footer />

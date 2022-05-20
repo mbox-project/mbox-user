@@ -35,14 +35,14 @@ function Login() {
           <form className=" px-0 lg:px-10">
             <div className="mb-6">
               <Label
-                className="w-full text-lg lg:text-base text-[#9A9A9A]"
+                className="w-full  text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="email"
                 title="Email"
               />
               <Input
                 name="email"
                 type="email"
-                className="lg:w-full  w-full mt-2 p-4  text-sm border-[#444444] rounded-lg shadow-sm border-2"
+                className="w-full  p-4 pr-12 mt-2 text-2xl lg:text-base border-[#444444] border-2 rounded-lg shadow-sm"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
@@ -50,7 +50,7 @@ function Login() {
             </div>
             <div className="mb-6">
               <Label
-                className="w-full text-lg lg:text-base text-[#9A9A9A]"
+                className="w-full text-xl lg:text-base text-[#9A9A9A]"
                 htmlFor="password"
                 title="Password"
               />
@@ -65,7 +65,7 @@ function Login() {
               <div className="relative">
                 <input
                   type="password"
-                  className="w-full p-4 pr-12 text-base lg:text-sm mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
+                  className="w-full p-4 pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
                   placeholder="Enter password"
                 />
 
@@ -101,35 +101,36 @@ function Login() {
                   required={false}
                   onChange={onChangeInput}
                 />
-                <span>keep me Log in</span>
+                <span className="text-lg">keep me Log in</span>
               </div>
               <div>
-                <Link className="underline" to={`/auth/forgot-password`}>
+                <Link
+                  className="underline text-orange-600 text-lg"
+                  to={`/auth/forgot-password`}
+                >
                   Forgot password?
                 </Link>
               </div>
             </div>
             <Button
-              className="w-full bg-orange-600 h-16 mb-4 rounded-lg text-white text-2xl font-semibold"
+              className="w-full bg-orange-600 h-16  mb-0 lg:mb-4 rounded-lg text-white text-2xl font-semibold"
               onClick={onSubmitHandler}
             >
               Login
             </Button>
             <div className="flex justify-center mb-3">
-              <span className="text-gray-600 text-base  lg:text-sm pt-3">
+              <span className="text-gray-600 text-lg leading-12  lg:leading-0  lg:text-sm pt-3">
                 By Login, you’ve already agreed to our{" "}
-                <Link to="/" className="text-gray-900 font-bold">
+                <Link to="/" className="text-gray-900 pt-3  lg:pt-0 font-bold">
                   Terms & Condition
                 </Link>
               </span>
             </div>
-            <div className="flex">
-              <p className="mr-3 text-gray-600 text-base lg:text-xl">
-                New User?
-              </p>
+            <div className="flex pt-4 lg:pt-0">
+              <p className="mr-3 text-gray-600 text-lg lg:text-xl">New User?</p>
               <Link
                 to="/auth/register"
-                className="text-orange-600 text-base lg:text-xl underline"
+                className="text-orange-600 text-lg lg:text-xl underline"
               >
                 Sign Up
               </Link>

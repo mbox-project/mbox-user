@@ -1,12 +1,18 @@
 import React from "react";
-const Button = () => {
+import PropTypes from "prop-types";
+
+const Button = ({ children, onClick, className, disabled }) => {
+  Button.propTypes = {
+    children: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    className: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
+  };
   return (
-    <button
-      type="submit"
-      className="mt-6 px-8 py-3 md:py-4 lg:py-3 text-md md:text-lg  lg:text-lg font-poppins text-white transition bg-orange-600 rounded-md active:bg-orange-500 w-full focus:outline-none  focus:ring"
-    >
-      Proceed
+    <button onClick={onClick} className={className} disabled={disabled}>
+      {children}
     </button>
   );
 };
+
 export default Button;
