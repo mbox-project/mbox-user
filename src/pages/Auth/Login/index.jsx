@@ -8,7 +8,6 @@ import Label from "../../../components/Label";
 
 function Login() {
   const [value, setValue] = React.useState({});
-
   const onChangeInput = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
@@ -18,14 +17,22 @@ function Login() {
   };
 
   return (
-    <div className="w-full h-screen flex">
-      <div className=" hidden lg:flex w-1/2 mx-auto p-12 bg-[url]">
-        <img src={logo} />
+    <div className=" flex">
+      <div className="  hidden lg:w-1/2  lg:mx-auto  lg:block bg-register-img ">
+        <img src={logo} className="w- m-6" />
+        <div className=" mt-60 pt-96  text-white">
+          <p className="flex justify-center font-poppins font-extrabold text-4xl ">
+            Hello, Friend!
+          </p>
+          <p className="flex justify-center pt-3 font-poppins text-base  ">
+            Welcome back! Please login to your account
+          </p>
+        </div>
       </div>
       <div className="w-full lg:w-1/2 lg:mx-auto  md:my-auto bg-white p-12">
         <div className="w-full">
           <div className="text-center pb-10">
-            <h1 className="text-3xl lg:text-5xl font-bold text-orange-600 mb-5">
+            <h1 className="text-3xl lg:text-5xl font-bold lg:pt-20 text-orange-600 mb-5">
               Login
             </h1>
             <p className=" lg:text-base text-lg text-gray-700">
