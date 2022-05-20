@@ -10,8 +10,8 @@ function ResetPassword() {
   };
 
   return (
-    <div className="w-full h-screen flex">
-      <div className=" hidden lg:flex w-1/2 mx-auto p-12 bg-[url]">
+    <div className="flex">
+      <div className=" hidden lg:flex lg:w-1/2 lg:mx-auto p-12 bg-reset">
         <img src={logo} />
       </div>
       <div className="w-full lg:w-1/2 lg:mx-auto  md:my-auto bg-white p-12">

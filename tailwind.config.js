@@ -7,7 +7,9 @@ module.exports = {
       },
         backgroundImage:(theme)  => ( {
           'register-img': "url('/src/assets/images/bg_img.png')",
+          'reset': "url('/src/assets/images/bg_reset_img.png')",
         }),
+       
     }
   },
   plugins: []
