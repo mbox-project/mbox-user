@@ -11,9 +11,11 @@ function Register() {
     <div className="flex ">
       <div className=" hidden lg:w-1/2  lg:mx-auto  lg:block bg-register-img  ">
         <img src={logo} className=" w-32 m-6" />
-        <div className=" mt-96  text-white">
-          <p className="flex justify-center ">Welcome Back!</p>
-          <p className="flex justify-center ">
+        <div className=" mt-96 pt-96  text-white">
+          <p className="flex justify-center font-poppins font-extrabold text-4xl ">
+            Welcome Back!
+          </p>
+          <p className="flex justify-center pt-3 font-poppins text-base  ">
             Lets get you all set up. Join the worlds largest pocket-sized
             marketplace.
           </p>
