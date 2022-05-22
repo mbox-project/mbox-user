@@ -12,9 +12,9 @@ function ResetPassword() {
   return (
     <div className="flex">
       <div className=" hidden lg:flex lg:w-1/2 lg:mx-auto p-12 bg-reset">
-        <img src={logo} />
+        <img src={logo} className=" w-32 m-6" />
       </div>
-      <div className="w-full lg:w-1/2 lg:mx-auto  md:my-auto bg-white p-12">
+      <div className=" lg:w-1/2 lg:mx-auto  md:my-auto bg-white p-12">
         <div className="w-full">
           <div className="text-center pb-10">
             <h1 className="text-3xl lg:text-5xl font-bold text-orange-600 mb-5">
@@ -36,6 +36,7 @@ function ResetPassword() {
                 <input
                   type="password"
                   className="w-full p-4 pr-12 text-base lg:text-sm mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
+                  placeholder="Enter password"
                 />
                 <span className="absolute inset-y-0 inline-flex items-center right-4">
                   <svg
@@ -73,6 +74,7 @@ function ResetPassword() {
                 <input
                   type="password"
                   className="w-full p-4 pr-12 text-base lg:text-sm mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
+                  placeholder="Enter password"
                 />
 
                 <span className="absolute inset-y-0 inline-flex items-center right-4">
