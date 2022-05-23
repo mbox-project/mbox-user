@@ -7,6 +7,7 @@ module.exports = {
       },
         backgroundImage:(theme)  => ( {
           'register-img': "url('/src/assets/images/bg_img.png')",
+          'verify-img': "url('/src/assets/images/verify.png')",
         }),
     }
   },
