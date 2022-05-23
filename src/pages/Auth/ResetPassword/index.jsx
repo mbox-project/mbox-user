@@ -11,13 +11,21 @@ function ResetPassword() {
 
   return (
     <div className="flex">
-      <div className=" hidden lg:flex lg:w-1/2 lg:mx-auto p-12 bg-reset">
+      <div className=" hidden lg:w-1/2  lg:mx-auto  lg:block bg-reset">
         <img src={logo} className=" w-32 m-6" />
+        <div className=" mt-60 pt-96  text-white">
+          <p className="flex justify-center font-poppins font-extrabold text-4xl ">
+            Hello,Friend!
+          </p>
+          <p className="flex justify-center pt-3 font-poppins text-base  ">
+            Welcome back! Enter a new password and continue to enjoy MBOX
+          </p>
+        </div>
       </div>
-      <div className=" lg:w-1/2 lg:mx-auto  md:my-auto bg-white p-12">
+      <div className=" lg:w-1/2 lg:mx-auto w-full md:mx-auto bg-white p-12">
         <div className="w-full">
-          <div className="text-center pb-10">
-            <h1 className="text-3xl lg:text-5xl font-bold text-orange-600 mb-5">
+          <div className="text-center py-10  ">
+            <h1 className="text-3xl lg:text-5xl mt-20 font-bold text-orange-600 mb-5">
               Reset Password
             </h1>
             <p className=" lg:text-base text-lg text-gray-700">
