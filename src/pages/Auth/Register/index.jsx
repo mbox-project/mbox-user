@@ -23,30 +23,30 @@ function Register() {
       </div>
       <div className="w-full lg:w-1/2  lg:mx-auto bg-white ">
         <div className="w-full  font-poppins text-center mt-12 ">
-          <h1 className="lg:text-5xl text-orange-600 text-4xl md:text-5xl  pt-20 lg:pt-0 font-poppins font-extrabold ">
+          <h1 className="lg:text-5xl text-orange-600 text-4xl md:text-5xl  mt-20 lg:mt-24 lg:pt-0 font-poppins font-extrabold ">
             Create Account
           </h1>
-          <p className=" hidden lg:block text-base lg:text-xs pt-3 px-12 lg:px-38 leading-20 ">
-            Lets get you all set up.Provide us with the following information to
-            get started
+          <p className=" hidden lg:flex text-sm pt-3 justify-center px-48 leading-relaxed ">
+            Lets get you all set up. Provide us with the following information
+            to get started
           </p>
         </div>
-        <form className="px-10 pt-4 lg:pt-0">
-          <div className="mb-6">
+        <form className="px-10 mt-4 lg:pt-0">
+          <div className="mb-4">
             <Label
-              className="w-full pb-2 text-base text-[#9A9A9A]"
+              className="w-full pb-1 text-base text-[#9A9A9A]"
               htmlFor="text"
               title="Full Name"
             />
             <Input
               name="text"
               type="text"
-              className="lg:w-full  w-full mt-2 p-4  text-lg lg:text-base border-[#444444] rounded-lg shadow-sm border-2 "
+              className="lg:w-full  w-full mt-1 p-4  lg:p-2 text-lg lg:text-base border-[#444444] rounded-md shadow-sm border-2 "
               required={true}
               autoFocus={false}
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <Label
               className="w-full text-base  text-[#9A9A9A]"
               htmlFor="email"
@@ -56,13 +56,13 @@ function Register() {
             <div className="relative">
               <input
                 type="email"
-                className="w-full p-4 pr-12 mt-2  text-lg lg:text-base border-[#444444] border-2 rounded-lg shadow-sm"
+                className="w-full p-4  lg:p-2  pr-12 mt-1  text-lg lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
               />
             </div>
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <Label
-              className="w-full text-base text-[#9A9A9A]"
+              className="w-full  pb-1 text-base text-[#9A9A9A]"
               htmlFor="text"
               title="Whatapp No"
             />
@@ -70,11 +70,11 @@ function Register() {
             <div className="relative">
               <input
                 type="number"
-                className="w-full p-4 pr-12 mt-2  text-lg lg:text-base border-[#444444] border-2 rounded-lg shadow-sm"
+                className="w-full p-4  lg:p-2  pr-12 mt-1  text-lg lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
               />
             </div>
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <Label
               className="w-full text-base text-[#9A9A9A]"
               htmlFor="text"
@@ -84,11 +84,11 @@ function Register() {
             <div className="relative">
               <input
                 type="text"
-                className="w-full p-4 pr-12 mt-2  text-lg lg:text-base border-[#444444] border-2 rounded-lg shadow-sm"
+                className="w-full p-4  lg:p-2  pr-12 mt-1  text-lg lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
               />
             </div>
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <Label
               className="w-full text-base text-[#9A9A9A]"
               htmlFor="Password"
@@ -98,14 +98,14 @@ function Register() {
             <div className="relative">
               <input
                 type="password"
-                className="w-full p-4 pr-12 mt-2  text-lg lg:text-base border-[#444444] border-2 rounded-lg shadow-sm"
+                className="w-full p-4  lg:p-2  pr-12 mt-1  text-lg lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
               />
               <p className=" text-sm text-orange-600 pt-2">
                 Password should contain at least 8 characters
               </p>
             </div>
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <Label
               className="w-full text-base text-[#9A9A9A]"
               htmlFor="password"
@@ -115,12 +115,12 @@ function Register() {
             <div className="relative">
               <input
                 type="password"
-                className="w-full p-4 pr-12 mt-2 text-lg lg:text-base border-[#444444] border-2 rounded-lg shadow-sm"
+                className="w-full p-4  lg:p-2  pr-12 mt-1 text-lg lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
               />
             </div>
           </div>
 
-          <Button className="w-full bg-orange-600 h-16 mb-4 rounded-lg text-white text-2xl font-semibold">
+          <Button className="w-full bg-orange-600 p-4  lg:p-2  mb-4 rounded-md text-white text-2xl font-semibold">
             Sign Up
           </Button>
           <div className="flex justify-center mb-3">
