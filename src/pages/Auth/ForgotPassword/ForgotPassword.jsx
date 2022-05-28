@@ -1,27 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
+import icon from "../../../assets/images/icon.png";
+import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
-import Footer from "../../../components/Footer";
 import Input from "../../../components/Input";
 import Label from "../../../components/Label";
+import Footer from "../../../components/Footer";
 
-function Login() {
-  const [value, setValue] = React.useState({});
-  const onChangeInput = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
-  };
-
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-  };
-
+function ForgotPassword() {
   return (
-    <div className=" flex">
-      <div className="  hidden lg:w-1/2  lg:mx-auto  lg:block bg-register-img ">
-        <img src={logo} className="w-32 m-6" />
-        <div className=" mt-32 pt-96  text-white">
-          <p className="flex justify-center font-poppins font-extrabold text-4xl ">
+    <div className="flex ">
+      <div className=" hidden w-1/2  mx-auto min-h-screen xl: lg:block bg-recover-img bg-cover ">
+        <img src={logo} className=" w-32 m-6" />
+        <div className="pt-96 mt-44 mb-20  text-white">
+          <img src={icon} className=" w-32  mx-auto " />
+          <p className="flex justify-center font-poppins font-extrabold text-4xl -mt-20 ">
             Hello, Friend!
           </p>
           <p className="flex justify-center pt-3 font-poppins text-base  ">
@@ -29,64 +22,57 @@ function Login() {
           </p>
         </div>
       </div>
-      <div className="w-full lg:w-1/2 lg:mx-auto  md:my-auto generalbg p-12">
-        <div className="w-full">
-          <div className="text-center">
-            <h1 className="text-3xl lg:text-4xl font-bold lg:pt-20 text-orange-600 ">
-              Recover Password
-            </h1>
-            <p className=" lg:text-base text-lg text-gray-700">
-              Please enter your recovery email.
-            </p>
-          </div>
-          <form className=" px-0 lg:px-10">
-            <div className="mb-6">
-              <Label
-                className="w-full  text-lg lg:text-base text-[#9A9A9A]"
-                htmlFor="email"
-                title="Email"
-              />
-              <Input
-                name="email"
-                type="email"
-                className="w-full  p-4 pr-12 mt-2 text-2xl lg:text-base border-[#444444] border-2 rounded-lg shadow-sm"
-                required={true}
-                autoFocus={false}
-                onChange={onChangeInput}
-              />
-            </div>
-
-            <Button
-              className="w-full bg-orange-600 h-16  mb-0 lg:mb-4 rounded-lg text-white text-2xl font-semibold"
-              onClick={onSubmitHandler}
-            >
-              Proceed
-            </Button>
-            <div className="flex justify-center mb-3">
-              <span className="text-gray-600 text-lg leading-12  lg:leading-0  lg:text-sm pt-3">
-                Check the Email input above for a recovery link
-                <Link to="/" className="text-gray-900 pt-3  lg:pt-0 font-bold">
-                  Terms & Condition
-                </Link>
-              </span>
-            </div>
-            <div className="flex pt-4 lg:pt-0">
-              <p className="mr-3 text-gray-600 text-lg lg:text-xl">
-                Existing User?
-              </p>
-              <Link
-                to="/auth/register"
-                className="text-orange-600 text-lg lg:text-xl underline"
-              >
-                Back to Login
-              </Link>
-            </div>
-            <Footer />
-          </form>
+      <div className="w-full lg:w-1/2  lg:mx-auto generalbg ">
+        <div className="w-full  font-poppins text-center  mt-32 lg:mt-52 ">
+          <h1 className="lg:text-3xl text-orange-600 text-3xl md:text-5xl  mt-20 lg:mt-24 lg:pt-0 font-poppins font-extrabold ">
+            Recover Password
+          </h1>
+          <p className=" flex  text-base  lg:text-sm mt-4 lg:mt-3  md:pl-0 justify-center lg:px-44 leading-relaxed ">
+            Please enter your recovery email.
+          </p>
         </div>
+        <form className=" px-5 lg:px-10 mt-5 lg:mt-4 lg:pt-0 ">
+          <div className="mb-4">
+            <Label
+              className="w-full pb-1 text-base text-[#9A9A9A]"
+              htmlFor="email"
+              title="Email"
+            />
+            <Input
+              name="email"
+              type="email"
+              className=" w-full mt-1 p-2 inputcolor focus:outline-none lg:p-2 text-lg lg:text-base border-[#444444] rounded-md shadow-sm border-2 "
+              required={true}
+              autoFocus={false}
+            />
+          </div>
+
+          <Button className="w-full bg-orange-600 p-2 mt-3 lg:p-2  shadow-lg rounded-md text-white text-lg font-semibold">
+            Proceed
+          </Button>
+          <div className="flex justify-center mb-3">
+            <span className="text-gray-600 text-sm mt-2 lg:mt-1">
+              Check the Email input above for a recovery link
+            </span>
+          </div>
+          <div className="flex ">
+            <p className="mr-3 mt-3 text-gray-600 text-xl">Existing User?</p>
+            <Link
+              to="/auth/login"
+              className="text-orange-600 mt-3 text-xl underline"
+            >
+              Back to Login
+            </Link>
+          </div>
+          <Footer className="flex justify-center mt-52 mb-0">
+            <p className="font-bold text-3xl ">&copy;</p>
+            <p className="px-1 pt-3"> 2021</p>
+            <p className="pt-3"> All copyright Reserved</p>
+          </Footer>
+        </form>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default ForgotPassword;
