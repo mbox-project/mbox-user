@@ -29,10 +29,10 @@ function Login() {
           </p>
         </div>
       </div>
-      <div className="w-full lg:w-1/2 lg:mx-auto  md:my-auto generalbg p-12">
+      <div className="w-full lg:w-1/2 lg:mx-auto  md:my-auto generalbg p-6 lg:p-12">
         <div className="w-full">
           <div className="text-center ">
-            <h1 className="text-3xl lg:text-4xl font-bold lg:mt-32 text-orange-600 mb-2">
+            <h1 className="text-3xl lg:text-4xl font-bold mt-24 lg:mt-32 text-orange-600 mb-2">
               Login
             </h1>
             <p className=" lg:text-base text-base text-gray-700">
@@ -49,7 +49,7 @@ function Login() {
               <Input
                 name="email"
                 type="email"
-                className="w-full  p-2 inputcolor focus:outline-none pr-12 mt-2 text-2xl lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
+                className="w-full  p-2 inputcolor focus:outline-none pr-0 lg:pr-12 mt-2 text-2xl lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
@@ -57,7 +57,7 @@ function Login() {
             </div>
             <div className="mb-4">
               <Label
-                className="w-full text-xl lg:text-base text-[#9A9A9A]"
+                className="w-full text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="password"
                 title="Password"
               />
@@ -119,20 +119,20 @@ function Login() {
               Login
             </Button>
             <div className="flex justify-center mb-1">
-              <span className="text-gray-600 text-lg leading-12  lg:leading-0  lg:text-sm pt-1">
+              <span className="text-gray-600 text-xs  leading-relaxed   lg:leading-0  lg:text-sm mt-1">
                 By Login, you’ve already agreed to our{" "}
                 <Link to="/" className="text-gray-900 pt-3  lg:pt-0 font-bold">
                   Terms & Condition
                 </Link>
               </span>
             </div>
-            <div className="flex mt-4 lg:pt-0">
-              <p className="mr-3 text-gray-600 text-lg lg:text-base">
+            <div className="flex mt-4 lg:pt-0 ">
+              <p className="mr-3 text-gray-600  flex justify-center lg:block text-lg lg:text-base">
                 New User?
               </p>
               <Link
                 to="/auth/register"
-                className="text-orange-600 text-lg lg:text-base underline"
+                className="text-orange-600 text-lg  lg:text-base underline"
               >
                 Sign Up
               </Link>
