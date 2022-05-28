@@ -26,7 +26,7 @@ function Register() {
           <h1 className="lg:text-5xl text-orange-600 text-4xl md:text-5xl  mt-20 lg:mt-24 lg:pt-0 font-poppins font-extrabold ">
             Create Account
           </h1>
-          <p className=" flex  text-base max-w-xs md:max-w-none lg:text-sm mt-4 lg:mt-3 pl-16 md:pl-0 justify-center lg:px-48 leading-relaxed ">
+          <p className=" flex  text-base max-w-xs md:max-w-none  lg:text-sm mt-4 lg:mt-3 pl-16 md:pl-0 justify-center lg:px-44 leading-relaxed ">
             Lets get you all set up. Provide us with the following information
             to get started
           </p>
