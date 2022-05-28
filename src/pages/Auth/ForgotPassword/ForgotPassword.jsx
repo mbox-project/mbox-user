@@ -19,7 +19,7 @@ function Login() {
   return (
     <div className=" flex">
       <div className="  hidden lg:w-1/2  lg:mx-auto  lg:block bg-register-img ">
-        <img src={logo} className="w- m-6" />
+        <img src={logo} className="w-32 m-6" />
         <div className=" mt-32 pt-96  text-white">
           <p className="flex justify-center font-poppins font-extrabold text-4xl ">
             Hello, Friend!
@@ -29,10 +29,10 @@ function Login() {
           </p>
         </div>
       </div>
-      <div className="w-full lg:w-1/2 lg:mx-auto  md:my-auto bg-white p-12">
+      <div className="w-full lg:w-1/2 lg:mx-auto  md:my-auto generalbg p-12">
         <div className="w-full">
-          <div className="text-center pb-10">
-            <h1 className="text-3xl lg:text-5xl font-bold lg:pt-20 text-orange-600 mb-5">
+          <div className="text-center">
+            <h1 className="text-3xl lg:text-4xl font-bold lg:pt-20 text-orange-600 ">
               Recover Password
             </h1>
             <p className=" lg:text-base text-lg text-gray-700">
