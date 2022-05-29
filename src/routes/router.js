@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { Login, Register } from "../pages/Auth";
 import { LandingPage } from "../pages/Landing";
 import { ForgotPassword } from "../pages/ForgotPassword";
-import ResetPassword from "../pages/Auth/ResetPassword";
+import { ResetPassword } from "../pages/Auth";
 
 const RouteController = () => {
   return (
