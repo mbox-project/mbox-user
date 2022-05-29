@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import icon from "../../../assets/images/icon.png";
 import logo from "../../../assets/images/logo.png";
 import Button from "../../../components/Button";
 import Footer from "../../../components/Footer";
@@ -18,10 +19,11 @@ function Login() {
 
   return (
     <div className=" flex">
-      <div className="  hidden lg:w-1/2  lg:mx-auto  lg:block bg-register-img ">
+      <div className="  hidden w-1/2  mx-auto min-h-screen lg:block bg-register-img bg-cover ">
         <img src={logo} className="w-32 m-6" />
         <div className=" mt-60 pt-96  text-white">
-          <p className="flex justify-center font-poppins font-extrabold text-4xl ">
+          <img src={icon} className=" w-32  mx-auto " />
+          <p className="flex justify-center font-poppins font-extrabold text-4xl -mt-20 ">
             Hello, Friend!
           </p>
           <p className="flex justify-center pt-3 pb-10 font-poppins text-base  ">
@@ -29,13 +31,13 @@ function Login() {
           </p>
         </div>
       </div>
-      <div className="w-full lg:w-1/2 lg:mx-auto  md:my-auto generalbg p-6 lg:p-12">
+      <div className="w-full lg:w-1/2   md:mx-auto generalbg p-6 lg:p-12">
         <div className="w-full">
           <div className="text-center ">
             <h1 className="text-3xl lg:text-4xl font-bold mt-24 lg:mt-32 text-orange-600 mb-2">
               Login
             </h1>
-            <p className=" lg:text-base text-base text-gray-700">
+            <p className=" lg:text-base text-lg text-gray-700">
               Please enter your details.
             </p>
           </div>
@@ -66,7 +68,6 @@ function Login() {
                 <input
                   type="password"
                   className="w-full  p-2 inputcolor focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-2 rounded-md shadow-sm"
-                  placeholder="Enter password"
                 />
 
                 <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -101,11 +102,11 @@ function Login() {
                   required={false}
                   onChange={onChangeInput}
                 />
-                <span className="text-base">keep me Log in</span>
+                <span className=" text-lg lg:text-base">keep me Log in</span>
               </div>
               <div>
                 <Link
-                  className="underline  text-base"
+                  className="underline  text-lg lg:text-base"
                   to={`/auth/forgot-password`}
                 >
                   Forgot password?
@@ -113,20 +114,20 @@ function Login() {
               </div>
             </div>
             <Button
-              className="w-full bg-orange-600 p-2 mb-0 lg:mb-2 rounded-md text-white text-lg shadow-lg font-semibold"
+              className="w-full bg-orange-600 p-2 mt-1 lg:mt-0 mb-0 lg:mb-2 rounded-md text-white text-lg shadow-lg font-semibold"
               onClick={onSubmitHandler}
             >
               Login
             </Button>
             <div className="flex justify-center mb-1">
-              <span className="text-gray-600 text-xs  leading-relaxed   lg:leading-0  lg:text-sm mt-1">
+              <span className="text-gray-600 text-xs md:text-sm  leading-relaxed   lg:leading-0  lg:text-sm mt-1">
                 By Login, you’ve already agreed to our{" "}
                 <Link to="/" className="text-gray-900 pt-3  lg:pt-0 font-bold">
                   Terms & Condition
                 </Link>
               </span>
             </div>
-            <div className="flex mt-4 lg:pt-0 ">
+            <div className="flex  lg:mt-4  mt-8 ">
               <p className="mr-3 text-gray-600  flex justify-center lg:block text-lg lg:text-base">
                 New User?
               </p>
@@ -137,10 +138,12 @@ function Login() {
                 Sign Up
               </Link>
             </div>
-            <Footer className="flex font-poppins  md:text-2xl   font-light justify-center mt-15 text-base lg:text-xs  ">
-              <p className="font-bold text-3xl ">&copy;</p>
-              <p className="px-1 pt-3"> 2021</p>
-              <p className="pt-3"> All copyright Reserved</p>
+            <Footer className="mb-0 pb-0">
+              <div className="flex justify-center  mt-52 md:mt-64 lg:mt-52 mb-0">
+                <p className="font-bold text-3xl  ">&copy;</p>
+                <p className="px-1  pt-2 "> 2021</p>
+                <p className="pt-2 "> All copyright Reserved</p>
+              </div>
             </Footer>
           </form>
         </div>
