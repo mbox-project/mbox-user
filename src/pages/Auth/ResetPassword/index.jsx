@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../../assets/images/logo.png";
+import icon from "../../../assets/images/icon.png";
 import Button from "../../../components/Button";
 import Footer from "../../../components/Footer";
 import Label from "../../../components/Label";
@@ -11,10 +12,11 @@ function ResetPassword() {
 
   return (
     <div className="flex">
-      <div className=" hidden lg:w-1/2  lg:mx-auto  lg:block bg-reset">
+      <div className=" hidden w-1/2 min-h-screen mx-auto  lg:block bg-reset bg-cover">
         <img src={logo} className=" w-32 m-6" />
         <div className=" mt-60 pt-96  text-white">
-          <p className="flex justify-center font-poppins font-extrabold text-4xl ">
+          <img src={icon} className=" w-32  mx-auto " />
+          <p className="flex justify-center font-poppins font-extrabold text-2xl -mt-20">
             Hello,Friend!
           </p>
           <p className="flex justify-center pt-3 font-poppins text-base  ">
@@ -22,10 +24,10 @@ function ResetPassword() {
           </p>
         </div>
       </div>
-      <div className=" lg:w-1/2 lg:mx-auto w-full md:mx-auto bg-white p-12">
+      <div className=" lg:w-1/2 mx-auto w-full  inputcolor p-5 lg:p-12">
         <div className="w-full">
           <div className="text-center py-10  ">
-            <h1 className="text-3xl lg:text-5xl mt-20 font-bold text-orange-600 mb-5">
+            <h1 className="text-3xl mt-32 font-bold text-orange-600 mb-3">
               Reset Password
             </h1>
             <p className=" lg:text-base text-lg text-gray-700">
@@ -33,7 +35,7 @@ function ResetPassword() {
             </p>
           </div>
           <form className=" px-0 lg:px-10">
-            <div className="mb-6">
+            <div className="mb-4">
               <Label
                 className="w-full text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="password"
@@ -43,7 +45,7 @@ function ResetPassword() {
               <div className="relative">
                 <input
                   type="password"
-                  className="w-full p-4 pr-12 text-base lg:text-sm mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
+                  className="w-full p-2 pr-12 text-base inputcolor lg:text-sm mt-2 border-[#444444] border-2 rounded-md shadow-sm"
                 />
                 <span className="absolute inset-y-0 inline-flex items-center right-4">
                   <svg
@@ -70,7 +72,7 @@ function ResetPassword() {
               </div>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-4">
               <Label
                 className="w-full text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="password"
@@ -80,7 +82,7 @@ function ResetPassword() {
               <div className="relative">
                 <input
                   type="password"
-                  className="w-full p-4 pr-12 text-base lg:text-sm mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
+                  className="w-full p-2 pr-12 text-base inputcolor lg:text-sm mt-2 border-[#444444] border-2 rounded-md shadow-sm"
                 />
 
                 <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -109,13 +111,19 @@ function ResetPassword() {
             </div>
 
             <Button
-              className="w-full bg-orange-600 h-16 mb-4 rounded-lg text-white text-2xl font-semibold"
+              className="w-full bg-orange-600 p-2  mt-3 mb-4 rounded-md shadow-lg  text-white text-lg font-semibold"
               onClick={onSubmitHandler}
             >
               Reset my password
             </Button>
 
-            <Footer />
+            <Footer>
+              <div className="flex font-poppins  md:text-2xl md:mt-48   font-light justify-center pt-48  text-base lg:text-xs  lg:mt-12 ">
+                <p className="font-bold text-3xl pt-1 ">&copy;</p>
+                <p className="px-1 pt-3"> 2021</p>
+                <p className="pt-3"> All copyright Reserved</p>
+              </div>
+            </Footer>
           </form>
         </div>
       </div>
