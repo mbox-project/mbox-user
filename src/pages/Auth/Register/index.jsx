@@ -38,7 +38,7 @@ function Register() {
             <Label
               className="w-full pb-1 text-base text-[#9A9A9A]"
               htmlFor="text"
-              title="Full Name"
+              title="Full Name "
             />
             <Input
               name="text"
@@ -144,7 +144,13 @@ function Register() {
           </div>
         </form>
 
-        <Footer />
+        <Footer>
+          <div className="flex font-poppins  md:text-2xl md:pt-64  font-light justify-center pt-40 text-base lg:text-xs  lg:pt-32 ">
+            <p className="font-bold text-3xl pt-2 ">&copy;</p>
+            <p className="px-1 pt-3"> 2021</p>
+            <p className="pt-3"> All copyright Reserved</p>
+          </div>
+        </Footer>
       </div>
     </div>
   );
