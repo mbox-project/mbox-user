@@ -43,7 +43,7 @@ function ResetPassword() {
               <div className="relative">
                 <input
                   type="password"
-                  className="w-full p-4 pr-12 text-base lg:text-sm mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
+                  className="w-full p-2 pr-12 text-base lg:text-sm mt-2 border-[#444444] border-2 rounded-md shadow-sm"
                 />
                 <span className="absolute inset-y-0 inline-flex items-center right-4">
                   <svg
