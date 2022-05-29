@@ -10,9 +10,9 @@ import Footer from "../../../components/Footer";
 function ForgotPassword() {
   return (
     <div className="flex ">
-      <div className=" hidden w-1/2  mx-auto min-h-screen xl: lg:block bg-recover-img bg-cover ">
+      <div className=" hidden w-1/2  mx-auto min-h-screen  lg:block bg-recover-img bg-cover ">
         <img src={logo} className=" w-32 m-6" />
-        <div className="pt-96 mt-44 mb-20  text-white">
+        <div className="pt-96 mt-52 mb-20  text-white">
           <img src={icon} className=" w-32  mx-auto " />
           <p className="flex justify-center font-poppins font-extrabold text-4xl -mt-20 ">
             Hello, Friend!
@@ -24,7 +24,7 @@ function ForgotPassword() {
       </div>
       <div className="w-full lg:w-1/2  lg:mx-auto generalbg ">
         <div className="w-full  font-poppins text-center  mt-32 lg:mt-52 ">
-          <h1 className="lg:text-3xl text-orange-600 text-3xl md:text-5xl  mt-20 lg:mt-24 lg:pt-0 font-poppins font-extrabold ">
+          <h1 className="lg:text-3xl text-orange-600 text-3xl md:text-5xl  mt-44 lg:mt-24 lg:pt-0 font-poppins font-extrabold ">
             Recover Password
           </h1>
           <p className=" flex  text-base  lg:text-sm mt-4 lg:mt-3  md:pl-0 justify-center lg:px-44 leading-relaxed ">
@@ -51,23 +51,25 @@ function ForgotPassword() {
             Proceed
           </Button>
           <div className="flex justify-center mb-3">
-            <span className="text-gray-600 text-sm mt-2 lg:mt-1">
+            <span className="text-gray-600 md:text-base text-sm lg:text-sm mt-2 lg:mt-1">
               Check the Email input above for a recovery link
             </span>
           </div>
           <div className="flex ">
-            <p className="mr-3 mt-3 text-gray-600 text-xl">Existing User?</p>
+            <p className="mr-3 mt-3 text-gray-600 text-lg md:text-xl">
+              Existing User?
+            </p>
             <Link
               to="/auth/login"
-              className="text-orange-600 mt-3 text-xl underline"
+              className="text-orange-600 mt-3 text-lg md:text-xl underline"
             >
               Back to Login
             </Link>
           </div>
-          <Footer className="flex justify-center mt-52 mb-0">
+          <Footer className="flex justify-center mt-64 md:mt-96 lg:mt-80 mb-0">
             <p className="font-bold text-3xl ">&copy;</p>
             <p className="px-1 pt-3"> 2021</p>
-            <p className="pt-3"> All copyright Reserved</p>
+            <p className="pt-3 "> All copyright Reserved</p>
           </Footer>
         </form>
       </div>
