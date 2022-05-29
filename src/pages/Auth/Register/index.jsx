@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import icon from "../../../assets/images/icon.png";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import Label from "../../../components/Label";
@@ -9,10 +10,11 @@ import Footer from "../../../components/Footer";
 function Register() {
   return (
     <div className="flex ">
-      <div className=" hidden lg:w-1/2  lg:mx-auto  lg:block bg-register-img  ">
+      <div className=" hidden w-1/2  mx-auto min-h-screen  lg:block bg-register-img bg-cover ">
         <img src={logo} className=" w-32 m-6" />
         <div className=" mt-96 pt-96  text-white">
-          <p className="flex justify-center font-poppins font-extrabold text-4xl ">
+          <img src={icon} className="w-32  mx-auto" />
+          <p className="flex justify-center -mt-20  font-poppins font-extrabold text-4xl ">
             Welcome Back!
           </p>
           <p className="flex justify-center pt-3 font-poppins text-base  ">
