@@ -23,76 +23,76 @@ function VerifyOTP() {
       </div>
       <div className="w-full lg:w-1/2  lg:mx-auto generalbg bg-cover ">
         <div className="w-full  font-poppins text-center mt-12 ">
-          <h1 className="lg:text-3xl text-orange-600 text-4xl md:text-5xl mt-48 lg:mt-44 lg:pt-0 font-poppins font-extrabold ">
+          <h1 className="lg:text-3xl text-orange-600 text-4xl  mt-32 lg:mt-44 lg:pt-0 font-poppins font-extrabold ">
             OTP Verification
           </h1>
-          <p className=" hidden lg:block text-base lg:text-xs pt-3 px-12 lg:px-52 leading-relaxed ">
+          <p className="block pb-3 pt-4 text-base lg:text-xs md:pt-6  lg:pt-3 px-12 lg:px-52 leading-relaxed ">
             Enter the 6-digit number sent to taylormason@gmail.com
           </p>
         </div>
-        <form className="px-10 pt-4 lg:mt-6">
+        <form className="px-10 pt-4  md:mt-4 lg:mt-6">
           <div className="mb-4 flex justify-center ">
-            <div className="mx-6 ">
+            <div className=" mx-0 md:mx-4 lg:mx-6 ">
               <div className="relative">
                 <Input
                   name="number"
                   type="number"
-                  className=" w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
+                  className=" w-2 md:w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
                   required={true}
                   autoFocus={false}
                 />
               </div>
             </div>
-            <div className="mx-6">
+            <div className="mx-0 md:mx-4 lg:mx-6">
               <div className="relative">
                 <Input
                   name="number"
                   type="number"
-                  className=" w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
+                  className=" w-2 md:w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
                   required={true}
                   autoFocus={false}
                 />
               </div>
             </div>
-            <div className="mx-6">
+            <div className="mx-0 md:mx-4 lg:mx-6">
               <div className="relative">
                 <Input
                   name="number"
                   type="number"
-                  className=" w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
+                  className=" w-2 md:w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
                   required={true}
                   autoFocus={false}
                 />
               </div>
             </div>
-            <div className="mx-6">
+            <div className="mx-0 md:mx-4 lg:mx-6">
               <div className="relative">
                 <Input
                   name="number"
                   type="number"
-                  className=" w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
+                  className=" w-2 md:w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
                   required={true}
                   autoFocus={false}
                 />
               </div>
             </div>
-            <div className="mx-6">
+            <div className="mx-0 md:mx-4 lg:mx-6">
               <div className="relative">
                 <Input
                   name="number"
                   type="number"
-                  className=" w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
+                  className=" w-2 md:w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
                   required={true}
                   autoFocus={false}
                 />
               </div>
             </div>
-            <div className="mx-6">
+            <div className="mx-0 md:mx-4 lg:mx-6">
               <div className="relative">
                 <Input
                   name="number"
                   type="number"
-                  className=" w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
+                  className=" w-2 md:w-4 py-2 px-6 inputcolor mr-2 mt-2 text-base  border-[#444444] border-2 rounded-md shadow-sm"
                   required={true}
                   autoFocus={false}
                 />
@@ -105,16 +105,16 @@ function VerifyOTP() {
             </Link>
           </div>
 
-          <Button className="w-full bg-orange-600 p-2 mb-4 mt-7 rounded-md shadow-md text-white text-lg font-semibold">
+          <Button className="w-full bg-orange-600 p-2 mb-4 mt-10 md:mt-12 lg:mt-7 rounded-md shadow-md text-white text-lg font-semibold">
             Verify and Proceed
           </Button>
         </form>
 
         <Footer>
-          <div className="flex font-poppins  md:text-2xl md:pt-64  font-light justify-center pt-40 text-base lg:text-xs  lg:pt-32 ">
-            <p className="font-bold text-3xl pt-2 ">&copy;</p>
-            <p className="px-1 pt-3"> 2021</p>
-            <p className="pt-3"> All copyright Reserved</p>
+          <div className="flex font-poppins  md:text-2xl md:mt-44  font-light justify-center pt-60 text-base lg:text-xs  lg:mt-32">
+            <p className="font-bold text-3xl pt-2 md:pt-3 lg:pt-2 ">&copy;</p>
+            <p className="px-1 pt-4"> 2021</p>
+            <p className="pt-4"> All copyright Reserved</p>
           </div>
         </Footer>
       </div>
