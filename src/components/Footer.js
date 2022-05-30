@@ -1,10 +1,14 @@
-const Footer = () => {
+const Footer = ({ children, onClick, className, disabled }) => {
+  Footer.propTypes = {
+    children: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    className: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
+  };
   return (
-    <div className="flex font-poppins  md:text-2xl md:pt-64  font-light justify-center pt-40 text-base lg:text-xs  lg:pt-32 ">
-      <p className="font-bold text-3xl ">&copy;</p>
-      <p className="px-1 pt-2"> 2021</p>
-      <p className="pt-2"> All copyright Reserved</p>
-    </div>
+    <p onClick={onClick} className={className} disabled={disabled}>
+      {children}
+    </p>
   );
 };
 export default Footer;
