@@ -4,6 +4,7 @@ import { LandingPage } from "../pages/Landing";
 import { ForgotPassword } from "../pages/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import Modal from "../pages/Modal/Modal";
+import { ModalSuccess } from "../pages/ModalSuccess";
 
 const RouteController = () => {
   return (
@@ -14,6 +15,7 @@ const RouteController = () => {
       <Route path="/auth/register" element={<Register />} />
       <Route path="/auth/reset-password" element={<ResetPassword />} />
       <Route path="/modal" element={<Modal />} />
+      <Route path="/modal-success" element={<ModalSuccess />} />
     </Routes>
   );
 };

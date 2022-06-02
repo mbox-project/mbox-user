@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const Modal = () => {
   return (
     <div className="  p-4  m-4 rounded lg:w-1/2 lg:m-auto  mt-12 lg:mt-20 shadow font-poppins  ">
-      <div className="flex ">
-        <img src={email} className="w-10 h-15 " />
+      <div className=" ">
+        <img src={email} className="w-10 h-15 block m-auto" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-5 h-5 "
