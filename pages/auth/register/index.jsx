@@ -16,6 +16,10 @@ function Register() {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+  };
+
   const sexOptions = [
     {
       id: 1,
@@ -34,10 +38,6 @@ function Register() {
       value: "Rather Not Say",
     },
   ];
-
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-  };
 
   return (
     <div className="flex min-h-screen">
