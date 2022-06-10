@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import MainFooter from "../components/MainFooter";
+import Newsletter from "../components/Newsletter";
 
 const LandingPage = () => {
   return (
@@ -39,6 +40,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+      <Newsletter />
       <MainFooter />
     </div>
   );
