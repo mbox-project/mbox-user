@@ -33,6 +33,7 @@ const Newsletter = () => {
                     type="email"
                     id="email"
                     placeholder="Type your email address here ..."
+                    required
                   />
 
                   <Button

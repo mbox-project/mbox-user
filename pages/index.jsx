@@ -2,7 +2,9 @@ import React from "react";
 import Header from "../components/Header";
 import MainFooter from "../components/MainFooter";
 import Newsletter from "../components/Newsletter";
-
+import About from "../components/About";
+import Feature from "../components/Feature";
+import GenerateInvoice from "../components/GenerateInvoice";
 const LandingPage = () => {
   return (
     <div className="bg-gray-50">
@@ -40,6 +42,38 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+      <section className="featurebg ">
+        <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+          <h2 className="flex justify-center uppercase text-lg lg:text-xl">
+            Our Special<span className="text-orange-600 px-1 "> Features</span>
+          </h2>
+          <div className=" block  lg:flex">
+            <Feature
+              className="p-4 m-2 lg:m-4 border-2 block  shadow-md max-w-sm rounded-xl col-span-2 bg-white"
+              header="Buying & Selling Safely"
+              body="Dealer in various type of whatever as
+want randing from this to that to those
+and here!"
+            />
+            <Feature
+              className="p-4 m-2 lg:m-4 border-2 block  shadow-md max-w-sm rounded-xl col-span-2 bg-white"
+              header="100%  Secure"
+              body="Dealer in various type of whatever as
+want randing from this to that to those
+and here!"
+            />
+            <Feature
+              className="p-4 m-2  lg:m-4 border-2 block  shadow-md max-w-sm rounded-xl col-span-2 bg-white"
+              header="24Hrs Warranty"
+              body="Dealer in various type of whatever as
+want randing from this to that to those
+and here!"
+            />
+          </div>
+        </div>
+      </section>
+      <GenerateInvoice />
+      <About />
       <Newsletter />
       <MainFooter />
     </div>
