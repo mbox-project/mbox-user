@@ -9,6 +9,10 @@ import BuyNow from "../components/BuyNow";
 import Items from "../components/Items";
 import BecomeAMerchant from "../components/BecomeAMerchant";
 import Category from "../components/Category";
+import SuggestedMerchant from "../components/SuggestedMerchant";
+import sneakers from "../public/images/sneakerimg.png";
+import Image from "next/dist/client/image";
+import ad from "../public/images/ad.png";
 const LandingPage = () => {
   return (
     <div className="bg-gray-50">
@@ -47,27 +51,27 @@ const LandingPage = () => {
         </div>
       </section>
       <section className="featurebg ">
-        <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
-          <h2 className="flex justify-center uppercase text-lg lg:text-xl">
+        <div className="max-w-screen-xl px-4 py-16 lg:mx-auto sm:px-6 lg:px-8">
+          <h2 className="flex justify-center uppercase font-bold text-xl lg:text-2xl tracking-wider">
             Our Special<span className="text-orange-600 px-1 "> Features</span>
           </h2>
           <div className=" block w-full  lg:flex">
             <Feature
-              className="p-4 m-2 lg:m-4 border-2 block  shadow-md max-w-sm rounded-xl col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
               header="Buying & Selling Safely"
               body="Dealer in various type of whatever as
               want randing from this to that to those
               and here!"
             />
             <Feature
-              className="p-4 m-2 lg:m-4 border-2 block  shadow-md max-w-sm rounded-xl col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mt-10  border-2 block lg:mx-6 shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
               header="100%  Secure"
               body="Dealer in various type of whatever as
               want randing from this to that to those
               and here!"
             />
             <Feature
-              className="p-4 m-2  lg:m-4 border-2 block  shadow-md max-w-sm rounded-xl col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mt-10  border-2 block lg:mx-6 shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
               header="24Hrs Warranty"
               body="Dealer in various type of whatever as
               want randing from this to that to those
@@ -78,10 +82,59 @@ const LandingPage = () => {
       </section>
       <GenerateInvoice />
       <BuyNow />
+      <section className="aboutbg">
+        <div className="max-w-screen-xl px-4 py-16  sm:px-6 lg:px-8">
+          <h2 className="flex justify-center uppercase text-lg lg:text-xl">
+            Suggested<span className="text-orange-600 px-1 "> Merchants</span>
+          </h2>
+          <div className=" block  lg:mx-auto lg:flex">
+            <SuggestedMerchant
+              className="p-4 mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
+              header="Giveon’s Crib"
+              body="3,543 Endorsements"
+              categories="Categories : 
+              Automobile
+              Fashion
+              Toys"
+              button="View Store"
+            />
+            <SuggestedMerchant
+              className="p-4 mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
+              header="Giveon’s Crib"
+              body="3,543 Endorsements"
+              categories="Categories : 
+              Automobile
+              Fashion
+              Toys"
+              button="View Store"
+            />
+            <SuggestedMerchant
+              className="p-4 mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
+              header="Giveon’s Crib"
+              body="3,543 Endorsements"
+              categories="Categories : 
+              Automobile
+              Fashion
+              Toys"
+              button="View Store"
+            />
+          </div>
+        </div>
+      </section>
       <Items />
+      <section>
+        <div className="max-w-screen-xl px-4 py-16 lg:mx-auto sm:px-6 lg:px-8">
+          <Image src={sneakers} />
+        </div>
+      </section>
       <Category />
 
       <BecomeAMerchant />
+      <section>
+        <div className="max-w-screen-xl px-4 py-16 lg:mx-auto sm:px-6 lg:px-8">
+          <Image src={ad} />
+        </div>
+      </section>
       <About />
       <Newsletter />
       <MainFooter />

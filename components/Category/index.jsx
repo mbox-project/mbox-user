@@ -27,7 +27,7 @@ const Category = () => {
               Shop Items By <span className="text-orange-600">Category </span>
             </h4>
           </div>
-          <div className="grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">
+          <div className="mx-auto grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">
             <div className="col-span-2 pt-6  sm:col-span-1 ">
               <div className="flex flex-col mt-6 space-y-7 text-sm ">
                 <div>

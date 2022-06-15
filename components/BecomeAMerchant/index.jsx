@@ -63,7 +63,7 @@ const BecomeAMerchant = () => {
                 Become A Merchant
               </Button>
             </div>
-            <div className="">
+            <div className="col-span-1 lg:col-span-1">
               <Image src={becomeamerchantimg} />
             </div>
           </div>
