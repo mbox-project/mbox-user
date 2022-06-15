@@ -7,6 +7,8 @@ import Feature from "../components/Feature";
 import GenerateInvoice from "../components/GenerateInvoice";
 import BuyNow from "../components/BuyNow";
 import Items from "../components/Items";
+import BecomeAMerchant from "../components/BecomeAMerchant";
+import Category from "../components/Category";
 const LandingPage = () => {
   return (
     <div className="bg-gray-50">
@@ -77,6 +79,9 @@ const LandingPage = () => {
       <GenerateInvoice />
       <BuyNow />
       <Items />
+      <Category />
+
+      <BecomeAMerchant />
       <About />
       <Newsletter />
       <MainFooter />
