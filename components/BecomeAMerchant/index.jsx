@@ -18,7 +18,7 @@ const BecomeAMerchant = () => {
             </h4>
           </div>
           <div className="grid grid-cols-2 gap-20 mt-8 lg:mt-5  lg:gap-y-16">
-            <div className="col-span-5 lg:col-span-1 ">
+            <div className="col-span-2 lg:col-span-1 ">
               <div className="flex py-5">
                 <div className=" ">
                   <Image src={becomeamerchant1} />
@@ -46,24 +46,24 @@ const BecomeAMerchant = () => {
                 </div>
               </div>
               <div className="flex py-5">
-                <div className="lg:ml-3 ">
+                <div className=" ml-3 lg:ml-3 ">
                   <Image src={becomeamerchant3} />
                 </div>
                 <div className="px-5">
-                  <p className="font-bold text-lg lg:ml-5 ">
+                  <p className="font-bold text-lg md:ml-5 ">
                     Have Your Store Online Without a Website
                   </p>
-                  <p className="text-sm text-gray-600 pt-3 lg:ml-5">
+                  <p className="text-sm text-gray-600 pt-3 md:ml-5">
                     Dealer in various type of whatever as want randing from this
                     to that to those and here!
                   </p>
                 </div>
               </div>
-              <Button className="w-full h-12 px-12 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 sm:flex-shrink-0 sm:w-auto mt-3 bg-orange-600 lg:ml-16">
+              <Button className="w-full h-12 px-12 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 sm:flex-shrink-0 sm:w-auto mt-3 md:ml-28 bg-orange-600 lg:ml-24">
                 Become A Merchant
               </Button>
             </div>
-            <div className="col-span-1 lg:col-span-1">
+            <div className="col-span-2 lg:col-span-1">
               <Image src={becomeamerchantimg} />
             </div>
           </div>

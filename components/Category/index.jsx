@@ -21,10 +21,10 @@ const Category = () => {
   return (
     <section className="aboutbg">
       <div className="lg:flex ">
-        <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl px-4 py-4 lg:py-16 mx-auto sm:px-6 lg:px-8">
           <div className="">
             <h4 className=" text-lg lg:text-xl abouttext  flex justify-center lg:tracking-wider">
-              Shop Items By <span className="text-orange-600">Category </span>
+              Shop Items By <span className="text-orange-600 px-1">Category </span>
             </h4>
           </div>
           <div className="mx-auto grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">

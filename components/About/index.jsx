@@ -27,7 +27,7 @@ const About = () => {
                 {" "}
                 You are just a sign up away!
               </p>
-              <Button className="w-full h-12 px-6 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-44 text-sm font-bold tracking-wide  bg-orange-600 sm:ml-4 sm:flex-shrink-0 sm:w-auto mt-3  text-white">
+              <Button className="w-full h-12 px-6 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-44 text-sm font-bold tracking-wide  bg-orange-600 sm:ml-4 md:ml-1 sm:flex-shrink-0 sm:w-auto mt-3  text-white">
                 Read More
               </Button>
             </div>

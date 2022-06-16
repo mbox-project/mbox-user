@@ -37,7 +37,7 @@ const Newsletter = () => {
                   />
 
                   <Button
-                    className="w-full h-12 px-6 py-3 mt-1 uppercase lg:normal-case lg:rounded-md lg:-ml-2 lg:mt-8 text-sm font-bold tracking-wide  bg-orange-600 sm:ml-4 sm:flex-shrink-0 sm:w-auto sm:mt-0"
+                    className="w-full h-12 px-6 py-3 mt-1 uppercase lg:normal-case lg:rounded-md lg:-ml-2 lg:mt-8 text-sm font-bold tracking-wide  bg-orange-600 md:mt-4  sm:flex-shrink-0 sm:w-auto sm:mt-0"
                     type="submit"
                   >
                     Subscribe

@@ -13,12 +13,39 @@ import SuggestedMerchant from "../components/SuggestedMerchant";
 import sneakers from "../public/images/sneakerimg.png";
 import Image from "next/dist/client/image";
 import ad from "../public/images/ad.png";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import slide from "../public/images/slide.png";
+
 const LandingPage = () => {
   return (
     <div className="bg-gray-50">
       <Header />
       <section>
-        <div className="max-w-screen-xl px-4 py-32 mx-auto lg:h-screen lg:items-center lg:flex">
+        <Carousel>
+          <div>
+            <Image src={slide} />
+            {/* <Button className="w-full h-12 px-12 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 sm:flex-shrink-0 sm:w-auto mt-3 bg-orange-600 lg:ml-16"> SHOP Now</Button> */}
+          </div>
+          <div>
+            <Image src={slide} title="mammals" />
+
+            {/* <Button className="text-white flex items-end -mt-10 bg-black"> Shop Now</Button> */}
+          </div>
+          <div>
+            <Image src={slide} />
+            <p className="legend">Legend 3</p>
+          </div>
+          <div>
+            <Image src={slide} />
+            <p className="legend">Legend 3</p>
+          </div>
+          <div>
+            <Image src={slide} />
+            <p className="legend">Legend 3</p>
+          </div>
+        </Carousel>
+        {/* <div className="max-w-screen-xl px-4 py-32 mx-auto lg:h-screen lg:items-center lg:flex">
           <div className="max-w-xl mx-auto text-center">
             <h1 className="text-3xl font-extrabold sm:text-5xl">
               Understand User Flow.
@@ -48,16 +75,16 @@ const LandingPage = () => {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
       <section className="featurebg ">
-        <div className="max-w-screen-xl px-4 py-16 lg:mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl px-4 py-2 md:py-4 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
           <h2 className="flex justify-center uppercase font-bold text-xl lg:text-2xl tracking-wider">
             Our Special<span className="text-orange-600 px-1 "> Features</span>
           </h2>
           <div className=" block w-full  lg:flex">
             <Feature
-              className="p-4 mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
+              className="p-4 mx-2 my-6 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
               header="Buying & Selling Safely"
               body="Dealer in various type of whatever as
               want randing from this to that to those
@@ -83,13 +110,16 @@ const LandingPage = () => {
       <GenerateInvoice />
       <BuyNow />
       <section className="aboutbg">
-        <div className="max-w-screen-xl px-4 py-16  sm:px-6 lg:px-8">
-          <h2 className="flex justify-center uppercase text-lg lg:text-xl">
-            Suggested<span className="text-orange-600 px-1 "> Merchants</span>
-          </h2>
+        <div className="max-w-screen-xl px-2 py-2 md:py-4 lg:py-16 lg:mx-auto sm:px-6">
+          <div className="flex justify-between">
+            <h2 className=" uppercase text-lg lg:text-xl">
+              Suggested<span className="text-orange-600 px-1 "> Merchants</span>
+            </h2>
+            <p>See All</p>
+          </div>
           <div className=" block  lg:mx-auto lg:flex">
             <SuggestedMerchant
-              className="p-4 mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md  rounded-sm col-span-2 bg-white"
               header="Giveon’s Crib"
               body="3,543 Endorsements"
               categories="Categories : 
@@ -99,7 +129,7 @@ const LandingPage = () => {
               button="View Store"
             />
             <SuggestedMerchant
-              className="p-4 mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md  rounded-sm col-span-2 bg-white"
               header="Giveon’s Crib"
               body="3,543 Endorsements"
               categories="Categories : 
@@ -109,7 +139,17 @@ const LandingPage = () => {
               button="View Store"
             />
             <SuggestedMerchant
-              className="p-4 mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md  rounded-sm  col-span-2 bg-white"
+              header="Giveon’s Crib"
+              body="3,543 Endorsements"
+              categories="Categories : 
+              Automobile
+              Fashion
+              Toys"
+              button="View Store"
+            />
+            <SuggestedMerchant
+              className="p-4   mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md rounded-sm  bg-white"
               header="Giveon’s Crib"
               body="3,543 Endorsements"
               categories="Categories : 
@@ -131,7 +171,7 @@ const LandingPage = () => {
 
       <BecomeAMerchant />
       <section>
-        <div className="max-w-screen-xl px-4 py-16 lg:mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl px-4 py-0 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
           <Image src={ad} />
         </div>
       </section>

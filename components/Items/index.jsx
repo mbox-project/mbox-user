@@ -5,14 +5,15 @@ const Items = () => {
     <section>
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div>
-          <h2 className="font-bold text-2xl pb-4">
-            Find <span className="text-orange-600">Items</span> Fast
+          <h2 className="font-bold text-2xl pb-4  block md:flex md:justify-center lg:block">
+            Find <span className="text-orange-600 px-2 lg:px-0">Items</span>{" "}
+            Fast
           </h2>
         </div>
         <hr></hr>
-        <div className="grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">
+        <div className="grid grid-cols-2 gap-8  mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">
           <div className="col-span-2 pt-6  sm:col-span-1 ">
-            <div className="flex flex-col mt-6 space-y-7 text-sm ">
+            <div className="flex flex-col mt-6 space-y-7 text-sm  ">
               <a className="inline-block">Laptops & Desktop</a>
 
               <a className="inline-block" href="">
@@ -30,7 +31,7 @@ const Items = () => {
             </div>
           </div>
 
-          <div className="col-span-2 pt-6 border-t sm:col-span-1 ">
+          <div className="col-span-2 pt-6 border-t md:border-none lg:border-t sm:col-span-1 ">
             <div className="flex flex-col mt-6 space-y-7 text-sm ">
               <Link href={""}>
                 <a className="inline-block" href="">

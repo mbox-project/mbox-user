@@ -9,7 +9,7 @@ const BuyNow = () => {
   return (
     <section className="aboutbg">
       <div className="lg:flex ">
-        <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl px-4 py-6 md:py-8 lg:py-16 mx-auto sm:px-6 lg:px-8">
           <div className="">
             <h4 className=" text-lg lg:text-xl abouttext lg:tracking-wider">
               <span className="text-orange-600">Buyers </span>attain
@@ -18,14 +18,14 @@ const BuyNow = () => {
               <span className="text-orange-600"> shopping confidence</span>
             </h4>
           </div>
-          <div className="grid grid-cols-2 gap-20 mt-8 lg:mt-5  lg:gap-y-16">
-            <div className="">
+          <div className="grid grid-cols-2 gap-4 md:gap-10 lg:gap-20 mt-8 lg:mt-5  lg:gap-y-16">
+            <div className=" w-full md:mt-5 lg:mt-0">
               <Image src={buynowimg} />
             </div>
 
-            <div className="col-span-5 lg:col-span-1 ">
+            <div className="col-span-2 md:col-span-1 lg:col-span-1 ">
               <div className="flex py-5">
-                <div className=" ">
+                <div className="md: mt-1 lg:mt-0 ">
                   <Image src={buynowicon1} />
                 </div>
                 <div className="px-5 ">
@@ -62,7 +62,7 @@ const BuyNow = () => {
                   </p>
                 </div>
               </div>
-              <Button className="w-full h-12 px-12 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 sm:flex-shrink-0 sm:w-auto mt-3 bg-orange-600 lg:ml-16">
+              <Button className="w-full h-12 px-12 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 md:ml-10 sm:flex-shrink-0 sm:w-auto mt-3 bg-orange-600 lg:ml-16">
                 Buy Now
               </Button>
             </div>
