@@ -26,12 +26,9 @@ const LandingPage = () => {
         <Carousel>
           <div>
             <Image src={slide} />
-            {/* <Button className="w-full h-12 px-12 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 sm:flex-shrink-0 sm:w-auto mt-3 bg-orange-600 lg:ml-16"> SHOP Now</Button> */}
           </div>
           <div>
-            <Image src={slide} title="mammals" />
-
-            {/* <Button className="text-white flex items-end -mt-10 bg-black"> Shop Now</Button> */}
+            <Image src={slide} />
           </div>
           <div>
             <Image src={slide} />
@@ -39,7 +36,7 @@ const LandingPage = () => {
           </div>
           <div>
             <Image src={slide} />
-            <p className="legend">Legend 3</p>
+            <p className="legend ">Legend 3</p>
           </div>
           <div>
             <Image src={slide} />
@@ -87,16 +84,16 @@ const LandingPage = () => {
       <GenerateInvoice />
       <BuyNow />
       <section className="aboutbg">
-        <div className="max-w-screen-xl  md:py-4 lg:py-16 lg:mx-auto sm:px-6">
-          <div className="flex justify-between">
-            <h2 className=" uppercase text-lg lg:text-xl">
+        <div className="max-w-screen-xl  lg:py-16 lg:mx-auto sm:px-6">
+          <div className="mx-3 lg:mx-0 flex justify-between">
+            <h2 className=" uppercase text-xl lg:text-2xl">
               Suggested<span className="text-orange-600 px-1 "> Merchants</span>
             </h2>
             <p>See All</p>
           </div>
-          <div className="block md:grid grid-cols-2 suggested lg:flex">
+          <div className="block pb-10 md:grid  md:grid-cols-2 lg:grid-cols-4 suggested">
             <SuggestedMerchant
-              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md  rounded-sm  bg-white"
+              className="p-4 mx-3 mt-3 lg:mx-10 lg:w-72 border-2  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white"
               header="Giveon’s Crib"
               body="3,543 Endorsements"
               categories="Categories : 
@@ -107,7 +104,17 @@ const LandingPage = () => {
             />
 
             <SuggestedMerchant
-              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md  rounded-sm  bg-white"
+              className="p-4  lg:w-72 border-2 mt-3  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white mx-3 lg:mx-10"
+              header="Giveon’s Crib"
+              body="3,543 Endorsements"
+              categories="Categories : 
+              Automobile
+              Fashion
+              Toys"
+              button="View Store"
+            />
+            <SuggestedMerchant
+              className="p-4  lg:w-72 lg:mx-10 border-2  mt-3 lg:mt-10 h-60 shadow-md  rounded-lg  bg-white mx-3"
               header="Giveon’s Crib"
               body="3,543 Endorsements"
               categories="Categories : 
@@ -118,18 +125,7 @@ const LandingPage = () => {
             />
 
             <SuggestedMerchant
-              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md  rounded-sm  bg-white"
-              header="Giveon’s Crib"
-              body="3,543 Endorsements"
-              categories="Categories : 
-              Automobile
-              Fashion
-              Toys"
-              button="View Store"
-            />
-
-            <SuggestedMerchant
-              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md invisible md:visible  rounded-sm  bg-white"
+              className="p-4  lg:w-72 lg:mx-10 border-2 mt-3  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white mx-3 "
               header="Giveon’s Crib"
               body="3,543 Endorsements"
               categories="Categories : 

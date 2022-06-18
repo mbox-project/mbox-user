@@ -4,7 +4,7 @@ const Items = () => {
   return (
     <section>
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
-        <div className="-mt-72 md:mt-3 lg:mt-1">
+        <div className=" mt-3 lg:mt-1">
           <h2 className="font-bold text-2xl pb-4  block md:flex md:justify-center lg:block">
             Find <span className="text-orange-600 px-2 lg:px-0">Items</span>{" "}
             Fast

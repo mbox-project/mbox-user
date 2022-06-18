@@ -18,7 +18,7 @@ const BuyNow = () => {
               <span className="text-orange-600"> shopping confidence</span>
             </h4>
           </div>
-          <div className="grid grid-cols-2 gap-4 md:gap-10 lg:gap-20 mt-8 lg:mt-5  lg:gap-y-16">
+          <div className=" block md:grid grid-cols-2 gap-4 md:gap-10 lg:gap-20 mt-8 lg:mt-5  lg:gap-y-16">
             <div className=" w-full md:mt-5 lg:mt-0">
               <Image src={buynowimg} />
             </div>
