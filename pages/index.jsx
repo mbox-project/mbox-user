@@ -16,10 +16,11 @@ import ad from "../public/images/ad.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import slide from "../public/images/slide.png";
+import PopularMerchants from "../components/PopularMerchants";
 
 const LandingPage = () => {
   return (
-    <div className="bg-gray-50">
+    <div className="">
       <Header />
       <section>
         <Carousel>
@@ -45,61 +46,37 @@ const LandingPage = () => {
             <p className="legend">Legend 3</p>
           </div>
         </Carousel>
-        {/* <div className="max-w-screen-xl px-4 py-32 mx-auto lg:h-screen lg:items-center lg:flex">
-          <div className="max-w-xl mx-auto text-center">
-            <h1 className="text-3xl font-extrabold sm:text-5xl">
-              Understand User Flow.
-              <strong className="font-extrabold text-red-700 sm:block">
-                Increase Conversion.
-              </strong>
-            </h1>
-
-            <p className="mt-4 sm:leading-relaxed sm:text-xl">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-              illo tenetur fuga ducimus numquam ea!
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <a
-                className="block w-full px-12 py-3 text-sm font-medium text-white bg-red-600 rounded shadow sm:w-auto active:bg-red-500 hover:bg-red-700 focus:outline-none focus:ring"
-                href="/get-started"
-              >
-                Get Started
-              </a>
-
-              <a
-                className="block w-full px-12 py-3 text-sm font-medium text-red-600 rounded shadow sm:w-auto hover:text-red-700 active:text-red-500 focus:outline-none focus:ring"
-                href="/about"
-              >
-                Learn More
-              </a>
-            </div>
-          </div>
-        </div> */}
       </section>
-      <section className="featurebg ">
-        <div className="max-w-screen-xl px-4 py-2 md:py-4 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
-          <h2 className="flex justify-center uppercase font-bold text-xl lg:text-2xl tracking-wider">
+      <section className="featurebg -mt-12 ">
+        <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-0">
+          <h2 className="flex justify-center py-1 uppercase font-bold text-xl lg:text-2xl tracking-wider ">
             Our Special<span className="text-orange-600 px-1 "> Features</span>
           </h2>
-          <div className=" block w-full  lg:flex">
+          <div className=" block md:grid grid-cols-2 w-full  lg:flex">
             <Feature
-              className="p-4 mx-2 my-6 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
+              className="p-4 mx-2 my-6 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md rounded-xl  bg-white"
               header="Buying & Selling Safely"
               body="Dealer in various type of whatever as
               want randing from this to that to those
               and here!"
             />
             <Feature
-              className="p-4 mx-2 my-4 md:my-8 lg:mt-10  border-2 block lg:mx-6 shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mt-10  border-2 block lg:mx-6 shadow-md lg:max-w-sm rounded-xl  bg-white"
               header="100%  Secure"
               body="Dealer in various type of whatever as
               want randing from this to that to those
               and here!"
             />
             <Feature
-              className="p-4 mx-2 my-4 md:my-8 lg:mt-10  border-2 block lg:mx-6 shadow-md lg:max-w-sm rounded-xl col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mt-10  border-2 block lg:mx-6 shadow-md lg:max-w-sm rounded-xl  bg-white"
               header="24Hrs Warranty"
+              body="Dealer in various type of whatever as
+              want randing from this to that to those
+              and here!"
+            />
+            <Feature
+              className="p-4 mx-2 invisible  md:my-8 lg:mt-10 lg:mx-6 border-2 md:visible lg:hidden  shadow-md rounded-xl  bg-white"
+              header="Buying & Selling Safely"
               body="Dealer in various type of whatever as
               want randing from this to that to those
               and here!"
@@ -110,16 +87,16 @@ const LandingPage = () => {
       <GenerateInvoice />
       <BuyNow />
       <section className="aboutbg">
-        <div className="max-w-screen-xl px-2 py-2 md:py-4 lg:py-16 lg:mx-auto sm:px-6">
+        <div className="max-w-screen-xl  md:py-4 lg:py-16 lg:mx-auto sm:px-6">
           <div className="flex justify-between">
             <h2 className=" uppercase text-lg lg:text-xl">
               Suggested<span className="text-orange-600 px-1 "> Merchants</span>
             </h2>
             <p>See All</p>
           </div>
-          <div className=" block  lg:mx-auto lg:flex">
+          <div className="block md:grid grid-cols-2 suggested lg:flex">
             <SuggestedMerchant
-              className="p-4 mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md  rounded-sm col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md  rounded-sm  bg-white"
               header="Giveon’s Crib"
               body="3,543 Endorsements"
               categories="Categories : 
@@ -128,8 +105,9 @@ const LandingPage = () => {
               Toys"
               button="View Store"
             />
+
             <SuggestedMerchant
-              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md  rounded-sm col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md  rounded-sm  bg-white"
               header="Giveon’s Crib"
               body="3,543 Endorsements"
               categories="Categories : 
@@ -138,8 +116,9 @@ const LandingPage = () => {
               Toys"
               button="View Store"
             />
+
             <SuggestedMerchant
-              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md  rounded-sm  col-span-2 bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md  rounded-sm  bg-white"
               header="Giveon’s Crib"
               body="3,543 Endorsements"
               categories="Categories : 
@@ -148,8 +127,9 @@ const LandingPage = () => {
               Toys"
               button="View Store"
             />
+
             <SuggestedMerchant
-              className="p-4   mx-2 my-4 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md rounded-sm  bg-white"
+              className="p-4 mx-2 my-4 md:my-8 lg:mx-10 lg:mt-10  border-2 block  shadow-md invisible md:visible  rounded-sm  bg-white"
               header="Giveon’s Crib"
               body="3,543 Endorsements"
               categories="Categories : 
@@ -163,7 +143,7 @@ const LandingPage = () => {
       </section>
       <Items />
       <section>
-        <div className="max-w-screen-xl px-4 py-16 lg:mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl md:pb-12 lg:pb-16 px-4 -mt-10 pt-0 pb-6 lg:mx-auto sm:px-6 lg:px-8">
           <Image src={sneakers} />
         </div>
       </section>
@@ -171,10 +151,11 @@ const LandingPage = () => {
 
       <BecomeAMerchant />
       <section>
-        <div className="max-w-screen-xl px-4 py-0 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
           <Image src={ad} />
         </div>
       </section>
+      <PopularMerchants />
       <About />
       <Newsletter />
       <MainFooter />

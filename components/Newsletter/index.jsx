@@ -5,7 +5,7 @@ const Newsletter = () => {
     <div className="newsletterbg">
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div className="lg:flex justify-center ">
-          <div className=" mt-8 lg:mt-0  lg:gap-y-16">
+          <div className=" mt-2 lg:mt-0  lg:gap-y-16">
             <div className="col-span-2">
               <div>
                 <h2 className="text-2xl font-bold lg:flex justify-center  ">
@@ -13,7 +13,7 @@ const Newsletter = () => {
                   Sign Up
                 </h2>
 
-                <p className="mt-6 ">
+                <p className="mt-6 leading-relaxed ">
                   Be the first to receive update on our services and special
                   stores offers
                 </p>

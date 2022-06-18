@@ -9,7 +9,7 @@ const BuyNow = () => {
   return (
     <section className="aboutbg">
       <div className="lg:flex ">
-        <div className="max-w-screen-xl px-4 py-6 md:py-8 lg:py-16 mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl px-4 py-10  md:py-8 lg:py-16 mx-auto sm:px-6 lg:px-8">
           <div className="">
             <h4 className=" text-lg lg:text-xl abouttext lg:tracking-wider">
               <span className="text-orange-600">Buyers </span>attain

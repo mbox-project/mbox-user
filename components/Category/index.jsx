@@ -20,133 +20,162 @@ import decor from "../../public/images/decor.png";
 const Category = () => {
   return (
     <section className="aboutbg">
-      <div className="lg:flex ">
-        <div className="max-w-screen-xl px-4 py-4 lg:py-16 mx-auto sm:px-6 lg:px-8">
-          <div className="">
-            <h4 className=" text-lg lg:text-xl abouttext  flex justify-center lg:tracking-wider">
-              Shop Items By <span className="text-orange-600 px-1">Category </span>
-            </h4>
-          </div>
-          <div className="mx-auto grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">
-            <div className="col-span-2 pt-6  sm:col-span-1 ">
-              <div className="flex flex-col mt-6 space-y-7 text-sm ">
-                <div>
+      <div className="max-w-screen-xl px-4 py-10 lg:py-16 mx-auto sm:px-6 lg:px-8">
+        <div className="">
+          <h4 className=" text-lg lg:text-xl abouttext  flex justify-center lg:tracking-wider">
+            Shop Items By{" "}
+            <span className="text-orange-600 px-1">Category </span>
+          </h4>
+        </div>
+        <div className=" grid grid-cols-2 lg:gap-4 mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">
+          <div className="col-span-2 pt-6  sm:col-span-1 ">
+            <div className=" mt-6 space-y-7 text-sm ">
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={gift} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Gift Items</a>
-                  </Link>
                 </div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Gift Items</a>
+                </Link>
+              </div>
 
-                <div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={men} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Mens Fashion</a>
-                  </Link>
                 </div>
-                <div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Mens Fashion</a>
+                </Link>
+              </div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={furniture} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Furniture</a>
-                  </Link>
                 </div>
-                <div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Furniture</a>
+                </Link>
+              </div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={skincare} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Skin care & body</a>
-                  </Link>
                 </div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Skin care & body</a>
+                </Link>
               </div>
             </div>
+          </div>
 
-            <div className="col-span-2 pt-6  sm:col-span-1 ">
-              <div className="flex flex-col mt-6 space-y-7 text-sm ">
-                <div>
+          <div className="col-span-2 pt-6  sm:col-span-1 ">
+            <div className="flex flex-col mt-6 space-y-7 text-sm ">
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={food} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Food</a>
-                  </Link>
                 </div>
-                <div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Food</a>
+                </Link>
+              </div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={womenfashion} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Womens Fashion</a>
-                  </Link>
                 </div>
-                <div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Womens Fashion</a>
+                </Link>
+              </div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={drinks} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Drinks & L1quor</a>
-                  </Link>
                 </div>
-                <div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Drinks & L1quor</a>
+                </Link>
+              </div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={automobile} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Automobile</a>
-                  </Link>
                 </div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Automobile</a>
+                </Link>
               </div>
             </div>
+          </div>
 
-            <div className="col-span-2 pt-6  sm:col-span-1">
-              <div className="flex flex-col mt-6 space-y-7 text-sm ">
-                <div>
+          <div className="col-span-2 pt-6  sm:col-span-1">
+            <div className="flex flex-col mt-6 space-y-7 text-sm ">
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={phones} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Phones & Tablets</a>
-                  </Link>
                 </div>
-                <div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Phones & Tablets</a>
+                </Link>
+              </div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={books} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">
-                      Books & Stationery
-                    </a>
-                  </Link>
                 </div>
-                <div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Books & Stationery</a>
+                </Link>
+              </div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={crafts} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Arts & Crafts</a>
-                  </Link>
                 </div>
-                <div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Arts & Crafts</a>
+                </Link>
+              </div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={estate} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Real Estate</a>
-                  </Link>
                 </div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Real Estate</a>
+                </Link>
               </div>
             </div>
+          </div>
 
-            <div className="col-span-2 pt-6  sm:col-span-1">
-              <div className="flex flex-col mt-6 space-y-7 text-sm ">
-                <div>
+          <div className="col-span-2 pt-6  sm:col-span-1">
+            <div className="flex flex-col mt-6 space-y-7 text-sm ">
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={toys} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Toys & Kids</a>
-                  </Link>
                 </div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Toys & Kids</a>
+                </Link>
+              </div>
 
-                <div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={elect} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">ELectronics</a>
-                  </Link>
                 </div>
-                <div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">ELectronics</a>
+                </Link>
+              </div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={tools} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">
-                      Home / Kitchen Appliances
-                    </a>
-                  </Link>
                 </div>
-                <div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">
+                    Home / Kitchen Appliances
+                  </a>
+                </Link>
+              </div>
+              <div>
+                <div className=" ml-12 md:ml-14">
                   <Image src={decor} />
-                  <Link href={""}>
-                    <a className="flex justify-center py-3">Decor</a>
-                  </Link>
                 </div>
+                <Link href={""}>
+                  <a className="flex justify-center py-3">Decor</a>
+                </Link>
               </div>
             </div>
           </div>
