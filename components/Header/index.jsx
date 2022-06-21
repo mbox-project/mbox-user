@@ -3,11 +3,12 @@ import Button from "../Button";
 import icon from "../../public/images/icon2.png";
 import Image from "next/image";
 import logo from "../../public/images/logo2.png";
-// import Image from "../Image";
+
 import Link from "next/link";
-// import Icon from "../Image";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
   return (
     <header className="shadow-sm">
       <div className="max-w-screen-xl p-4 mx-auto">
@@ -24,7 +25,12 @@ const Header = () => {
               Search
             </Button>
           </div>
-          <div className="items-center justify-end flex-1 hidden space-x-4 sm:flex">
+          <div
+            className={
+              "items-center justify-end flex-1 hidden space-x-4 sm:flex" +
+              (menuOpen ? " flex" : " hidden")
+            }
+          >
             <Image src={icon} width="20px" height="20px" />
             <Link href="/auth/login" className="px-5 py-2 text-sm font-medium ">
               Log in
@@ -38,10 +44,11 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <button
               className="p-2 text-gray-600 bg-gray-100 rounded-lg"
               type="button"
+              onClick={() => setMenuOpen(!menuOpen)}
             >
               <span className="sr-only">Open menu</span>
               <svg

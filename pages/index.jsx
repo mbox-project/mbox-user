@@ -18,6 +18,44 @@ import { Carousel } from "react-responsive-carousel";
 import slide from "../public/images/slide.png";
 import PopularMerchants from "../components/PopularMerchants";
 
+let cards = ["Buying & Selling Safely", "100%  Secure", "24Hrs Warranty"];
+const featureCard = [];
+cards.forEach((card, index) => {
+  featureCard.push(
+    <Feature
+      key={index}
+      className="p-4 mx-2 my-6 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md rounded-xl  bg-white"
+      header={card}
+      body="Dealer in various type of whatever as
+      want randing from this to that to those
+      and here!"
+    />
+  );
+});
+
+let merchantCard = [
+  "Giveon’s Crib",
+  "Giveon’s Crib",
+  "Giveon’s Crib",
+  "Giveon’s Crib",
+];
+const suggestedCard = [];
+merchantCard.forEach((merchant, index) => {
+  suggestedCard.push(
+    <SuggestedMerchant
+      key={index}
+      className="p-4 mx-3 mt-3 lg:mx-10 lg:w-72 border-2  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white"
+      header={merchant}
+      body="3,543 Endorsements"
+      categories="Categories : 
+      Automobile
+      Fashion
+      Toys"
+      button="View Store"
+    />
+  );
+});
+
 const LandingPage = () => {
   return (
     <div className="">
@@ -50,29 +88,9 @@ const LandingPage = () => {
             Our Special<span className="text-orange-600 px-1 "> Features</span>
           </h2>
           <div className=" block md:grid grid-cols-2 w-full  lg:flex">
+            {featureCard}
             <Feature
-              className="p-4 mx-2 my-6 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md rounded-xl  bg-white"
-              header="Buying & Selling Safely"
-              body="Dealer in various type of whatever as
-              want randing from this to that to those
-              and here!"
-            />
-            <Feature
-              className="p-4 mx-2 my-4 md:my-8 lg:mt-10  border-2 block lg:mx-6 shadow-md lg:max-w-sm rounded-xl  bg-white"
-              header="100%  Secure"
-              body="Dealer in various type of whatever as
-              want randing from this to that to those
-              and here!"
-            />
-            <Feature
-              className="p-4 mx-2 my-4 md:my-8 lg:mt-10  border-2 block lg:mx-6 shadow-md lg:max-w-sm rounded-xl  bg-white"
-              header="24Hrs Warranty"
-              body="Dealer in various type of whatever as
-              want randing from this to that to those
-              and here!"
-            />
-            <Feature
-              className="p-4 mx-2 invisible  md:my-8 lg:mt-10 lg:mx-6 border-2 md:visible lg:hidden  shadow-md rounded-xl  bg-white"
+            className="p-4 mx-2 invisible  md:my-8 lg:mt-10 lg:mx-6 border-2 md:visible lg:hidden  shadow-md rounded-xl  bg-white"
               header="Buying & Selling Safely"
               body="Dealer in various type of whatever as
               want randing from this to that to those
@@ -92,48 +110,9 @@ const LandingPage = () => {
             <p>See All</p>
           </div>
           <div className="block pb-10 md:grid  md:grid-cols-2 lg:grid-cols-4 suggested">
-            <SuggestedMerchant
-              className="p-4 mx-3 mt-3 lg:mx-10 lg:w-72 border-2  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white"
-              header="Giveon’s Crib"
-              body="3,543 Endorsements"
-              categories="Categories : 
-              Automobile
-              Fashion
-              Toys"
-              button="View Store"
-            />
+            {suggestedCard}
 
-            <SuggestedMerchant
-              className="p-4  lg:w-72 border-2 mt-3  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white mx-3 lg:mx-10"
-              header="Giveon’s Crib"
-              body="3,543 Endorsements"
-              categories="Categories : 
-              Automobile
-              Fashion
-              Toys"
-              button="View Store"
-            />
-            <SuggestedMerchant
-              className="p-4  lg:w-72 lg:mx-10 border-2  mt-3 lg:mt-10 h-60 shadow-md  rounded-lg  bg-white mx-3"
-              header="Giveon’s Crib"
-              body="3,543 Endorsements"
-              categories="Categories : 
-              Automobile
-              Fashion
-              Toys"
-              button="View Store"
-            />
-
-            <SuggestedMerchant
-              className="p-4  lg:w-72 lg:mx-10 border-2 mt-3  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white mx-3 "
-              header="Giveon’s Crib"
-              body="3,543 Endorsements"
-              categories="Categories : 
-              Automobile
-              Fashion
-              Toys"
-              button="View Store"
-            />
+            {/* s */}
           </div>
         </div>
       </section>

@@ -7,12 +7,12 @@ const About = () => {
     <section className="aboutbg">
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div className="lg:flex lg:gap-8">
-          <div className="grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
+          <div className=" block  md:grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
             <div className="col-span-3">
               <h3 className="text-xl lg:text-2xl pb-5 -mt-96 lg:mt-3 ">
                 About <span className="text-orange-500">MBOX</span>
               </h3>
-              <Image src={aboutimg} className="w-12" />
+              <Image src={aboutimg} />
             </div>
 
             <div className="col-span-3 lg:col-span-2  ">
