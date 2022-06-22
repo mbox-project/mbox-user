@@ -5,7 +5,9 @@ import banner from "../../public/buyersImg/banner.svg"
 import lady from "../../public/buyersImg/lady.svg"
 import edit from "../../public/buyersImg/edit.svg"
 import caret from "../../public/buyersImg/caret.svg"
-import {Navbar, Sidebar, Footer} from '../../components/BuyerNav'
+import Navbar from '../../components/BuyerNav/Navbar'
+import Sidebar from '../../components/BuyerNav/Sidebar'
+import Footer from '../../components/BuyerNav/Footer'
 
 
 
