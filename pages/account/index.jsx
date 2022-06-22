@@ -112,7 +112,7 @@ const index = () => {
                     <section className="card mb-10">
                         <div className="flex justify-between shadow-sm p-6">
                             <h1 className="font-bold text-2xl">Account Details</h1>
-                            <Image src={edit} width={25} height={25} alt="Edit Info" />
+                            <Image src={edit} className="cursor-pointer" width={25} height={25} alt="Edit Info" />
                         </div>
 
                         <div className="ml-5 flex flex-col space-y-8 mt-5 md:flex-row md:space-y-0">
