@@ -90,7 +90,7 @@ const LandingPage = () => {
           <div className=" block md:grid grid-cols-2 w-full  lg:flex">
             {featureCard}
             <Feature
-            className="p-4 mx-2 invisible  md:my-8 lg:mt-10 lg:mx-6 border-2 md:visible lg:hidden  shadow-md rounded-xl  bg-white"
+              className="p-4 mx-2 invisible  md:my-8 lg:mt-10 lg:mx-6 border-2 md:visible lg:hidden  shadow-md rounded-xl  bg-white"
               header="Buying & Selling Safely"
               body="Dealer in various type of whatever as
               want randing from this to that to those
