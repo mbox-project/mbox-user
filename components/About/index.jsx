@@ -17,7 +17,7 @@ const About = () => {
             </div>
 
             <div className="col-span-3 lg:col-span-2  ">
-              <p className=" -mt-10 md:mt-3 lg:mt-11  leading-loose abouttext">
+              <p className=" mt-4 md:mt-3 lg:mt-11  leading-loose abouttext">
                 Mbox is Africa’s first digital marketplace that allows SMEs
                 create a digital version of their business without website. With
                 just your username, your business can connect with millions of

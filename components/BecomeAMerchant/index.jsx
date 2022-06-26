@@ -25,7 +25,9 @@ const BecomeAMerchant = () => {
                   <Image src={becomeamerchant1} />
                 </div>
                 <div className="px-5 ">
-                  <p className="font-bold text-lg ">Improve Business Reach</p>
+                  <p className="font-bold text-base md:text-lg ">
+                    Improve Business Reach
+                  </p>
                   <p className="text-sm text-gray-600 pt-3">
                     Dealer in various type of whatever as want randing from this
                     to that to those and here!
@@ -37,7 +39,7 @@ const BecomeAMerchant = () => {
                   <Image src={becomeamerchant2} />
                 </div>
                 <div className="px-5">
-                  <p className="font-bold text-lg  ">
+                  <p className="font-bold text-base md:text-lg  ">
                     Get Reviews From Real Buyers
                   </p>
                   <p className="text-sm text-gray-600 pt-3">
@@ -51,7 +53,7 @@ const BecomeAMerchant = () => {
                   <Image src={becomeamerchant3} />
                 </div>
                 <div className="px-5">
-                  <p className="font-bold text-lg md:ml-5 ">
+                  <p className="font-bold text-base md:text-lg md:ml-5 ">
                     Have Your Store Online Without a Website
                   </p>
                   <p className="text-sm text-gray-600 pt-3 md:ml-5">

@@ -11,7 +11,7 @@ const BuyNow = () => {
     <section className="aboutbg">
       <div className="lg:flex ">
         <div className="max-w-screen-xl px-4 py-10  md:py-8 lg:py-16 mx-auto sm:px-6 lg:px-8">
-          <div className="">
+          <div className=" mt-3 mb-4 md:mb-0 md:mt-0">
             <h4 className=" text-lg lg:text-xl abouttext lg:tracking-wider">
               <span className="text-orange-600">Buyers </span>attain
               satisfaction of getting their desired items anywhere, anytime with
@@ -26,11 +26,13 @@ const BuyNow = () => {
 
             <div className="col-span-2 md:col-span-1 lg:col-span-1 ">
               <div className="flex py-5">
-                <div className="md: mt-1 lg:mt-0 hover:-translate-y-1 hover:scale-110  duration-300 ">
+                <div className="md:mt-1 lg:mt-0 hover:-translate-y-1 hover:scale-110  duration-300 ">
                   <Image src={buynowicon1} />
                 </div>
                 <div className="px-5 ">
-                  <p className="font-bold text-lg ">Make Payment with Ease</p>
+                  <p className="font-bold text-base md:text-lg ">
+                    Make Payment with Ease
+                  </p>
                   <p className="text-sm text-gray-600 pt-3">
                     Dealer in various type of whatever as want randing from this
                     to that to those and here!
@@ -42,7 +44,7 @@ const BuyNow = () => {
                   <Image src={buynowicon2} />
                 </div>
                 <div className="px-5">
-                  <p className="font-bold text-lg  ">
+                  <p className="font-bold text-base md:text-lg  ">
                     Enjoy Phy-digital Experience
                   </p>
                   <p className="text-sm text-gray-600 pt-3">
@@ -56,7 +58,9 @@ const BuyNow = () => {
                   <Image src={buynowicon} width="40px" height="40px" />
                 </div>
                 <div className="px-5">
-                  <p className="font-bold text-lg  ">Escrow Policy</p>
+                  <p className="font-bold text-base md:text-lg ">
+                    Escrow Policy
+                  </p>
                   <p className="text-sm text-gray-600 pt-3">
                     Dealer in various type of whatever as want randing from this
                     to that to those and here!
