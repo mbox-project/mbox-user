@@ -17,44 +17,57 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import slide from "../public/images/slide.png";
 import PopularMerchants from "../components/PopularMerchants";
+import iconOne from "../public/images/featureicon1.PNG";
+import iconTwo from "/public/images/featureicon2.png";
+import iconThree from "/public/images/featureicon3.png";
 
-let cards = ["Buying & Selling Safely", "100%  Secure", "24Hrs Warranty"];
-const featureCard = [];
-cards.forEach((card, index) => {
-  featureCard.push(
-    <Feature
-      key={index}
-      className="p-4 mx-2 my-6 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md rounded-xl  bg-white"
-      header={card}
-      body="Dealer in various type of whatever as
-      want randing from this to that to those
-      and here!"
-    />
-  );
-});
+const featureCard = [
+  {
+    id: 1,
+    name: "Buying & Selling Safely",
+    body: "Dealer in various type of whatever as want randing from this to that to those and here!",
+    icon: iconOne,
+  },
+  {
+    id: 2,
+    name: "100%  Secure",
+    body: "Dealer in various type of whatever as want randing from this to that to those and here!",
+    icon: iconTwo,
+  },
+  {
+    id: 3,
+    name: "24Hrs Warranty",
+    body: "Dealer in various type of whatever as want randing from this to that to those and here!",
+    icon: iconThree,
+  },
+];
 
 let merchantCard = [
-  "Giveon’s Crib",
-  "Giveon’s Crib",
-  "Giveon’s Crib",
-  "Giveon’s Crib",
+  {
+    id: 1,
+    name: "Giveon’s Crib",
+    categories: "Categories: Automobile, Fashion, Toys",
+    count: "3,543 Endorsements",
+  },
+  {
+    id: 2,
+    name: "Giveon’s Crib",
+    categories: "Categories: Automobile, Fashion, Toys",
+    count: "3,543 Endorsements",
+  },
+  {
+    id: 3,
+    name: "Giveon’s Crib",
+    categories: "Categories: Automobile, Fashion, Toys",
+    count: "3,543 Endorsements",
+  },
+  {
+    id: 4,
+    name: "Giveon’s Crib",
+    categories: "Categories: Automobile, Fashion, Toys",
+    count: "3,543 Endorsements",
+  },
 ];
-const suggestedCard = [];
-merchantCard.forEach((merchant, index) => {
-  suggestedCard.push(
-    <SuggestedMerchant
-      key={index}
-      className="p-4 mx-3 mt-3 lg:mx-10 lg:w-72 border-2  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white"
-      header={merchant}
-      body="3,543 Endorsements"
-      categories="Categories : 
-      Automobile
-      Fashion
-      Toys"
-      button="View Store"
-    />
-  );
-});
 
 const LandingPage = () => {
   return (
@@ -88,14 +101,25 @@ const LandingPage = () => {
             Our Special<span className="text-orange-600 px-1 "> Features</span>
           </h2>
           <div className=" block md:grid grid-cols-2 w-full  lg:flex">
-            {featureCard}
+            {featureCard.map((card, index) => {
+              return (
+                <Feature
+                  key={index}
+                  className="p-4 mx-2 my-6 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md rounded-xl  bg-white"
+                  header={card.name}
+                  body={card.body}
+                  icon={card.icon}
+                />
+              );
+            })}
+            {/* {featureCard}
             <Feature
-            className="p-4 mx-2 invisible  md:my-8 lg:mt-10 lg:mx-6 border-2 md:visible lg:hidden  shadow-md rounded-xl  bg-white"
+              className="p-4 mx-2 invisible  md:my-8 lg:mt-10 lg:mx-6 border-2 md:visible lg:hidden  shadow-md rounded-xl  bg-white"
               header="Buying & Selling Safely"
               body="Dealer in various type of whatever as
               want randing from this to that to those
               and here!"
-            />
+            /> */}
           </div>
         </div>
       </section>
@@ -110,9 +134,18 @@ const LandingPage = () => {
             <p>See All</p>
           </div>
           <div className="block pb-10 md:grid  md:grid-cols-2 lg:grid-cols-4 suggested">
-            {suggestedCard}
-
-            {/* s */}
+            {merchantCard.map((item, index) => {
+              return (
+                <SuggestedMerchant
+                  key={index}
+                  className="p-4 mx-3 mt-3 lg:mx-10 lg:w-72 border-2  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white"
+                  header={item.name}
+                  body={item.count}
+                  categories={item.categories}
+                  button="View Store"
+                />
+              );
+            })}
           </div>
         </div>
       </section>
