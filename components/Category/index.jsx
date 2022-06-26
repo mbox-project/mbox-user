@@ -32,7 +32,9 @@ const Category = () => {
             <div className=" mt-6 space-y-7 text-sm ">
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={gift} />
+                  <Link href={""}>
+                    <Image src={gift} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Gift Items</a>
@@ -41,7 +43,9 @@ const Category = () => {
 
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={men} />
+                  <Link href={""}>
+                    <Image src={men} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Mens Fashion</a>
@@ -49,7 +53,9 @@ const Category = () => {
               </div>
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={furniture} />
+                  <Link href={""}>
+                    <Image src={furniture} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Furniture</a>
@@ -57,7 +63,9 @@ const Category = () => {
               </div>
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={skincare} />
+                  <Link href={""}>
+                    <Image src={skincare} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Skin care & body</a>
@@ -70,7 +78,9 @@ const Category = () => {
             <div className="flex flex-col mt-6 space-y-7 text-sm ">
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={food} />
+                  <Link href={""}>
+                    <Image src={food} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Food</a>
@@ -78,7 +88,9 @@ const Category = () => {
               </div>
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={womenfashion} />
+                  <Link href={""}>
+                    <Image src={womenfashion} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Womens Fashion</a>
@@ -86,7 +98,9 @@ const Category = () => {
               </div>
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={drinks} />
+                  <Link href={""}>
+                    <Image src={drinks} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Drinks & L1quor</a>
@@ -94,7 +108,9 @@ const Category = () => {
               </div>
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={automobile} />
+                  <Link href={""}>
+                    <Image src={automobile} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Automobile</a>
@@ -107,7 +123,9 @@ const Category = () => {
             <div className="flex flex-col mt-6 space-y-7 text-sm ">
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={phones} />
+                  <Link href={""}>
+                    <Image src={phones} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Phones & Tablets</a>
@@ -115,7 +133,9 @@ const Category = () => {
               </div>
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={books} />
+                  <Link href={""}>
+                    <Image src={books} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Books & Stationery</a>
@@ -123,7 +143,9 @@ const Category = () => {
               </div>
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={crafts} />
+                  <Link href={""}>
+                    <Image src={crafts} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Arts & Crafts</a>
@@ -131,7 +153,9 @@ const Category = () => {
               </div>
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={estate} />
+                  <Link href={""}>
+                    <Image src={estate} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Real Estate</a>
@@ -144,7 +168,9 @@ const Category = () => {
             <div className="flex flex-col mt-6 space-y-7 text-sm ">
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={toys} />
+                  <Link href={""}>
+                    <Image src={toys} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Toys & Kids</a>
@@ -153,7 +179,9 @@ const Category = () => {
 
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={elect} />
+                  <Link href={""}>
+                    <Image src={elect} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">ELectronics</a>
@@ -161,7 +189,9 @@ const Category = () => {
               </div>
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={tools} />
+                  <Link href={""}>
+                    <Image src={tools} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">
@@ -171,7 +201,9 @@ const Category = () => {
               </div>
               <div>
                 <div className=" ml-12 md:ml-14">
-                  <Image src={decor} />
+                  <Link href={""}>
+                    <Image src={decor} />
+                  </Link>
                 </div>
                 <Link href={""}>
                   <a className="flex justify-center py-3">Decor</a>

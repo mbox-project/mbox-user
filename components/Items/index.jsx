@@ -15,19 +15,26 @@ const Items = () => {
           <div className="  pt-6 col-span-1 md: ">
             <div className="flex flex-col md:ml-11  mt-6 space-y-7 text-sm  ">
               <a className="inline-block">Laptops & Desktop</a>
-
-              <a className="inline-block" href="">
-                Camera & Lenses
-              </a>
-              <a className="inline-block" href="">
-                TV & Home theatre
-              </a>
-              <a className="inline-block" href="">
-                Necklace & Wristwatches
-              </a>
-              <a className="inline-block" href="">
-                T-Shirts and Trousers
-              </a>
+              <Link href={""}>
+                <a className="inline-block" href="">
+                  Camera & Lenses
+                </a>
+              </Link>
+              <Link href={""}>
+                <a className="inline-block" href="">
+                  TV & Home theatre
+                </a>
+              </Link>
+              <Link href={""}>
+                <a className="inline-block" href="">
+                  Necklace & Wristwatches
+                </a>
+              </Link>
+              <Link href={""}>
+                <a className="inline-block" href="">
+                  T-Shirts and Trousers
+                </a>
+              </Link>
             </div>
           </div>
 
@@ -41,15 +48,21 @@ const Items = () => {
               <a className="inline-block" href="">
                 Cars and Accessories
               </a>
-              <a className="inline-block" href="">
-                Chairs & Tables
-              </a>
-              <a className="inline-block" href="">
-                Necklace & Wristwatches
-              </a>
-              <a className="inline-block" href="">
-                T-Shirts and Trousers
-              </a>
+              <Link href={""}>
+                <a className="inline-block" href="">
+                  Chairs & Tables
+                </a>
+              </Link>
+              <Link href={""}>
+                <a className="inline-block" href="">
+                  Necklace & Wristwatches
+                </a>
+              </Link>
+              <Link href={""}>
+                <a className="inline-block" href="">
+                  T-Shirts and Trousers
+                </a>
+              </Link>
             </div>
           </div>
 

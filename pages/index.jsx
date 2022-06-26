@@ -60,7 +60,7 @@ const LandingPage = () => {
   return (
     <div className="">
       <Header />
-      <section>
+      <section className="mr-0">
         <Carousel>
           <div>
             <Image src={slide} />

@@ -38,34 +38,34 @@ const Header = () => {
               Sign up
             </Link>
           </div>
+          {!isOpen && (
+            <div className=" mobilenav w-full absolute flex flex-col text-center bg-gray-100  py-5 mt-44 z-20  text-orange-600 md:hidden">
+              <Link
+                href="/auth/login"
+                className=" pt-2  flex items-center text-md font-medium "
+              >
+                Log in
+              </Link>
 
+              <Link
+                className=" pt-12 text-md flex items-center font-medium  "
+                href="/auth/register"
+              >
+                Sign up
+              </Link>
+            </div>
+          )}
           <div className="md:hidden">
             <button
-              className="p-2 text-gray-600 bg-gray-100 rounded-lg"
+              className=" text-gray-600  rounded-lg"
               type="button"
               onClick={() => setIsOpen(!isOpen)}
             >
               <span className="sr-only">Open menu</span>
-              {!isOpen && (
-                <div className="absolute flex flex-col p-4  text-pink-600 space-x-4 md:hidden">
-                  <Link
-                    href="/auth/login"
-                    className="px-5 py-2 flex items-center text-sm font-medium "
-                  >
-                    Log in
-                  </Link>
 
-                  <Link
-                    className="px-5 py-2 text-sm flex items-center font-medium  "
-                    href="/auth/register"
-                  >
-                    Sign up
-                  </Link>
-                </div>
-              )}
               {!isOpen ? (
                 <svg
-                  className="block h-6 w-6"
+                  className="block h-12 t-10 bg-none w-12"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -81,7 +81,7 @@ const Header = () => {
                 </svg>
               ) : (
                 <svg
-                  className="block h-6 w-6"
+                  className="block bg-none h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
