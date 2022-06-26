@@ -17,44 +17,59 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import slide from "../public/images/slide.png";
 import PopularMerchants from "../components/PopularMerchants";
+import iconOne from "../public/images/featureicon1.PNG";
+import iconTwo from "/public/images/featureicon2.png";
+import iconThree from "/public/images/featureicon3.png";
+import Link from "next/link";
+import Button from "../components/Button";
 
-let cards = ["Buying & Selling Safely", "100%  Secure", "24Hrs Warranty"];
-const featureCard = [];
-cards.forEach((card, index) => {
-  featureCard.push(
-    <Feature
-      key={index}
-      className="p-4 mx-2 my-6 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md rounded-xl  bg-white"
-      header={card}
-      body="Dealer in various type of whatever as
-      want randing from this to that to those
-      and here!"
-    />
-  );
-});
+const featureCard = [
+  {
+    id: 1,
+    name: "Buying & Selling Safely",
+    body: "Dealer in various type of whatever as want randing from this to that to those and here!",
+    icon: iconOne,
+  },
+  {
+    id: 2,
+    name: "100%  Secure",
+    body: "Dealer in various type of whatever as want randing from this to that to those and here!",
+    icon: iconTwo,
+  },
+  {
+    id: 3,
+    name: "24Hrs Warranty",
+    body: "Dealer in various type of whatever as want randing from this to that to those and here!",
+    icon: iconThree,
+  },
+];
 
 let merchantCard = [
-  "Giveon’s Crib",
-  "Giveon’s Crib",
-  "Giveon’s Crib",
-  "Giveon’s Crib",
+  {
+    id: 1,
+    name: "Giveon’s Crib",
+    categories: "Categories: Automobile, Fashion, Toys",
+    count: "3,543 Endorsements",
+  },
+  {
+    id: 2,
+    name: "Giveon’s Crib",
+    categories: "Categories: Automobile, Fashion, Toys",
+    count: "3,543 Endorsements",
+  },
+  {
+    id: 3,
+    name: "Giveon’s Crib",
+    categories: "Categories: Automobile, Fashion, Toys",
+    count: "3,543 Endorsements",
+  },
+  {
+    id: 4,
+    name: "Giveon’s Crib",
+    categories: "Categories: Automobile, Fashion, Toys",
+    count: "3,543 Endorsements",
+  },
 ];
-const suggestedCard = [];
-merchantCard.forEach((merchant, index) => {
-  suggestedCard.push(
-    <SuggestedMerchant
-      key={index}
-      className="p-4 mx-3 mt-3 lg:mx-10 lg:w-72 border-2  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white"
-      header={merchant}
-      body="3,543 Endorsements"
-      categories="Categories : 
-      Automobile
-      Fashion
-      Toys"
-      button="View Store"
-    />
-  );
-});
 
 const LandingPage = () => {
   return (
@@ -63,6 +78,9 @@ const LandingPage = () => {
       <section className="mr-0">
         <Carousel>
           <div>
+            <Button className="px-4 md:px-12 md:py-3 py-1 mt-24  uppercase lg:rounded-md md:mt-48 hover:-translate-y-1 hover:scale-110  duration-300  lg:mt-96  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto  bg-orange-600 lg:ml-16">
+              <Link href={""}>Shop Now</Link>
+            </Button>
             <Image src={slide} />
           </div>
           <div>
@@ -70,7 +88,6 @@ const LandingPage = () => {
           </div>
           <div>
             <Image src={slide} />
-            <p className="legend">Legend 3</p>
           </div>
           <div>
             <Image src={slide} />
@@ -87,15 +104,18 @@ const LandingPage = () => {
           <h2 className="flex justify-center py-1 uppercase font-bold text-xl lg:text-2xl tracking-wider ">
             Our Special<span className="text-orange-600 px-1 "> Features</span>
           </h2>
-          <div className=" block md:grid grid-cols-2 w-full  lg:flex">
-            {featureCard}
-            <Feature
-              className="p-4 mx-2 invisible  md:my-8 lg:mt-10 lg:mx-6 border-2 md:visible lg:hidden  shadow-md rounded-xl  bg-white"
-              header="Buying & Selling Safely"
-              body="Dealer in various type of whatever as
-              want randing from this to that to those
-              and here!"
-            />
+          <div className=" block md:grid grid-cols-2 w-full   lg:flex">
+            {featureCard.map((card, index) => {
+              return (
+                <Feature
+                  key={index}
+                  className="p-4 mx-2 my-6 md:my-8 lg:mt-10 lg:mx-6 border-2 block  shadow-md rounded-xl  bg-white"
+                  header={card.name}
+                  body={card.body}
+                  icon={card.icon}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
@@ -110,24 +130,37 @@ const LandingPage = () => {
             <p>See All</p>
           </div>
           <div className="block pb-10 md:grid  md:grid-cols-2 lg:grid-cols-4 suggested">
-            {suggestedCard}
-
-            {/* s */}
+            {merchantCard.map((item, index) => {
+              return (
+                <SuggestedMerchant
+                  key={index}
+                  className="p-4 mx-3 mt-3 lg:mx-10 lg:w-72 border-2  lg:mt-10 h-60 shadow-md  rounded-lg  bg-white"
+                  header={item.name}
+                  body={item.count}
+                  categories={item.categories}
+                  button="View Store"
+                />
+              );
+            })}
           </div>
         </div>
       </section>
       <Items />
       <section>
-        <div className="max-w-screen-xl md:pb-12 lg:pb-16 px-4 -mt-10 pt-0 pb-6 lg:mx-auto sm:px-6 lg:px-8">
-          <Image src={sneakers} />
+        <div className="max-w-screen-xl md:pb-12 lg:pb-16 px-4 -mt-10 pt-0 pb-6 lg:mx-auto sm:px-6 lg:px-8 hover:-translate-y-1 hover:scale-110  duration-300">
+          <Link href={""}>
+            <Image src={sneakers} />
+          </Link>
         </div>
       </section>
       <Category />
 
       <BecomeAMerchant />
       <section>
-        <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
-          <Image src={ad} />
+        <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-8 hover:-translate-y-1 hover:scale-110  duration-300">
+          <Link href={""}>
+            <Image src={ad} />
+          </Link>
         </div>
       </section>
       <PopularMerchants />

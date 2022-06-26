@@ -5,6 +5,7 @@ import buynowicon from "../../public/images/buynowicon.png";
 import buynowicon1 from "../../public/images/buynowicon1.png";
 import buynowicon2 from "../../public/images/buynowicon2.png";
 import Button from "../Button";
+import Link from "next/link";
 const BuyNow = () => {
   return (
     <section className="aboutbg">
@@ -25,7 +26,7 @@ const BuyNow = () => {
 
             <div className="col-span-2 md:col-span-1 lg:col-span-1 ">
               <div className="flex py-5">
-                <div className="md: mt-1 lg:mt-0 ">
+                <div className="md: mt-1 lg:mt-0 hover:-translate-y-1 hover:scale-110  duration-300 ">
                   <Image src={buynowicon1} />
                 </div>
                 <div className="px-5 ">
@@ -37,7 +38,7 @@ const BuyNow = () => {
                 </div>
               </div>
               <div className="flex py-5">
-                <div className=" ">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ">
                   <Image src={buynowicon2} />
                 </div>
                 <div className="px-5">
@@ -51,7 +52,7 @@ const BuyNow = () => {
                 </div>
               </div>
               <div className="flex py-5">
-                <div className=" ">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ">
                   <Image src={buynowicon} width="40px" height="40px" />
                 </div>
                 <div className="px-5">
@@ -62,8 +63,8 @@ const BuyNow = () => {
                   </p>
                 </div>
               </div>
-              <Button className="w-full h-12 px-12 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 md:ml-10 sm:flex-shrink-0 sm:w-auto mt-3 bg-orange-600 lg:ml-16">
-                Buy Now
+              <Button className="w-full h-12 px-12 py-3 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 md:ml-10 sm:flex-shrink-0 sm:w-auto mt-3 bg-orange-600 lg:ml-16">
+                <Link href={""}>Buy Now</Link>
               </Button>
             </div>
           </div>

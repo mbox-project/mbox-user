@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import aboutimg from "../../public/images/aboutimg.png";
 import Button from "../Button";
+import Link from "next/link";
 const About = () => {
   return (
     <section className="aboutbg">
@@ -27,8 +28,8 @@ const About = () => {
                 {" "}
                 You are just a sign up away!
               </p>
-              <Button className="w-full h-12 px-6 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-44 text-sm font-bold tracking-wide  bg-orange-600 sm:ml-4 md:ml-1 sm:flex-shrink-0 sm:w-auto mt-8 md:mt-10  text-white">
-                Read More
+              <Button className="w-full h-12 px-6 py-3 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case lg:rounded-md  lg:mt-44 text-sm font-bold tracking-wide  bg-orange-600 sm:ml-4 md:ml-1 sm:flex-shrink-0 sm:w-auto mt-8 md:mt-10  text-white">
+                <Link href={""}>Read More</Link>
               </Button>
             </div>
           </div>

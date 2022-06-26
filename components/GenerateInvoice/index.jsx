@@ -3,10 +3,11 @@ import Button from "../Button";
 import Image from "next/dist/client/image";
 import picture from "../../public/images/generateinvoiceimg.png";
 import pics from "../../public/images/generateinvoiceimg2.png";
+import Link from "next/link";
 const GenerateInvoice = () => {
   return (
     <section className="featurebg">
-      <div className="max-w-screen-lg  -mt-52 md:-mt-0 px-4 py-6 mx-auto sm:px-6 lg:px-0">
+      <div className="max-w-screen-lg  mt-0 md:-mt-0 px-4 py-6 mx-auto sm:px-6 lg:px-0">
         <div className="grid grid-cols-2 gap-1 mt-0 lg:mt-0 lg:grid-cols-5 lg:gap-y-6">
           <div className="col-span-2 md:col-span-1 lg:col-span-2">
             <div className=" md:m-6 lg:m-0">
@@ -20,8 +21,8 @@ const GenerateInvoice = () => {
                 ESCROW. For optimum financial security.
               </p>
 
-              <Button className="w-full h-12 px-6 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg  font-bold tracking-wide  text-orange-600  sm:flex-shrink-0 sm:w-auto mt-6 md:mt-7 bg-white border-2 border-orange-600  lg:ml-0">
-                Generate/Pay Invoice
+              <Button className="w-full h-12 px-4 md:px-6 lg:px-8 py-3 hover:-translate-y-1 hover:scale-110 duration-300  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg  font-bold tracking-wide  text-orange-600  sm:flex-shrink-0 sm:w-auto mt-6 md:mt-7 bg-white border-2 border-orange-600  lg:ml-0">
+                <Link href={""}>Generate/Pay Invoice</Link>
               </Button>
             </div>
           </div>
@@ -45,8 +46,8 @@ const GenerateInvoice = () => {
                 business on Mbox. We rise by lifting others.
               </p>
 
-              <Button className="w-full h-12 px-6 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-28 text-sm  lg:text-lg font-bold tracking-wide  text-orange-600  sm:flex-shrink-0 sm:w-auto mt-6 bg-white border-2 border-orange-600  lg:ml-0">
-                Endorse a business
+              <Button className="w-full h-12 px-6 py-3 lg:px-8 lg:cursor-pointer  uppercase lg:normal-case hover:-translate-y-1 hover:scale-110 duration-300 lg:rounded-md  lg:mt-28 text-sm  lg:text-lg font-bold tracking-wide  text-orange-600  sm:flex-shrink-0 sm:w-auto mt-6 bg-white border-2 border-orange-600  lg:ml-0">
+                <Link href={""}>Endorse a business</Link>
               </Button>
             </div>
           </div>

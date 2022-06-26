@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Button from "../Button";
 const Newsletter = () => {
@@ -40,7 +41,7 @@ const Newsletter = () => {
                     className="w-full h-12 px-6 py-3 mt-1 uppercase lg:normal-case lg:rounded-md lg:-ml-2 lg:mt-8 text-sm font-bold tracking-wide  bg-orange-600 md:mt-4  sm:flex-shrink-0 sm:w-auto sm:mt-0"
                     type="submit"
                   >
-                    Subscribe
+                    <Link href={""}>Subscribe</Link>
                   </Button>
                 </div>
               </form>

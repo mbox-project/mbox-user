@@ -31,7 +31,7 @@ const Category = () => {
           <div className="col-span-2 pt-6  sm:col-span-1 ">
             <div className=" mt-6 space-y-7 text-sm ">
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href={""}>
                     <Image src={gift} />
                   </Link>
@@ -42,7 +42,7 @@ const Category = () => {
               </div>
 
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
                   <Link href={""}>
                     <Image src={men} />
                   </Link>
@@ -52,7 +52,7 @@ const Category = () => {
                 </Link>
               </div>
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
                   <Link href={""}>
                     <Image src={furniture} />
                   </Link>
@@ -62,7 +62,7 @@ const Category = () => {
                 </Link>
               </div>
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href={""}>
                     <Image src={skincare} />
                   </Link>
@@ -77,7 +77,7 @@ const Category = () => {
           <div className="col-span-2 pt-6  sm:col-span-1 ">
             <div className="flex flex-col mt-6 space-y-7 text-sm ">
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href={""}>
                     <Image src={food} />
                   </Link>
@@ -87,7 +87,7 @@ const Category = () => {
                 </Link>
               </div>
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href={""}>
                     <Image src={womenfashion} />
                   </Link>
@@ -97,7 +97,7 @@ const Category = () => {
                 </Link>
               </div>
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href={""}>
                     <Image src={drinks} />
                   </Link>
@@ -107,7 +107,7 @@ const Category = () => {
                 </Link>
               </div>
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href={""}>
                     <Image src={automobile} />
                   </Link>
@@ -122,7 +122,7 @@ const Category = () => {
           <div className="col-span-2 pt-6  sm:col-span-1">
             <div className="flex flex-col mt-6 space-y-7 text-sm ">
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href={""}>
                     <Image src={phones} />
                   </Link>
@@ -132,7 +132,7 @@ const Category = () => {
                 </Link>
               </div>
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
                   <Link href={""}>
                     <Image src={books} />
                   </Link>
@@ -142,7 +142,7 @@ const Category = () => {
                 </Link>
               </div>
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
                   <Link href={""}>
                     <Image src={crafts} />
                   </Link>
@@ -152,7 +152,7 @@ const Category = () => {
                 </Link>
               </div>
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
                   <Link href={""}>
                     <Image src={estate} />
                   </Link>
@@ -167,7 +167,7 @@ const Category = () => {
           <div className="col-span-2 pt-6  sm:col-span-1">
             <div className="flex flex-col mt-6 space-y-7 text-sm ">
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
                   <Link href={""}>
                     <Image src={toys} />
                   </Link>
@@ -178,7 +178,7 @@ const Category = () => {
               </div>
 
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
                   <Link href={""}>
                     <Image src={elect} />
                   </Link>
@@ -188,7 +188,7 @@ const Category = () => {
                 </Link>
               </div>
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
                   <Link href={""}>
                     <Image src={tools} />
                   </Link>
@@ -200,7 +200,7 @@ const Category = () => {
                 </Link>
               </div>
               <div>
-                <div className=" ml-12 md:ml-14">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
                   <Link href={""}>
                     <Image src={decor} />
                   </Link>

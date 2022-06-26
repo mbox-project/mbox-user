@@ -3,7 +3,6 @@ import Button from "../Button";
 import icon from "../../public/images/icon2.png";
 import Image from "next/image";
 import logo from "../../public/images/logo2.png";
-
 import Link from "next/link";
 
 const Header = () => {
@@ -39,18 +38,12 @@ const Header = () => {
             </Link>
           </div>
           {!isOpen && (
-            <div className=" mobilenav w-full absolute flex flex-col text-center bg-gray-100  py-5 mt-44 z-20  text-orange-600 md:hidden">
-              <Link
-                href="/auth/login"
-                className=" pt-2  flex items-center text-md font-medium "
-              >
+            <div className=" w-full -right-0 absolute flex flex-col text-center bg-orange-600  py-5 px-6 mt-20 z-20  text-white md:hidden">
+              <Link href="/auth/login" className=" py-2   text-md font-medium ">
                 Log in
               </Link>
 
-              <Link
-                className=" pt-12 text-md flex items-center font-medium  "
-                href="/auth/register"
-              >
+              <Link className="  text-md  font-medium  " href="/auth/register">
                 Sign up
               </Link>
             </div>
@@ -62,40 +55,21 @@ const Header = () => {
               onClick={() => setIsOpen(!isOpen)}
             >
               <span className="sr-only">Open menu</span>
-
-              {!isOpen ? (
-                <svg
-                  className="block h-12 t-10 bg-none w-12"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="block bg-none h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              )}
+              <svg
+                aria-hidden="true"
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4 6h16M4 12h16M4 18h16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+              </svg>
             </button>
           </div>
         </div>

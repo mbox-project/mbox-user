@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Image from "next/image";
 import suggestedimg from "../../public/images/suggestedimg.png";
 import star from "../../public/images/star.png";
+import Link from "next/link";
 
 const SuggestedMerchant = ({ header, body, className, button, categories }) => {
   SuggestedMerchant.propTypes = {
@@ -32,7 +33,7 @@ const SuggestedMerchant = ({ header, body, className, button, categories }) => {
       </div>
       <p className="text-sm text-gray-400 py-2">{categories}</p>
       <button className="w-full footerbg text-white py-2 mt-3 text-sm ">
-        {button}
+        <Link href={""}>{button}</Link>
       </button>
     </div>
   );

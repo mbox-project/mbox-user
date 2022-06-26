@@ -5,6 +5,7 @@ import becomeamerchant1 from "../../public/images/becomeamerchant1.png";
 import becomeamerchant2 from "../../public/images/becomeamerchant2.png";
 import becomeamerchant3 from "../../public/images/becomeamerchant3.png";
 import Button from "../Button";
+import Link from "next/link";
 const BecomeAMerchant = () => {
   return (
     <section className="aboutbg">
@@ -20,7 +21,7 @@ const BecomeAMerchant = () => {
           <div className="grid grid-cols-2 gap-20 mt-8 lg:mt-5  lg:gap-y-16">
             <div className="col-span-2 lg:col-span-1 ">
               <div className="flex py-5">
-                <div className=" ">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ">
                   <Image src={becomeamerchant1} />
                 </div>
                 <div className="px-5 ">
@@ -32,7 +33,7 @@ const BecomeAMerchant = () => {
                 </div>
               </div>
               <div className="flex py-5">
-                <div className=" ">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ">
                   <Image src={becomeamerchant2} />
                 </div>
                 <div className="px-5">
@@ -46,7 +47,7 @@ const BecomeAMerchant = () => {
                 </div>
               </div>
               <div className="flex py-5">
-                <div className=" ml-3 lg:ml-3 ">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-3 lg:ml-3 ">
                   <Image src={becomeamerchant3} />
                 </div>
                 <div className="px-5">
@@ -59,8 +60,8 @@ const BecomeAMerchant = () => {
                   </p>
                 </div>
               </div>
-              <Button className="w-full h-12 px-12 py-3  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 sm:flex-shrink-0 sm:w-auto mt-3 md:ml-28 bg-orange-600 lg:ml-24">
-                Become A Merchant
+              <Button className="w-full h-12 px-12 py-3 hover:-translate-y-1 hover:scale-110  duration-300  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 sm:flex-shrink-0 sm:w-auto mt-3 md:ml-28 bg-orange-600 lg:ml-24">
+                <Link href={""}>Become A Merchant</Link>
               </Button>
             </div>
             <div className="col-span-2 lg:col-span-1">
