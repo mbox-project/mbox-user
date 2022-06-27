@@ -41,7 +41,7 @@ function Register() {
 
   return (
     <div className="flex min-h-screen">
-      <div className="hidden w-1/2 mx-auto min-h-screen bg-orange-600 lg:block bg-register-img bg-cover">
+      <div className="hidden lg:w-1/2 lg:mx-auto min-h-screen bg-orange-600 lg:block bg-register-img bg-cover">
         <div className="p-5">
           <Image src={logo} />
         </div>
@@ -56,17 +56,17 @@ function Register() {
           </p>
         </div>
       </div>
-      <div className="w-full lg:w-1/2 lg:mx-auto p-12">
-        <div className="w-full text-center my-auto">
-          <h1 className="lg:text-5xl text-orange-600 text-4xl md:text-5xl mt-12 lg:mt-16 lg:pt-0 font-extrabold ">
+      <div className="w-full lg:w-1/2 lg:mx-auto px-4">
+        <div className="text-center ">
+          <h1 className="lg:text-5xl text-orange-600 text-xl md:text-2xl mt-16 lg:mt-16 lg:pt-0  font-bold lg:font-extrabold ">
             Create Account
           </h1>
-          <p className=" flex text-lg max-w-xs md:max-w-none lg:text-lg mt-4 lg:mt-3 pl-16 md:pl-0 justify-center lg:px-44 leading-relaxed ">
+          <p className="  hidden md:flex text-md  md:max-w-none lg:text-lg mt-4 lg:mt-3 pl-16 md:pl-0 justify-center lg:px-44 leading-relaxed ">
             Lets get you all set up. Provide us with the following information
             to get started
           </p>
         </div>
-        <form className=" px-10 lg:px-20 mt-5 lg:mt-4 lg:pt-0 ">
+        <form className="w-full px-0 lg:px-20 mt-10 lg:mt-4 lg:pt-0 ">
           <div className="mb-4">
             <Label
               className="w-full pb-1 text-base text-[#9A9A9A]"
@@ -76,7 +76,7 @@ function Register() {
             <Input
               name="name"
               type="text"
-              className=" w-full mt-1 p-2 inputcolor focus:outline-none lg:p-2 text-lg lg:text-base border-[#444444] rounded-md shadow-sm border-2 "
+              className=" w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none "
               required={true}
               autoFocus={false}
               onChange={onChangeInput}
@@ -93,7 +93,7 @@ function Register() {
               <Input
                 name="email"
                 type="email"
-                className="w-full p-2 lg:p-2 pr-12 mt-1 inputcolor focus:outline-none text-lg lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
+                className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
@@ -111,7 +111,7 @@ function Register() {
               <Input
                 name="whatapp"
                 type="text"
-                className="w-full p-2  lg:p-2  pr-12 mt-1 inputcolor focus:outline-none  text-lg lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
+                className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
@@ -129,7 +129,7 @@ function Register() {
             <div className="relative">
               <Dropdown
                 name="sex"
-                className="w-full p-2  lg:p-2  pr-12 mt-1 inputcolor focus:outline-none text-lg lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
+                className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
@@ -152,7 +152,7 @@ function Register() {
               <Input
                 type="password"
                 name="password"
-                className="w-full p-2  lg:p-2  pr-12 mt-1 inputcolor focus:outline-none text-lg lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
+                className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
@@ -173,7 +173,7 @@ function Register() {
               <Input
                 type="password"
                 name="confirmPassword"
-                className="w-full p-2  lg:p-2  pr-12 mt-1 inputcolor focus:outline-none text-lg lg:text-base border-[#444444] border-2 rounded-md shadow-sm"
+                className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
@@ -197,9 +197,9 @@ function Register() {
             </span>
           </div>
           <div className="flex">
-            <p className="mr-3 mt-3 text-gray-600 text-xl">Existing User?</p>
+            <p className="mr-3 mt-3 text-gray-600 text-md">Existing User?</p>
             <Link href="/auth/login">
-              <a className="text-orange-600 mt-3 text-xl underline">Login</a>
+              <a className="text-orange-600 mt-3 text-md underline">Login</a>
             </Link>
           </div>
         </form>

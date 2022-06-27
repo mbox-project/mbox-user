@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../../public/images/logo.png";
 import icon from "../../../public/images/icon.png";
 import Button from "../../../components/Button";
-import Footer from "../../../components/Footer";
+// import Footer from "../../../components/Footer";
 import Label from "../../../components/Label";
 import Image from "next/image";
 import Input from "../../../components/Input";
@@ -32,17 +32,17 @@ function ResetPassword() {
           </p>
         </div>
       </div>
-      <div className=" lg:w-1/2 mx-auto w-full inputcolor p-12 my-auto">
+      <div className=" lg:w-1/2 mx-auto w-full inputcolor  ">
         <div className="w-full">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-orange-600 mb-3">
+            <h1 className="text-xl font-bold mt-20 text-orange-600 mb-3">
               Reset Password
             </h1>
-            <p className=" lg:text-base text-lg text-gray-700">
+            <p className="hidden md:flex justify-center  text-lg text-gray-700">
               Enter a new password
             </p>
           </div>
-          <form className=" px-0 lg:px-10">
+          <form className=" px-4 mt-10 lg:px-10">
             <div className="mb-4">
               <Label
                 className="w-full text-lg lg:text-base text-[#9A9A9A]"
@@ -54,7 +54,7 @@ function ResetPassword() {
                 <Input
                   name="password"
                   type="password"
-                  className="w-full p-2 pr-12 text-base inputcolor lg:text-sm mt-2 border-[#444444] border-2 rounded-md shadow-sm"
+                  className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                   autoFocus={true}
                   required={true}
                   onChange={onChangeInput}
@@ -84,7 +84,7 @@ function ResetPassword() {
               </div>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-4 mt-10">
               <Label
                 className="w-full text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="password"
@@ -95,7 +95,7 @@ function ResetPassword() {
                 <Input
                   name="password"
                   type="password"
-                  className="w-full p-2 pr-12 text-base inputcolor lg:text-sm mt-2 border-[#444444] border-2 rounded-md shadow-sm"
+                  className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                   autoFocus={true}
                   required={true}
                   onChange={onChangeInput}
@@ -127,12 +127,12 @@ function ResetPassword() {
             </div>
 
             <Button
-              className="w-full bg-orange-600 p-2  mt-3 mb-4 rounded-md shadow-lg  text-white text-lg font-semibold"
+              className="w-full bg-orange-600 h-12  mt-8  mb-0 lg:mb-4 rounded-lg text-white text-lg  lg:text-2xl font-semibold"
               onClick={onSubmitHandler}
             >
               Reset my password
             </Button>
-            <Footer />
+            {/* <Footer /> */}
           </form>
         </div>
       </div>
