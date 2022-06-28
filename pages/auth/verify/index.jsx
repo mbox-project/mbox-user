@@ -44,7 +44,7 @@ function VerifyOTP() {
 
       <div className="w-full lg:w-1/2 lg:mx-auto  px-4">
         <div className="w-full  font-poppins text-center">
-          <h1 className="lg:text-3xl text-orange-600 text-xl lg:pt-0 font-poppins font-extrabold ">
+          <h1 className="lg:text-3xl text-orange-600 text-xl lg:pt-0 mt-20 font-poppins font-extrabold ">
             OTP Verification
           </h1>
           <p className="block pb-3 pt-4 text-base lg:text-xs md:pt-6  lg:pt-3 px-12 lg:px-52 leading-relaxed ">
