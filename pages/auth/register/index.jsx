@@ -1,6 +1,4 @@
 import React from "react";
-import logo from "../../../public/images/logo.png";
-import icon from "../../../public/images/icon.png";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import Label from "../../../components/Label";
@@ -8,6 +6,7 @@ import Footer from "../../../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 import Dropdown from "../../../components/Dropdown";
+import authbg from "../../../public/images/authbg.png";
 
 function Register() {
   const [value, setValue] = React.useState({});
@@ -42,19 +41,7 @@ function Register() {
   return (
     <div className="flex min-h-screen">
       <div className="hidden lg:w-1/2 lg:mx-auto min-h-screen bg-orange-600 lg:block bg-register-img bg-cover">
-        <div className="p-5">
-          <Image src={logo} />
-        </div>
-        <div className="text-white text-center">
-          <Image src={icon} />
-          <p className="flex justify-center font-extrabold text-4xl">
-            Welcome Back!
-          </p>
-          <p className="flex justify-center pt-3 text-base  ">
-            Lets get you all set up. Join the worlds largest pocket-sized
-            marketplace.
-          </p>
-        </div>
+        <Image src={authbg} />
       </div>
       <div className="w-full lg:w-1/2 lg:mx-auto px-4">
         <div className="text-center ">

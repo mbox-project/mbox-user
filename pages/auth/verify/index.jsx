@@ -1,6 +1,6 @@
 import React from "react";
-import icon from "../../../public/images/icon.png";
-import logo from "../../../public/images/logo.png";
+import verify from "../../../public/images/loginbg.png";
+
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 // import Footer from "../../../components/Footer";
@@ -29,17 +29,7 @@ function VerifyOTP() {
   return (
     <div className="flex ">
       <div className=" hidden  min-h-screen w-1/2  mx-auto  lg:block bg-verify-img bg-cover ">
-        <Image src={logo} className=" w-32 m-6" />
-        <div className=" mt-96 pt-20 text-white">
-          <Image src={icon} className=" w-32  mx-auto " />
-          <p className="flex justify-center  text-2xl font-bold font-poppins -mt-20">
-            Hello, Friend!{" "}
-          </p>
-          <p className="flex justify-center text-lg ">
-            Welcome back! Enter the OTP sent to your email to continue to enjoy
-            MBOX
-          </p>
-        </div>
+        <Image src={verify} />
       </div>
 
       <div className="w-full lg:w-1/2 lg:mx-auto  px-4">

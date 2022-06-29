@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../../../public/images/logo.png";
-import icon from "../../../public/images/icon.png";
+import resetpasswordimg from "../../../public/images/loginbg.png";
+
 import Button from "../../../components/Button";
 // import Footer from "../../../components/Footer";
 import Label from "../../../components/Label";
@@ -21,16 +21,7 @@ function ResetPassword() {
   return (
     <div className="flex">
       <div className=" hidden w-1/2 min-h-screen mx-auto lg:block bg-reset bg-cover">
-        <Image src={logo} className=" w-32 m-6" />
-        <div className=" mt-60 pt-96  text-white">
-          <Image src={icon} className=" w-32  mx-auto " />
-          <p className="flex justify-center font-poppins font-extrabold text-2xl -mt-20">
-            Hello,Friend!
-          </p>
-          <p className="flex justify-center pt-3 font-poppins text-base  ">
-            Welcome back! Enter a new password and continue to enjoy MBOX
-          </p>
-        </div>
+        <Image src={resetpasswordimg} />
       </div>
       <div className=" lg:w-1/2 mx-auto w-full inputcolor  ">
         <div className="w-full">
