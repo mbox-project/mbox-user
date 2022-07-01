@@ -7,6 +7,7 @@ import Newsletter from "../../components/Newsletter";
 import MainFooter from "../../components/MainFooter";
 import OurTeam from "../../components/OurTeam";
 import TeamMate from "../../components/TeamMate";
+import OurProducts from "../../components/OurProducts";
 const AboutUs = () => {
   return (
     <div className="">
@@ -28,6 +29,9 @@ const AboutUs = () => {
       </section>
       <section>
         <TeamMate />
+      </section>
+      <section>
+        <OurProducts />
       </section>
       <section>
         <Newsletter />
