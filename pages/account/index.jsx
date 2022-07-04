@@ -13,7 +13,7 @@ const Index = () => {
     <>
       <Layout>
         <main className="px-4 container mx-auto md:px-20">
-          {/* first section --Welcome mssg */}
+          {/* first section --Welcome buyer */}
           <section className="flex flex-col-reverse bg-white rounded-lg px-10 py-2 items-center justify-between mt-10 shadow-sm  hover:shadow-md md:flex-row">
             <div className="flex flex-col space-y-2">
               <h2 className="text-3xl font-bold">Hello, Kingsley</h2>
