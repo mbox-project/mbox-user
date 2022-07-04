@@ -18,14 +18,14 @@ const Platform = () => {
                 OUR{" "}
                 <span className="text-orange-600 pl-2 lg:pl-0"> PLATFORM</span>
               </h2>
-              <p className=" flex justify-center md:block pt-4 lg:pt-8 leading-relaxed">
+              <p className="  md:pl-0 md:block pt-4 lg:pt-8 leading-relaxed">
                 Mbox is Africa’s first digital marketplace that allows SMEs
                 create a digital version of their business with- out a website.
                 With just your username, businesses can connect with millions of
                 buyers protected via escrow. Buying and selling safely over the
                 internet is not that difficult.
               </p>
-              <p className=" pt-6 md:pt-2 lg:pt-10">
+              <p className="pl-3 md:pl-0 pt-6 md:pt-2 lg:pt-10">
                 You are just a sign up away!{" "}
               </p>
               <Button className="w-full h-12 px-12 py-3 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 md:ml-1 sm:flex-shrink-0 sm:w-auto mt-6 bg-orange-600 lg:ml-1">

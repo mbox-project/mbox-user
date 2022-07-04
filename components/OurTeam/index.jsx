@@ -13,7 +13,7 @@ const OurTeam = () => {
               <h2 className="text-2xl flex justify-center leading-relaxed lg:block pt-2 md:pt-2 font-extrabold ">
                 OUR <span className="text-orange-600 pl-2 lg:pl-0"> TEAM</span>
               </h2>
-              <p className="flex justify-center md:block pt-4 lg:pt-8 leading-relaxed">
+              <p className="flex justify-center  md:block pt-4 lg:pt-8 leading-relaxed">
                 I am happy to introduce to you what Mbox looks like internally.
                 The team is committed to uphold -ing the culture that defines us
                 as a customer obsessed company with absolute resilience and
