@@ -22,3 +22,9 @@
       box-shadow: theme('boxShadow.xl');
     }
 }
+.rectCard {
+    border-radius: 0px;
+}
+.profilePics{
+    border-radius: 50%;
+}

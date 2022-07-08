@@ -23,7 +23,7 @@ const MobileSidebar = ({ showSideBar }) => {
             <ul className="space-y-8 pt-10">
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={profile} width={20} height={20} alt="profile" />
-                <Link href="#"> Edit Profile </Link>
+                <Link href="/editprofile/Index"> Edit Profile </Link>
               </li>
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={wallet} width={20} height={20} alt="profile" />
