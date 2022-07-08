@@ -133,17 +133,17 @@ function Login() {
                 By Login, you’ve already agreed to our{" "}
               </span>
               <Link href="/">
-                <a className="text-gray-900 pt-5 flex  justify-center  md:pt-3 lg:pt-0 font-bold">
+                <a className="text-gray-900 pt-5 flex  justify-center  md:pt-3 lg:pt-2 lg:pl-1 font-bold">
                   Terms & Condition
                 </a>
               </Link>
             </div>
             <div className="block lg:flex pt-5 lg:pt-0">
-              <p className=" text-gray-600 text-md  flex justify-center lg:text-xl">
+              <p className=" text-gray-600 text-md lg:pt-5 flex justify-center lg:text-md">
                 New User?
               </p>
               <Link href="/auth/register">
-                <a className="text-orange-600 flex justify-center pt-5 text-md lg:text-xl underline">
+                <a className="text-orange-600 flex justify-center pt-5 text-md lg:text-md lg:pl-2 underline">
                   Sign Up
                 </a>
               </Link>
