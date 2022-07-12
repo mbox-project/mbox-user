@@ -54,7 +54,7 @@ const Questions = () => {
                 onChange={nameChangeHandler}
               />
             </div>
-            <div >
+            <div>
               <Label
                 className=" text-xl   lg:relative lg:left-28 lg:text-base text-[#9A9A9A]"
                 htmlFor="email"
