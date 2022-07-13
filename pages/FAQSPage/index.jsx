@@ -3,7 +3,9 @@ import Header from "../../components/Header";
 import Newsletter from "../../components/Newsletter";
 import MainFooter from "../../components/MainFooter";
 import Questions from "../../components/Questions";
-const FAQSPage = () => {
+// import ArrayOfQuestions from "../../components/ArrayOfQuestions";
+const FAQSPage = (props) => {
+  console.log( props.item)
   return (
     <div>
       <Header />
@@ -16,6 +18,18 @@ const FAQSPage = () => {
           case you could not find yours, use the box provided below.
         </p>
       </section>
+      {/* <<ArrayOfQuestions {props.items.map(question => (
+        <ul>
+          {" "}
+          Ques ={question.Ques} Answer ={question.Answer}
+        </ul>
+      ))} />> */}
+      <div>
+        
+{props.items.map((question) =>{return(<ul>Ques ={question.Ques} Answer ={question.Answer}</ul>)})}
+
+      </div>
+      
       <Questions />
       <Newsletter />
       <MainFooter />
