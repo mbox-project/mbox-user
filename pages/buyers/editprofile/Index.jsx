@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../components/BuyersLayout/Layout";
+import Layout from "../../../components/BuyersLayout/Layout";
 import { BsFillCameraFill } from "react-icons/bs";
 import { BiEditAlt, BiTrashAlt } from "react-icons/bi";
 
@@ -32,7 +32,7 @@ const Index = () => {
                   htmlFor="name"
                   className="block mb-2 text-md text-gray-500"
                 >
-                 Full Name
+                  Full Name
                 </label>
                 <input
                   type="name"
@@ -78,10 +78,15 @@ const Index = () => {
                 >
                   Sex
                 </label>
-                <select id="sex" className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5">
-                    <option disabled selected>select your gender</option>
-                    <option value="m">Male</option>
-                    <option value="f">Female</option>
+                <select
+                  id="sex"
+                  className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
+                >
+                  <option disabled selected>
+                    select your gender
+                  </option>
+                  <option value="m">Male</option>
+                  <option value="f">Female</option>
                 </select>
               </div>
               <div className="mb-2">
@@ -98,10 +103,9 @@ const Index = () => {
                   placeholder="No 5 idumota Lagos"
                 />
               </div>
-
             </div>
           </section>
-         
+
           {/* Bank Information */}
           <h2 className="card text-2xl border-b-2 mt-10 rectCard">
             Bank Information

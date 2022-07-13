@@ -22,11 +22,11 @@ const Sidebar = ({ showSideBar }) => {
           <ul className="space-y-8 pt-10">
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={profile} width={20} height={20} alt="profile" />
-              <Link href="/editprofile/Index"> Edit Profile </Link>
+              <Link href="/buyers/editprofile/Index"> Edit Profile </Link>
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={wallet} width={20} height={20} alt="profile" />
-              <Link href="#"> My Wallet </Link>
+              <Link href="/buyers/wallet/Index"> My Wallet </Link>
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <BsCartDash size={20} />
