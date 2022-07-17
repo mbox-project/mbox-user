@@ -1,6 +1,5 @@
 import React from "react";
-import logo from "../../../public/images/logo.png";
-import icon from "../../../public/images/icon.png";
+import recoverpasswordimg from "../../../public/images/loginbg.png";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import Label from "../../../components/Label";
@@ -20,19 +19,10 @@ function ForgotPassword() {
   };
   return (
     <div className="flex">
-      <div className=" hidden w-1/2  mx-auto min-h-screen lg:block bg-recover-img bg-cover bg-red-500">
-        <Image src={logo} className=" w-32 m-6" />
-        <div className="pt-96 mt-52 mb-20  text-white">
-          <Image src={icon} className=" w-32  mx-auto " />
-          <p className="flex justify-center font-poppins font-extrabold text-4xl -mt-20 ">
-            Hello, Friend!
-          </p>
-          <p className="flex justify-center pt-3 font-poppins text-base  ">
-            Welcome back! Please login to your account
-          </p>
-        </div>
+      <div className=" hidden w-1/2  mx-auto min-h-screen lg:block ">
+        <Image src={recoverpasswordimg} />
       </div>
-      <div className="w-full lg:w-1/2  lg:mx-auto generalbg my-auto">
+      <div className="w-full lg:w-1/2  lg:mx-auto  mt-20 lg:mt-44">
         <div className="w-full  font-poppins text-center">
           <h1 className="lg:text-3xl text-orange-600 text-3xl md:text-5xl lg:pt-0 font-poppins font-extrabold ">
             Recover Password

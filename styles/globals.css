@@ -28,3 +28,20 @@
 .profilePics{
     border-radius: 50%;
 }
+.aboutbg{
+  background-color: #fAfAfA;
+}
+.abouttext{
+  color: #491546;
+}
+.featurebg{
+  background-color: #FFF9FF;
+}
+.backlogin{
+  height: 100%;
+}
+
+
+/* .suggested{
+  width: 2050px;
+} */
