@@ -3,11 +3,11 @@ import Button from "../Button";
 import icon from "../../public/images/icon2.png";
 import Image from "next/image";
 import logo from "../../public/images/logo2.png";
-// import Image from "../Image";
 import Link from "next/link";
-// import Icon from "../Image";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <header className="shadow-sm">
       <div className="max-w-screen-xl p-4 mx-auto">
@@ -24,7 +24,7 @@ const Header = () => {
               Search
             </Button>
           </div>
-          <div className="items-center justify-end flex-1 hidden space-x-4 sm:flex">
+          <div className="items-center justify-end flex-1 hidden space-x-4 md:flex">
             <Image src={icon} width="20px" height="20px" />
             <Link href="/auth/login" className="px-5 py-2 text-sm font-medium ">
               Log in
@@ -37,11 +37,22 @@ const Header = () => {
               Sign up
             </Link>
           </div>
+          {!isOpen && (
+            <div className=" w-full -right-0 absolute flex flex-col text-center bg-orange-600  py-5 px-6 mt-20 z-20  text-white md:hidden">
+              <Link href="/auth/login" className=" py-2   text-md font-medium ">
+                Log in
+              </Link>
 
-          <div className="lg:hidden">
+              <Link className="  text-md  font-medium  " href="/auth/register">
+                Sign up
+              </Link>
+            </div>
+          )}
+          <div className="md:hidden">
             <button
-              className="p-2 text-gray-600 bg-gray-100 rounded-lg"
+              className=" text-gray-600  rounded-lg"
               type="button"
+              onClick={() => setIsOpen(!isOpen)}
             >
               <span className="sr-only">Open menu</span>
               <svg
@@ -49,7 +60,7 @@ const Header = () => {
                 className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
-                viewbox="0 0 24 24"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path

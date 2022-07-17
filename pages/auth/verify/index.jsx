@@ -1,9 +1,9 @@
 import React from "react";
-import icon from "../../../public/images/icon.png";
-import logo from "../../../public/images/logo.png";
+import verify from "../../../public/images/loginbg.png";
+
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
-import Footer from "../../../components/Footer";
+// import Footer from "../../../components/Footer";
 import Image from "next/image";
 
 function VerifyOTP() {
@@ -29,22 +29,12 @@ function VerifyOTP() {
   return (
     <div className="flex ">
       <div className=" hidden  min-h-screen w-1/2  mx-auto  lg:block bg-verify-img bg-cover ">
-        <Image src={logo} className=" w-32 m-6" />
-        <div className=" mt-96 pt-20 text-white">
-          <Image src={icon} className=" w-32  mx-auto " />
-          <p className="flex justify-center  text-2xl font-bold font-poppins -mt-20">
-            Hello, Friend!{" "}
-          </p>
-          <p className="flex justify-center text-lg ">
-            Welcome back! Enter the OTP sent to your email to continue to enjoy
-            MBOX
-          </p>
-        </div>
+        <Image src={verify} />
       </div>
 
-      <div className="w-full lg:w-1/2 lg:mx-auto my-auto px-12">
+      <div className="w-full lg:w-1/2 lg:mx-auto  px-4">
         <div className="w-full  font-poppins text-center">
-          <h1 className="lg:text-3xl text-orange-600 text-4xl lg:pt-0 font-poppins font-extrabold ">
+          <h1 className="lg:text-3xl text-orange-600 text-xl lg:pt-0 mt-20 font-poppins font-extrabold ">
             OTP Verification
           </h1>
           <p className="block pb-3 pt-4 text-base lg:text-xs md:pt-6  lg:pt-3 px-12 lg:px-52 leading-relaxed ">
@@ -88,7 +78,7 @@ function VerifyOTP() {
             Verify and Proceed
           </Button>
         </form>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );
