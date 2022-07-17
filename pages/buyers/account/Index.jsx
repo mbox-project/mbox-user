@@ -49,30 +49,15 @@ const index = () => {
                   <ul className="mt-4 space-y-2">
                     <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
                       <Link href="#"> Longshort Sneakers </Link>
-                      <Image
-                        src={caret}
-                        width={15}
-                        height={15}
-                        alt="profile"
-                      />
+                      <Image src={caret} width={15} height={15} alt="profile" />
                     </li>
                     <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
                       <Link href="#"> Veros Skincare products </Link>
-                      <Image
-                        src={caret}
-                        width={15}
-                        height={15}
-                        alt="profile"
-                      />
+                      <Image src={caret} width={15} height={15} alt="profile" />
                     </li>
                     <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
                       <Link href="#"> Close up toothpaste </Link>
-                      <Image
-                        src={caret}
-                        width={15}
-                        height={15}
-                        alt="profile"
-                      />
+                      <Image src={caret} width={15} height={15} alt="profile" />
                     </li>
                   </ul>
                 </div>
@@ -84,30 +69,15 @@ const index = () => {
                   <ul className="mt-4 space-y-2">
                     <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
                       <Link href="#"> Longshort Sneakers </Link>
-                      <Image
-                        src={caret}
-                        width={15}
-                        height={15}
-                        alt="profile"
-                      />
+                      <Image src={caret} width={15} height={15} alt="profile" />
                     </li>
                     <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
                       <Link href="#"> Veros Skincare products </Link>
-                      <Image
-                        src={caret}
-                        width={15}
-                        height={15}
-                        alt="profile"
-                      />
+                      <Image src={caret} width={15} height={15} alt="profile" />
                     </li>
                     <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
                       <Link href="#"> Close up toothpaste </Link>
-                      <Image
-                        src={caret}
-                        width={15}
-                        height={15}
-                        alt="profile"
-                      />
+                      <Image src={caret} width={15} height={15} alt="profile" />
                     </li>
                   </ul>
                 </div>
