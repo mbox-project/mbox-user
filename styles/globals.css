@@ -17,14 +17,12 @@
 .aboutherobg{
   background: #491546;
 }
-<<<<<<< HEAD
 .textcolor{
   color: #491546;
 }
 .faqsbg{
   background-color: #E5E5E5;
 }
-=======
 @layer components {
     .card {
       background-color: theme('colors.white');
@@ -56,4 +54,3 @@
 /* .suggested{
   width: 2050px;
 } */
->>>>>>> f5f31a914b07ad320d46654a4063480352170aca
