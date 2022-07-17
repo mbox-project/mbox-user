@@ -3,7 +3,7 @@ import Layout from "../../../components/BuyersLayout/Layout";
 import { BsFillCameraFill } from "react-icons/bs";
 import { BiEditAlt, BiTrashAlt } from "react-icons/bi";
 
-const Index = () => {
+const index = () => {
   return (
     <>
       <Layout>
@@ -178,4 +178,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default index;

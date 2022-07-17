@@ -7,7 +7,7 @@ import lady from "../../../public/buyersImg/lady.svg";
 import edit from "../../../public/buyersImg/edit.svg";
 import caret from "../../../public/buyersImg/caret.svg";
 
-const Index = () => {
+const index = () => {
   return (
     <>
       <Layout>
@@ -218,4 +218,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default index;

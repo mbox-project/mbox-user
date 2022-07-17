@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../../components/BuyersLayout/Layout";
 
-const Index = () => {
+const index = () => {
   return (
     <Layout>
       {/* wallet Balance */}
@@ -186,4 +186,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default index;
