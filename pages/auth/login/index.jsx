@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import icon from "../../../public/images/icon.png";
-import logo from "../../../public/images/logo.png";
+import loginbg from "../../../public/images/loginbg.png";
+// import logo from "../../../public/images/logo.png";
 import Button from "../../../components/Button";
-import Footer from "../../../components/Footer";
+// import Footer from "../../../components/Footer";
 import Input from "../../../components/Input";
 import Label from "../../../components/Label";
 import Link from "next/link";
@@ -20,9 +20,10 @@ function Login() {
   };
 
   return (
-    <div className="w-full h-screen flex">
-      <div className="hidden w-1/2 mx-auto min-h-screen lg:block">
-        <div>
+    <div className=" flex">
+      <div className="hidden w-1/2   backlogin lg:block">
+        <Image src={loginbg} />
+        {/* <div>
           <div className="p-5">
             <Image src={logo} />
           </div>
@@ -36,20 +37,20 @@ function Login() {
               marketplace.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className="w-full lg:w-1/2 lg:mx-auto md:my-auto bg-white p-12">
-        <div className="w-full">
-          <div className="text-center pb-10">
-            <h1 className="text-3xl lg:text-5xl font-bold text-orange-600 mb-5">
+      <div className="w-full lg:w-1/2 px-4  bg-white">
+        <div>
+          <div className="text-center">
+            <h1 className="text-lg md:text-xl font-bold mt-20 text-orange-600 ">
               Login
             </h1>
-            <p className=" lg:text-base text-lg text-gray-700">
+            <p className=" hidden md:flex justify-center md:text-lg pt-2 text-gray-700">
               Please enter your details.
             </p>
           </div>
-          <form className=" px-0 lg:px-10">
-            <div className="mb-6">
+          <form className=" mt-10  px-0 lg:px-10">
+            <div className="mb-6 ">
               <Label
                 className="w-full  text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="email"
@@ -58,15 +59,15 @@ function Login() {
               <Input
                 name="email"
                 type="email"
-                className="w-full  p-4 pr-12 mt-2 text-2xl lg:text-base border-[#444444] border-2 rounded-lg shadow-sm"
+                className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
               />
             </div>
-            <div className="mb-6">
+            <div className="mb-0 mt-0 md:mt-4">
               <Label
-                className="w-full text-xl lg:text-base text-[#9A9A9A]"
+                className="w-full text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="password"
                 title="Password"
               />
@@ -74,7 +75,7 @@ function Login() {
                 <Input
                   name="password"
                   type="password"
-                  className="w-full p-4 pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-2 rounded-lg shadow-sm"
+                  className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                   required={true}
                   autoFocus={false}
                   onChange={onChangeInput}
@@ -103,7 +104,7 @@ function Login() {
                 </span>
               </div>
             </div>
-            <div className="mb-6 flex justify-between text-gray-600">
+            <div className="py-8 flex justify-between text-gray-600">
               <div>
                 <Input
                   type="checkbox"
@@ -122,32 +123,34 @@ function Login() {
               </div>
             </div>
             <Button
-              className="w-full bg-orange-600 h-16  mb-0 lg:mb-4 rounded-lg text-white text-2xl font-semibold"
+              className="w-full bg-orange-600 h-12  mb-0 lg:mb-4 rounded-lg text-white text-lg  lg:text-2xl font-semibold"
               onClick={onSubmitHandler}
             >
               Login
             </Button>
-            <div className="flex justify-center mb-3">
-              <span className="text-gray-600 text-lg leading-12  lg:leading-0  lg:text-sm pt-3">
+            <div className=" block  pt-4 md:flex justify-center">
+              <span className="text-gray-600 flex  justify-center text-md lg:leading-0  lg:text-sm pt-3">
                 By Login, you’ve already agreed to our{" "}
-                <Link href="/">
-                  <a className="text-gray-900 pt-3  lg:pt-0 font-bold">
-                    Terms & Condition
-                  </a>
-                </Link>
               </span>
+              <Link href="/">
+                <a className="text-gray-900 pt-5 flex  justify-center  md:pt-3 lg:pt-0 font-bold">
+                  Terms & Condition
+                </a>
+              </Link>
             </div>
-            <div className="flex pt-4 lg:pt-0">
-              <p className="mr-3 text-gray-600 text-lg lg:text-xl">New User?</p>
+            <div className="block lg:flex pt-5 lg:pt-0">
+              <p className=" text-gray-600 text-md  flex justify-center lg:text-xl">
+                New User?
+              </p>
               <Link href="/auth/register">
-                <a className="text-orange-600 text-lg lg:text-xl underline">
+                <a className="text-orange-600 flex justify-center pt-5 text-md lg:text-xl underline">
                   Sign Up
                 </a>
               </Link>
             </div>
           </form>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

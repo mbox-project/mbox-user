@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Button from "../Button";
 const Newsletter = () => {
@@ -5,7 +6,7 @@ const Newsletter = () => {
     <div className="newsletterbg">
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div className="lg:flex justify-center ">
-          <div className=" mt-8 lg:mt-0  lg:gap-y-16">
+          <div className=" mt-2 lg:mt-0  lg:gap-y-16">
             <div className="col-span-2">
               <div>
                 <h2 className="text-2xl font-bold lg:flex justify-center  ">
@@ -13,7 +14,7 @@ const Newsletter = () => {
                   Sign Up
                 </h2>
 
-                <p className="mt-6 ">
+                <p className="mt-6 leading-relaxed ">
                   Be the first to receive update on our services and special
                   stores offers
                 </p>
@@ -33,13 +34,14 @@ const Newsletter = () => {
                     type="email"
                     id="email"
                     placeholder="Type your email address here ..."
+                    required
                   />
 
                   <Button
-                    className="w-full h-12 px-6 py-3 mt-1 uppercase lg:normal-case lg:rounded-md lg:-ml-2 lg:mt-8 text-sm font-bold tracking-wide  bg-orange-600 sm:ml-4 sm:flex-shrink-0 sm:w-auto sm:mt-0"
+                    className="w-full h-12 px-6 py-3 mt-1 uppercase lg:normal-case lg:rounded-md lg:-ml-2 lg:mt-8 text-sm font-bold tracking-wide  bg-orange-600 md:mt-4  sm:flex-shrink-0 sm:w-auto sm:mt-0"
                     type="submit"
                   >
-                    Subscribe
+                    <Link href={""}>Subscribe</Link>
                   </Button>
                 </div>
               </form>

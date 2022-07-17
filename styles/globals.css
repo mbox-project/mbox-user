@@ -17,9 +17,43 @@
 .aboutherobg{
   background: #491546;
 }
+<<<<<<< HEAD
 .textcolor{
   color: #491546;
 }
 .faqsbg{
   background-color: #E5E5E5;
 }
+=======
+@layer components {
+    .card {
+      background-color: theme('colors.white');
+      border-radius: theme('borderRadius.lg');
+      padding: theme('spacing.6');
+      box-shadow: theme('boxShadow.xl');
+    }
+}
+.rectCard {
+    border-radius: 0px;
+}
+.profilePics{
+    border-radius: 50%;
+}
+.aboutbg{
+  background-color: #fAfAfA;
+}
+.abouttext{
+  color: #491546;
+}
+.featurebg{
+  background-color: #FFF9FF;
+}
+.backlogin{
+  height: 100%;
+}
+
+
+/* .suggested{
+  width: 2050px;
+} */
+>>>>>>> f5f31a914b07ad320d46654a4063480352170aca
