@@ -14,11 +14,9 @@
   background:#f7f7f7;
 ;
 }
-<<<<<<< HEAD
 .aboutherobg{
   background: #491546;
 }
-=======
 @layer components {
     .card {
       background-color: theme('colors.white');
@@ -50,4 +48,3 @@
 /* .suggested{
   width: 2050px;
 } */
->>>>>>> 9b3e3836515c3724334c5c5180d1851325a20b2d
