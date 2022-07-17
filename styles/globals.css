@@ -17,6 +17,12 @@
 .aboutherobg{
   background: #491546;
 }
+.textcolor{
+  color: #491546;
+}
+.faqsbg{
+  background-color: #E5E5E5;
+}
 @layer components {
     .card {
       background-color: theme('colors.white');
