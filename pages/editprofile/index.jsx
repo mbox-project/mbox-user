@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../../components/BuyersLayout/Layout";
+import Layout from "../../components/BuyersLayout/Layout";
 import { BsFillCameraFill } from "react-icons/bs";
 import { BiEditAlt, BiTrashAlt } from "react-icons/bi";
 

@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import logo from "../../public/buyersImg/logo.svg";
-import arrow from "../../public/buyersImg/arrow.svg";
-import bell from "../../public/buyersImg/bell.svg";
-import profile from "../../public/buyersImg/profile.svg";
+import logo from "../../public/img/logo.svg";
+import arrow from "../../public/img/arrow.svg";
+import bell from "../../public/img/bell.svg";
+import profile from "../../public/img/profile.svg";
 import Search from "./Search";
 import PropTypes from "prop-types";
 
@@ -41,18 +41,12 @@ const Navbar = ({ showbar, showSideBar }) => {
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           )}
-          <Image
-            src={logo}
-            className="h-2"
-            alt="logo"
-            width="100px"
-            height="50px"
-          />
+          <Image src={logo} alt="logo" width="100px" height="50px" />
           <Search />
           <div className="flex items-center space-x-6">
             <button
               className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
-                                 border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-red-500 hover:text-white"
+                                 border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
             >
               <span>Pay Invoice</span>
               <Image src={arrow} width={10} height={10} alt="arrow" />

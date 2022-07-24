@@ -2,12 +2,12 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
-import profile from "../../public/buyersImg/profile.svg";
-import purchase from "../../public/buyersImg/purchase.svg";
-import report from "../../public/buyersImg/report.svg";
-import saved from "../../public/buyersImg/saved.svg";
-import wallet from "../../public/buyersImg/wallet.svg";
-import thumb from "../../public/buyersImg/thumb.svg";
+import profile from "../../public/img/profile.svg";
+import purchase from "../../public/img/purchase.svg";
+import report from "../../public/img/report.svg";
+import saved from "../../public/img/saved.svg";
+import wallet from "../../public/img/wallet.svg";
+import thumb from "../../public/img/thumb.svg";
 import PropTypes from "prop-types";
 
 const MobileSidebar = ({ showSideBar }) => {
@@ -23,11 +23,11 @@ const MobileSidebar = ({ showSideBar }) => {
             <ul className="space-y-8 pt-10">
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={profile} width={20} height={20} alt="profile" />
-                <Link href="/editprofile/Index"> Edit Profile </Link>
+                <Link href="/editprofile/"> Edit Profile </Link>
               </li>
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={wallet} width={20} height={20} alt="profile" />
-                <Link href="#"> My Wallet </Link>
+                <Link href="/wallet"> My Wallet </Link>
               </li>
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <BsCartDash size={20} />
