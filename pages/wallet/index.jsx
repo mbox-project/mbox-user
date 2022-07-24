@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../../components/BuyersLayout/Layout";
+import Layout from "../../components/BuyersLayout/Layout";
 
 const index = () => {
   return (

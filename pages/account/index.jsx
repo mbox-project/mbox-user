@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Layout from "../../../components/BuyersLayout/Layout";
-import banner from "../../../public/buyersImg/banner.svg";
-import lady from "../../../public/buyersImg/lady.svg";
-import edit from "../../../public/buyersImg/edit.svg";
-import caret from "../../../public/buyersImg/caret.svg";
+import Layout from "../../components/BuyersLayout/Layout";
+import banner from "../../public/img/banner.svg";
+import lady from "../../public/img/lady.svg";
+import edit from "../../public/img/edit.svg";
+import caret from "../../public/img/caret.svg";
 
 const index = () => {
   return (

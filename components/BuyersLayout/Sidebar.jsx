@@ -2,19 +2,19 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
-import profile from "../../public/buyersImg/profile.svg";
-import purchase from "../../public/buyersImg/purchase.svg";
-import report from "../../public/buyersImg/report.svg";
-import saved from "../../public/buyersImg/saved.svg";
-import wallet from "../../public/buyersImg/wallet.svg";
-import thumb from "../../public/buyersImg/thumb.svg";
+import profile from "../../public/img/profile.svg";
+import purchase from "../../public/img/purchase.svg";
+import report from "../../public/img/report.svg";
+import saved from "../../public/img/saved.svg";
+import wallet from "../../public/img/wallet.svg";
+import thumb from "../../public/img/thumb.svg";
 import MobileSidebar from "./MobileSidebar";
 import PropTypes from "prop-types";
 
 const Sidebar = ({ showSideBar }) => {
   return (
     <>
-      <aside className="hidden w-80 bg-white-700 mt-10 flex flex-col justify-between shadow-md md:block">
+      <aside className="hidden w-80 bg-white-700 mt-10 flex-col justify-between shadow-md md:block">
         <h6 className="py-4 font-bold text-lg pl-5 text-white bg-brightRed">
           My Account
         </h6>
@@ -22,11 +22,11 @@ const Sidebar = ({ showSideBar }) => {
           <ul className="space-y-8 pt-10">
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={profile} width={20} height={20} alt="profile" />
-              <Link href="/buyers/editprofile/"> Edit Profile </Link>
+              <Link href="/editprofile/"> Edit Profile </Link>
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={wallet} width={20} height={20} alt="profile" />
-              <Link href="/buyers/wallet/"> My Wallet </Link>
+              <Link href="/wallet/"> My Wallet </Link>
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <BsCartDash size={20} />
