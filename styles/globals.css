@@ -54,3 +54,7 @@
 /* .suggested{
   width: 2050px;
 } */
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+  }

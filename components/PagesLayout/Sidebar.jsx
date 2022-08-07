@@ -2,11 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
+import { BiWallet } from "react-icons/bi";
 import profile from "../../public/img/profile.svg";
 import purchase from "../../public/img/purchase.svg";
 import report from "../../public/img/report.svg";
 import saved from "../../public/img/saved.svg";
-import wallet from "../../public/img/wallet.svg";
 import thumb from "../../public/img/thumb.svg";
 import MobileSidebar from "./MobileSidebar";
 import PropTypes from "prop-types";
@@ -25,16 +25,16 @@ const Sidebar = ({ showSideBar }) => {
               <Link href="/editprofile/"> Edit Profile </Link>
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-              <Image src={wallet} width={20} height={20} alt="profile" />
+              <BiWallet size={20} />
               <Link href="/wallet/"> My Wallet </Link>
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <BsCartDash size={20} />
-              <Link href="#"> Orders </Link>
+              <Link href="/orders/"> Orders </Link>
             </li>
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={saved} width={20} height={20} alt="profile" />
-              <Link href="#"> Saved Items </Link>
+              <Link href="/saveditems/"> Saved Items </Link>
             </li>
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={purchase} width={20} height={20} alt="profile" />

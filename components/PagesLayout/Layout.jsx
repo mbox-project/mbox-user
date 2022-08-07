@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import PropTypes from "prop-types";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 
 const Layout = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -18,9 +18,9 @@ const Layout = ({ children }) => {
       <div className="flex font-sans relative">
         {/* SideBar Menu */}
         <Sidebar showSideBar={showSideBar} />
-        <main className="px-4 container mx-auto md:px-20">
+        <main className="px-4 container mx-auto mb-10 md:px-20">
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </main>
       </div>
     </>
