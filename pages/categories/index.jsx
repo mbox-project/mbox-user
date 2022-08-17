@@ -1,25 +1,25 @@
 import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import Image from "next/dist/client/image";
-import fashion from "../../public/images/fashion.png";
 
 import Navbar from "../../components/PagesLayout/Navbar";
+import Home from "../../components/CategoriesPage/Home";
+import Newsletter from "../../components/Newsletter";
+import MainFooter from "../../components/MainFooter";
+import Fashion from "../../components/CategoriesPage/Fashion";
+import Deals from "../../components/CategoriesPage/Deals";
+import Newarrivals from "../../components/CategoriesPage/Newarrivals";
+import Mensfashion from "../../components/CategoriesPage/Mensfashion";
 const index = () => {
   return (
     <>
       <Navbar />
-      <Carousel>
-        <div>
-          <Image src={fashion} />
-        </div>
-        <div>
-          <Image src={fashion} />
-        </div>
-        <div>
-          <Image src={fashion} />
-        </div>
-      </Carousel>
+      <Home />
+
+      <Fashion />
+      <Deals />
+      <Newarrivals />
+      <Mensfashion />
+      <Newsletter />
+      <MainFooter />
     </>
   );
 };

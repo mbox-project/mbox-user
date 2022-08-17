@@ -49,6 +49,17 @@
 .backlogin{
   height: 100%;
 }
+.try{
+
+  /* text-underline-position: under;
+  text-underline-position: left; */
+  text-underline-position: right;
+  text-decoration-style: solid;
+  text-decoration-color: #cbd5e1;
+  
+  
+
+}
 
 
 /* .suggested{

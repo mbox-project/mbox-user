@@ -7,7 +7,11 @@ module.exports = {
     extend: {
         colors:{
             brightRed: '#EF5612',
-            brightPurple: '#491546'
+            brightPurple: '#491546',
+            lightGray:'#444444',
+            grayColor:'#FAFAFA',
+            yellowColor:'#FFA721',
+            lightPink:'#FFF9FF'
         },
       backgroundImage: {
         'card' : "url('../public/images/cardimg.png')",
@@ -16,6 +20,11 @@ module.exports = {
       borderRadius:{
         'large': '20px'
       },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      
+      },
+      
     },
   },
 };
