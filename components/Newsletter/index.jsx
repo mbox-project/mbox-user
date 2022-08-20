@@ -5,11 +5,11 @@ const Newsletter = () => {
   return (
     <div className="newsletterbg">
       <div className="max-w-screen-xl px-4 py-16 mx-auto  poppins sm:px-6 lg:px-8">
-        <div className="lg:flex justify-center ">
+        <div className="md:flex justify-center ">
           <div className=" mt-2 lg:mt-0  lg:gap-y-16">
             <div className="col-span-2">
               <div>
-                <h2 className="text-2xl lg:text-4xl font-bold text-lightGray lg:flex justify-center  poppins ">
+                <h2 className="text-2xl lg:text-4xl font-bold text-lightGray md:flex justify-center  poppins ">
                   <span className="text-orange-600 lg:pr-4">Newsletter </span>
                   Sign Up
                 </h2>
@@ -38,7 +38,7 @@ const Newsletter = () => {
                   />
 
                   <Button
-                    className="w-full h-12 px-6 lg:px-10 py-3 mt-1 uppercase lg:normal-case lg:rounded-md lg:-ml-2 lg:mt-8 text-sm font-bold tracking-wide  bg-orange-600 md:mt-4  sm:flex-shrink-0 sm:w-auto sm:mt-0"
+                    className="w-full h-12 px-6 lg:px-10 py-3 mt-1 uppercase lg:normal-case lg:rounded-md lg:rounded-l-none lg:-ml-2 lg:mt-8 text-sm font-bold tracking-wide  bg-orange-600 md:mt-4   sm:flex-shrink-0 sm:w-auto sm:mt-0"
                     type="submit"
                   >
                     <Link href={""}>Subscribe</Link>

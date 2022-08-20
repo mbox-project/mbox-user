@@ -38,26 +38,29 @@ const Header = () => {
             </div>
           </div>
           {!isOpen && (
-            <div className=" w-full -right-0 absolute flex flex-col text-center bg-orange-600  py-5 px-6 mt-20 z-20  text-white md:hidden">
+            <div className=" w-1/2 -right-0 absolute flex flex-col text-center bg-orange-600  py-5 px-6 mt-16 z-20  text-white md:hidden">
               <Link href="/auth/login" className=" py-2   text-md font-medium ">
                 Log in
               </Link>
 
-              <Link className="  text-md  font-medium  " href="/auth/register">
+              <Link
+                className="text-md  font-medium pt-5  "
+                href="/auth/register"
+              >
                 Sign up
               </Link>
             </div>
           )}
-          <div className="md:hidden">
+          <div className="relative left-52 top-3 md:hidden">
             <button
-              className=" text-gray-600  rounded-lg"
+              className="  text-gray-600  rounded-lg"
               type="button"
               onClick={() => setIsOpen(!isOpen)}
             >
               <span className="sr-only">Open menu</span>
               <svg
                 aria-hidden="true"
-                className="w-5 h-5"
+                className="w-10 h-10"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

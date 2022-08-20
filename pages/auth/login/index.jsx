@@ -131,18 +131,18 @@ function Login() {
             >
               Login
             </Button>
-            <div className=" block  pt-4 lg:pt-0 md:flex justify-center">
-              <span className="text-gray-600 flex poppins  justify-center text-md lg:leading-0  lg:text-xs pt-3 lg:pt-0">
+            <div className=" flex  pt-4 lg:pt-0 md:flex justify-center">
+              <span className="text-gray-600 flex poppins  justify-center text-sm lg:leading-0  lg:text-xs pt-1 lg:pt-0">
                 By Login, you’ve already agreed to our{" "}
               </span>
               <Link href="/">
-                <a className="text-gray-900  poppins pt-5 flex  lg:text-xs pl-2 justify-center  md:pt-3 lg:pt-0 font-bold">
+                <a className="text-gray-900  poppins pt-1 flex text-sm  lg:text-xs pl-2 justify-center  md:pt-3 lg:pt-0 font-bold">
                   Terms & Condition
                 </a>
               </Link>
             </div>
-            <div className="block lg:flex pt-5 lg:pt-0">
-              <p className=" text-gray-600 text-md poppins  lg:pt-5 flex justify-center lg:text-base">
+            <div className="flex pt-5 lg:pt-0">
+              <p className=" text-gray-600 text-md poppins  pt-5 flex justify-center lg:text-base">
                 New User?
               </p>
               <Link href="/auth/register">
