@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navbar from "../../components/PagesLayout/Navbar";
+import Header from "../../components/Header";
 import Home from "../../components/CategoriesPage/Home";
 import Newsletter from "../../components/Newsletter";
 import MainFooter from "../../components/MainFooter";
@@ -12,7 +12,7 @@ import Othercategories from "../../components/CategoriesPage/Othercategories";
 const index = () => {
   return (
     <>
-      <Navbar />
+      <Header />
       <Home />
 
       <Fashion />

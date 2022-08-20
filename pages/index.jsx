@@ -100,8 +100,8 @@ const LandingPage = () => {
         </Carousel>
       </section>
       <section className="featurebg -mt-12 ">
-        <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-0">
-          <h2 className="flex justify-center py-1 uppercase font-poppins font-bold text-xl lg:text-4xl  ">
+        <div className="max-w-screen-xl px-4 py-6 md:py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-0">
+          <h2 className="flex justify-center py-1 uppercase font-poppins font-bold text-xl md:text-2xl lg:text-4xl  ">
             Our Special<span className="text-orange-600 px-3 "> Features</span>
           </h2>
           <div className=" block md:grid grid-cols-2 w-full   lg:flex">
@@ -109,7 +109,7 @@ const LandingPage = () => {
               return (
                 <Feature
                   key={index}
-                  className="p-4 mx-2 my-6 -mt-44 md:-mt-44 lg:-mt-44 pt-16 md:my-8 lg:my-0 lg:mx-6 border-2 block  try rounded-xl  bg-grayColor"
+                  className="p-4 mx-2 my-6 pt-8 -mt-44 md:-mt-44 lg:-mt-44 lg:pt-16 md:my-8 lg:my-0 lg:mx-6 border-2 block  try rounded-xl  bg-grayColor"
                   header={card.name}
                   body={card.body}
                   icon={card.icon}

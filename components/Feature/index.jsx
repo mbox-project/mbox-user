@@ -12,7 +12,7 @@ const Feature = ({ header, body, className, icon }) => {
   };
   return (
     <div className="block">
-      <div className="pt-6 pr-20 ">
+      <div className=" pt-3 md:pt-6 pr-20 ">
         <Image src={icon} height={200} width={200} />
       </div>
       <div className={className}>
