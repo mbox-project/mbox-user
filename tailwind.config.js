@@ -11,7 +11,9 @@ module.exports = {
             lightGray:'#444444',
             grayColor:'#FAFAFA',
             yellowColor:'#FFA721',
-            lightPink:'#FFF9FF'
+            lightPink:'#FFF9FF',
+            lightAsh:'#E5E5E5'
+            
         },
       backgroundImage: {
         'card' : "url('../public/images/cardimg.png')",

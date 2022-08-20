@@ -109,7 +109,7 @@ const LandingPage = () => {
               return (
                 <Feature
                   key={index}
-                  className="p-4 mx-2 my-6  lg:-mt-44 pt-16 md:my-8 lg:my-0 lg:mx-6 border-2 block  shadow-md rounded-xl  bg-white"
+                  className="p-4 mx-2 my-6 -mt-44 md:-mt-44 lg:-mt-44 pt-16 md:my-8 lg:my-0 lg:mx-6 border-2 block  try rounded-xl  bg-grayColor"
                   header={card.name}
                   body={card.body}
                   icon={card.icon}

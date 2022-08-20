@@ -3,7 +3,7 @@ import Link from "next/link";
 const Home = () => {
   return (
     <section className="newsletterbg">
-      <div className="pt-7 pb-12 text-sm   poppins lg:ml-20">
+      <div className=" lg:pt-7 pt-4  pb-4 lg:pb-12 text-xs md:text-sm ml-8   poppins lg:ml-20">
         <Link href={`/auth/forgot-password`} className="font-medium ">
           Home &gt; &gt; &gt;
         </Link>

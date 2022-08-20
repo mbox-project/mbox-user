@@ -22,7 +22,7 @@ function Login() {
   return (
     <div className=" flex">
       <div className="hidden w-1/2   backlogin lg:block">
-        <Image src={loginbg} />
+        <Image src={loginbg} height={830} />
         {/* <div>
           <div className="p-5">
             <Image src={logo} />
@@ -39,27 +39,28 @@ function Login() {
           </div>
         </div> */}
       </div>
-      <div className="w-full lg:w-1/2 px-4  bg-white">
+      <div className="w-full lg:w-1/2 px-4  bg-grayColor">
         <div>
           <div className="text-center">
-            <h1 className="text-lg md:text-xl font-bold mt-20 text-orange-600 ">
+            <h1 className="text-lg md:text-3xl font-bold mt-20 lg:mt-28 font-poppins text-orange-600 ">
               Login
             </h1>
-            <p className=" hidden md:flex justify-center md:text-lg pt-2 text-gray-700">
+            <p className=" hidden md:flex justify-center md:text-sm pt-2 font-poppins text-gray-700">
               Please enter your details.
             </p>
           </div>
-          <form className=" mt-10  px-0 lg:px-10">
+          <form className=" mt-6  px-0 lg:px-10">
             <div className="mb-6 ">
               <Label
-                className="w-full  text-lg lg:text-base text-[#9A9A9A]"
+                className="w-full  text-lg lg:text-base font-poppins text-[#9A9A9A]"
                 htmlFor="email"
                 title="Email"
               />
               <Input
                 name="email"
                 type="email"
-                className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                placeHolder="Taylormason@gmail.com"
+                className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required={true}
                 autoFocus={false}
                 onChange={onChangeInput}
@@ -67,7 +68,7 @@ function Login() {
             </div>
             <div className="mb-0 mt-0 md:mt-4">
               <Label
-                className="w-full text-lg lg:text-base text-[#9A9A9A]"
+                className="w-full text-lg font-poppins lg:text-base text-[#9A9A9A]"
                 htmlFor="password"
                 title="Password"
               />
@@ -75,7 +76,7 @@ function Login() {
                 <Input
                   name="password"
                   type="password"
-                  className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                  className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor  poppins mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                   required={true}
                   autoFocus={false}
                   onChange={onChangeInput}
@@ -104,7 +105,7 @@ function Login() {
                 </span>
               </div>
             </div>
-            <div className="py-8 flex justify-between text-gray-600">
+            <div className="py-3 flex justify-between text-gray-600">
               <div>
                 <Input
                   type="checkbox"
@@ -112,38 +113,40 @@ function Login() {
                   required={false}
                   onChange={onChangeInput}
                 />
-                <span className="text-lg">keep me Log in</span>
+                <span className="text-lg lg:text-sm poppins">
+                  keep me Log in
+                </span>
               </div>
               <div>
                 <Link href={`/auth/forgot-password`}>
-                  <a className="underline text-orange-600 text-lg">
+                  <a className="underline text-orange-600 lg:text-lightGray text-lg lg:text-sm poppins">
                     Forgot password?
                   </a>
                 </Link>
               </div>
             </div>
             <Button
-              className="w-full bg-orange-600 h-12  mb-0 lg:mb-4 rounded-lg text-white text-lg  lg:text-2xl font-semibold"
+              className="w-full bg-orange-600 h-12 poppins  mb-0 lg:mb-4 rounded-lg text-white text-lg  lg:text-2xl mt-5 font-semibold"
               onClick={onSubmitHandler}
             >
               Login
             </Button>
-            <div className=" block  pt-4 md:flex justify-center">
-              <span className="text-gray-600 flex  justify-center text-md lg:leading-0  lg:text-sm pt-3">
+            <div className=" block  pt-4 lg:pt-0 md:flex justify-center">
+              <span className="text-gray-600 flex poppins  justify-center text-md lg:leading-0  lg:text-xs pt-3 lg:pt-0">
                 By Login, you’ve already agreed to our{" "}
               </span>
               <Link href="/">
-                <a className="text-gray-900 pt-5 flex  justify-center  md:pt-3 lg:pt-0 font-bold">
+                <a className="text-gray-900  poppins pt-5 flex  lg:text-xs pl-2 justify-center  md:pt-3 lg:pt-0 font-bold">
                   Terms & Condition
                 </a>
               </Link>
             </div>
             <div className="block lg:flex pt-5 lg:pt-0">
-              <p className=" text-gray-600 text-md  flex justify-center lg:text-xl">
+              <p className=" text-gray-600 text-md poppins  lg:pt-5 flex justify-center lg:text-base">
                 New User?
               </p>
               <Link href="/auth/register">
-                <a className="text-orange-600 flex justify-center pt-5 text-md lg:text-xl underline">
+                <a className="text-orange-600 poppins pl-3  flex justify-center pt-5 text-md lg:text-base underline">
                   Sign Up
                 </a>
               </Link>

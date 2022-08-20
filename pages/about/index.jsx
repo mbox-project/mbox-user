@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/Header";
+import Navbar from "../../components/PagesLayout/Navbar";
 import Platform from "../../components/Platform";
 import Image from "next/image";
 import dividerimg from "../../public/images/dividerimg.png";
@@ -11,12 +11,12 @@ import OurProducts from "../../components/OurProducts";
 const AboutUs = () => {
   return (
     <div className="">
-      <Header />
+      <Navbar />
       <section className=" w-full h-64 text-white aboutherobg block  ">
-        <h1 className="flex justify-center text-4xl font-extrabold pt-16">
+        <h1 className="flex justify-center text-4xl lg:text-6xl poppins font-extrabold pt-16">
           About Us
         </h1>
-        <p className="flex justify-center text-lg pt-4">
+        <p className="flex justify-center  text-grayColor poppins text-base tracking-wide pt-4">
           Learn more about our platform Mbox
         </p>
       </section>

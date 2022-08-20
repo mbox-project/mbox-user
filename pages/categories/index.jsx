@@ -8,6 +8,7 @@ import Fashion from "../../components/CategoriesPage/Fashion";
 import Deals from "../../components/CategoriesPage/Deals";
 import Newarrivals from "../../components/CategoriesPage/Newarrivals";
 import Mensfashion from "../../components/CategoriesPage/Mensfashion";
+import Othercategories from "../../components/CategoriesPage/Othercategories";
 const index = () => {
   return (
     <>
@@ -18,6 +19,7 @@ const index = () => {
       <Deals />
       <Newarrivals />
       <Mensfashion />
+      <Othercategories />
       <Newsletter />
       <MainFooter />
     </>

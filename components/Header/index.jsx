@@ -26,13 +26,15 @@ const Header = () => {
               Search
             </Button>
           </div> */}
-          <div className="items-center justify-end hidden pl-12 space-x-4 md:flex">
-            <Image src={icon} width="20px" height="20px" />
-            <div className="px-5 font-poppins py-2 text-base font-medium ">
-              <Link href="/auth/login">Log in</Link>
+          <div className="items-center  hidden pl-12 space-x-4 md:flex">
+            <div className="pl-8">
+              <Image src={icon} width={30} height={30} />
             </div>
-            <div className="px-5 py-2 text-sm font-medium  ">
-              <Link href="/auth/register">Sign up</Link>
+            <div className=" font-poppins pl-4 text-lightGray py-2 text-base font-medium ">
+              <Link href="/auth/login">Log In</Link>
+            </div>
+            <div className=" py-2 text-base text-lightGray font-medium">
+              <Link href="/auth/register"> Sign up</Link>
             </div>
           </div>
           {!isOpen && (
