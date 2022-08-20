@@ -31,7 +31,7 @@ const Questions = () => {
   return (
     <section className=" newsletterbg  pt-0 lg:pt-12 pb-28">
       <div className=" ">
-        <div className="flex justify-center tracking-wide font-extrabold textcolor text-base lg:text-lg  pt-12 lg:pt-10  ">
+        <div className="flex justify-center tracking-wide font-extrabold textcolor text-base lg:text-4xl  pt-12 lg:pt-10  ">
           <h4>Your Question(s) is/are not listed?</h4>
         </div>
         <form onSubmit={submitHandler} className="pt-5  lg:pt-10  ">

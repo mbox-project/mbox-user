@@ -21,22 +21,22 @@ function ResetPassword() {
   return (
     <div className="flex">
       <div className=" hidden w-1/2 min-h-screen mx-auto lg:block bg-reset bg-cover">
-        <Image src={resetpasswordimg} />
+        <Image src={resetpasswordimg} height={830} />
       </div>
       <div className=" lg:w-1/2 mx-auto w-full inputcolor  ">
-        <div className="w-full">
+        <div className="w-full bg-grayColor">
           <div className="text-center">
-            <h1 className="text-xl font-bold mt-20 text-orange-600 mb-3">
+            <h1 className="text-xl lg:text-3xl poppins  font-bold pt-20 lg:pt-44 text-orange-600 mb-3">
               Reset Password
             </h1>
-            <p className="hidden md:flex justify-center  text-lg text-gray-700">
+            <p className="hidden md:flex justify-center  poppins text-lg lg:text-sm text-gray-700">
               Enter a new password
             </p>
           </div>
-          <form className=" px-4 mt-10 lg:px-10">
+          <form className=" px-4 mt-10 lg:mt-4 lg:px-10">
             <div className="mb-4">
               <Label
-                className="w-full text-lg lg:text-base text-[#9A9A9A]"
+                className="w-full text-lg lg:text-base poppins text-[#9A9A9A]"
                 htmlFor="password"
                 title=" New Password"
               />
@@ -45,7 +45,7 @@ function ResetPassword() {
                 <Input
                   name="password"
                   type="password"
-                  className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                  className="w-full p-1 md:p-2  lg:py-2.5 poppins bg-grayColor focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                   autoFocus={true}
                   required={true}
                   onChange={onChangeInput}
@@ -75,7 +75,7 @@ function ResetPassword() {
               </div>
             </div>
 
-            <div className="mb-4 mt-10">
+            <div className="mb-4 mt-10 lg:mt-0">
               <Label
                 className="w-full text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="password"
@@ -86,7 +86,7 @@ function ResetPassword() {
                 <Input
                   name="password"
                   type="password"
-                  className="w-full p-1 md:p-2  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                  className="w-full p-1 md:p-2 lg:py-2.5 poppins bg-grayColor  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                   autoFocus={true}
                   required={true}
                   onChange={onChangeInput}
@@ -118,7 +118,7 @@ function ResetPassword() {
             </div>
 
             <Button
-              className="w-full bg-orange-600 h-12  mt-8  mb-0 lg:mb-4 rounded-lg text-white text-lg  lg:text-2xl font-semibold"
+              className="w-full bg-orange-600 h-12  mt-8  mb-0 lg:mb-4 rounded-lg text-white text-lg  lg:text-base  font-semibold"
               onClick={onSubmitHandler}
             >
               Reset my password

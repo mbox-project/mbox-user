@@ -11,10 +11,16 @@ const Feature = ({ header, body, className, icon }) => {
     icon: PropTypes.string.isRequired,
   };
   return (
-    <div className={className}>
-      <Image src={icon} height="100px" width="100px" />
-      <p className="text-base lg:text-lg py-3">{header}</p>
-      <p className="text-sm text-gray-400">{body}</p>
+    <div className="block">
+      <div className="pt-6 pr-20 ">
+        <Image src={icon} height={200} width={200} />
+      </div>
+      <div className={className}>
+        <p className="text-base lg:text-lg poppins font-bold text-lightGray ">
+          {header}
+        </p>
+        <p className="text-sm text-gray-400 poppins pt-4">{body}</p>
+      </div>
     </div>
   );
 };

@@ -62,7 +62,7 @@ const BecomeAMerchant = () => {
                   </p>
                 </div>
               </div>
-              <Button className="w-full h-12 px-12 py-3 hover:-translate-y-1 hover:scale-110  duration-300  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 sm:flex-shrink-0 sm:w-auto mt-3 md:ml-28 bg-orange-600 lg:ml-24">
+              <Button className="w-full h-12 px- lg: px-20 py-3 hover:-translate-y-1 hover:scale-110  duration-300  uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 sm:flex-shrink-0 sm:w-auto mt-3 md:ml-28 bg-orange-600 lg:ml-24">
                 <Link href={""}>Become A Merchant</Link>
               </Button>
             </div>

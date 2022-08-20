@@ -19,7 +19,7 @@ const SuggestedMerchant = ({ header, body, className, button, categories }) => {
         <div className="pt-5">
           <Image src={suggestedimg} width="70px" height="70px" />
         </div>
-        <div className="pl-10">
+        <div className="pl-10 poppins">
           <p className="text-base lg:text-lg py-3 ">{header}</p>
 
           <Image src={star} />
@@ -31,8 +31,8 @@ const SuggestedMerchant = ({ header, body, className, button, categories }) => {
           <p className="text-sm text-gray-400 py-2">{body}</p>
         </div>
       </div>
-      <p className="text-sm text-gray-400 py-2">{categories}</p>
-      <button className="w-full footerbg text-white py-2 mt-3 text-sm ">
+      <p className="text-sm text-gray-400 py-2 poppins">{categories}</p>
+      <button className="w-full footerbg text-white poppins lg:rounded-md py-2 mt-3 text-sm ">
         <Link href={""}>{button}</Link>
       </button>
     </div>
