@@ -24,6 +24,7 @@ const FAQSPage = () => {
               <div key={question.id}>
                 <p className="font-bold text-base py-5">{question.Ques}</p>
                 <p className="pb-3 text-wider">{question.Answer}</p>
+
                 <hr className="font-extrabold"></hr>
               </div>
             );
