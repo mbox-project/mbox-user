@@ -142,17 +142,23 @@ const Mensfashion = () => {
         </div>
         <div className="flex justify-center bg-grayColor py-20 ml-6">
           <div>
-            <button className="border-2 border-solid p-3 border-brightPurple poppins text-sm bg-deepGray rounded-md">Previous</button>
+            <button className="border-2 border-solid p-3 border-brightPurple poppins text-sm bg-deepGray rounded-md">
+              Previous
+            </button>
           </div>
           <ul className="flex ml-5">
-            <li className="ml-3 rounded-full  bg-brightPurple  text-white p-3">1</li>
+            <li className="ml-3 rounded-full  bg-brightPurple  text-white p-3">
+              1
+            </li>
             <li className="ml-5 mt-2">2</li>
             <li className="ml-5 mt-2">3</li>
             <li className="ml-5 mt-2">4</li>
             <li className="ml-5 mt-2">5</li>
           </ul>
           <div>
-            <button className="border-2 border-solid border-brightPurple p-3 poppins text-sm bg-deepGray rounded-md ml-5">Next</button>
+            <button className="border-2 border-solid border-brightPurple p-3 poppins text-sm bg-deepGray rounded-md ml-5">
+              Next
+            </button>
           </div>
         </div>
       </div>
