@@ -12,7 +12,8 @@ module.exports = {
             grayColor:'#FAFAFA',
             yellowColor:'#FFA721',
             lightPink:'#FFF9FF',
-            lightAsh:'#E5E5E5'
+            lightAsh:'#E5E5E5',
+            deepGray:'#F7F7F7'
             
         },
       backgroundImage: {

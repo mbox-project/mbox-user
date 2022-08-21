@@ -7,8 +7,8 @@ import loveimg from "../../public/images/love.png";
 import rectangle from "../../public/images/rectangle.png";
 const Mensfashion = () => {
   return (
-    <section className="flex pt-20  newsletterbg ">
-      <div>
+    <section className="block lg:flex pt-20  newsletterbg ">
+      <div className="">
         <div className="bg-grayColor ml-20 space-y-6 poppins pt-4 pl-4">
           <h5 className="font-medium poppins uppercase text-lg">Category</h5>
           <p className="font-medium poppins text-base ">Mens Fashion</p>
@@ -67,7 +67,7 @@ const Mensfashion = () => {
           </form>
         </div>
         <div className="border border-t-none ml-6 ">
-          <div className="flex  p-4 ">
+          <div className="block md:flex  p-4 ">
             {Api.map((items) => {
               return (
                 <div key={items.id}>
@@ -91,7 +91,7 @@ const Mensfashion = () => {
               );
             })}
           </div>
-          <div className="flex  p-4 ">
+          <div className="block md:flex  p-4 ">
             {Api.map((items) => {
               return (
                 <div key={items.id}>
@@ -115,7 +115,7 @@ const Mensfashion = () => {
               );
             })}
           </div>
-          <div className="flex  p-4 ">
+          <div className="block md:flex  p-4 ">
             {Api.map((items) => {
               return (
                 <div key={items.id}>
@@ -138,6 +138,27 @@ const Mensfashion = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+        <div className="flex justify-center bg-grayColor py-20 ml-6">
+          <div>
+            <button className="border-2 border-solid p-3 border-brightPurple poppins text-sm bg-deepGray rounded-md">
+              Previous
+            </button>
+          </div>
+          <ul className="flex ml-5">
+            <li className="ml-3 rounded-full  bg-brightPurple  text-white p-3">
+              1
+            </li>
+            <li className="ml-5 mt-2">2</li>
+            <li className="ml-5 mt-2">3</li>
+            <li className="ml-5 mt-2">4</li>
+            <li className="ml-5 mt-2">5</li>
+          </ul>
+          <div>
+            <button className="border-2 border-solid border-brightPurple p-3 poppins text-sm bg-deepGray rounded-md ml-5">
+              Next
+            </button>
           </div>
         </div>
       </div>
