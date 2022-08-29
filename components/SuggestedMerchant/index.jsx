@@ -27,7 +27,7 @@ const SuggestedMerchant = ({ header, body, className, button, categories }) => {
           <Image src={star} />
           <Image src={star} />
           <Image src={star} />
-
+    
           <p className="text-sm text-gray-400 py-2">{body}</p>
         </div>
       </div>
