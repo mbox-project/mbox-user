@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import MainFooter from "../components/MainFooter";
 import Newsletter from "../components/Newsletter";
-import About from "../components/About";
+// import About from "../components/About";
 import Feature from "../components/Feature";
 import GenerateInvoice from "../components/GenerateInvoice";
 import BuyNow from "../components/BuyNow";
@@ -147,7 +147,10 @@ const LandingPage = () => {
       </section>
       <Items />
       <section>
-        <div className="max-w-screen-xl md:pb-12 lg:pb-16 px-4 -mt-10 pt-0 pb-6 lg:mx-auto sm:px-6 lg:px-8 hover:-translate-y-1 hover:scale-110  duration-300">
+        <div className="max-w-screen-xl md:pb-12 lg:pb-16 px-4 -mt-10 pt-0 pb-6 lg:mx-auto sm:px-6 lg:px-8 ">
+          <Button className="px-4 md:px-12 md:py-3 py-1 mt-24   lg:rounded-md md:mt-48   lg:mt-96 right-52 lg:px-40  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-brightPurple lg:ml-16">
+            <Link href={""}>Buy now</Link>
+          </Button>
           <Link href={""}>
             <Image src={sneakers} />
           </Link>
@@ -157,14 +160,17 @@ const LandingPage = () => {
 
       <BecomeAMerchant />
       <section>
-        <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-8 hover:-translate-y-1 hover:scale-110  duration-300">
+        <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
+          <Button className="px-4 md:px-12 md:py-3 py-1 mt-24   lg:rounded-md md:mt-48   lg:mt-64 right-44 lg:px-44  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-lightYellow lg:ml-16">
+            <Link href={""}>Buy now</Link>
+          </Button>
           <Link href={""}>
             <Image src={ad} />
           </Link>
         </div>
       </section>
       <PopularMerchants />
-      <About />
+      {/* <About /> */}
       <Newsletter />
       <MainFooter />
     </div>
