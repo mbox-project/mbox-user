@@ -11,7 +11,7 @@ import thumb from "../../public/img/thumb.svg";
 import MobileSidebar from "./MobileSidebar";
 import PropTypes from "prop-types";
 
-const Sidebar = ({ showSideBar }) => {
+const Sidebar = ({ showSideBar, isMerchant }) => {
   return (
     <>
       <aside className="hidden w-80 bg-white-700 mt-10 flex-col justify-between shadow-md md:block">
@@ -77,6 +77,7 @@ const Sidebar = ({ showSideBar }) => {
 
 Sidebar.propTypes = {
   showSideBar: PropTypes.bool.isRequired,
+  isMerchant: PropTypes.bool.isRequired,
 };
 
 export default Sidebar;
