@@ -10,7 +10,7 @@ import Search from "./Search";
 import PropTypes from "prop-types";
 import { BiQuestionMark } from "react-icons/bi";
 
-const Navbar = ({ showbar, showSideBar }) => {
+const Navbar = ({ showbar, showSideBar, switchToMerchant }) => {
   return (
     <div className="customNavbar mx-auto relative font-sans w-full">
       <nav className="p-2 mx-auto shadow-md hover:shadow-lg">
@@ -80,12 +80,15 @@ const Navbar = ({ showbar, showSideBar }) => {
               </div>
               <div className="hidden absolute dropdown-content right-0 mt-2 z-50 flex-col space-y-4 justify-start pl-4 py-6 bg-white w-64 rounded-md">
                 <div className="profileDetails mb-3">
-                  <h3 className="text-lg font-bold">Asiwaju Micheal</h3>
+                  <h3 className="text-lg font-bold">Wahab Micheal</h3>
                   <span>Buyer</span>
                 </div>
                 <hr />
                 <div className="flex space-x-2">
-                  <button className="border border-brightRed text-center rounded-lg p-3">
+                  <button
+                    className="border border-brightRed text-center rounded-lg p-3"
+                    onClick={() => switchToMerchant()}
+                  >
                     <span className="text-gray-900"> BECOME A MERCHANT</span>
                   </button>
                   <span className="border border-brightRed rounded-full p-1 h-6 mt-3">
@@ -117,6 +120,7 @@ const Navbar = ({ showbar, showSideBar }) => {
 Navbar.propTypes = {
   showbar: PropTypes.func.isRequired,
   showSideBar: PropTypes.bool.isRequired,
+  switchToMerchant: PropTypes.func.isRequired,
 };
 
 export default Navbar;

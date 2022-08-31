@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "../../components/PagesLayout/Layout";
@@ -8,6 +9,8 @@ import edit from "../../public/img/edit.svg";
 import caret from "../../public/img/caret.svg";
 
 const index = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { isMerchant } = useSelector((state) => state.user);
   return (
     <>
       <Layout>
@@ -183,6 +186,7 @@ const index = () => {
             </div>
           </div>
         </section>
+        {isMerchant && <h1>Hello Merchant</h1>}
       </Layout>
     </>
   );

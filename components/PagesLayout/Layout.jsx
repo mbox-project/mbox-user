@@ -1,23 +1,36 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import PropTypes from "prop-types";
-// import Footer from "./Footer";
+import { activateMerchant } from "../../store/users/userSlice";
 
 const Layout = ({ children }) => {
+  const dispatch = useDispatch();
+  const { isMerchant } = useSelector((state) => state.user);
   const [showSideBar, setShowSideBar] = useState(false);
 
   const showbar = () => {
     setShowSideBar(!showSideBar);
   };
 
+  // Temporary for switching from buyers to vender
+  const switchToMerchant = () => {
+    // disptaches an action
+    dispatch(activateMerchant());
+  };
+  console.log("isMerchant", isMerchant);
   return (
     <>
       {/* Buyers Navarbar .. */}
-      <Navbar showbar={showbar} showSideBar={showSideBar} />
+      <Navbar
+        showbar={showbar}
+        showSideBar={showSideBar}
+        switchToMerchant={switchToMerchant}
+      />
       <div className="flex font-sans relative">
         {/* SideBar Menu */}
-        <Sidebar showSideBar={showSideBar} />
+        <Sidebar showSideBar={showSideBar} isMerchant={isMerchant} />
         <main className="px-4 container mx-auto mb-10 md:px-20">
           {children}
           {/* <Footer /> */}
