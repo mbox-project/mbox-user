@@ -70,7 +70,7 @@ const Cribstore = () => {
         <div className="ml-12">
           <Image width={400} height={300} src={cribsimg} />
         </div>
-        <div >
+        <div>
           {cribStore.map((card) => {
             return (
               <div key={card.id} className="">
@@ -93,7 +93,7 @@ const Cribstore = () => {
                   </div>
                   <div className="flex">
                     <div className="pl-3">
-                      <Image  src={locationimg} />
+                      <Image src={locationimg} />
                     </div>
                     <p className="pl-3 pt-3">{card.locationno}</p>
                   </div>
@@ -107,7 +107,6 @@ const Cribstore = () => {
         </div>
       </div>
     </div>
-    
   );
 };
 export default Cribstore;
