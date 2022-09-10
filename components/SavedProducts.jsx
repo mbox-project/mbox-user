@@ -7,7 +7,7 @@ const SavedProducts = ({ product }) => {
   const { name, type, product_id, owner, price, size, color, qty } = product;
   return (
     <>
-      <div className="flex flex-col border border-gray-500 rounded-large p-6 justify-around shadow-lg md:flex md:flex-row ">
+      <div className="flex flex-col border border-gray-500 rounded-large p-6 justify-around shadow-lg md:flex md:flex-row hover:-translate-y-1 hover:scale-10  duration-200">
         <div className="flex justify-center items-center">
           <Image src={shirt} width={100} height={100} alt="product" />
         </div>
