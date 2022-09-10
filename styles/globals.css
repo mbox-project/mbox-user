@@ -12,7 +12,6 @@
 }
 .newsletterbg{
   background:#f7f7f7;
-;
 }
 .aboutherobg{
   background: #491546;
@@ -27,7 +26,7 @@
     .card {
       background-color: theme('colors.white');
       border-radius: theme('borderRadius.lg');
-      padding: theme('spacing.6');
+      padding: theme('spacing.3');
       box-shadow: theme('boxShadow.xl');
     }
 }

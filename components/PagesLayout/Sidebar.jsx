@@ -24,6 +24,12 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
               <Image src={profile} width={20} height={20} alt="profile" />
               <Link href="/editprofile/"> Edit Profile </Link>
             </li>
+            {isMerchant && (
+              <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                <BsCartDash size={20} />
+                <Link href="/products/"> Products </Link>
+              </li>
+            )}
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <BiWallet size={20} />
               <Link href="/wallet/"> My Wallet </Link>

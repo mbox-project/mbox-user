@@ -19,7 +19,6 @@ const Layout = ({ children }) => {
     // disptaches an action
     dispatch(activateMerchant());
   };
-  console.log("isMerchant", isMerchant);
   return (
     <>
       {/* Buyers Navarbar .. */}
@@ -31,7 +30,7 @@ const Layout = ({ children }) => {
       <div className="flex font-sans relative">
         {/* SideBar Menu */}
         <Sidebar showSideBar={showSideBar} isMerchant={isMerchant} />
-        <main className="px-4 container mx-auto mb-10 md:px-20">
+        <main className="px-4 container mb-10 md:px-5">
           {children}
           {/* <Footer /> */}
         </main>
