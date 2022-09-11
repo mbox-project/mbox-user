@@ -8,7 +8,10 @@ const Products = ({ products }) => {
   const { name, price } = products;
   return (
     <>
-      <div className="card rectCard flex flex-col items-center justify-center space-y-5 shadow-md hover:-translate-y-1 hover:scale-110  duration-200">
+      <div
+        className="card rectCard flex flex-col items-center justify-center space-y-5 shadow-md 
+            hover:-translate-y-1 hover:scale-110  duration-200"
+      >
         <div className="prodImg">
           <Image src={shirt} alt="product" />
         </div>

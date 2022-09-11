@@ -34,7 +34,7 @@ const Index = () => {
               </form>
             </section>
 
-            <section className="card rectCard grid grid-cols-2 gap-10 md:grid-cols-3">
+            <section className="card rectCard grid grid-cols-2 gap-10 mb-5 md:grid-cols-3">
               {ProductsData.map((prod) => {
                 return (
                   <Products
