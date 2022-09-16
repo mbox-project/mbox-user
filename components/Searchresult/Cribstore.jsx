@@ -66,7 +66,10 @@ const Cribstore = () => {
           </Button>
         </div>
       </div>
-      <div className="flex crib mt-10 pt-12  border-2 mx-20 rounded-md">
+      <div
+        className="flex crib mt-10
+       pt-12  border-2 mx-20 rounded-md"
+      >
         <div className="ml-12">
           <Image width={400} height={300} src={cribsimg} />
         </div>

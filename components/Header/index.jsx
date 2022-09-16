@@ -3,8 +3,15 @@ import React from "react";
 import icon from "../../public/images/icon2.png";
 import Image from "next/image";
 import logo from "../../public/images/logo2.png";
+import beforeyoureg from "../../public/images/beforeyoureg.png";
 import Link from "next/link";
 import Search from "../PagesLayout/Search";
+import Button from "../Button";
+import { BsCart3 } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
+import { RiNotification4Line } from "react-icons/ri";
+import { TbSpeakerphone } from "react-icons/tb";
+import { GiBowTieRibbon } from "react-icons/gi";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -37,18 +44,63 @@ const Header = () => {
               <Link href="/auth/register"> Sign up</Link>
             </div>
           </div>
-          {!isOpen && (
-            <div className=" w-1/2 -right-0 absolute flex flex-col text-center bg-orange-600  py-5 px-6 mt-16 z-20  text-white md:hidden">
-              <Link href="/auth/login" className=" py-2   text-md font-medium ">
-                Log in
-              </Link>
 
-              <Link
-                className="text-md  font-medium pt-5  "
-                href="/auth/register"
-              >
-                Sign up
-              </Link>
+          {!isOpen && (
+            // <div className=" w-1/2 -right-0 absolute flex flex-col text-center bg-orange-600  py-5 px-6 mt-16 z-20  text-white md:hidden">
+            //   <Link href="/auth/login" className=" py-2   text-md font-medium ">
+            //     Log in
+            //   </Link>
+
+            //   <Link
+            //     className="text-md  font-medium pt-5  "
+            //     href="/auth/register"
+            //   >
+            //     Sign up
+            //   </Link>
+            // </div>
+            <div className="md:hidden w-full h-full top-20 bg-grayColor z-20 absolute -right-0 ">
+              <div className="flex py-4">
+                <div className="px-6 ">
+                  <Image src={beforeyoureg} width={50} height={50} />
+                </div>
+                <Button className="bg-brightRed  h-10 mt-2 py-2 px-12  font-poppins text-sm font-medium   text-white  ">
+                  Login or Signup
+                </Button>
+              </div>
+              <div className="pl-6">
+                <div className="flex pt-12 ">
+                  <BsCart3 />
+                  <p className="pl-3 text-base font-extralight"> Order</p>
+                </div>
+                <div className="flex pt-12">
+                  <div className="pt-0.5">
+                    <BsHeart />
+                  </div>
+                  <p className="pl-3 text-base font-extralight">Saved Items</p>
+                </div>
+                <div className="flex pt-12">
+                  <div className="pt-0.5">
+                    <RiNotification4Line />
+                  </div>
+                  <p className="pl-3 text-base font-extralight">Notification</p>
+                </div>
+                <div className="flex pt-12">
+                  <div className="pt-0.5">
+                    <GiBowTieRibbon />
+                  </div>
+                  <p className="pl-3 text-base font-extralight">
+                    Endorsed Bussiness
+                  </p>
+                </div>
+                <div className="flex pt-12">
+                  <div className="pt-0.5">
+                    <TbSpeakerphone />
+                  </div>
+                  <p className="pl-3 text-base font-extralight">
+                    Promote Bussiness
+                  </p>
+                </div>
+              </div>
             </div>
           )}
           <div className="relative left-52 top-3 md:hidden">
