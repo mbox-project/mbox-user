@@ -9,7 +9,7 @@ const Input = ({
   value,
   required,
   autoFocus,
-  maxLength,
+  maxlength,
   placeHolder,
   // onFocus,
 }) => {
@@ -21,7 +21,7 @@ const Input = ({
     value: PropTypes.string,
     required: PropTypes.bool.isRequired,
     autoFocus: PropTypes.bool,
-    maxLength: PropTypes.number,
+    maxlength: PropTypes.number,
     placeHolder: PropTypes.string,
     // onFocus: PropTypes.func,
   };
@@ -35,7 +35,7 @@ const Input = ({
       value={value}
       required={required}
       autoFocus={autoFocus}
-      maxLength={maxLength}
+      maxLength={maxlength}
       placeholder={placeHolder}
       // onFocus={onFocus}
     />
