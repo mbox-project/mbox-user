@@ -55,8 +55,8 @@ const Login = () => {
   };
 
   return (
-    <div className=" flex">
-      <div className="hidden w-1/2   backlogin lg:block">
+    <div className="flex">
+      <div className="hidden w-1/2 backlogin lg:block">
         <Image src={loginbg} height={830} />
       </div>
       {isLoading && <Spinner />}
