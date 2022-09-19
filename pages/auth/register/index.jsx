@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import authbg from "../../../public/images/authbg.png";
 import { toastify } from "../../../helpers";
 import Spinner from "../../../components/Spinner";
-import { toast } from "react-toastify";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -35,20 +34,21 @@ const Register = () => {
 
   //extract the values we need from auth slicer;
   const { isError, isSuccess, isLoading, user, message } = useSelector(
-    (state) => state.user
+    (state) => state.auth
   );
-  useEffect(() => {
-    console.log("I am use Effect");
-  }, []);
+  // console.log("Error", isError, "isSuccess", isSuccess, "isLoading", isLoading);
 
   useEffect(() => {
     if (isError) {
-      toast.error(message, 3000);
+      toastify.alertError(message, 3000);
     }
     if (isSuccess) {
-      console.log("I got here");
-      toast.success(message, 3000);
-      router.push("/login");
+      if (message == "User created succesfully") {
+        const mssg =
+          "A verification mail has been sent to your email for account verification";
+        toastify.alertSuccess(mssg, 5000);
+      }
+      router.push("/auth/login");
     }
     dispatch(reset());
   }, [isError, isSuccess, message, user, router, dispatch]);
@@ -69,14 +69,6 @@ const Register = () => {
     } else {
       //dispatch an action and sends the data to the server..
       dispatch(register(registerData));
-      setRegisterData({
-        fullname: "",
-        email: "",
-        phoneNumber: "",
-        gender: "",
-        password: "",
-        confirmPassword: "",
-      });
     }
   };
 
@@ -256,11 +248,6 @@ const Register = () => {
             </Link>
           </div>
         </form>
-
-        {/* <Footer className=" flex" >
-          <p>&copy; 2022</p>
-          <p>All Rights Reserved.</p>
-        </Footer> */}
       </div>
     </div>
   );
