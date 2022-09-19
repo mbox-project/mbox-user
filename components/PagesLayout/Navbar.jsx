@@ -10,7 +10,7 @@ import Search from "./Search";
 import PropTypes from "prop-types";
 import { BiQuestionMark } from "react-icons/bi";
 
-const Navbar = ({ showbar, showSideBar, switchToMerchant }) => {
+const Navbar = ({ showbar, showSideBar, switchToMerchant, handleLogout }) => {
   return (
     <div className="customNavbar mx-auto relative font-sans w-full">
       <nav className="p-2 mx-auto shadow-md hover:shadow-lg">
@@ -105,7 +105,7 @@ const Navbar = ({ showbar, showSideBar, switchToMerchant }) => {
                 </div>
                 <hr />
                 <div className="flex justify-center items-center text-center text-red-500 mt-3">
-                  <Link href="#">Logout</Link>
+                  <button onClick={() => handleLogout()}>Logout</button>
                 </div>
               </div>
             </div>
@@ -121,6 +121,7 @@ Navbar.propTypes = {
   showbar: PropTypes.func.isRequired,
   showSideBar: PropTypes.bool.isRequired,
   switchToMerchant: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired,
 };
 
 export default Navbar;
