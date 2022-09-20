@@ -7,11 +7,14 @@ const Home = () => {
         <Link href={`/auth/forgot-password`} className="font-medium ">
           Home &gt; &gt; &gt;
         </Link>
-        <Link href={`categories`} className="poppins font-medium">
+        <Link href={`/auth/forgot-password`} className="poppins font-medium">
           Categories &gt; &gt; &gt;
         </Link>
         <Link href={`/auth/forgot-password`} className="pl-1">
           Men&apos;s Fashion &gt; &gt; &gt;
+        </Link>
+        <Link href={`/auth/forgot-password`} className="pl-1">
+          Watches
         </Link>
       </div>
     </section>

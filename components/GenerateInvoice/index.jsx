@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import Image from "next/dist/client/image";
-import picture from "../../public/images/generateinvoiceimg.png";
+// import picture from "../../public/images/generateinvoiceimg.png";
 import pics from "../../public/images/generateinvoiceimg2.png";
 import Link from "next/link";
 const GenerateInvoice = () => {
@@ -9,7 +9,7 @@ const GenerateInvoice = () => {
     <section className="featurebg">
       <div className="max-w-screen-lg  mt-0  md:pt-0 md:-mt-0 px-4 py-6 mx-auto sm:px-6 lg:px-0">
         <div className="grid grid-cols-2 gap-1 mt-0 lg:mt-0 lg:grid-cols-5 lg:gap-y-6">
-          <div className="col-span-2 md:col-span-1 lg:col-span-2">
+          {/* <div className="col-span-2 md:col-span-1 lg:col-span-2">
             <div className=" md:m-6 lg:m-0">
               <h2 className="text-xl lg:text-4xl flex justify-center tracking-wide poppins mt-7 md:block font-bold md:mt-4 lg:mt-16   ">
                 Generate/Pay{" "}
@@ -25,11 +25,11 @@ const GenerateInvoice = () => {
                 <Link href={""}>Generate/Pay Invoice</Link>
               </Button>
             </div>
-          </div>
+          </div> */}
 
-          <div className="hidden md:flex col-span-1 lg:col-span-3 lg:flex ml-2  lg:ml-44">
+          {/* <div className="hidden md:flex col-span-1 lg:col-span-3 lg:flex ml-2  lg:ml-44">
             <Image src={picture} />
-          </div>
+          </div> */}
         </div>
         <div className="flex  lg:gap-y-16">
           <div className=" hidden md:flex col-span-1 lg:col-span-3 lg:flex">

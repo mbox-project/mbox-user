@@ -30,7 +30,7 @@ const OurProducts = () => {
                 This we will continue to do even at our very best!{" "}
               </p>
               <Button className="w-full h-12 px-12 py-3 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case poppins lg:rounded-md  lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 md:ml-1 sm:flex-shrink-0 sm:w-auto mt-6 bg-orange-600 lg:ml-1">
-                <Link href={""}> Register Now</Link>
+                <Link href="/auth/register"> Register Now</Link>
               </Button>
             </div>
           </div>

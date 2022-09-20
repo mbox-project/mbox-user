@@ -1,11 +1,11 @@
 import React from "react";
-import Data from "./Data";
-import Api from "./Api";
+import Data from "../CategoriesPage/Data";
+import Api from "../CategoriesPage/Api";
 import Image from "next/dist/client/image";
-import dealsimg from "../../public/images/dealsimg.png";
+import watches from "../../public/images/watches.png";
 import loveimg from "../../public/images/love.png";
 import rectangle from "../../public/images/rectangle.png";
-const Mensfashion = () => {
+const SearchRes = () => {
   return (
     <section className="block lg:flex pt-20  newsletterbg ">
       <div className="">
@@ -43,11 +43,7 @@ const Mensfashion = () => {
       <div className="newsletter">
         <div className="flex bg-grayColor ml-6 p-4 ">
           <h5 className="font-bold text-2xl poppins pt-6  ">
-            Me
-            <span className="underline  decoration-brightRed  underline-offset-8">
-              n&apos;s Fash
-            </span>
-            ion
+            12345 items found
           </h5>
           <p className="font-light text-base px-24 pt-6 text-lightGray">
             price
@@ -77,7 +73,7 @@ const Mensfashion = () => {
                 <div key={items.id}>
                   <div className="flex mx-4  rounded-lg   ">
                     <div>
-                      <Image src={dealsimg} />
+                      <Image src={watches} />
                     </div>
                   </div>
                   <div className="flex poppins ">
@@ -101,7 +97,7 @@ const Mensfashion = () => {
                 <div key={items.id}>
                   <div className="flex mx-4  rounded-lg   ">
                     <div>
-                      <Image src={dealsimg} />
+                      <Image src={watches} />
                     </div>
                   </div>
                   <div className="flex poppins ">
@@ -125,7 +121,7 @@ const Mensfashion = () => {
                 <div key={items.id}>
                   <div className="flex mx-4  rounded-lg   ">
                     <div>
-                      <Image src={dealsimg} />
+                      <Image src={watches} />
                     </div>
                   </div>
                   <div className="flex poppins ">
@@ -169,4 +165,4 @@ const Mensfashion = () => {
     </section>
   );
 };
-export default Mensfashion;
+export default SearchRes;

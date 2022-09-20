@@ -1,20 +1,16 @@
 import React from "react";
 import Image from "next/dist/client/image";
-import dealsimg from "../../public/images/dealsimg.png";
+import watches from "../../public/images/watches.png";
+import Fakeapi from "../CategoriesPage/Fakeapi";
 import loveimg from "../../public/images/love.png";
-import Fakeapi from "./Fakeapi";
 
-const Newarrivals = () => {
+const BestStore = () => {
   return (
     <section className="newsletterbg pt-20">
       <div className="border rounded-2xl lg:mx-20 shadow-lg">
         <div className=" bg-grayColor py-8 border border-b-0 rounded-b-none rounded-2xl">
           <h3 className=" text-lightGray pl-16 text-2xl poppins font-medium  ">
-            Ne
-            <span className="underline  decoration-brightRed  underline-offset-8 ">
-              w Arri
-            </span>
-            val
+            Best Store
           </h3>
         </div>
         <div className="mx-2 lg:mx-10 block md:grid grid-cols-2 lg:flex py-10">
@@ -23,7 +19,7 @@ const Newarrivals = () => {
               <div key={items.id}>
                 <div className="flex mx-4  rounded-lg   ">
                   <div>
-                    <Image src={dealsimg} />
+                    <Image src={watches} />
                   </div>
                 </div>
                 <div className="flex justify-center">
@@ -44,7 +40,7 @@ const Newarrivals = () => {
               <div key={items.id}>
                 <div className="flex mx-4  rounded-lg   ">
                   <div>
-                    <Image src={dealsimg} />
+                    <Image src={watches} />
                   </div>
                 </div>
                 <div className="flex justify-center">
@@ -63,4 +59,4 @@ const Newarrivals = () => {
     </section>
   );
 };
-export default Newarrivals;
+export default BestStore;
