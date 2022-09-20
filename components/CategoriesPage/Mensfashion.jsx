@@ -11,7 +11,9 @@ const Mensfashion = () => {
       <div className="">
         <div className="bg-grayColor ml-20 space-y-6 poppins pt-4 pl-4">
           <h5 className="font-medium poppins uppercase text-lg">Category</h5>
-          <p className="font-medium poppins text-base ">Mens Fashion</p>
+          <p className="font-medium poppins text-base ">
+            Mens Fashion
+          </p>
           {Data.map((item) => {
             return (
               <div key={item.id} className="block w-52 poppins pl-4 font-light">
@@ -43,7 +45,7 @@ const Mensfashion = () => {
       <div className="newsletter">
         <div className="flex bg-grayColor ml-6 p-4 ">
           <h5 className="font-bold text-2xl poppins pt-6  ">
-            Men&apos;s Fashion
+            Me<span className="underline  decoration-brightRed  underline-offset-8">n&apos;s Fash</span>ion
           </h5>
           <p className="font-light text-base px-24 pt-6 text-lightGray">
             price
