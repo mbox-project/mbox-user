@@ -10,7 +10,9 @@ const Deals = () => {
       <div className="border rounded-2xl lg:mx-20 shadow-xl">
         <div className=" bg-grayColor py-8 border border-b-0 rounded-b-none rounded-2xl">
           <h3 className=" text-lightGray pl-16 text-2xl poppins font-medium  ">
-            Dea<span className="underline  decoration-brightRed  underline-offset-8">ls of the{" "}
+            Dea
+            <span className="underline  decoration-brightRed  underline-offset-8">
+              ls of the{" "}
             </span>{" "}
             day
           </h3>

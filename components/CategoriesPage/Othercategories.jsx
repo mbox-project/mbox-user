@@ -9,7 +9,11 @@ const Othercategories = () => {
           className="flex justify-center poppins font-semibold   py-10 md:text-2xl  lg:text-3xl  
           "
         >
-          Explore  <span className="underline  decoration-brightRed  underline-offset-8 pl-1">Other Categor </span>ies
+          Explore{" "}
+          <span className="underline  decoration-brightRed  underline-offset-8 pl-1">
+            Other Categor{" "}
+          </span>
+          ies
         </p>
       </div>
       <div className="block  md:flex md:mx-20">

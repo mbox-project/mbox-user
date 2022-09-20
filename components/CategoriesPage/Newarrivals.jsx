@@ -10,7 +10,11 @@ const Newarrivals = () => {
       <div className="border rounded-2xl lg:mx-20 shadow-lg">
         <div className=" bg-grayColor py-8 border border-b-0 rounded-b-none rounded-2xl">
           <h3 className=" text-lightGray pl-16 text-2xl poppins font-medium  ">
-            Ne<span className="underline  decoration-brightRed  underline-offset-8 ">w Arri</span>val
+            Ne
+            <span className="underline  decoration-brightRed  underline-offset-8 ">
+              w Arri
+            </span>
+            val
           </h3>
         </div>
         <div className="mx-2 lg:mx-10 block md:grid grid-cols-2 lg:flex py-10">
