@@ -148,7 +148,9 @@ const LandingPage = () => {
       <Items />
       <section>
         <div className="max-w-screen-xl md:pb-12 lg:pb-16 px-4 -mt-10 pt-0 pb-6 lg:mx-auto sm:px-6 lg:px-8 ">
-          <Button className="px-4 md:px-12 md:py-3 py-1 mt-24   lg:rounded-md md:mt-60 lg:mt-96  right-10 md:right-28 lg:right-52 lg:px-40  absolute z-20 text-sm  lg:text-lg  font-extralight lg:font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-brightPurple lg:ml-16">
+
+          <Button className="px-4 md:px-12 md:py-3 py-1 mt-24   lg:rounded-md md:mt-48   lg:mt-96 right-52 lg:px-40  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-brightPurple lg:ml-16">
+          
             <Link href={""}>Buy now</Link>
           </Button>
           <Link href={""}>
@@ -161,7 +163,8 @@ const LandingPage = () => {
       <BecomeAMerchant />
       <section>
         <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
-          <Button className="px-4 md:px-12 md:py-3 py-1 mt-16   lg:rounded-md md:mt-44  lg:mt-64 right-10 lg:right-44 lg:px-44  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-lightYellow lg:ml-16">
+          <Button className="px-4 md:px-12 md:py-3 py-1 mt-24   lg:rounded-md md:mt-48   lg:mt-64 right-44 lg:px-44  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-lightYellow lg:ml-16">
+
             <Link href={""}>Buy now</Link>
           </Button>
           <Link href={""}>
