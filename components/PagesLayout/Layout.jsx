@@ -7,12 +7,12 @@ import { activateMerchant } from "../../store/users/userSlice";
 import { logout, reset } from "../../store/auth/authSlice";
 import { useRouter } from "next/router";
 import { toastify } from "../../helpers";
+import { useAuthStatus } from "../../hooks/useAuthStatus";
 
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { isMerchant } = useSelector((state) => state.user);
-  //const { user } = useSelector((state) => state.auth);
   const [showSideBar, setShowSideBar] = useState(false);
 
   const showbar = () => {
@@ -33,15 +33,6 @@ const Layout = ({ children }) => {
     router.push("/auth/login");
   };
 
-  // check if the user is logged in or not..
-  /**
-   * Note that every page is rendered on the server side first ..
-   * I will have to use getServerSideProps for this page ..
-   */
-  // if (!user) {
-  //   toastify.alertError("You are not authenticated to access this page", 3000);
-  //   typeof window !== "undefined" ? router.push("/auth/login") : "";
-  // }
   return (
     <>
       {/* Buyers Navarbar .. */}
@@ -66,4 +57,5 @@ const Layout = ({ children }) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
-export default Layout;
+// eslint-disable-next-line react-hooks/rules-of-hooks
+export default useAuthStatus(Layout);
