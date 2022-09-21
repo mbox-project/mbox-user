@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 
 const Index = () => {
   const router = useRouter();
+  //console.log("QueryParams", router.query);
+  const { email, token } = router.query;
+  console.log("Params", email, token);
   return (
     <>
       <div className="flex">

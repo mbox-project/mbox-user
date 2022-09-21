@@ -6,6 +6,7 @@ import MerchantDashboard from "../../components/MerchantPages/MerchantDashboard"
 
 const Index = () => {
   const { isMerchant } = useSelector((state) => state.user);
+
   return (
     <>
       <Layout>{isMerchant ? <MerchantDashboard /> : <Dashboard />}</Layout>

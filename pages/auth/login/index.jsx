@@ -29,16 +29,16 @@ const Login = () => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  //check for error messages
+  //check for error messages   typeof window !== "undefined" ?
   useEffect(() => {
     if (isError) {
-      toastify.alertError(message, 3000); // displays an error message from the server
+      toastify.alertError(message, 3000);
     }
     if (isSuccess || user) {
-      if (message == "Login Successful") {
-        const mssg = "Welcome to your Dashboard";
-        typeof window !== "undefined" ? toastify.alertSuccess(mssg, 3000) : " ";
-      }
+      //   if (message == "Login Successful") {
+      //     const mssg = "Welcome to your Dashboard";
+      //     toastify.alertSuccess(mssg, 3000);
+      //   }
       router.push("/account");
     }
     dispatch(reset());
@@ -46,7 +46,7 @@ const Login = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    // check for empty values ...then real validation will be applied later ..
+    // simple validation
     if (loginData.email == "" || loginData.password == "") {
       toastify.alertWarning("Email or password cannot be empty", 3000);
     } else {
@@ -62,7 +62,7 @@ const Login = () => {
       {isLoading && <Spinner />}
       <div className="w-full lg:w-1/2 px-4  bg-grayColor">
         <div>
-          <div className="text-center">
+          <div className="text-center firstdiv">
             <h1 className="text-lg md:text-3xl font-bold mt-20 lg:mt-28 font-poppins text-orange-600 ">
               Login
             </h1>
@@ -175,7 +175,6 @@ const Login = () => {
             </div>
           </form>
         </div>
-        {/* <Footer /> */}
       </div>
     </div>
   );

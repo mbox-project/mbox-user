@@ -1,7 +1,7 @@
 import axios from "axios";
+import { API_URL } from "../../config";
 
-//'proxy' setting in the package.json automatically maps the http://localhost:5000 to this endpoint ...
-const API_URL = "http://54.174.220.112/api/";
+//const API_URL = "http://54.174.220.112/api/";
 
 //Register user
 const register = async (registerData) => {
