@@ -1,13 +1,12 @@
 import React from "react";
-import recoverpasswordimg from "../../../public/images/loginbg.png";
+import loginbg from "../../../public/images/loginbg.png";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import Label from "../../../components/Label";
-import Footer from "../../../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 
-function ForgotPassword() {
+const ForgotPassword = () => {
   const [value, setValue] = React.useState({});
 
   const onChangeInput = (e) => {
@@ -20,7 +19,7 @@ function ForgotPassword() {
   return (
     <div className="flex">
       <div className=" hidden w-1/2  mx-auto min-h-screen lg:block ">
-        <Image src={recoverpasswordimg} />
+        <Image src={loginbg} />
       </div>
       <div className="w-full lg:w-1/2  lg:mx-auto  mt-20 lg:mt-44">
         <div className="w-full  font-poppins text-center">
@@ -66,10 +65,9 @@ function ForgotPassword() {
             </Link>
           </div>
         </form>
-        <Footer />
       </div>
     </div>
   );
-}
+};
 
 export default ForgotPassword;

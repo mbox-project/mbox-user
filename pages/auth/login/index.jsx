@@ -1,47 +1,68 @@
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
-import React from "react";
 import loginbg from "../../../public/images/loginbg.png";
-// import logo from "../../../public/images/logo.png";
 import Button from "../../../components/Button";
-// import Footer from "../../../components/Footer";
 import Input from "../../../components/Input";
 import Label from "../../../components/Label";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { login, reset } from "../../../store/auth/authSlice";
+import Spinner from "../../../components/Spinner";
+import { toastify } from "../../../helpers";
 
-function Login() {
-  const [value, setValue] = React.useState({});
+const Login = () => {
+  // Add rememberMe property to it later..
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+  const dispatch = useDispatch();
+  const router = useRouter();
 
+  const { isLoading, isError, isSuccess, user, message } = useSelector(
+    (state) => state.auth
+  );
+  // destructure the loginData object
+  const { email, password } = loginData;
   const onChangeInput = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
+
+  //check for error messages   typeof window !== "undefined" ?
+  useEffect(() => {
+    if (isError) {
+      toastify.alertError(message, 3000);
+    }
+    if (isSuccess || user) {
+      //   if (message == "Login Successful") {
+      //     const mssg = "Welcome to your Dashboard";
+      //     toastify.alertSuccess(mssg, 3000);
+      //   }
+      router.push("/account");
+    }
+    dispatch(reset());
+  }, [isError, message, isSuccess, user, dispatch, router]);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    // simple validation
+    if (loginData.email == "" || loginData.password == "") {
+      toastify.alertWarning("Email or password cannot be empty", 3000);
+    } else {
+      dispatch(login(loginData));
+    }
   };
 
   return (
-    <div className=" flex">
-      <div className="hidden w-1/2   backlogin lg:block">
+    <div className="flex">
+      <div className="hidden w-1/2 backlogin lg:block">
         <Image src={loginbg} height={830} />
-        {/* <div>
-          <div className="p-5">
-            <Image src={logo} />
-          </div>
-          <div className="text-white text-center">
-            <Image src={icon} />
-            <p className="flex justify-center font-extrabold text-4xl">
-              Welcome Back!
-            </p>
-            <p className="flex justify-center pt-3 text-base  ">
-              Lets get you all set up. Join the worlds largest pocket-sized
-              marketplace.
-            </p>
-          </div>
-        </div> */}
       </div>
+      {isLoading && <Spinner />}
       <div className="w-full lg:w-1/2 px-4  bg-grayColor">
         <div>
-          <div className="text-center">
+          <div className="text-center firstdiv">
             <h1 className="text-lg md:text-3xl font-bold mt-20 lg:mt-28 font-poppins text-orange-600 ">
               Login
             </h1>
@@ -59,11 +80,11 @@ function Login() {
               <Input
                 name="email"
                 type="email"
-                placeHolder="Taylormason@gmail.com"
+                value={email}
+                placeHolder="enter your email"
                 className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                required={true}
-                autoFocus={false}
                 onChange={onChangeInput}
+                required
               />
             </div>
             <div className="mb-0 mt-0 md:mt-4">
@@ -76,10 +97,11 @@ function Login() {
                 <Input
                   name="password"
                   type="password"
+                  value={password}
+                  placeHolder="enter your password"
                   className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor  poppins mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                  required={true}
-                  autoFocus={false}
                   onChange={onChangeInput}
+                  required
                 />
                 <span className="absolute inset-y-0 inline-flex items-center right-4">
                   <svg
@@ -153,10 +175,9 @@ function Login() {
             </div>
           </form>
         </div>
-        {/* <Footer /> */}
       </div>
     </div>
   );
-}
+};
 
 export default Login;

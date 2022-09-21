@@ -43,7 +43,11 @@ const Mensfashion = () => {
       <div className="newsletter">
         <div className="flex bg-grayColor ml-6 p-4 ">
           <h5 className="font-bold text-2xl poppins pt-6  ">
-            Men&apos;s Fashion
+            Me
+            <span className="underline  decoration-brightRed  underline-offset-8">
+              n&apos;s Fash
+            </span>
+            ion
           </h5>
           <p className="font-light text-base px-24 pt-6 text-lightGray">
             price
