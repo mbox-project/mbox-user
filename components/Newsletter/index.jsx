@@ -3,7 +3,7 @@ import React from "react";
 import Button from "../Button";
 const Newsletter = () => {
   return (
-    <div className="newsletterbg">
+    <div className="newsletterbg -mt-60 md:mt-0">
       <div className="max-w-screen-xl px-4 py-16 mx-auto  poppins sm:px-6 lg:px-8">
         <div className="md:flex justify-center ">
           <div className=" mt-2 lg:mt-0  lg:gap-y-16">

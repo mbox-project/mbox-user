@@ -24,7 +24,9 @@ const MerchantDashboard = () => {
         <h2 className="text-2xl mt-4">Revenue Comparisons</h2>
         <div className="grid grid-cols-1  md:grid-cols-2 gap-10">
           <div className="p-4 rounded-3xl bg-brightPurple flex flex-col text-white">
-            <h3 className="mb-2 text-gray-500 text-xl">Weekly Revenue Generated</h3>
+            <h3 className="mb-2 text-gray-500 text-xl">
+              Weekly Revenue Generated
+            </h3>
             <div className="grid grid-cols-2 gap-10">
               <div className="space-y-3">
                 <div className="p-3 bg-purple-900 rounded-lg text-center">
@@ -50,7 +52,9 @@ const MerchantDashboard = () => {
           </div>
 
           <div className="p-4 rounded-3xl flex flex-col shadow-xl text-black">
-            <h3 className="mb-2 text-gray-500 text-xl">Total Revenue Generated</h3>
+            <h3 className="mb-2 text-gray-500 text-xl">
+              Total Revenue Generated
+            </h3>
             <div className="grid grid-cols-2 gap-10">
               <div className="space-y-3">
                 <div className="p-3 bg-gray-100 rounded-lg text-center">

@@ -15,8 +15,11 @@ const Fashion = () => {
         className="flex justify-center poppins font-semibold pl-6 -mt-5  md:-mt-16 lg:-mt-28  md:text-2xl  lg:text-3xl  
           "
       >
-        Find <span className="text-orange-600 px-1">Items </span>Under Men’s
-        Fashion Category Fast
+        Find <span className="text-orange-600 px-1">Items </span>{" "}
+        <span className="underline  decoration-brightRed  underline-offset-8 px-1">
+          Under Men’s Fashion Category{" "}
+        </span>
+        Fast
       </h3>
       <div className=" mx-10 lg:mx-20 block md:grid grid-cols-2 lg:flex py-14">
         <div className="flex mt-5 lg:mt-0  ml-10 lg:ml-0 lg:mr-10 bg-grayColor border-none rounded-lg shadow-lg   w-64">

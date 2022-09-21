@@ -57,6 +57,15 @@
 .buynowtext{
   font-size: 30px;
 }
+.crib{
+  background: rgba(154, 154, 154, 0.3);
+  
+
+border-radius: 10px;
+}
+.store{
+  color: rgba(68, 68, 68, 0.5);
+}
 
 /* .suggested{
   width: 2050px;

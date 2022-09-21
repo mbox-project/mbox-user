@@ -1,20 +1,16 @@
 import React from "react";
 import Image from "next/dist/client/image";
-import dealsimg from "../../public/images/dealsimg.png";
+import watches from "../../public/images/watches.png";
 import loveimg from "../../public/images/love.png";
-import Fakeapi from "./Fakeapi";
+import Fakeapi from "../CategoriesPage/Fakeapi";
 
-const Deals = () => {
+const SuggestedPicks = () => {
   return (
     <section className="newsletterbg pt-10  ">
       <div className="border rounded-2xl lg:mx-20 shadow-xl">
         <div className=" bg-grayColor py-8 border border-b-0 rounded-b-none rounded-2xl">
           <h3 className=" text-lightGray pl-16 text-2xl poppins font-medium  ">
-            Dea
-            <span className="underline  decoration-brightRed  underline-offset-8">
-              ls of the{" "}
-            </span>{" "}
-            day
+            Suggested Picks
           </h3>
         </div>
         <div className="mx-10 block md:grid grid-cols-2 lg:flex py-10 ">
@@ -23,7 +19,7 @@ const Deals = () => {
               <div key={items.id}>
                 <div className="flex mx-4  rounded-lg   ">
                   <div>
-                    <Image src={dealsimg} />
+                    <Image src={watches} />
                   </div>
                 </div>
                 <div className="flex justify-center">
@@ -42,4 +38,4 @@ const Deals = () => {
     </section>
   );
 };
-export default Deals;
+export default SuggestedPicks;

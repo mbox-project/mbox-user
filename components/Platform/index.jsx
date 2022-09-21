@@ -14,7 +14,7 @@ const Platform = () => {
             </div>
 
             <div className="">
-              <h2 className="text-2xl  lg:text-4xl poppins flex justify-center lg:block pt-7 md:pt-2 font-extrabold ">
+              <h2 className="text-2xl  lg:text-4xl poppins flex justify-center lg:block pt-7 lg:pt-10 md:pt-2 font-extrabold ">
                 OUR{" "}
                 <span className="text-orange-600 pl-2 lg:pl-0"> PLATFORM</span>
               </h2>
@@ -29,7 +29,7 @@ const Platform = () => {
                 You are just a sign up away!{" "}
               </p>
               <Button className="w-full h-12 px-12 py-3 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case lg:rounded-md  poppins lg:mt-20 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 md:ml-1 sm:flex-shrink-0 sm:w-auto mt-6 bg-orange-600 lg:ml-1">
-                <Link href={""}> Register Now</Link>
+                <Link href="/auth/register"> Register Now</Link>
               </Button>
             </div>
           </div>
