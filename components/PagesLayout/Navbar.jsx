@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/Link";
 import logo from "../../public/img/logo.svg";
 import arrow from "../../public/img/arrow.svg";
 import bell from "../../public/img/bell.svg";
 import profile from "../../public/img/profile.svg";
-import saved from "../../public/img/saved.svg";
 import Search from "./Search";
 import PropTypes from "prop-types";
-import { BiQuestionMark } from "react-icons/bi";
+import NavBarDropdown from "../NavBarDropdown";
 
-const Navbar = ({ showbar, showSideBar, switchToMerchant, handleLogout }) => {
+const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
+  const [showDropDown, setShowDropDown] = useState(false);
+
+  const handleShowDropDown = () => {
+    setShowDropDown(!showDropDown);
+  };
+  const closeDropDown = () => {
+    setShowDropDown(false);
+  };
   return (
     <div className="customNavbar mx-auto relative font-sans w-full">
-      <nav className="p-2 mx-auto shadow-md hover:shadow-lg">
+      <div className="p-2 mx-auto shadow-md hover:shadow-lg">
         {/* flex Container */}
         <div className="flex items-center justify-between px-5 md:px-8 md:space-x-10">
           {!showSideBar ? (
@@ -59,8 +65,11 @@ const Navbar = ({ showbar, showSideBar, switchToMerchant, handleLogout }) => {
             <div className="hidden m-0 md:block md:mt-2">
               <Image src={bell} width={25} height={30} alt="bell" />
             </div>
-            <div className="dropdown relative mt-2">
-              <div className="flex items-center justify-center cursor-pointer">
+            <div className="dropdown relative mt-2 flex">
+              <div
+                className="flex items-center justify-center cursor-pointer"
+                onClick={handleShowDropDown}
+              >
                 <Image src={profile} width={25} height={30} alt="pics" />
                 <svg
                   className="ml-2 w-4 h-4"
@@ -78,40 +87,17 @@ const Navbar = ({ showbar, showSideBar, switchToMerchant, handleLogout }) => {
                   ></path>
                 </svg>
               </div>
-              <div className="hidden absolute dropdown-content right-0 mt-2 z-50 flex-col space-y-4 justify-start pl-4 py-6 bg-white w-64 rounded-md">
-                <div className="profileDetails mb-3">
-                  <h3 className="text-lg font-bold">Wahab Micheal</h3>
-                  <span>Buyer</span>
-                </div>
-                <hr />
-                <div className="flex space-x-2">
-                  <button
-                    className="border border-brightRed text-center rounded-lg p-3"
-                    onClick={() => switchToMerchant()}
-                  >
-                    <span className="text-gray-900"> BECOME A MERCHANT</span>
-                  </button>
-                  <span className="border border-brightRed rounded-full p-1 h-6 mt-3">
-                    <BiQuestionMark className="text-black" />
-                  </span>
-                </div>
-                <div className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-                  <Image src={profile} width={20} height={20} alt="profile" />
-                  <Link href="/account/"> My Account </Link>
-                </div>
-                <div className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
-                  <Image src={saved} width={20} height={20} alt="profile" />
-                  <Link href="/saveditems/"> Saved Items </Link>
-                </div>
-                <hr />
-                <div className="flex justify-center items-center text-center text-red-500 mt-3">
-                  <button onClick={() => handleLogout()}>Logout</button>
-                </div>
-              </div>
+              {showDropDown && (
+                <NavBarDropdown
+                  handleLogout={handleLogout}
+                  closeDropDown={closeDropDown}
+                  isMerchant={isMerchant}
+                />
+              )}
             </div>
           </div>
         </div>
-      </nav>
+      </div>
     </div>
   );
 };
@@ -120,8 +106,8 @@ const Navbar = ({ showbar, showSideBar, switchToMerchant, handleLogout }) => {
 Navbar.propTypes = {
   showbar: PropTypes.func.isRequired,
   showSideBar: PropTypes.bool.isRequired,
-  switchToMerchant: PropTypes.func.isRequired,
   handleLogout: PropTypes.func.isRequired,
+  isMerchant: PropTypes.bool.isRequired,
 };
 
 export default Navbar;
