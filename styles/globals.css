@@ -67,10 +67,3 @@ border-radius: 10px;
   color: rgba(68, 68, 68, 0.5);
 }
 
-/* .suggested{
-  width: 2050px;
-} */
-
-.dropdown:hover .dropdown-content {
-    display: flex;
-  }
