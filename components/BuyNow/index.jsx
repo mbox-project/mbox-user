@@ -55,7 +55,7 @@ const BuyNow = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex py-5">
+              <div className=" hidden md:flex py-5">
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300 ">
                   <Image src={buynowicon} />
                 </div>

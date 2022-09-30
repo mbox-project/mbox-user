@@ -1,25 +1,28 @@
 import React from "react";
 import Image from "next/image";
 import ourproductimg from "../../public/images/ourproductimg.png";
-
 import Button from "../Button";
 import Link from "next/link";
 const OurProducts = () => {
   return (
     <section>
       <div>
-        <div className="max-w-screen-xl px-4 py-10  md:py-8 lg:py-16 mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl px-4  pb-60  md:py-8 lg:py-16 mx-auto sm:px-6 lg:px-8">
           <div className=" block lg:grid grid-cols-2 gap-4  lg:gap-20 mt-2 lg:mt-5  lg:gap-y-16">
             <div className=" hidden lg:flex w-full  lg:mt-0">
               <Image src={ourproductimg} width="600px " height="400px" />
             </div>
 
             <div>
-              <h2 className="text-2xl lg:text-4xl flex justify-center lg:block pt-5 poppins md:pt-2 font-extrabold ">
+              <h2 className="justify-left pb-3 md:pb-0 text-lg md:text-2xl lg:text-4xl poppins flex  md:justify-center leading-relaxed lg:block pt-2 md:pt-2 font-extrabold ">
                 OUR{" "}
                 <span className="text-orange-600 pl-2 lg:pl-0"> PRODUCT</span>
               </h2>
-              <p className="flex justify-center lg:block pt-4 poppins lg:pt-8 leading-relaxed">
+              <div className=" flex lg:hidden w-full  lg:mt-0">
+                <Image src={ourproductimg} width="600px " height="400px" />
+              </div>
+
+              <p className="flex text-sm justify-center lg:block pt-4 poppins lg:pt-8 leading-relaxed">
                 How African businesses attain growth and brand exposure cost
                 efficiently is as important as bringing their businesses online.
                 To us, we are convinced that it’s not only the digital identity

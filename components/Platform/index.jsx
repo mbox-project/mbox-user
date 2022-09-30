@@ -14,11 +14,14 @@ const Platform = () => {
             </div>
 
             <div className="">
-              <h2 className="text-2xl  lg:text-4xl poppins flex justify-center lg:block pt-7 lg:pt-10 md:pt-2 font-extrabold ">
+              <h2 className="text-lg  pb-2 md:pb-0 md:text-2xl   pr-44  md:pr-0 lg:text-4xl poppins md:flex justify-center lg:block pt-5  lg:pt-10 md:pt-2 font-extrabold ">
                 OUR{" "}
                 <span className="text-orange-600 pl-2 lg:pl-0"> PLATFORM</span>
               </h2>
-              <p className="text-sm md:text-base   md:pl-0 md:block pt-4 lg:pt-8 poppins leading-relaxed">
+              <div className=" md:hidden ">
+                <Image src={platformimg} />
+              </div>
+              <p className="text-base  md:pl-0 md:block pt-4 lg:pt-8 poppins leading-relaxed">
                 Mbox is Africa’s first digital marketplace that allows SMEs
                 create a digital version of their business with- out a website.
                 With just your username, businesses can connect with millions of

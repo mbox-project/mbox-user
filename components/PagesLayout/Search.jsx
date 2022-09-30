@@ -2,7 +2,7 @@ import React from "react";
 
 const Search = () => {
   return (
-    <form className="hidden relative space-x-2 md:flex md:flex-1 md:items-center">
+    <form className="mt-14 w-full md:mt-0 space-x-0 relative md:space-x-2 md:flex md:flex-1 md:items-center">
       <svg
         width="20"
         height="20"
@@ -17,13 +17,13 @@ const Search = () => {
         />
       </svg>
       <input
-        className="focus:ring-2 focus:ring-brightRed-500 focus:outline-none appearance-none 
+        className="  focus:ring-2 focus:ring-brightRed-500 focus:outline-none appearance-none 
                                 w-full text-md leading-6 text-slate-900 placeholder-slate-400 py-2 rounded-md
                                 pl-10 ring-1 ring-slate-200"
         type="text"
         placeholder="What are you looking for ?... "
       />
-      <button className="p-2 px-6 text-white bg-brightRed rounded-lg baseline">
+      <button className=" hidden md:flex p-2 px-6 text-white bg-brightRed rounded-lg baseline">
         Search
       </button>
     </form>

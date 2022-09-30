@@ -12,6 +12,7 @@ import { BsHeart } from "react-icons/bs";
 import { RiNotification4Line } from "react-icons/ri";
 import { TbSpeakerphone } from "react-icons/tb";
 import { GiBowTieRibbon } from "react-icons/gi";
+import { BsPerson } from "react-icons/bs";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -20,7 +21,7 @@ const Header = () => {
     <header className="shadow-sm">
       <div className=" lg:px-20 p-4 mx-auto">
         <div className="flex ">
-          <div className=" lg:pr-12">
+          <div className="pl-10 mt-1  md:mt-0 md:pl-0 lg:pr-12">
             <Image src={logo} width="100px" height="50px" />
           </div>
           <Search />
@@ -44,6 +45,9 @@ const Header = () => {
               <Link href="/auth/register"> Sign up</Link>
             </div>
           </div>
+          <div className="md:hidden absolute right-6 mt-4 h-20 ">
+            <BsPerson size={40} />
+          </div>
 
           {!isOpen && (
             // <div className=" w-1/2 -right-0 absolute flex flex-col text-center bg-orange-600  py-5 px-6 mt-16 z-20  text-white md:hidden">
@@ -60,7 +64,7 @@ const Header = () => {
             // </div>
             <div className="md:hidden w-full h-full top-20 bg-grayColor z-20 absolute -right-0 ">
               <div className="flex py-4">
-                <div className="px-6 ">
+                <div className="px-4 ">
                   <Image src={beforeyoureg} width={50} height={50} />
                 </div>
                 <Button className="bg-brightRed  h-10 mt-2 py-2 px-12  font-poppins text-sm font-medium   text-white  ">
@@ -103,7 +107,7 @@ const Header = () => {
               </div>
             </div>
           )}
-          <div className="relative left-52 top-3 md:hidden">
+          <div className="relative right-72 pr-4 top-3 md:hidden">
             <button
               className="  text-gray-600  rounded-lg"
               type="button"
@@ -112,7 +116,7 @@ const Header = () => {
               <span className="sr-only">Open menu</span>
               <svg
                 aria-hidden="true"
-                className="w-10 h-10"
+                className="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
