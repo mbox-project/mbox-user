@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import PropTypes from "prop-types";
-import { activateMerchant } from "../../store/users/userSlice";
 import { logout, reset } from "../../store/auth/authSlice";
 import { useRouter } from "next/router";
 import { toastify } from "../../helpers";
@@ -17,12 +16,6 @@ const Layout = ({ children }) => {
 
   const showbar = () => {
     setShowSideBar(!showSideBar);
-  };
-
-  // Temporary for switching from buyers to vender
-  const switchToMerchant = () => {
-    // disptaches an action
-    dispatch(activateMerchant());
   };
 
   const handleLogout = () => {
@@ -39,8 +32,8 @@ const Layout = ({ children }) => {
       <Navbar
         showbar={showbar}
         showSideBar={showSideBar}
-        switchToMerchant={switchToMerchant}
         handleLogout={handleLogout}
+        isMerchant={isMerchant}
       />
       <div className="flex font-sans relative">
         {/* SideBar Menu */}
@@ -59,3 +52,4 @@ Layout.propTypes = {
 };
 // eslint-disable-next-line react-hooks/rules-of-hooks
 export default useAuthStatus(Layout);
+//export default Layout;
