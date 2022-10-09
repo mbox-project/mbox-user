@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import MainFooter from "../components/MainFooter";
 import Newsletter from "../components/Newsletter";
+import { HorizontalScroll } from "react-horizontal-scrolling";
 // import About from "../components/About";
 import Feature from "../components/Feature";
 import GenerateInvoice from "../components/GenerateInvoice";
@@ -43,7 +44,7 @@ const featureCard = [
     icon: iconThree,
   },
 ];
-
+// const HorizontalScroll = require("react-horizontal-scrolling");
 let merchantCard = [
   {
     id: 1,
@@ -129,6 +130,7 @@ const LandingPage = () => {
             </h2>
             <p>See All</p>
           </div>
+          <HorizontalScroll>
           <div className="block pb-10 md:grid  md:grid-cols-2 lg:grid-cols-4 suggested">
             {merchantCard.map((item, index) => {
               return (
@@ -143,6 +145,7 @@ const LandingPage = () => {
               );
             })}
           </div>
+          </HorizontalScroll>
         </div>
       </section>
       <Items />

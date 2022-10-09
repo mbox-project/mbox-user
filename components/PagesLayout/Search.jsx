@@ -28,8 +28,6 @@ const Search = () => {
           Search
         </button>
       </form>
-
-     
     </>
   );
 };
