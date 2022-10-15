@@ -2,7 +2,8 @@ import React from "react";
 import Header from "../components/Header";
 import MainFooter from "../components/MainFooter";
 import Newsletter from "../components/Newsletter";
-import { HorizontalScroll } from "react-horizontal-scrolling";
+import { ScrollMenu } from "react-horizontal-scrolling-menu";
+
 // import About from "../components/About";
 import Feature from "../components/Feature";
 import GenerateInvoice from "../components/GenerateInvoice";
@@ -105,7 +106,7 @@ const LandingPage = () => {
           <h2 className="flex justify-center py-1 uppercase font-poppins font-bold text-xl md:text-2xl lg:text-4xl  ">
             Our Special<span className="text-orange-600 px-3 "> Features</span>
           </h2>
-          <div className=" block md:grid grid-cols-2 w-full   lg:flex">
+          <div className=" block  w-full   lg:flex">
             {featureCard.map((card, index) => {
               return (
                 <Feature
@@ -130,28 +131,28 @@ const LandingPage = () => {
             </h2>
             <p>See All</p>
           </div>
-          <HorizontalScroll>
-          <div className="block pb-10 md:grid  md:grid-cols-2 lg:grid-cols-4 suggested">
-            {merchantCard.map((item, index) => {
-              return (
-                <SuggestedMerchant
-                  key={index}
-                  className="p-4 mx-3 mt-3 lg:mx-10 lg:w-72 border-2  lg:mt-10  shadow-md  rounded-lg  bg-white"
-                  header={item.name}
-                  body={item.count}
-                  categories={item.categories}
-                  button="View Store"
-                />
-              );
-            })}
-          </div>
-          </HorizontalScroll>
+          <ScrollMenu>
+            <div className="flex pb-10 suggested">
+              {merchantCard.map((item, index) => {
+                return (
+                  <SuggestedMerchant
+                    key={index}
+                    className="p-4 mx-3 mt-3 lg:mx-10 w-72 lg:w-72 border-2  lg:mt-10  shadow-md  rounded-lg  bg-white"
+                    header={item.name}
+                    body={item.count}
+                    categories={item.categories}
+                    button="View Store"
+                  />
+                );
+              })}
+            </div>
+          </ScrollMenu>
         </div>
       </section>
       <Items />
       <section>
         <div className="max-w-screen-xl md:pb-12 lg:pb-16 px-4 -mt-10 pt-0 pb-6 lg:mx-auto sm:px-6 lg:px-8 ">
-          <Button className="px-4 md:px-12 md:py-3 py-1 mt-24   lg:rounded-md md:mt-48   lg:mt-96 right-52 lg:px-40  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-brightPurple lg:ml-16">
+          <Button className="px-4 md:px-12 md:py-3 py-1 mt-28  lg:rounded-md md:mt-56   lg:mt-96 right-10 md:right-20 lg:right-52 lg:px-40  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-brightPurple lg:ml-16">
             <Link href={""}>Buy now</Link>
           </Button>
           <Link href={""}>
@@ -164,7 +165,7 @@ const LandingPage = () => {
       <BecomeAMerchant />
       <section>
         <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
-          <Button className="px-4 md:px-12 md:py-3 py-1 mt-24   lg:rounded-md md:mt-48   lg:mt-64 right-44 lg:px-44  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-lightYellow lg:ml-16">
+          <Button className="px-4 md:px-12 md:py-3 py-1 mt-20  lg:rounded-md md:mt-40  lg:mt-64 right-10 lg:right-44 lg:px-44  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-lightYellow lg:ml-16">
             <Link href={""}>Buy now</Link>
           </Button>
           <Link href={""}>

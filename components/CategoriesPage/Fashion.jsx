@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/dist/client/image";
 import stripes from "../../public/images/stripes.png";
-
+import ItemsApi from "./ItemsApi";
 import fashion from "../../public/images/fashion.png";
+import { ScrollMenu } from "react-horizontal-scrolling-menu";
 
 const Fashion = () => {
   return (
@@ -21,48 +22,25 @@ const Fashion = () => {
         </span>
         Fast
       </h3>
-      <div className=" mx-10 lg:mx-20 block md:grid grid-cols-2 lg:flex py-14">
-        <div className="flex mt-5 lg:mt-0  ml-10 lg:ml-0 lg:mr-10 bg-grayColor border-none rounded-lg shadow-lg   w-64">
-          <div className="pl-6">
-            <Image src={stripes} />
-          </div>
-          <div>
-            <p className=" pt-6 pl-3 ">Clothing</p>
-          </div>
+      <ScrollMenu>
+        <div className="flex mx-10 lg:mx-20  py-14">
+          {ItemsApi.map((item) => {
+            return (
+              <div
+                key={item.id}
+                className=" flex  bg-grayColor border-none rounded-lg shadow-lg w-64 mx-5"
+              >
+                <div className="pl-6">
+                  <Image src={stripes} />
+                </div>
+                <div>
+                  <p className=" pt-6 pl-3 ">{item.item1}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
-        <div className="flex mt-5 lg:mt-0 bg-grayColor border-none rounded-lg mx-10 shadow-lg w-64">
-          <div className="pl-6">
-            <Image src={stripes} />
-          </div>
-          <div>
-            <p className=" pt-6 pl-3 ">Clothing</p>
-          </div>
-        </div>
-        <div className="flex mt-5 lg:mt-0 bg-grayColor border-none rounded-lg mx-10 shadow-lg w-64">
-          <div className="pl-6">
-            <Image src={stripes} />
-          </div>
-          <div>
-            <p className=" pt-6 pl-3 ">Clothing</p>
-          </div>
-        </div>
-        <div className="flex mt-5 lg:mt-0 bg-grayColor border-none rounded-lg mx-10 shadow-lg   w-64">
-          <div className="pl-6">
-            <Image src={stripes} />
-          </div>
-          <div>
-            <p className=" pt-6 pl-3 ">Clothing</p>
-          </div>
-        </div>
-        <div className="flex mt-5 lg:mt-0 bg-grayColor md:hidden lg:flex border-none rounded-lg mx-10 w-64 shadow-lg">
-          <div className="pl-6">
-            <Image src={stripes} />
-          </div>
-          <div>
-            <p className=" pt-6 pl-3 ">Clothing</p>
-          </div>
-        </div>
-      </div>
+      </ScrollMenu>
     </section>
   );
 };

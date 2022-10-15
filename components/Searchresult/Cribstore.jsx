@@ -26,8 +26,8 @@ const Cribstore = () => {
       <p className="font-poppins ml-20 py-8 store text-lg ">
         Stores that contains the search word
       </p>
-      <div className="flex crib  pt-12  border-2 mx-20 rounded-md">
-        <div className="ml-12">
+      <div className="flex crib  pt-12  border-2 mx-10 lg:mx-20 rounded-md">
+        <div className="ml-2 lg:ml-12">
           <Image width={400} height={300} src={cribsimg} />
         </div>
         <div>
@@ -35,7 +35,7 @@ const Cribstore = () => {
             return (
               <div key={card.id} className="">
                 <p className="text-black text-2xl pt-2">{card.name}</p>
-                <p className="pt-4 max-w-xl text-sm leading-loose lightGrayColor">
+                <p className="pt-4 w-full lg:max-w-xl text-sm leading-loose lightGrayColor">
                   {card.body}
                 </p>
                 <div className="flex pt-5">

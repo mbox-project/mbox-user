@@ -3,13 +3,13 @@ import Data from "../CategoriesPage/Data";
 import Api from "../CategoriesPage/Api";
 import Image from "next/dist/client/image";
 import watches from "../../public/images/watches.png";
-import loveimg from "../../public/images/love.png";
+import { BsHeart } from "react-icons/bs";
 import rectangle from "../../public/images/rectangle.png";
 const SearchRes = () => {
   return (
     <section className="block lg:flex pt-20  newsletterbg ">
       <div className="">
-        <div className="bg-grayColor ml-20 space-y-6 poppins pt-4 pl-4">
+        <div className="bg-grayColor hidden lg:block ml-20 space-y-6 poppins pt-4 pl-4">
           <h5 className="font-medium poppins uppercase text-lg">Category</h5>
           <p className="font-medium poppins text-base ">Mens Fashion</p>
           {Data.map((item) => {
@@ -20,7 +20,7 @@ const SearchRes = () => {
             );
           })}
         </div>
-        <div className="bg-grayColor ml-20 space-y-6 poppins pt-8 pl-4">
+        <div className="bg-grayColor  hidden lg:block ml-20 space-y-6 poppins pt-8 pl-4">
           <p>Brands</p>
           <div className=" flex">
             <Image src={rectangle} height={23} width={23} />
@@ -41,8 +41,8 @@ const SearchRes = () => {
         </div>
       </div>
       <div className="newsletter">
-        <div className="flex bg-grayColor ml-6 p-4 ">
-          <h5 className="font-bold text-2xl poppins pt-6  ">
+        <div className=" hidden lg:flex bg-grayColor ml-6 p-4 ">
+          <h5 className=" font-bold text-2xl poppins pt-6  ">
             12345 items found
           </h5>
           <p className="font-light text-base px-24 pt-6 text-lightGray">
@@ -66,8 +66,11 @@ const SearchRes = () => {
             </select>
           </form>
         </div>
-        <div className="border border-t-none ml-6 ">
-          <div className="block md:flex  p-4 ">
+        <div className="border border-t-none -mt-20 md:-mt-0 ml-6 ">
+          <h2 className="  pt-10 flex  lg:hidden poppins justify-center text-2xl">
+            Mens Fashion
+          </h2>
+          <div className="grid grid-cols-2 md:flex  p-4 ">
             {Api.map((items) => {
               return (
                 <div key={items.id}>
@@ -80,7 +83,7 @@ const SearchRes = () => {
                     <p className=" pl-10 text-sm font-poppins font-extralight ">
                       {items.Ques}
                     </p>
-                    <Image src={loveimg} width={30} height={25} />
+                    <BsHeart size={20} />
                   </div>
                   <div className="flex ">
                     <p className="pl-10 font-poppins font-semibold">
@@ -91,7 +94,7 @@ const SearchRes = () => {
               );
             })}
           </div>
-          <div className="block md:flex  p-4 ">
+          <div className="grid grid-cols-2 md:flex  p-4 ">
             {Api.map((items) => {
               return (
                 <div key={items.id}>
@@ -104,7 +107,7 @@ const SearchRes = () => {
                     <p className=" pl-10 text-sm font-poppins font-extralight ">
                       {items.Ques}
                     </p>
-                    <Image src={loveimg} width={30} height={25} />
+                    <BsHeart size={20} />
                   </div>
                   <div className="flex ">
                     <p className="pl-10 font-poppins font-semibold">
@@ -115,7 +118,7 @@ const SearchRes = () => {
               );
             })}
           </div>
-          <div className="block md:flex  p-4 ">
+          <div className="grid grid-cols-2 md:flex  p-4 ">
             {Api.map((items) => {
               return (
                 <div key={items.id}>
@@ -128,7 +131,7 @@ const SearchRes = () => {
                     <p className=" pl-10 text-sm font-poppins font-extralight ">
                       {items.Ques}
                     </p>
-                    <Image src={loveimg} width={30} height={25} />
+                    <BsHeart size={20} />
                   </div>
                   <div className="flex ">
                     <p className="pl-10 font-poppins font-semibold">

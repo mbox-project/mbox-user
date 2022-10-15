@@ -29,7 +29,7 @@ const Header = () => {
           </div>
           <Search />
 
-          <div className="items-center  hidden pl-12 space-x-4 md:flex">
+          <div className="items-center  hidden pl-0 md:pl-12 space-x-4 md:flex">
             <div className="pl-8">
               <Image src={icon} width={30} height={30} />
             </div>
