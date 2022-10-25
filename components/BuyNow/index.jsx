@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import buynowimg from "../../public/images/buynowimg.png";
-import buynowicon from "../../public/images/buynowicon.png";
+// import buynowicon from "../../public/images/buynowicon.png";
 import buynowicon1 from "../../public/images/buynowicon1.png";
 import buynowicon2 from "../../public/images/buynowicon2.png";
 import Button from "../Button";
@@ -22,8 +22,8 @@ const BuyNow = () => {
             </h4>
           </div>
           <div className=" flex md:hidden w-full md:mt-5 lg:mt-0">
-              <Image src={buynowimg} />
-            </div>
+            <Image src={buynowimg} />
+          </div>
 
           <div className="pl-10 md:hidden mt-3 mb-4 md:mb-0 md:mt-0">
             <h4 className=" text-lg lg:text-xl abouttext  lg:tracking-wider poppins">
@@ -40,14 +40,13 @@ const BuyNow = () => {
               <Image src={buynowimg} />
             </div>
 
-
-            <div className="col-span-2 md:col-span-1 lg:col-span-1 ">
+            <div className="col-span-2 lg:mt-7 md:col-span-1 lg:col-span-1 ">
               <div className="flex py-5">
-                <div className="md:mt-1 lg:mt-0 hover:-translate-y-1 hover:scale-110  duration-300 ">
+                <div className="md:mt-1 lg:mt-4 hover:-translate-y-1 hover:scale-110  duration-300 ">
                   <Image src={buynowicon1} />
                 </div>
                 <div className="px-5 ">
-                  <p className="font-bold text-base text-lightGray lg:pl-4 lg:text-xl md:text-lg poppins ">
+                  <p className="font-bold text-base pt-5 text-lightGray lg:pl-4 lg:text-xl md:text-lg poppins ">
                     Make Payment with Ease
                   </p>
                   <p className="text-sm text-gray-600 pt-3 lg:pt-2  lg:pl-4 poppins">
@@ -56,7 +55,7 @@ const BuyNow = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex py-5">
+              <div className="flex py-5 lg:mt-1">
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300 ">
                   <Image src={buynowicon2} />
                 </div>
@@ -70,7 +69,7 @@ const BuyNow = () => {
                   </p>
                 </div>
               </div>
-              <div className=" hidden md:flex py-5">
+              {/* <div className=" hidden md:flex py-5">
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300 ">
                   <Image src={buynowicon} />
                 </div>
@@ -83,8 +82,8 @@ const BuyNow = () => {
                     to that to those and here!
                   </p>
                 </div>
-              </div>
-              <Button className="w-full h-12 px-12 md:px-20 lg:px-44 poppins py-3 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm   lg:text-lg font-bold tracking-wide  text-white sm:ml-4 md:ml-14 sm:flex-shrink-0 sm:w-auto mt-3 bg-orange-600 lg:ml-24">
+              </div> */}
+              <Button className="w-full h-12  lg:h-20 px-12 md:px-20 lg:px-44 poppins py-3 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case lg:rounded-md  lg:mt-20 text-sm   lg:text-xl font-bold tracking-wide  text-white sm:ml-4 md:ml-14 sm:flex-shrink-0 sm:w-auto mt-3 bg-orange-600 lg:ml-24">
                 <Link href={""}>Buy Now</Link>
               </Button>
             </div>

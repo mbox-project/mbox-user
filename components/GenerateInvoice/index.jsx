@@ -37,7 +37,7 @@ const GenerateInvoice = () => {
           </div>
           <div className="col-span-2 lg:pl-44 md:col-span-2 lg:col-span-2">
             <div className=" mt-12 md:mt-10 lg:mt-20">
-              <h2 className=" font-bold flex justify-center poppins tracking-wide md:block text-xl lg:text-4xl md:pl-10 text-orange-600 ">
+              <h2 className=" font-bold flex justify-center poppins tracking-wide md:block text-xl lg:text-4xl md:pl-10 text-brightRed ">
                 Endorse <span className="text-black px-2">Businesses</span>
               </h2>
 
