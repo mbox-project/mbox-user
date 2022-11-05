@@ -33,10 +33,10 @@ const Header = () => {
             <div className="pl-8">
               <Image src={icon} width={30} height={30} />
             </div>
-            <div className=" font-poppins pl-4 text-lightGray py-2 text-base font-medium ">
+            <div className=" poppins pl-4 text-lightGray py-2 text-base font-semibold ">
               <Link href="/auth/login">Log In</Link>
             </div>
-            <div className=" py-2 text-base text-lightGray font-medium">
+            <div className=" py-2 text-base poppins text-lightGray font-semibold">
               <Link href="/auth/register"> Sign up</Link>
             </div>
           </div>

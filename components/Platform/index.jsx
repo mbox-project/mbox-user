@@ -21,7 +21,7 @@ const Platform = () => {
               <div className=" lg:hidden ">
                 <Image src={platformimg} />
               </div>
-              <p className="text-base md:text-xl lg:text-lg  md:pl-0 md:block pt-4 lg:pt-4 font-poppins text-lightGray leading-relaxed md:leading-9 lg:leading-7">
+              <p className="text-base md:text-xl lg:text-lg  md:pl-0 md:block pt-4 lg:pt-4 font-poppins text-lightGray leading-loose md:leading-9 lg:leading-7">
                 Mbox is Africa’s first digital marketplace that allows SMEs
                 create a digital version of their business with- out a website.
                 With just your username, businesses can connect with millions of
