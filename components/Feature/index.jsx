@@ -22,7 +22,9 @@ const Feature = ({ header, body, className, icon }) => {
         <p className="text-base md:text-2xl mt-3 md:mt-0 lg:text-lg poppins font-bold text-lightGray ">
           {header}
         </p>
-        <p className="text-base md:text-xl leading-loose lg:leading-8 lg:text-base text-gray-400 poppins pt-4">{body}</p>
+        <p className="text-base md:text-xl leading-loose lg:leading-8 lg:text-base text-gray-400 poppins pt-4">
+          {body}
+        </p>
       </div>
     </div>
   );

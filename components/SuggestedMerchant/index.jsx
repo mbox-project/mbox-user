@@ -22,7 +22,7 @@ const SuggestedMerchant = ({ header, body, className, button, categories }) => {
         <div className="pl-10 poppins">
           <p className="text-base lg:text-lg py-3 ">{header}</p>
 
-          <Image src={star}  size={20}/>
+          <Image src={star} size={20} />
           <Image src={star} />
           <Image src={star} />
           <Image src={star} />

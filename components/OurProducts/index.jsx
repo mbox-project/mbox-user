@@ -10,7 +10,7 @@ const OurProducts = () => {
         <div className="max-w-screen-2xl md:px-4 px-0  pb-60  md:py-8 lg:py-16 mx-auto  lg:mx-0 sm:px-6">
           <div className=" block lg:grid grid-cols-2 gap-4  mt-2 lg:mt-5  lg:gap-y-16">
             <div className=" hidden lg:flex w-full  lg:pl-14 lg:mt-0">
-              <Image src={ourproductimg}  />
+              <Image src={ourproductimg} />
             </div>
 
             <div>
