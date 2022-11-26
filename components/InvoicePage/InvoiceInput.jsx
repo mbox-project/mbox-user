@@ -25,7 +25,7 @@ const invoiceInput = () => {
     productDescription,
     productQty,
     unitPrice,
-    totalPrice
+    totalPrice,
   } = invoiceData;
 
   const onChangeInput = (e) => {
