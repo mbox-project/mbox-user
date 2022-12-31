@@ -6,7 +6,7 @@ import Customercare from "../../public/images/Coustomercare.png";
 import Chat from "../../public/images/Chat.png";
 import Eclipse from "../../public/images/Eclipse.png";
 import Derin from "../../public/images/Derin.png";
-import stroke from "../../public/images/stroke.png";
+import stroke from "../../public/images/Stroke.png";
 import Question from "../../public/images/Question.png";
 const customsup = () => {
   return (

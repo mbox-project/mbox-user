@@ -17,7 +17,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import slide from "../public/images/slide.png";
 import PopularMerchants from "../components/PopularMerchants";
-import iconOne from "../public/images/featureicon1.png";
+import iconOne from "../public/images/featureicon1.PNG";
 import iconTwo from "/public/images/featureicon2.png";
 import iconThree from "/public/images/featureicon3.png";
 import Link from "next/link";
