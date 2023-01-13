@@ -1,5 +1,4 @@
 import React from "react";
-
 import Header from "../../components/Header";
 import Home from "../../components/CategoriesPage/Home";
 import Newsletter from "../../components/Newsletter";
@@ -9,6 +8,7 @@ import Deals from "../../components/CategoriesPage/Deals";
 import Newarrivals from "../../components/CategoriesPage/Newarrivals";
 import Mensfashion from "../../components/CategoriesPage/Mensfashion";
 import Othercategories from "../../components/CategoriesPage/Othercategories";
+import Filter from "../../components/CategoriesPage/Filter";
 const index = () => {
   return (
     <>
@@ -18,6 +18,7 @@ const index = () => {
       <Fashion />
       <Deals />
       <Newarrivals />
+      <Filter />
       <Mensfashion />
       <Othercategories />
       <Newsletter />
