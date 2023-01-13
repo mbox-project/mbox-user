@@ -2,9 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import invoiceService from "./invoiceService";
 
 const initialState = {
-  user:
+  invoiceLog:
     typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("user"))
+      ? JSON.parse(localStorage.getItem("invoiceLog"))
       : null,
   isError: false,
   isSuccess: false,
@@ -17,7 +17,7 @@ export const invoice = createAsyncThunk(
   "generateinvoice",
   async (invoiceData, thunkAPI) => {
     try {
-      return await invoiceService.invoice(invoiceData);
+      return invoiceService.invoice(invoiceData);
     } catch (error) {
       // console.log("Errors", error.response);
       const message =

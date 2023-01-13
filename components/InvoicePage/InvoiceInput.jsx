@@ -12,20 +12,20 @@ const invoiceInput = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [invoiceData, setInvoiceData] = useState({
-    productTag: "",
-    buyersName: "",
+    tag: "",
+    issuer: "",
     productDescription: "",
-    productQty: "",
-    unitPrice: "",
-    totalPrice: "",
+    quantity: "",
+    price: "",
+    total: "",
   });
   const {
-    productTag,
-    buyersName,
+    tag,
+    issuer,
     productDescription,
-    productQty,
-    unitPrice,
-    totalPrice,
+    quantity,
+    price,
+    total,
   } = invoiceData;
 
   const onChangeInput = (e) => {
@@ -35,7 +35,7 @@ const invoiceInput = () => {
     }));
   };
 
-  const { isError, isSuccess, isLoading, user, message } = useSelector(
+  const { isError, isSuccess, isLoading,  user , message } = useSelector(
     (state) => state.invoice
   );
   // destructure the loginData object
@@ -44,7 +44,7 @@ const invoiceInput = () => {
     if (isError) {
       toastify.alertError(message, 3000);
     }
-    if (isSuccess) {
+    if (isSuccess  ) {
       if (message == "User created succesfully") {
         const mssg =
           "A verification mail has been sent to your email for account verification";
@@ -59,12 +59,12 @@ const invoiceInput = () => {
     e.preventDefault();
     // simple validation
     if (
-      invoiceData.productQty == "" ||
+      invoiceData.quantity == "" ||
       invoiceData.productDescription == "" ||
-      invoiceData.productTag == "" ||
-      invoiceData.buyersName == "" ||
-      invoiceData.unitPrice == "" ||
-      invoiceData.totalPrice == ""
+      invoiceData.tag == "" ||
+      invoiceData.issuer == "" ||
+      invoiceData.price == "" ||
+      invoiceData.total == ""
     ) {
       toastify.alertError("A field cannot be empty", 3000);
     } else {
@@ -72,87 +72,92 @@ const invoiceInput = () => {
     }
   };
   return (
-    <div className=" border rounded-md lg:mx-64 my-20 shadow-lg">
+    <div className=" border rounded-md lg:mx-96 my-20 shadow-lg">
       <div className="bg-brightRed ">
-        <p className=" py-4 px-10 text-white font-poppins text-3xl">
+        <p className=" py-4 px-10 text-white font-poppins text-xl">
           Generate an Invoice
         </p>
       </div>
-      <div className=" px-20 pt-10">
-        <Label className="" htmlFor="text" title="Product Tag" />
+      <div className="bg-lightPink ">
+        <p className=" py-3 px-12 font-poppins text-sm">
+          Please ensure you enter the following requirement carefully and accurately
+        </p>
+      </div>
+      <div className=" px-14 pt-4">
+        <Label className="text-lightAsh text-sm" htmlFor="text" title="Product Tag" />
         <Input
-          name="productTag"
+          name="tag"
           type="text"
           placeHolder="GC-10234"
-          className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-          value={productTag}
+          className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
+          value={tag}
           onChange={onChangeInput}
           required
         />
       </div>
-      <div className=" px-20 pt-6">
-        <Label className="" htmlFor="text" title="Buyers Name" />
+      <div className=" px-14 pt-3">
+        <Label className="text-lightAsh text-sm" htmlFor="text" title="Buyers Name" />
         <Input
-          name="buyersName"
+          name="issuer"
           type="text"
           placeHolder="GC-10234"
-          className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-          value={buyersName}
+          className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
+          value={issuer}
           onChange={onChangeInput}
           required
         />
       </div>
-      <div className=" px-20 pt-10">
-        <Label className="" htmlFor="text" title="Product Description" />
+      <div className=" px-14 pt-2">
+        <Label className="text-lightAsh text-sm" htmlFor="text" title="Product Description" />
         <Input
           name="productDescription"
           type="text"
           placeHolder="Air Force II, Skando Limited Edition"
-          className="w-full p-1 md:p-2 lg:py-10  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+          className="w-full p-1 md:p-2 lg:py-10  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
           value={productDescription}
           onChange={onChangeInput}
           required
         />
       </div>
-      <div className=" px-20 pt-6">
-        <Label className="" htmlFor="text" title="Product Qty" />
+      <div className=" px-14 pt-2">
+        <Label className="text-lightAsh text-sm" htmlFor="text" title="Product Qty" />
         <Input
-          name="productQty"
+          name="quantity"
           type="text"
           placeHolder="GC-10234"
-          className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-          value={productQty}
+          className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
+          value={quantity}
           onChange={onChangeInput}
           required
         />
       </div>
-      <div className=" px-20 pt-6">
-        <Label className="" htmlFor="text" title="Unit Price" />
+      <div className=" px-14 pt-2">
+        <Label className="text-lightAsh text-sm" htmlFor="text" title="Unit Price" />
         <Input
-          name="unitPrice"
+          name="price"
           type="text"
           placeHolder="GC-10234"
-          className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-          value={unitPrice}
+          className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
+          value={price}
           onChange={onChangeInput}
           required
         />
       </div>
-      <p className=" flex justify-end pr-20">Add more than one product</p>
-      <div className=" px-20 pt-6">
-        <Label className="" htmlFor="text" title="Total price" />
+      <p className=" flex justify-end text-xs pt-2 pr-20">Add more than one product</p>
+      <div className=" px-14 pt-3">
+        <Label className="text-lightAsh text-sm" htmlFor="text" title="Total price" />
         <Input
-          name="totalPrice"
+          name="total"
           type="text"
           placeHolder="GC-10234"
-          className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-          value={totalPrice}
+          className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
+          value={total}
           onChange={onChangeInput}
           required
         />
       </div>
       <Button
-        className="mx-20 my-10 rounded-xl shadow-lg bg-brightRed w-full py-4  text-white flex justify-center text-xl poppins"
+        className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins"
         onClick={onSubmitHandler}
       >
         Generate Invoice
