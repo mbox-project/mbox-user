@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../components/PagesLayout/Layout";
-
+import Link from "next/link";
 const index = () => {
   return (
     <Layout>
@@ -93,7 +93,10 @@ const index = () => {
             />
           </svg>
 
-          <h4 className="tracking-wide">Fund Wallet</h4>
+          <h4 className="tracking-wide">
+            {" "}
+            <Link href="/fundwallet">Fund Wallet</Link>
+          </h4>
         </button>
         <button
           type="button"
@@ -112,7 +115,10 @@ const index = () => {
             />
           </svg>
 
-          <h4 className="tracking-wide">Withdraw Funds</h4>
+          <h4 className="tracking-wide">
+            {" "}
+            <Link href="/withdrawfunds">Withdraw Funds </Link>
+          </h4>
         </button>
       </section>
       {/* Transaction Recents History */}

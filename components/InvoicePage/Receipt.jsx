@@ -5,7 +5,6 @@ import InvoiceApi from "./InvoiceApi";
 import PricetagApi from "./PricetagApi";
 import ProductDes from "./ProductDes";
 const Receipt = () => {
-
   return (
     <div className=" mx-2 md:mx-10 border rounded-md lg:mx-20 shadow-lg">
       <div className="flex justify-between">

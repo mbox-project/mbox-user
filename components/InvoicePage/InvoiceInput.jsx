@@ -26,7 +26,7 @@ const invoiceInput = () => {
     quantity,
     price,
     total,
-  } = invoiceData;
+    invoiceData;
 
   const onChangeInput = (e) => {
     setInvoiceData((prevState) => ({
@@ -35,7 +35,7 @@ const invoiceInput = () => {
     }));
   };
 
-  const { isError, isSuccess, isLoading,  user , message } = useSelector(
+  const { isError, isSuccess, isLoading, user, message } = useSelector(
     (state) => state.invoice
   );
   // destructure the loginData object
@@ -44,7 +44,7 @@ const invoiceInput = () => {
     if (isError) {
       toastify.alertError(message, 3000);
     }
-    if (isSuccess  ) {
+    if (isSuccess) {
       if (message == "User created succesfully") {
         const mssg =
           "A verification mail has been sent to your email for account verification";
@@ -80,11 +80,16 @@ const invoiceInput = () => {
       </div>
       <div className="bg-lightPink ">
         <p className=" py-3 px-12 font-poppins text-sm">
-          Please ensure you enter the following requirement carefully and accurately
+          Please ensure you enter the following requirement carefully and
+          accurately
         </p>
       </div>
       <div className=" px-14 pt-4">
-        <Label className="text-lightAsh text-sm" htmlFor="text" title="Product Tag" />
+        <Label
+          className="text-lightAsh text-sm"
+          htmlFor="text"
+          title="Product Tag"
+        />
         <Input
           name="tag"
           type="text"
@@ -96,7 +101,11 @@ const invoiceInput = () => {
         />
       </div>
       <div className=" px-14 pt-3">
-        <Label className="text-lightAsh text-sm" htmlFor="text" title="Buyers Name" />
+        <Label
+          className="text-lightAsh text-sm"
+          htmlFor="text"
+          title="Buyers Name"
+        />
         <Input
           name="issuer"
           type="text"
@@ -108,7 +117,11 @@ const invoiceInput = () => {
         />
       </div>
       <div className=" px-14 pt-2">
-        <Label className="text-lightAsh text-sm" htmlFor="text" title="Product Description" />
+        <Label
+          className="text-lightAsh text-sm"
+          htmlFor="text"
+          title="Product Description"
+        />
         <Input
           name="productDescription"
           type="text"
@@ -120,7 +133,11 @@ const invoiceInput = () => {
         />
       </div>
       <div className=" px-14 pt-2">
-        <Label className="text-lightAsh text-sm" htmlFor="text" title="Product Qty" />
+        <Label
+          className="text-lightAsh text-sm"
+          htmlFor="text"
+          title="Product Qty"
+        />
         <Input
           name="quantity"
           type="text"
@@ -132,7 +149,11 @@ const invoiceInput = () => {
         />
       </div>
       <div className=" px-14 pt-2">
-        <Label className="text-lightAsh text-sm" htmlFor="text" title="Unit Price" />
+        <Label
+          className="text-lightAsh text-sm"
+          htmlFor="text"
+          title="Unit Price"
+        />
         <Input
           name="price"
           type="text"
@@ -143,9 +164,15 @@ const invoiceInput = () => {
           required
         />
       </div>
-      <p className=" flex justify-end text-xs pt-2 pr-20">Add more than one product</p>
+      <p className=" flex justify-end text-xs pt-2 pr-20">
+        Add more than one product
+      </p>
       <div className=" px-14 pt-3">
-        <Label className="text-lightAsh text-sm" htmlFor="text" title="Total price" />
+        <Label
+          className="text-lightAsh text-sm"
+          htmlFor="text"
+          title="Total price"
+        />
         <Input
           name="total"
           type="text"
