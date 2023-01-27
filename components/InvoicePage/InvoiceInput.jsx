@@ -26,7 +26,7 @@ const invoiceInput = () => {
     quantity,
     price,
     total,
-    invoiceData;
+    invoiceData
 
   const onChangeInput = (e) => {
     setInvoiceData((prevState) => ({
