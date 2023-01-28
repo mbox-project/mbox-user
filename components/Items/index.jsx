@@ -13,7 +13,7 @@ const Items = () => {
         <hr></hr>
         <div className=" block  md:grid grid-cols-2 gap-8  md:mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">
           <div className="  pt-6 col-span-1 md: ">
-            <div className="flex flex-col md:ml-11  mt-6 space-y-7 text-sm  ">
+            <div className="flex flex-col md:ml-11  mt-6 space-y-7 text-sm md:text-xl lg:text-sm  ">
               <a className="inline-block">Laptops & Desktop</a>
               <Link href={""}>
                 <a className="inline-block" href="">
@@ -39,7 +39,7 @@ const Items = () => {
           </div>
 
           <div className="col-span-2 pt-6 border-t md:border-none lg:border-t sm:col-span-1 ">
-            <div className="flex flex-col mt-6 md:ml-11 space-y-7 text-sm ">
+            <div className="flex flex-col mt-6 md:ml-11 space-y-7 text-sm md:text-xl lg:text-sm  ">
               <Link href={""}>
                 <a className="inline-block" href="">
                   Headphones
@@ -67,7 +67,7 @@ const Items = () => {
           </div>
 
           <div className="col-span-2 pt-6 border-t sm:col-span-1">
-            <div className="flex flex-col md:ml-11 mt-6 space-y-7 text-sm ">
+            <div className="flex flex-col md:ml-11 mt-6 space-y-7 text-sm md:text-xl lg:text-sm  ">
               <Link href={""}>
                 <a className="inline-block" href="">
                   Rugs & Carpet
@@ -97,7 +97,7 @@ const Items = () => {
           </div>
 
           <div className="col-span-2 pt-6 border-t sm:col-span-1">
-            <div className="flex flex-col  md:ml-11 mt-6 space-y-7 text-sm ">
+            <div className="flex flex-col  md:ml-11 mt-6 space-y-7 text-sm md:text-xl lg:text-sm  ">
               <Link href={""}>
                 <a className="inline-block" href="">
                   Headphones

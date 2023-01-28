@@ -42,6 +42,7 @@ const Register = () => {
     if (isError) {
       toastify.alertError(message, 3000);
     }
+
     if (isSuccess) {
       if (message == "User created succesfully") {
         const mssg =
