@@ -1,44 +1,44 @@
-{
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@next/next/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
-  ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "plugins": ["react", "react-hooks", "prettier"],
-  "rules": {
-    "react/react-in-jsx-scope": "off",
-    "no-use-before-define": [
-      "error",
-      {
-        "functions": true,
-        "classes": true,
-        "variables": true
-      }
-    ],
-    "no-undef": 2,
-    "no-unused-vars": 2,
-    "no-console": 0,
-    "linebreak-style": [2, "unix"],
-    "react-hooks/rules-of-hooks": 2,
-    "react-hooks/exhaustive-deps": 2
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  }
-}
+// {
+//   "env": {
+//     "browser": true,
+//     "es2021": true,
+//     "node": true
+//   },
+//   "extends": [
+//     "eslint:recommended",
+//     "plugin:react/recommended",
+//     "plugin:@next/next/recommended",
+//     "plugin:react-hooks/recommended",
+//     "plugin:prettier/recommended"
+//   ],
+//   "parserOptions": {
+//     "ecmaFeatures": {
+//       "jsx": true
+//     },
+//     "ecmaVersion": 12,
+//     "sourceType": "module"
+//   },
+//   "plugins": ["react", "react-hooks", "prettier"],
+//   "rules": {
+//     "react/react-in-jsx-scope": "off",
+//     "no-use-before-define": [
+//       "error",
+//       {
+//         "functions": true,
+//         "classes": true,
+//         "variables": true
+//       }
+//     ],
+//     "no-undef": 2,
+//     "no-unused-vars": 2,
+//     "no-console": 0,
+//     "linebreak-style": [2, "unix"],
+//     "react-hooks/rules-of-hooks": 2,
+//     "react-hooks/exhaustive-deps": 2
+//   },
+//   "settings": {
+//     "react": {
+//       "version": "detect"
+//     }
+//   }
+// }

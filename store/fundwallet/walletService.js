@@ -31,10 +31,10 @@ const paystackFundWallet = async (data) => {
     `${PAYMENT_API_URL}/Wallet/paystack/fund-wallet`,
     data
   );
-  iresponse.df (response.data) {
+  if (response.data) {
     localStorage.setItem("wallet", JSON.stringify(response.data));
   }
-  return ata;
+  return response.data;
 }
 
 const withdrawFundPaystack = async (data) => {
