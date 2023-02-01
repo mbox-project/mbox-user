@@ -2,7 +2,18 @@ import React from "react";
 import Input from "../../components/Input";
 import Label from "../../components/Label";
 import Button from "../../components/Button";
+import { withdrawPaystack } from "../../store/fundwallet/walletSlice";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 const withdrawFunds = () => {
+  const dispatch = useDispatch();
+  const [amount,setAmount] = useState("")
+  const [bankName,setBankName] = useState("")
+  const [accountName,setAccountName] = useState("")
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    
+  };
   return (
     <div className=" border rounded-md lg:mx-96 my-20 shadow-lg">
       <div className="bg-brightRed ">
