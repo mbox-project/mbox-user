@@ -98,21 +98,24 @@ const withdrawFunds = () => {
               onChange={(e) => setAccountNumber(e.target.value)}
             />
           </div>
-          <div className=" px-12 pt-3">
-            <Label
-              className="text-[#C1C1C1]  text-xs"
-              htmlFor="text"
-              title="Bank Name"
-            />
-            <Input
+          <div>
+            <select
               name=""
               type="text"
               placeHolder=""
-              className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
+              className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  text-[#C1C1C1] mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
               required
-              value={bankName}
-              onChange={(e) => setBankName(e.target.value)}
-            />
+            >
+              <option
+                disabled
+                selected
+                className=" pr-12 text-lg lg:text-xs  text-[#C1C1C1]"
+              >
+                Choose a Bank Name
+              </option>
+              <option value="p">Eco </option>
+              <option value="n">Access </option>
+            </select>
           </div>
           <div className=" px-12 pt-3">
             <Label
