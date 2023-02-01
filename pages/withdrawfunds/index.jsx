@@ -57,32 +57,41 @@ const withdrawFunds = () => {
             htmlFor="text"
             title="Bank Name"
           />
-          <Input
-            name=""
-            type="text"
-            placeHolder=""
-            className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-            required
-          />
-        </div>
-        <div className=" px-12 pt-3">
-          <Label
-            className="text-[#C1C1C1]  text-xs"
-            htmlFor="text"
-            title="Account Name"
-          />
-          <Input
-            name=""
-            type="text"
-            placeHolder="Taylor Mason"
-            className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-            required
-          />
-        </div>
+          <div>
+            <select
+              name=""
+              type="text"
+              placeHolder=""
+              className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  text-[#C1C1C1] mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
+              required
+            >
+              <option disabled selected className=" pr-12 text-lg lg:text-xs  text-[#C1C1C1]">
+                Choose a Bank Name
+              </option>
+              <option value="p">Eco </option>
+              <option value="n">Access </option>
+            </select>
+          </div>
 
-        <Button className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins">
-          Withdraw Now ($4000)
-        </Button>
+          <div className=" px-0 pt-3">
+            <Label
+              className="text-[#C1C1C1]  text-xs"
+              htmlFor="text"
+              title="Account Name"
+            />
+            <Input
+              name=""
+              type="text"
+              placeHolder="Taylor Mason"
+              className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
+              required
+            />
+          </div>
+
+          <Button className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins">
+            Withdraw Now ($4000)
+          </Button>
+        </div>
       </div>
     </div>
   );
