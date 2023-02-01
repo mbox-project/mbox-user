@@ -7,7 +7,7 @@ import searchresimg from "../../public/images/searchresimg.png";
 
 import Home from "../../components/ProductCategories/Home";
 import SearchRes from "../../components/Searchresult/SearchRes";
-import Cribstore from "../../components/Searchresult/cribstore";
+import Cribstore from "../../components/Searchresult/Cribstore";
 import Filter from "../../components/CategoriesPage/Filter";
 
 const index = () => {

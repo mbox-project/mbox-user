@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/Link";
+import Link from 'next/link'
 import profile from "../public/img/profile.svg";
 import saved from "../public/img/saved.svg";
 import { BiQuestionMark } from "react-icons/bi";
