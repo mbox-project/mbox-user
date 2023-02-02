@@ -52,7 +52,7 @@ const fundWallet = () => {
     <div className=" border rounded-md lg:mx-96 my-20 shadow-lg">
       {/* {isLoading && <Spinner />} */}
 
-      <div className="bg-brightRed ">
+      <div className="bg-brightRed">
         <p className=" py-4 px-4 text-white font-poppins text-xl">
           Fund your wallet
         </p>
