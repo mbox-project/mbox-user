@@ -4,23 +4,23 @@ import Label from "../../components/Label";
 import Button from "../../components/Button";
 const fundWallet = () => {
   return (
-    <div className=" border rounded-md lg:mx-96 my-20 shadow-lg">
+    <div className=" border rounded-md mx-10 md:mx-28 lg:mx-96 my-10 lg:my-20 shadow-lg">
       <div className="bg-brightRed ">
-        <p className=" py-4 px-4 text-white font-poppins text-xl">
+        <p className=" py-3 lg:py-4 px-4 text-white font-poppins text-base md:text-2xl lg:text-xl">
           Fund your wallet
         </p>
       </div>
       <div className="bg-lightPink ">
-        <p className=" py-3 px-4 font-poppins text-xs text-[#ADAAA9]">
+        <p className=" py-3 px-4 font-poppins text-sm md:text-base lg:text-xs text-[#ADAAA9]">
           please ensure you enter the following informations carefully and
           accurately
         </p>
       </div>
       <div className="bg-white">
-        <p className="text-[#9A9A9A] text-sm text-semibold poppins py-2 border-b  border-t-0 border-x-0 mx-12  pt-4  shadow-sm bg-white px-4 ">
+        <p className="text-[#9A9A9A] text-sm text-semibold poppins py-2 border-b  border-t-0 border-x-0  mx-3 mt-2 md:mt-0 md:mx-12 pt-4  shadow-sm bg-white px-4 ">
           Enter Amount
         </p>
-        <div className=" px-12 pt-6">
+        <div className=" px-3 md:px-5 lg:px-12 pt-6">
           <Label
             className="text-[#C1C1C1] text-xs"
             htmlFor="text"
@@ -34,10 +34,10 @@ const fundWallet = () => {
             required
           />
         </div>
-        <p className="text-[#9A9A9A] text-sm text-semibold poppins py-2 border-b  border-t-0 border-x-0 mx-12 mt-8  pt-4  shadow-sm bg-white px-4 ">
+        <p className="text-[#9A9A9A] text-sm text-semibold poppins py-2 border-b  border-t-0 border-x-0 mx-3 lg:mx-12 mt-8  pt-4  shadow-sm bg-white px-4 ">
           Billing Information
         </p>
-        <div className=" px-12 pt-3">
+        <div className=" px-3 md:px-5 lg:px-12 pt-3">
           <Label
             className="text-[#C1C1C1]  text-xs"
             htmlFor="text"
@@ -51,7 +51,7 @@ const fundWallet = () => {
             required
           />
         </div>
-        <div className="flex px-8 pt-2 ">
+        <div className="flex px-0 md:px-8 pt-2 ">
           <div className="px-4 ">
             <Label
               className="text-[#C1C1C1] text-xs"
@@ -82,7 +82,7 @@ const fundWallet = () => {
           </div>
         </div>
 
-        <div className=" flex px-12 pt-2">
+        <div className="flex px-3 md:px-12 pt-2">
           <div>
             <input type="checkbox" />
           </div>
@@ -91,12 +91,13 @@ const fundWallet = () => {
               Saved card
             </p>
           </div>
-
-          <Button className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins">
+</div>
+          
+      </div>
+      <Button className=" w-full my-4 rounded-md shadow-lg  bg-brightRed  py-2  text-white  justify-center text-base poppins">
             Pay Now ($4000)
           </Button>
-        </div>
-      </div>
+      
     </div>
   );
 };
