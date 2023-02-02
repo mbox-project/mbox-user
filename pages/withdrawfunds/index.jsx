@@ -4,10 +4,11 @@ import Label from "../../components/Label";
 import Button from "../../components/Button";
 import Spinner from "../../components/Spinner";
 import axios from "axios";
+import SearchBanks from "../../components/combobox";
 import { withdrawPaystack } from "../../store/fundwallet/walletSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-const withdrawFunds = () => {
+const withdrawFunds = ({}) => {
   const dispatch = useDispatch();
   const { isLoading, isError, isSuccess, wallet, message } = useSelector(
     (state) => state.wallet
@@ -99,7 +100,7 @@ const withdrawFunds = () => {
             />
           </div>
           <div>
-            <select
+            {/* <select
               name=""
               type="text"
               placeHolder=""
@@ -115,7 +116,8 @@ const withdrawFunds = () => {
               </option>
               <option value="p">Eco </option>
               <option value="n">Access </option>
-            </select>
+            </select> */}
+            <SearchBanks />
           </div>
           <div className=" px-12 pt-3">
             <Label

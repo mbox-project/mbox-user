@@ -1,56 +1,50 @@
 import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { FiChevronDown } from "react-icons/fi";
 
-// const people = [
-//   { id: 1, name: "Wade Cooper" },
-//   { id: 2, name: "Arlene Mccoy" },
-//   { id: 3, name: "Devon Webb" },
-//   { id: 4, name: "Tom Cook" },
-//   { id: 5, name: "Tanya Fox" },
-//   { id: 6, name: "Hellen Schmidt" },
-// ];
-
-export default function SearchBanks({
-  Array,
+export default function SearchSelect({
   selected,
   setSelected,
-  externalFunc,
+  suffix,
+  data,
+  label,
 }) {
-  //   const [selected, setSelected] = useState(Banks[0]);
   const [query, setQuery] = useState("");
 
-  const filteredArray =
+  const filteredPeople =
     query === ""
-      ? Array
-      : Array.filter((arr) =>
-          arr.name
+      ? data
+      : data.filter((person) =>
+          person.name
             .toLowerCase()
             .replace(/\s+/g, "")
             .includes(query.toLowerCase().replace(/\s+/g, ""))
         );
 
   return (
-    <div className="border-solid text-[1.2rem] border-b-[2px] w-full m-auto mb-[1rem]">
-      <Combobox
-        value={selected}
-        onChange={(e) => {
-          setSelected(e);
-          externalFunc(e.code);
-        }}
-      >
+    <div className="text-[16px] leading-[160%] py-[0.3rem]">
+      <div className="font-[600] text-[#181336]">{label}</div>
+      <Combobox value={selected?.name} onChange={setSelected}>
         <div className="relative mt-1">
-          <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+          <div className="relative w-full cursor-default overflow-hidden rounded-[5px] text-left shadow-md focus:outline-none focus-visible:ring-2 focusvisible:ring-white focusvisible:ring-opacity-75 focusvisible:ring-offset-2 focusvisible:ring-offset-teal-300 sm:text-sm">
+            {suffix && (
+              <div className="w-[8%] absolute left-[3%] translate-y-[-50%] top-[50%]">
+                <div className="flex items-center justify-around">
+                  <img
+                    className="w-[25px] h-[25px] mr-[0.4rem]"
+                    src={selected?.suffix}
+                  />
+                  <span className="block text-[22px] text-[#B8C9C9]">|</span>
+                </div>
+              </div>
+            )}
             <Combobox.Input
-              className="w-full border-none py-2 pl-3 pr-10 text-[1.5rem] leading-5 text-gray-400 focus:outline-none focus:border-primary-bold focus:ring-0"
-              displayValue={(Array) => Array.name}
+              className="w-full font-[400] rounded-[5px] pl-[12%] md:pl[12%] py-[12px] px-[16px] border-solid  border-[1.5px] bg-gray-100 text-[#899A9A] focus-visible:outline-[#3180E7]"
+              displayValue={selected?.name}
               onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-              <ChevronUpDownIcon
-                className="h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
+              <FiChevronDown />
             </Combobox.Button>
           </div>
           <Transition
@@ -60,18 +54,18 @@ export default function SearchBanks({
             leaveTo="opacity-0"
             afterLeave={() => setQuery("")}
           >
-            <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {filteredArray.length === 0 && query !== "" ? (
+            <Combobox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              {filteredPeople.length === 0 && query !== "" ? (
                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
-                  Not found.
+                  Nothing found.
                 </div>
               ) : (
-                filteredArray.map((person) => (
+                filteredPeople.map((person, i) => (
                   <Combobox.Option
-                    key={person.id}
+                    key={i}
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? "bg-teal-600 text-white" : "text-gray-900"
+                        active ? "bg-blueTheme text-white" : "text-gray-900"
                       }`
                     }
                     value={person}
@@ -83,15 +77,16 @@ export default function SearchBanks({
                             selected ? "font-medium" : "font-normal"
                           }`}
                         >
-                          {person.name}
+                          {person?.name}
                         </span>
                         {selected ? (
                           <span
                             className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                              active ? "text-white" : "text-teal-600"
+                              active ? "text-white" : "text-blueTheme"
                             }`}
                           >
-                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                            {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
+                            "/"
                           </span>
                         ) : null}
                       </>
