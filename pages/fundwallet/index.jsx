@@ -20,8 +20,10 @@ const fundWallet = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const {isLoading, isError, isSuccess, wallet, message} = useSelector((state) => state.wallet);
-
+  const { isLoading, isError, isSuccess, wallet, message } = useSelector(
+    (state) => state.wallet
+  );
+  //check for error messages   typeof window !== "undefined" ?
   useEffect(() => {
     if (isError) {
       toastify.alertError(message, 3000);
@@ -48,7 +50,9 @@ const fundWallet = () => {
 
   return (
     <div className=" border rounded-md lg:mx-96 my-20 shadow-lg">
-      <div className="bg-brightRed ">
+      {/* {isLoading && <Spinner />} */}
+
+      <div className="bg-brightRed">
         <p className=" py-4 px-4 text-white font-poppins text-xl">
           Fund your wallet
         </p>
