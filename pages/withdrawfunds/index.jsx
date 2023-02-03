@@ -3,44 +3,27 @@ import Input from "../../components/Input";
 import Label from "../../components/Label";
 import Button from "../../components/Button";
 import Spinner from "../../components/Spinner";
-import axios from "axios";
-import SearchBanks from "../../components/combobox";
 import { withdrawPaystack } from "../../store/fundwallet/walletSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { banks } from "../../components/data";
+import SearchSelect from "../../components/combobox";
 const withdrawFunds = ({}) => {
   const dispatch = useDispatch();
   const { isLoading, isError, isSuccess, wallet, message } = useSelector(
     (state) => state.wallet
   );
-  useEffect(() => {
-    const controller = new AbortController();
-    axios
-      .get("https://api.paystack.co/bank", {
-        headers: {
-          Authorization: `Bearer sk_test_70a9ede678bfe930c2ad34d102c517a9e6c63bd7`,
-        },
-        signal: controller.signal,
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
-    return () => {
-      controller.abort();
-    };
-  }, []);
   const [amount, setAmount] = useState("");
   const [bankName, setBankName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
-  const [accountName, setAccountName] = useState("");
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (amount && bankName && accountNumber && accountName) {
+    if (amount && bankName && accountNumber && bankName !== banks[0]) {
       const data = {
-        amount,
+        amount: Number(amount),
         email: "thomasonyemechi03@gmail.com",
         accountNumber,
-        bankName,
+        bankName: bankName.name,
       };
       dispatch(withdrawPaystack(data));
     }
@@ -99,27 +82,19 @@ const withdrawFunds = ({}) => {
               onChange={(e) => setAccountNumber(e.target.value)}
             />
           </div>
-          <div>
-            {/* <select
-              name=""
-              type="text"
-              placeHolder=""
-              className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  text-[#C1C1C1] mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-              required
-            >
-              <option
-                disabled
-                selected
-                className=" pr-12 text-lg lg:text-xs  text-[#C1C1C1]"
-              >
-                Choose a Bank Name
-              </option>
-              <option value="p">Eco </option>
-              <option value="n">Access </option>
-            </select> */}
-            <SearchBanks />
+          <div className="px-12 pt-3">
+            <Label
+              className="text-[#C1C1C1]  text-xs"
+              htmlFor="text"
+              title="Bank Name"
+            />
+            <SearchSelect
+              data={banks}
+              selected={bankName}
+              setSelected={setBankName}
+            />
           </div>
-          <div className=" px-12 pt-3">
+          {/* <div className=" px-12 pt-3">
             <Label
               className="text-[#C1C1C1]  text-xs"
               htmlFor="text"
@@ -134,11 +109,11 @@ const withdrawFunds = ({}) => {
               value={accountName}
               onChange={(e) => setAccountName(e.target.value)}
             />
-          </div>
+          </div> */}
 
           <Button
             onClick={onSubmitHandler}
-            className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins"
+            className=" w-[95%] mx-auto my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins"
           >
             Withdraw Now ($4000)
           </Button>
