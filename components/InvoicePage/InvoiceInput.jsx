@@ -19,14 +19,6 @@ const invoiceInput = () => {
     price: "",
     total: "",
   });
-  const {
-    tag,
-    issuer,
-    productDescription,
-    quantity,
-    price,
-    total,
-    invoiceData
 
   const onChangeInput = (e) => {
     setInvoiceData((prevState) => ({
@@ -58,6 +50,7 @@ const invoiceInput = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     // simple validation
+    console.log(invoiceData);
     if (
       invoiceData.quantity == "" ||
       invoiceData.productDescription == "" ||
@@ -69,6 +62,7 @@ const invoiceInput = () => {
       toastify.alertError("A field cannot be empty", 3000);
     } else {
       dispatch(invoice(invoiceData));
+      console.log("dispatched");
     }
   };
   return (
@@ -95,7 +89,7 @@ const invoiceInput = () => {
           type="text"
           placeHolder="GC-10234"
           className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-          value={tag}
+          value={invoiceData.tag}
           onChange={onChangeInput}
           required
         />
@@ -111,7 +105,7 @@ const invoiceInput = () => {
           type="text"
           placeHolder="GC-10234"
           className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-          value={issuer}
+          value={invoiceData.issuer}
           onChange={onChangeInput}
           required
         />
@@ -127,7 +121,7 @@ const invoiceInput = () => {
           type="text"
           placeHolder="Air Force II, Skando Limited Edition"
           className="w-full p-1 md:p-2 lg:py-10  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-          value={productDescription}
+          value={invoiceData.productDescription}
           onChange={onChangeInput}
           required
         />
@@ -143,7 +137,7 @@ const invoiceInput = () => {
           type="text"
           placeHolder="GC-10234"
           className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-          value={quantity}
+          value={invoiceData.quantity}
           onChange={onChangeInput}
           required
         />
@@ -159,7 +153,7 @@ const invoiceInput = () => {
           type="text"
           placeHolder="GC-10234"
           className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-          value={price}
+          value={invoiceData.price}
           onChange={onChangeInput}
           required
         />
@@ -178,7 +172,7 @@ const invoiceInput = () => {
           type="text"
           placeHolder="GC-10234"
           className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-          value={total}
+          value={invoiceData.total}
           onChange={onChangeInput}
           required
         />
@@ -187,7 +181,7 @@ const invoiceInput = () => {
         className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins"
         onClick={onSubmitHandler}
       >
-        Generate Invoice
+        Generate Invoice{isLoading && "loading"}
       </Button>
     </div>
   );

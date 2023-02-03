@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Input from "../../components/Input";
 import Label from "../../components/Label";
 import Button from "../../components/Button";
+import Spinner from "../../components/Spinner";
+import { toastify } from "../../helpers";
 import { useRouter } from "next/router";
 import { payStackFund, reset } from "../../store/fundwallet/walletSlice";
 
@@ -50,7 +52,7 @@ const fundWallet = () => {
 
   return (
     <div className=" border rounded-md lg:mx-96 my-20 shadow-lg">
-      {/* {isLoading && <Spinner />} */}
+      {isLoading && <Spinner />}
 
       <div className="bg-brightRed">
         <p className=" py-4 px-4 text-white font-poppins text-xl">
@@ -147,7 +149,7 @@ const fundWallet = () => {
             className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins"
             onClick={onSubmitHandler}
           >
-            Pay Now{isLoading && "isLoading"}
+            Pay Now
           </Button>
         </div>
       </div>

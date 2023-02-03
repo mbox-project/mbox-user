@@ -21,7 +21,7 @@ const withdrawFunds = ({}) => {
     if (amount && bankName && accountNumber && bankName !== banks[0]) {
       const data = {
         amount: Number(amount),
-        email: "thomasonyemechi03@gmail.com",
+        email: "oijaware@vertex.com",
         accountNumber,
         bankName: bankName.name,
       };
