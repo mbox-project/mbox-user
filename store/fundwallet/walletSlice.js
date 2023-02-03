@@ -3,7 +3,7 @@ import walletService from "./walletService";
 
 /**
  *
-**/
+ **/
 
 const initialState = {
   wallet:
@@ -25,9 +25,7 @@ export const payStackFund = createAsyncThunk(
     } catch (error) {
       console.log("pay stack error", error);
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.message) ||
+        (error.response && error.response.data && error.response.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -35,10 +33,8 @@ export const payStackFund = createAsyncThunk(
   }
 );
 
-
-
 export const withdrawPaystack = createAsyncThunk(
-  "witn",
+  "wallet/withdraw",
   async (data, thunkAPI) => {
     try {
       return await walletService.withdrawFundPaystack(data);
@@ -54,9 +50,6 @@ export const withdrawPaystack = createAsyncThunk(
     }
   }
 );
-
-
-
 
 //create the walletReducer...
 export const walletSlice = createSlice({
@@ -87,6 +80,21 @@ export const walletSlice = createSlice({
         state.message = action.payload.message;
         state.wallet = null;
       })
+      .addCase(withdrawPaystack.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(withdrawPaystack.fulfilled, (state, action) => {
+        state.isSuccess = true;
+        state.isLoading = false;
+        state.wallet = action.payload.data;
+        state.message = action.payload.message;
+      })
+      .addCase(withdrawPaystack.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.message = action.payload.message;
+        state.wallet = null;
+      });
   },
 });
 

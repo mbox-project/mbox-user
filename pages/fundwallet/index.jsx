@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import { payStackFund, reset } from "../../store/fundwallet/walletSlice";
 
 const fundWallet = () => {
-
   // Add rememberMe property to it later..
   const [fundWalletData, setFundWalletData] = useState({
     amount: "",
@@ -18,21 +17,18 @@ const fundWallet = () => {
     setFundWalletData({ ...fundWalletData, [e.target.name]: e.target.value });
   };
 
-
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { isLoading, isError, isSuccess, wallet, message } = useSelector(
-    (state) => state.auth
-  );
-  //check for error messages   typeof window !== "undefined" ?
+  const {isLoading, isError, isSuccess, wallet, message} = useSelector((state) => state.wallet);
+
   useEffect(() => {
     if (isError) {
       toastify.alertError(message, 3000);
     }
 
     if (isSuccess) {
-      console.log('237237', wallet);
+      console.log("237237", wallet);
       router.push(wallet);
     }
     dispatch(reset());
@@ -43,22 +39,15 @@ const fundWallet = () => {
     if (fundWalletData.amount == "") {
       toastify.alertWarning("Enter a valid ammount", 3000);
     } else {
-      let email = 'thomasonyemechi03@gmail.com';
-      fundWalletData.email = email
+      let email = "thomasonyemechi03@gmail.com";
+      fundWalletData.email = email;
       console.log(fundWalletData);
       dispatch(payStackFund(fundWalletData));
     }
   };
 
-
-
   return (
-
     <div className=" border rounded-md lg:mx-96 my-20 shadow-lg">
-
-      {isLoading && <Spinner />}
-
-
       <div className="bg-brightRed ">
         <p className=" py-4 px-4 text-white font-poppins text-xl">
           Fund your wallet
@@ -150,10 +139,11 @@ const fundWallet = () => {
             </p>
           </div> */}
 
-          <Button className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins"
+          <Button
+            className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins"
             onClick={onSubmitHandler}
           >
-            Pay Now
+            Pay Now{isLoading && "isLoading"}
           </Button>
         </div>
       </div>
