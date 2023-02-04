@@ -91,13 +91,11 @@ const fundWallet = () => {
               Saved card
             </p>
           </div>
-</div>
-          
+        </div>
       </div>
       <Button className=" w-full my-4 rounded-md shadow-lg  bg-brightRed  py-2  text-white  justify-center text-base poppins">
-            Pay Now ($4000)
-          </Button>
-      
+        Pay Now ($4000)
+      </Button>
     </div>
   );
 };

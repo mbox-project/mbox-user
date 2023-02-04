@@ -1,102 +1,38 @@
-import React from "react";
-// import { useSelector, useDispatch } from "react-redux";
-// import { useRouter } from "next/router";
-// import { invoice, reset } from "../../store/invoice/invoiceSlice";
-// import Spinner from "../../components/Spinner";
-// import { toastify } from "../../helpers";
+import React, { useState } from "react";
 import Input from "../Input";
 import Label from "../Label";
 import Button from "../Button";
-const invoiceInput = () => {
-  // Add rememberMe property to it later.
-  // const dispatch = useDispatch();
-  // const router = useRouter();
-  // const [invoiceData, setInvoiceData] = useState({
-  //   tag: "",
-  //   issuer: "",
-  //   productDescription: "",
-  //   quantity: "",
-  //   price: "",
-  //   total: "",
-  // });
-  // const {
-  //   tag,
-  //   issuer,
-  //   productDescription,
-  //   quantity,
-  //   price,
-  //   total,
-  //   invoiceData,
+const invoiceInformation = () => {
+  const [isDisabled, setIsDisabled] = useState(false);
 
-  //  const onChangeInput = (e) => {
-  //   setInvoiceData((prevState) => ({
-  //     ...prevState,
-  //     [e.target.name]: e.target.value,
-  //   }));
-  // };
-
-  // const { isError, isSuccess, isLoading, user, message } = useSelector(
-  //   (state) => state.invoice
-  // );
-  // // destructure the loginData object
-
-  // useEffect(() => {
-  //   if (isError) {
-  //     toastify.alertError(message, 3000);
-  //   }
-  //   if (isSuccess) {
-  //     if (message == "User created succesfully") {
-  //       const mssg =
-  //         "A verification mail has been sent to your email for account verification";
-  //       toastify.alertSuccess(mssg, 5000);
-  //     }
-  //     router.push("/invoice");
-  //   }
-  //   dispatch(reset());
-  // }, [isError, isSuccess, message, user, router, dispatch]);
-
-  // const onSubmitHandler = (e) => {
-  //   e.preventDefault();
-  //   // simple validation
-  //   if (
-  //     invoiceData.quantity == "" ||
-  //     invoiceData.productDescription == "" ||
-  //     invoiceData.tag == "" ||
-  //     invoiceData.issuer == "" ||
-  //     invoiceData.price == "" ||
-  //     invoiceData.total == ""
-  //   ) {
-  //     toastify.alertError("A field cannot be empty", 3000);
-  //   } else {
-  //     dispatch(invoice(invoiceData));
-  //   }
-  // };
   return (
     <div className=" border rounded-md mx-10 md:mx-28 lg:mx-96 my-10 lg:my-20 shadow-lg">
       <div className="bg-brightRed ">
         <p className=" py-3 lg:py-4 px-4 text-white font-poppins text-base md:text-2xl lg:text-xl">
-          Generate an Invoice
+          Pay an Invoice
         </p>
       </div>
       <div className="bg-[#FFF0E9] ">
         <p className=" py-3 px-4 font-poppins text-sm md:text-base lg:text-xs text-[#ADAAA9]">
-          Please ensure you enter the following requirement carefully and
-          accurately
+          Please ensure the information is accurate and then select your payment
+          option
         </p>
       </div>
       <div className=" px-3 md:px-5 lg:px-5 pt-4">
+        <p className="text-sm text-extrabold poppins py-2 border-b  border-t-0 border-x-0  mx-3 mt-2 md:mt-0 md:mx-0 pt-4  shadow-sm bg-white px-4 ">
+          Invoice Information
+        </p>
         <Label
-          className="text-[#C1C1C1]  text-xs"
+          className="text-[#C1C1C1]  text-xs "
           htmlFor="text"
-          title="Product Tag"
+          title="Invoice Tag"
         />
         <Input
           name="tag"
           type="text"
           placeHolder="GC-10234"
+          disabled={isDisabled}
           className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-          // value={tag}
-          // onChange={onChangeInput}
           required
         />
       </div>
@@ -104,15 +40,14 @@ const invoiceInput = () => {
         <Label
           className="text-[#C1C1C1]  text-xs"
           htmlFor="text"
-          title="Buyers Name"
+          title="Store Name"
         />
         <Input
           name="issuer"
           type="text"
           placeHolder="GC-10234"
+          disabled={isDisabled}
           className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-          // value={issuer}
-          // onChange={onChangeInput}
           required
         />
       </div>
@@ -126,9 +61,8 @@ const invoiceInput = () => {
           name="productDescription"
           type="text"
           placeHolder="Air Force II, Skando Limited Edition"
+          disabled={isDisabled}
           className="w-full p-1 md:p-2 lg:py-10  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-          // value={productDescription}
-          // onChange={onChangeInput}
           required
         />
       </div>
@@ -142,9 +76,8 @@ const invoiceInput = () => {
           name="quantity"
           type="number"
           placeHolder="GC-10234"
+          disabled={isDisabled}
           className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-          // value={quantity}
-          // onChange={onChangeInput}
           required
         />
       </div>
@@ -159,37 +92,44 @@ const invoiceInput = () => {
           type="number"
           placeHolder="GC-10234"
           className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-          // value={price}
-          // onChange={onChangeInput}
+          disabled={isDisabled}
           required
         />
       </div>
-      <p className=" flex justify-end px-10 pt-2 text-[#C1C1C1]  text-xs">
-        Add more than one product
-      </p>
+
       <div className=" px-3 md:px-5 lg:px-5 pt-2">
         <Label
           className="text-[#C1C1C1]  text-xs"
           htmlFor="text"
-          title="Total price"
+          title="Total Amount"
         />
         <Input
           name="total"
           type="text"
           placeHolder="GC-10234"
+          disabled={isDisabled}
           className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-          // value={total}
-          // onChange={onChangeInput}
           required
         />
+      </div>
+      <p className="  px-5 pt-4 text-extrabold text-sm font-poppins">
+        Select Payment Option
+      </p>
+      <div className="flex px-3 md:px-5 pt-2">
+        <div>
+          <input type="checkbox" />
+        </div>
+        <div>
+          <p className="px-2 text-xs poppins pt-1 ">MBOX-3500</p>
+        </div>
       </div>
       <Button
         className=" w-full my-6  rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins"
         // onClick={onSubmitHandler}
       >
-        Generate Invoice
+        Pay Now ($4000)
       </Button>
     </div>
   );
 };
-export default invoiceInput;
+export default invoiceInformation;
