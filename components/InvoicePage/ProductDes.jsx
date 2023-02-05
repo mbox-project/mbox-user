@@ -1,5 +1,5 @@
 import React from "react";
-const ProductDes = () => {
+const ProductDes = ({ data }) => {
   return (
     <>
       <div>
@@ -13,10 +13,10 @@ const ProductDes = () => {
         <div>
           <div className="flex justify-around  py-8">
             <p>1</p>
-            <p>Air force II,skando Limited Edition</p>
-            <p>$40.00</p>
-            <p>5</p>
-            <p>$80.00</p>
+            <p>{data.productDescription}</p>
+            <p>${data.price}</p>
+            <p>{data.quantity}</p>
+            <p>${data.total}</p>
           </div>
           <hr></hr>
         </div>

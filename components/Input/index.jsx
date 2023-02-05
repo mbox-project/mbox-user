@@ -11,7 +11,7 @@ const Input = ({
   autoFocus,
   maxlength,
   placeHolder,
-  // onFocus,
+  disabled,
 }) => {
   Input.propTypes = {
     className: PropTypes.string.isRequired,
@@ -23,7 +23,7 @@ const Input = ({
     autoFocus: PropTypes.bool,
     maxlength: PropTypes.number,
     placeHolder: PropTypes.string,
-    // onFocus: PropTypes.func,
+    disabled: PropTypes.bool,
   };
 
   return (
@@ -37,6 +37,7 @@ const Input = ({
       autoFocus={autoFocus}
       maxLength={maxlength}
       placeholder={placeHolder}
+      disabled={disabled}
       // onFocus={onFocus}
     />
   );
