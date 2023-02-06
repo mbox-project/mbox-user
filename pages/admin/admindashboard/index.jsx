@@ -8,7 +8,7 @@ const index = () => {
   return (
     <>
       <Layout>
-        <h2 className="card text-2xl border-b-2 mt-8 rectCard">Dashboard</h2>
+        <h2 className="card text-2xl border-b-2 mt-8 rectCard">Dashboard admin</h2>
       </Layout>
     </>
   );
