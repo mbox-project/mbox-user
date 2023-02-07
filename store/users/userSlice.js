@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isMerchant: false,
+  isMerchant: true,
 };
 
 export const userSlice = createSlice({

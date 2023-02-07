@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import loginbg from "../../../public/images/loginbg.png";
@@ -16,6 +16,7 @@ const Login = () => {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
+    rememberMe: false,
   });
   const dispatch = useDispatch();
   const router = useRouter();
@@ -24,33 +25,24 @@ const Login = () => {
     (state) => state.auth
   );
   // destructure the loginData object
-  const { email, password } = loginData;
+  const { email, password, rememberMe } = loginData;
   const onChangeInput = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
   //check for error messages   typeof window !== "undefined" ?
-  useEffect(() => {
-    if (isError) {
-      toastify.alertError(message, 3000);
-    }
-    if (isSuccess || user) {
-      //   if (message == "Login Successful") {
-      //     const mssg = "Welcome to your Dashboard";
-      //     toastify.alertSuccess(mssg, 3000);
-      //   }
-      router.push("/account");
-    }
-    dispatch(reset());
-  }, [isError, message, isSuccess, user, dispatch, router]);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     // simple validation
+    console.log(loginData);
     if (loginData.email == "" || loginData.password == "") {
       toastify.alertWarning("Email or password cannot be empty", 3000);
     } else {
-      dispatch(login(loginData));
+      dispatch(login(loginData)).then((action) => {
+        if (action.payload.data) router.push("/account");
+        if (action.payload.error) toastify.alertError(message, 3000);
+      });
     }
   };
 
@@ -132,9 +124,12 @@ const Login = () => {
                 <Input
                   type="checkbox"
                   className="mr-2"
+                  name="rememberMe"
                   required={false}
+                  value={rememberMe}
                   onChange={onChangeInput}
                 />
+                {/* <input type="checkbox" value= /> */}
                 <span className="text-lg lg:text-sm poppins">
                   keep me Log in
                 </span>
