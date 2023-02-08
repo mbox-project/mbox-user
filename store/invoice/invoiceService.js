@@ -23,15 +23,14 @@ const invoice = async (invoiceData) => {
   return response.data;
 };
 const getInvoice = async (id) => {
-  // try {
-
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  const response = await axios.get(
-    `${API_URL}/Invoice/getInvoiceById/?invoiceid=${id}`
-  );
-  return response.data;
+  try {
+    const response = await axios.get(
+      `${API_URL}/Invoice/getInvoiceById/?invoiceid=${id}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 const invoiceService = {
   invoice,
