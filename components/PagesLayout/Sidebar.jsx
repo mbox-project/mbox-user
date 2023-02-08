@@ -48,11 +48,11 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
             </li>
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
               <BsCartDash size={20} />
-              <Link href="#"> Pending Deals </Link>
+              <Link href="/pendingdeals/"> Pending Deals </Link>
             </li>
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
               <BsCartDash size={20} />
-              <Link href="#"> Succesful Deals</Link>
+              <Link href="#"> Succesful Deals</Link>.,.
             </li>
           </ul>
         </div>

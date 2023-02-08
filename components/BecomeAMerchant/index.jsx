@@ -3,7 +3,6 @@ import Image from "next/image";
 import becomeamerchantimg from "../../public/images/becomeamerchantimg.png";
 import becomeamerchant1 from "../../public/images/becomeamerchant1.png";
 import becomeamerchant2 from "../../public/images/becomeamerchant2.png";
-import becomeamerchant3 from "../../public/images/becomeamerchant3.png";
 import Button from "../Button";
 import Link from "next/link";
 const BecomeAMerchant = () => {
