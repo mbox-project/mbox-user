@@ -5,16 +5,6 @@ const API_URL = "http://107.23.126.161:8004/api";
 
 //Generate Invoice
 const invoice = async (invoiceData) => {
-  // try {
-  //   const response = await axios.post(
-  //     `${API_URL}/Invoice/generateInvoice`,
-  //     invoiceData
-  //   );
-  //   console.log(response.data, "logged");
-  //   return response.data;
-  // } catch (error) {
-  //   console.log(error);
-  // }
   const response = await axios.post(
     `${API_URL}/Invoice/generateInvoice`,
     invoiceData
