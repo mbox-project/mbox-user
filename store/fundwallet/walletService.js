@@ -1,7 +1,7 @@
 import { data } from "autoprefixer";
 import axios from "axios";
 
-const PAYMENT_API_URL = "http://107.23.126.161:8004/api";
+const PAYMENT_API_URL = "http://54.91.189.89:8004/api";
 
 const createWallet = (email) => {
   fetch(`${PAYMENT_API_URL}/Wallet/checkalreadyhaswallet/${email}`)

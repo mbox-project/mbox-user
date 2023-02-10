@@ -8,10 +8,7 @@ import authService from "./authService";
  */
 
 const initialState = {
-  user:
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("user"))
-      : null,
+  user: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -97,7 +94,7 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload;
+        state.user = action.payload.data;
         state.message = action.payload.message;
       })
       .addCase(login.rejected, (state, action) => {

@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { API_URL } from "../../config";
 
-const API_URL = "http://107.23.126.161:8004/api";
+const API_URL = "http://54.91.189.89:8004/api";
 
 //Generate Invoice
 const invoice = async (invoiceData) => {
