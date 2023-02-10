@@ -2,7 +2,9 @@ import axios from "axios";
 
 const api = axios.create({
   headers: {
-    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    Authorization: `Bearer ${
+      typeof window !== "undefined" ? sessionStorage.getItem("token") : null
+    }`,
   },
 });
 

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
+import vendorService from "./vendorService";
 
 /**
  * When the user login then we saved the userid, role, and token
@@ -14,6 +15,9 @@ const initialState = {
   isLoading: false,
   message: "",
 };
+
+//vendor service
+const createVendor = vendorService.createVendor;
 
 //register user
 export const register = createAsyncThunk(
@@ -39,7 +43,9 @@ export const login = createAsyncThunk(
   "auth/login",
   async (loginData, thunkAPI) => {
     try {
-      return await authService.login(loginData);
+      const response = await authService.login(loginData);
+      console.log(response);
+      return response;
     } catch (error) {
       // console.log("LoginError", error);
       const message =
@@ -105,7 +111,14 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
-      });
+      })
+      .addCase(createVendor.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createVendor.fulfilled, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(createVendor.rejected, (state, action) => {});
   },
 });
 
