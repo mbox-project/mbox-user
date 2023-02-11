@@ -10,6 +10,8 @@ import saved from "../../public/img/saved.svg";
 import thumb from "../../public/img/thumb.svg";
 import MobileSidebar from "./MobileSidebar";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { selectRole } from "../../store/selectors/selectors";
 
 const Sidebar = ({ showSideBar, isMerchant }) => {
   return (

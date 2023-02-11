@@ -42,6 +42,7 @@ const Login = () => {
       dispatch(login(loginData)).then((action) => {
         console.log(action);
         if (action.payload.data) {
+          console.log("running");
           sessionStorage.setItem("token", action.payload.data.token);
           router.push("/account");
         }

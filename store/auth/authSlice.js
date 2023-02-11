@@ -2,11 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 import vendorService from "./vendorService";
 
-/**
- * When the user login then we saved the userid, role, and token
- * in the localStorage and then it in the store..
- * inShort saved the user instance in the localStorage
- */
+// /**
+//  * When the user login then we saved the userid, role, and token
+//  * in the localStorage and then it in the store..
+//  * inShort saved the user instance in the localStorage
+//  */
 
 const initialState = {
   user: null,
