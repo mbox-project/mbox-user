@@ -71,7 +71,7 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={profile} width={20} height={20} alt="profile" />
-              <Link href="#"> Disputes </Link>
+              <Link href="dispute"> Disputes </Link>
             </li>
           </ul>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import shirt from "../public/img/shirt.png";
 import PropTypes from "prop-types";
@@ -35,7 +36,9 @@ const PendingProducts = ({ product }) => {
           >
             Approve
           </button>
-          <p className="text-brightRed text-base pt-10 text-center">Dispute</p>
+          <p className="text-brightRed text-base pt-10 text-center">
+            <Link href="dispute"> Disputes </Link>
+          </p>
         </div>
       </div>
     </>
