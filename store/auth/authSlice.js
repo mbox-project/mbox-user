@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 import vendorService from "./vendorService";
+import { HYDRATE } from "next-redux-wrapper";
 
 // /**
 //  * When the user login then we saved the userid, role, and token
@@ -9,7 +10,10 @@ import vendorService from "./vendorService";
 //  */
 
 const initialState = {
-  user: null,
+  user: {
+    role: "",
+    userId: "",
+  },
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -64,6 +68,10 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   return await authService.logout();
 });
 
+export const getUser = createAsyncThunk("auth/getUser", async (id) => {
+  return await authService.getUser(id);
+});
+
 //create the authReducer...
 export const authSlice = createSlice({
   name: "auth",
@@ -79,6 +87,12 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     //the extraReducers modify or updates the state accordingly...to this side effects..
     builder
+      .addCase(HYDRATE, (state, action) => {
+        return {
+          ...state,
+          ...action.payload.auth,
+        };
+      })
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
@@ -118,7 +132,14 @@ export const authSlice = createSlice({
       .addCase(createVendor.fulfilled, (state, action) => {
         state.isLoading = false;
       })
-      .addCase(createVendor.rejected, (state, action) => {});
+      .addCase(createVendor.rejected, (state, action) => {})
+      .addCase(getUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(getUser.rejected, (state, action) => {});
   },
 });
 

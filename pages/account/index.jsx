@@ -6,7 +6,7 @@ import MerchantDashboard from "../../components/MerchantPages/MerchantDashboard"
 import { selectRole } from "../../store/selectors/selectors";
 
 const Index = () => {
-  const { role } = useSelector(selectRole);
+  const role = useSelector(selectRole);
 
   return (
     <>

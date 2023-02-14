@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import invoiceService from "./invoiceService";
+import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
   invoiceLog: null,
@@ -62,6 +63,12 @@ export const invoiceSlice = createSlice({
     //the extraReducers modify or updates the state accordingly...to this side effects..
     builder.addCase(generateinvoice.pending, (state) => {
       state.isLoading = true;
+    });
+    builder.addCase(HYDRATE, (state, action) => {
+      return {
+        ...state,
+        ...action.payload.invoice,
+      };
     });
     builder.addCase(generateinvoice.fulfilled, (state, action) => {
       state.isLoading = false;

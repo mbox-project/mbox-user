@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../../config";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 //const API_URL = "http://54.174.220.112/api/";
 
@@ -19,11 +20,17 @@ const login = async (loginData) => {
   return response.data;
 };
 
+const getUser = async (id) => {
+  const response = await axios.get(`${API_URL}/User`, { params: { id } });
+  return response.data;
+};
+
 const logout = () => localStorage.removeItem("user");
 
 const authService = {
   register,
   login,
   logout,
+  getUser,
 };
 export default authService;

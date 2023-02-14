@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import walletService from "./walletService";
+import { HYDRATE } from "next-redux-wrapper";
 
 /**
  *
@@ -65,6 +66,12 @@ export const walletSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(HYDRATE, (state, action) => {
+        return {
+          ...state,
+          ...action.payload.wallet,
+        };
+      })
       .addCase(payStackFund.pending, (state) => {
         state.isLoading = true;
       })
