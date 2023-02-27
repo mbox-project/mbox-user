@@ -13,15 +13,6 @@ export const userSlice = createSlice({
       state.isMerchant = true;
     },
   },
-  extraReducers: (builder) => {
-    //the extraReducers modify or updates the state accordingly...to this side effects..
-    builder.addCase(HYDRATE, (state, action) => {
-      return {
-        ...state,
-        ...action.payload.user,
-      };
-    });
-  }
 });
 
 export const { activateMerchant } = userSlice.actions;

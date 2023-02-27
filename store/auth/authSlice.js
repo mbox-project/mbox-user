@@ -22,6 +22,7 @@ const initialState = {
 
 //vendor service
 const createVendor = vendorService.createVendor;
+const registerVendor = vendorService.registerVendor
 
 //register user
 export const register = createAsyncThunk(
@@ -83,16 +84,13 @@ export const authSlice = createSlice({
       state.isSuccess = false;
       state.message = "";
     },
+    hydrateAuth: (state, action) => {
+      state = action.payload;
+    },
   },
   extraReducers: (builder) => {
     //the extraReducers modify or updates the state accordingly...to this side effects..
     builder
-      .addCase(HYDRATE, (state, action) => {
-        return {
-          ...state,
-          ...action.payload.auth,
-        };
-      })
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
@@ -133,6 +131,13 @@ export const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(createVendor.rejected, (state, action) => {})
+      .addCase(registerVendor.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(registerVendor.fulfilled, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(registerVendor.rejected, (state, action) => {})
       .addCase(getUser.pending, (state) => {
         state.isLoading = true;
       })
@@ -143,5 +148,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { reset } = authSlice.actions;
+export const { reset, hydrateAuth } = authSlice.actions;
 export default authSlice.reducer;

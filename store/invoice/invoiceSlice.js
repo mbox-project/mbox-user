@@ -64,12 +64,6 @@ export const invoiceSlice = createSlice({
     builder.addCase(generateinvoice.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(HYDRATE, (state, action) => {
-      return {
-        ...state,
-        ...action.payload.invoice,
-      };
-    });
     builder.addCase(generateinvoice.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;

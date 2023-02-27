@@ -1,8 +1,14 @@
 import React from "react";
+import Label from "../Label";
+import { useState } from "react";
+import SearchSelect from "../combobox";
+import { banks } from "../data";
 import { BsFillCameraFill } from "react-icons/bs";
 import { BiEditAlt, BiTrashAlt } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import { registerVendor } from "../../store/auth/vendorService";
 
-export const PersonalDetails = () => {
+export const PersonalDetails = ({ data, setActiveKey }) => {
   return (
     <form>
       <section
@@ -33,6 +39,7 @@ export const PersonalDetails = () => {
               id="name"
               className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"
+              value={data?.fullname}
               required
             />
           </div>
@@ -45,6 +52,7 @@ export const PersonalDetails = () => {
               id="email"
               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"
+              value={data?.email}
               required
             />
           </div>
@@ -61,15 +69,37 @@ export const PersonalDetails = () => {
               className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
               placeholder="+234-813-4567-567"
               required
+              value={data?.phoneNumber}
             />
           </div>
         </div>
       </section>
+      <div className="flex justify-end mt-5 ">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setActiveKey("2");
+          }}
+          className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
+        >
+          Next
+        </button>
+      </div>
     </form>
   );
 };
 
-export const StoreInformation = () => {
+export const StoreInformation = ({ data, setData, setActiveKey }) => {
+  const handleChange = (e) => {
+    setData((prev) => {
+      const update = {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+      return { ...update };
+    });
+    console.log(data);
+  };
   return (
     <form>
       <h2 className="card text-2xl border-b-2 mt-10 rectCard">
@@ -87,6 +117,27 @@ export const StoreInformation = () => {
             <input
               type="text"
               id="storename"
+              name="storeName"
+              value={data?.storeName}
+              onChange={handleChange}
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="Taylor Mason"
+              required
+            />
+          </div>
+          <div className="mb-2">
+            <label
+              htmlFor="storeAbbrevation"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Store Abbrevation
+            </label>
+            <input
+              type="text"
+              id="storeAbbrevation"
+              name="storeAbbrevation"
+              value={data?.storeAbbrevation}
+              onChange={handleChange}
               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"
               required
@@ -99,6 +150,9 @@ export const StoreInformation = () => {
             <textarea
               id="message"
               rows="4"
+              name="storeDescription"
+              value={data?.storeDescription}
+              onChange={handleChange}
               className="block p-2.5 w-full text-sm 
                   text-gray-900 bg-gray-50 rounded-md border border-gray-300"
               placeholder="Takeaway Enterprice Dot Epitomic Ventures"
@@ -113,34 +167,88 @@ export const StoreInformation = () => {
             </label>
             <input
               type="text"
-              id="whatsapp"
+              id="storeAddress"
+              name="storeAddress"
               className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
               placeholder="+234-813-4567-567"
+              value={data?.storeAddress}
+              onChange={handleChange}
               required
             />
           </div>
-          <div className="mb-6">
-            <p>
-              You have reported 4 buyers so far, would you like to review
-              decisions?
-            </p>
-            <span className="text-red-500">CLICK HERE</span>
-          </div>
         </div>
       </section>
+      <div className="flex justify-end mt-5 ">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setActiveKey("3");
+          }}
+          className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
+        >
+          Next
+        </button>
+      </div>
     </form>
   );
 };
-export const BankInformation = () => {
+export const BankInformation = ({ data, setData, setActiveKey }) => {
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.auth.isLoading);
+  const [bankName, setBankName] = useState("");
+  const handleChange = (e) => {
+    setData((prev) => {
+      const update = {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+      return { ...update, bankName: bankName.name };
+    });
+    console.log(data);
+  };
+  const handleSubmit = (e, data) => {
+    e.preventDefault();
+    dispatch(registerVendor(data)).then((action) => {
+      console.log(action);
+    });
+  };
   return (
     <>
-      <form className="">
+      <form onSubmit={(e) => handleSubmit(e, data)} className="">
         <h2 className="card text-2xl border-b-2 mt-10 rectCard">
           Bank Information
         </h2>
         <section className="card flex flex-col py-2 space-2 rectCard">
           <div className="flex flex-col">
-            <div className="mb-2">
+            <div className=" px-12 pt-3">
+              <Label
+                className="text-[#C1C1C1]  text-xs"
+                htmlFor="text"
+                title="Account Number"
+              />
+              <input
+                name="accountNumber"
+                type="number"
+                placeHolder="1357 0245 6456 9981"
+                className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
+                onChange={handleChange}
+                required
+                value={data?.accountNumber}
+              />
+            </div>
+            <div className="px-12 pt-3">
+              <Label
+                className="text-[#C1C1C1]  text-xs"
+                htmlFor="text"
+                title="Bank Name"
+              />
+              <SearchSelect
+                data={banks}
+                selected={data?.bankName || bankName}
+                setSelected={setBankName}
+              />
+            </div>
+            {/* <div className="mb-2">
               <label
                 htmlFor="bankname"
                 className="block mb-2 text-md text-gray-500"
@@ -153,7 +261,7 @@ export const BankInformation = () => {
                 className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
                 placeholder="MBOX Bank"
               />
-            </div>
+            </div> */}
             <div className="mb-2">
               <label
                 htmlFor="acctname"
@@ -164,11 +272,13 @@ export const BankInformation = () => {
               <input
                 type="text"
                 id="acctname"
+                name="accountName"
+                onChange={handleChange}
                 className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
                 placeholder="Taylor Mason"
               />
             </div>
-            <div className="mb-2">
+            {/* <div className="mb-2">
               <label
                 htmlFor="acctno"
                 className="block mb-2 text-md text-gray-500"
@@ -181,7 +291,7 @@ export const BankInformation = () => {
                 className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
                 placeholder="0036789412"
               />
-            </div>
+            </div> */}
             <div className="mb-6">
               <p>
                 Please ensure the{" "}
