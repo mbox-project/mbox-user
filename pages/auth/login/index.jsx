@@ -39,15 +39,16 @@ const Login = () => {
     if (loginData.email == "" || loginData.password == "") {
       toastify.alertWarning("Email or password cannot be empty", 3000);
     } else {
-      dispatch(login(loginData)).then((action) => {
-        console.log(action);
-        if (action.payload.data) {
+      dispatch(login(loginData))
+        .then((action) => {
+          console.log(action);
           console.log("running");
           sessionStorage.setItem("token", action.payload.data.token);
-          router.push("/account");
-        }
-        if (action.payload.error) toastify.alertError(message, 3000);
-      });
+          router.push("/");
+        })
+        .catch((error) => {
+          toastify.alertError(error.message, 3000);
+        });
     }
   };
 

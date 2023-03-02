@@ -1,5 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
+import Navbar from "../components/PagesLayout/Navbar";
+import HomeNavbar from "../components/PagesLayout/HomeNavbar";
 import MainFooter from "../components/MainFooter";
 import Newsletter from "../components/Newsletter";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
@@ -24,6 +26,7 @@ import iconTwo from "/public/images/featureicon2.png";
 import iconThree from "/public/images/featureicon3.png";
 import Link from "next/link";
 import Button from "../components/Button";
+import { useSelector } from "react-redux";
 
 const featureCard = [
   {
@@ -74,9 +77,10 @@ let merchantCard = [
 ];
 
 const LandingPage = () => {
+  const user = useSelector((state) => state.auth.user);
   return (
     <div className="">
-      <Header />
+      {user.role ? <Navbar /> : <Header />}
       <section className="mr-0">
         <Carousel>
           <div>

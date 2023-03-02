@@ -22,7 +22,7 @@ const initialState = {
 
 //vendor service
 const createVendor = vendorService.createVendor;
-const registerVendor = vendorService.registerVendor
+const registerVendor = vendorService.registerVendor;
 
 //register user
 export const register = createAsyncThunk(
@@ -65,9 +65,6 @@ export const login = createAsyncThunk(
 );
 
 // logout user
-export const logout = createAsyncThunk("auth/logout", async () => {
-  return await authService.logout();
-});
 
 export const getUser = createAsyncThunk("auth/getUser", async (id) => {
   return await authService.getUser(id);
@@ -78,14 +75,14 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    logout: (state) => {
+      state.user = initialState.user;
+    },
     reset: (state) => {
       state.isLoading = false;
       state.isError = false;
       state.isSuccess = false;
       state.message = "";
-    },
-    hydrateAuth: (state, action) => {
-      state = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -121,9 +118,6 @@ export const authSlice = createSlice({
         state.message = action.payload;
         state.user = null;
       })
-      .addCase(logout.fulfilled, (state) => {
-        state.user = null;
-      })
       .addCase(createVendor.pending, (state) => {
         state.isLoading = true;
       })
@@ -148,5 +142,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { reset, hydrateAuth } = authSlice.actions;
+export const { reset, logout } = authSlice.actions;
 export default authSlice.reducer;

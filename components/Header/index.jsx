@@ -7,6 +7,7 @@ import beforeyoureg from "../../public/images/beforeyoureg.png";
 import Link from "next/link";
 import Search from "../PagesLayout/Search";
 import Button from "../Button";
+import { useSelector } from "react-redux";
 import { BsCart3 } from "react-icons/bs";
 import { BsHeart } from "react-icons/bs";
 import { RiNotification4Line } from "react-icons/ri";
@@ -16,6 +17,8 @@ import { BsPerson } from "react-icons/bs";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <header className="shadow-sm">
