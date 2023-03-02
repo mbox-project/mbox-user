@@ -31,7 +31,7 @@ const Receipt = ({ data }) => {
           {InvoiceApi.map((item) => {
             return (
               <div key={item.id}>
-                <p className="font-bold pt-1">{data.buyer}</p>
+                <p className="font-bold pt-1">{data?.buyer}</p>
                 <p className="pt-1">{item.Location}</p>
                 <p className="pt-1">{item.City}</p>
                 <p className="pt-1">{item.Telephone}</p>
