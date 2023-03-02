@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { getInvoice } from "../../store/invoice/invoiceSlice";
 import { useState } from "react";
 import invoiceService from "../../store/invoice/invoiceService";
-const invoiceID = ({ data }) => {
+const invoiceID = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const invoiceID = router.query.invoiceID;
