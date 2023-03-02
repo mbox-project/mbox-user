@@ -107,7 +107,7 @@ const invoiceInput = () => {
             type="text"
             placeHolder="GC-10234"
             className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-            value={invoiceData.tag}
+            value={invoiceData?.tag}
             onChange={onChangeInput}
             required
           />
@@ -123,7 +123,7 @@ const invoiceInput = () => {
             type="text"
             placeHolder="GC-10234"
             className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-            value={invoiceData.issuer}
+            value={invoiceData?.issuer}
             onChange={onChangeInput}
             required
           />

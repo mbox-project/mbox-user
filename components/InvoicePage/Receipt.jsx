@@ -45,7 +45,7 @@ const Receipt = ({ data }) => {
               <div key={item.id}>
                 <div className="flex">
                   <p className="font-bold"> Invoice Tag :</p>
-                  <p className="pl-2 pt-1">{data.tag}</p>
+                  <p className="pl-2 pt-1">{data?.tag}</p>
                 </div>
                 <div className="flex">
                   <p className="font-bold">Date:</p>
