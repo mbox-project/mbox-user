@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Navbar from "../components/PagesLayout/Navbar";
+import axios from "axios";
 import HomeNavbar from "../components/PagesLayout/HomeNavbar";
 import MainFooter from "../components/MainFooter";
 import Newsletter from "../components/Newsletter";
@@ -184,5 +185,20 @@ const LandingPage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  const res = await axios.get(
+    "http://54.205.3.132:8005/api/Category/getallcategories",
+    {
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJiZjU0NGZkOC0zZDc3LTRmNTMtOGJkOS0wYmY5YTRmN2UxNjAiLCJlbWFpbCI6Im9pamF3YXJlQHZlcnRleC5jb20iLCJuYW1lIjoiVG9iaSBJamF3YXJlIiwianRpIjoiNDlkN2FjODAtMWU0ZS00NTk4LTk5NjAtY2UwZDk0ZTczZjUyIiwicm9sZSI6InZlbmRvciIsIm5iZiI6MTY3Nzc1NTc5NCwiZXhwIjoxNjgzOTc2NTk0LCJpYXQiOjE2Nzc3NTU3OTQsImlzcyI6Imh0dHA6Ly93d3cuc2VjdXJpdHkuY29tIiwiYXVkIjoiaHR0cDovL3d3dy5zZWN1cml0eS5jb20ifQ.9sLo-VJPfSznBYKRTVCeD-i0zZ-aLN6IgRpZ5CLekhM`,
+      },
+    }
+  );
+  console.log(res.data);
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
 
 export default LandingPage;
