@@ -13,10 +13,10 @@ const ProductDes = ({ data }) => {
           </tr>
           <tr className="py-8 text-center">
             <td className="py-[2rem]">1</td>
-            <td className="py-[2rem]">{data.productDescription}</td>
-            <td className="py-[2rem]">${data.price}</td>
-            <td className="py-[2rem]">{data.quantity}</td>
-            <td className="py-[2rem]">${data.total}</td>
+            <td className="py-[2rem]">{data?.productDescription}</td>
+            <td className="py-[2rem]">${data?.price}</td>
+            <td className="py-[2rem]">{data?.quantity}</td>
+            <td className="py-[2rem]">${data?.total}</td>
           </tr>
         </table>
         {/* <div className="flex justify-around bg-brightRed border mx-8 text-white mt-8 py-4">

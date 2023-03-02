@@ -50,12 +50,12 @@ const Receipt = ({ data }) => {
                 <div className="flex">
                   <p className="font-bold">Date:</p>
                   <p className="pl-2 pt-1">
-                    {new Date(data.date).toLocaleDateString()}
+                    {new Date(data?.date).toLocaleDateString()}
                   </p>
                 </div>
                 <div className="flex">
                   <p className="font-bold">Issued by:</p>
-                  <p className="pl-2 pt-1"> {data.issuer}</p>
+                  <p className="pl-2 pt-1"> {data?.issuer}</p>
                 </div>
               </div>
             );
