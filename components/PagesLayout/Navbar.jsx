@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import NavBarDropdown from "../NavBarDropdown";
 import { useSelector } from "react-redux";
 import { selectRole } from "../../store/selectors/selectors";
+import Link from "next/link";
 
 const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
   const [showDropDown, setShowDropDown] = useState(false);
@@ -58,7 +59,7 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
           <Search />
           <div className="flex items-center space-x-6">
             {role === "vendor" ? (
-              <div className="flex">
+              <div className="flex gap-[0.5rem]">
                 <button
                   className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
                                  border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
@@ -66,13 +67,12 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
                   <span>Pay Invoice</span>
                   <Image src={arrow} width={10} height={10} alt="arrow" />
                 </button>
-                <button
-                  className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
-                                 border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
-                >
-                  <span>Generate Invoice</span>
-                  <Image src={arrow} width={10} height={10} alt="arrow" />
-                </button>
+                <Link href="/generateinvoice">
+                  <button className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white">
+                    <span>Generate Invoice</span>
+                    <Image src={arrow} width={10} height={10} alt="arrow" />
+                  </button>
+                </Link>
               </div>
             ) : (
               <button

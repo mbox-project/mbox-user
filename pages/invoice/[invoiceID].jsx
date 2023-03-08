@@ -55,7 +55,7 @@ export default invoiceID;
 
 // export async function getServerSideProps(context) {
 //   const id = context.params.invoiceID;
-//   const data = invoiceService.getInvoice(id);
+//   const data = await invoiceService.getInvoice(id);
 //   return {
 //     props: { data },
 //   };

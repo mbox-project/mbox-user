@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { postApi } from "../../api/api";
+import { postApi } from "../../config/api";
 
-const API_URL = "http://54.91.189.89:8003/api/";
+const API_URL = "http://52.87.168.25:8003/api/";
 
 export const createVendor = createAsyncThunk(
   "auth/createvendor",
@@ -21,7 +21,7 @@ export const registerVendor = createAsyncThunk(
 
 const vendorService = {
   createVendor,
-  registerVendor
+  registerVendor,
 };
 
 export default vendorService;
