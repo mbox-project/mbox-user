@@ -61,7 +61,7 @@ const withdrawFunds = () => {
             <select
               name=""
               type="text"
-              placeHolder=""
+              placeholder=""
               className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  text-[#C1C1C1] mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
               required
             >
