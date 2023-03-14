@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import adidas from "../../../public/img/adidas.png";
+import shirt from "../../../public/img/shirt.png";
 import { useSelector } from "react-redux";
 import Addmerchant from "../../../components/AdminMerchantDashboard/Addmerchant";
 import Layout from "../../../components/AdminPagesLayout/Layout";
 import Card from "../../../components/AdminMerchantDashboard/Card";
 import CardComp from "../../../components/AdminMerchantDashboard/CardComp";
-
+import { ProductsData } from "../../../components/prodata";
 import { GrStatusGood } from "react-icons/gr";
 
 const merchantDashboard = () => {
@@ -22,12 +23,10 @@ const merchantDashboard = () => {
 
         <section className="  h-72 bg-brightPurple"></section>
         <div className="-mt-20 pl-5">
-            <Image src={adidas} height={200}
-        width={200} />
-          </div>
+          <Image src={adidas} height={200} width={200} />
+        </div>
 
         <section>
-          
           <div className="-mt-24  ">
             <div className="flex justify-center  ">
               <h5 className="text-2xl flex font-poppins font-extrabold">
@@ -52,14 +51,25 @@ const merchantDashboard = () => {
           </div>
         </section>
         <section>
-          <div className=" flex justify-between">
-            <CardComp />
-            <CardComp />
+          <div className=" ">
             <CardComp />
           </div>
-          <section>
-            <button className="w-full bg-brightRed text-center text-white h-10 rounded-md">View store</button>
-          </section>
+        </section>
+        <section className=" grid grid-cols-2 gap-10 mb-5 mt-10 md:grid-cols-3">
+          {ProductsData.map((prod) => {
+            return (
+              <div key={prod.id}>
+                <Image src={shirt} />
+                <p>{prod.name}</p>
+                <p>{prod.price}</p>
+              </div>
+            );
+          })}
+        </section>
+        <section>
+          <button className="w-full bg-brightRed text-center text-white h-10 rounded-md">
+            View store
+          </button>
         </section>
       </Layout>
     </>
