@@ -12,7 +12,6 @@ import { GrStatusGood } from "react-icons/gr";
 
 const merchantDashboard = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { isMerchant } = useSelector((state) => state.user);
   return (
     <>
       <Layout>
