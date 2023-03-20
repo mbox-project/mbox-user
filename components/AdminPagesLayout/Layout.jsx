@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
         {/* SideBar Menu */}
         <SidebarComp showSideBar={showSideBar} isMerchant={isMerchant} />
 
-        <main className="px-4 container mb-10 md:px-5">
+        <main className="px-4 container bg-gray-100 mb-10 md:px-5">
           {/*  Navarbar .. */}
           <Navbar
             showbar={showbar}

@@ -40,14 +40,12 @@ const index = () => {
                 <div>
 
                     <form>
-                        <div className="relative">
+                        <label for="default-search" className="mb-2 mt-8 text-sm font-medium text-gray-900 sr-only">Search</label>
+                        <div className="relative  mt-5">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                <svg aria-hidden="true" className="w-5 h-5 text-gray-500 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                             </div>
-                            <input
-                                type="search"
-                                id="default-search"
-                                className="block w-auto p-2 mt-8 pl-10 text-sm text-gray-900 border border-gray-100 rounded bg-gray-100" placeholder="Search products here..." required />
+                            <input type="search" id="default-search" className="block w-auto p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search products here..." required />
                         </div>
                     </form>
                 </div>
@@ -55,11 +53,11 @@ const index = () => {
 
 
                 <div className="w-full mt-8 bg-white rounded-lg shadow">
-                    <div className="flex items-center justify-between mb-4 p-5 border-b-2 border-gray-200">
+                    <div className="flex items-center justify-between p-5 border-b-2 border-gray-200">
                         <h4 className="text-xl font-bold leading-none">Product List</h4>
                         <div className="flex justify-between">
                             <select className="bg-gray-10 border mr-[40px] border-gray-300 text-gray-500 text-sm rounded-lg block w-50 p-2.5">
-                                <option selected>All Merchant</option>
+                                <option selected>All product</option>
                             </select>
                             <select className="bg-gray-10 border mr-[40px] border-gray-300 text-gray-500 text-sm rounded-lg block w-50 p-2.5">
                                 <option selected>Sort By</option>
@@ -74,11 +72,11 @@ const index = () => {
                         </div>
 
                     </div>
-                    <div className="flow-root p-2">
+                    <div className="flow-root px-2">
                         <div className="relative overflow-x-auto sm:rounded-lg">
                             <table className="w-full text-sm text-left text-gray-900">
                                 <thead className="text-xs text-gray-400">
-                                    <tr>
+                                <tr className="border-b-2" >
                                         <th scope="col" className="p-4">
                                             <div className="flex items-center">
                                                 <input id="checkbox-all-search" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 

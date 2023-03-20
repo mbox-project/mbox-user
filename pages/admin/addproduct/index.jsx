@@ -25,6 +25,7 @@ const index = () => {
                 </div>
 
                 <Tabs
+                    style={{ backgroundColor: "white" }}
                     defaultActiveKey="1"
                     centered
                     items={[
@@ -112,46 +113,47 @@ const index = () => {
                             label: `Product Picture`,
                             key: 'tab_2',
                             children: React.createElement('div', '',
+                                <section className="card flex flex-col py-2 space-2 rectCard">
+                                    < div className="flex flex-col" >
+                                        <div className="mb-2">
+                                            <label
+                                                htmlFor="image"
+                                                className="block mb-2 text-md text-gray-500"
+                                            >
+                                                Gallery Images <span className="text-red-700">*</span>
+                                                <br />
+                                                <span className="text-red-600 pt-1 ">( Upload 4 image )</span>
+                                            </label>
 
-                                < div className="flex flex-col" >
-                                    <div className="mb-2">
-                                        <label
-                                            htmlFor="image"
-                                            className="block mb-2 text-md text-gray-500"
-                                        >
-                                            Gallery Images <span className="text-red-700">*</span>
-                                            <br />
-                                            <span className="text-red-600 pt-1 ">( Upload 4 image )</span>
-                                        </label>
+                                            <input
+                                                type="file"
+                                                id="images"
+                                                className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5 cursor-pointer"
+                                                placeholder="Product Name"
+                                                required
+                                            />
+                                        </div>
 
-                                        <input
-                                            type="file"
-                                            id="images"
-                                            className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5 cursor-pointer"
-                                            placeholder="Product Name"
-                                            required
-                                        />
+                                        <div className="mb-2">
+                                            <label
+                                                htmlFor="image"
+                                                className="block mb-2 text-md text-gray-500"
+                                            >
+                                                Thumbnail Images <span className="text-red-700">*</span>
+                                                <br />
+                                                <span className="text-red-600 pt-1 ">( Upload image )</span>
+                                            </label>
+
+                                            <input
+                                                type="file"
+                                                id="images"
+                                                className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5 cursor-pointer"
+                                                placeholder="Product Name"
+                                                required
+                                            />
+                                        </div>
                                     </div>
-
-                                    <div className="mb-2">
-                                        <label
-                                            htmlFor="image"
-                                            className="block mb-2 text-md text-gray-500"
-                                        >
-                                            Thumbnail Images <span className="text-red-700">*</span>
-                                            <br />
-                                            <span className="text-red-600 pt-1 ">( Upload image )</span>
-                                        </label>
-
-                                        <input
-                                            type="file"
-                                            id="images"
-                                            className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5 cursor-pointer"
-                                            placeholder="Product Name"
-                                            required
-                                        />
-                                    </div>
-                                </div>
+                                </section>
 
                             )
                         },
@@ -159,89 +161,89 @@ const index = () => {
                             label: `Product Variation`,
                             key: 'tab_3',
                             children: React.createElement('div', '',
+                                <section className="card flex flex-col py-2 space-2 rectCard">
+                                    < div className="flex flex-col" >
+                                        <div className="mb-2">
+                                            <label
+                                                htmlFor="image"
+                                                className="block mb-2 text-md text-gray-500"
+                                            >
+                                                Available Colors
+                                                <br />
+                                                <span className="text-red-600 pt-1 ">( Select all that applies )</span>
+                                            </label>
 
-                                < div className="flex flex-col" >
-                                    <div className="mb-2">
-                                        <label
-                                            htmlFor="image"
-                                            className="block mb-2 text-md text-gray-500"
-                                        >
-                                            Available Colors
-                                            <br />
-                                            <span className="text-red-600 pt-1 ">( Select all that applies )</span>
-                                        </label>
+                                            <select className="bg-gray-10 border mr-[40px] border-gray-300 text-gray-500 text-sm block w-full rounded-lg p-2.5">
+                                                <option selected disabled>Select Colors</option>
+                                            </select>
+                                        </div>
+                                        <div className="mb-2">
+                                            <label
+                                                htmlFor="image"
+                                                className="block mb-2 text-md text-gray-500"
+                                            >
+                                                Available Sizes
+                                                <br />
+                                                <span className="text-red-600 pt-1 ">( Select all that applies )</span>
+                                            </label>
 
-                                        <select className="bg-gray-10 border mr-[40px] border-gray-300 text-gray-500 text-sm block w-full rounded-lg p-2.5">
-                                            <option selected disabled>Select Colors</option>
-                                        </select>
+                                            <select className="bg-gray-10 border border-gray-300 text-gray-500 text-sm block w-full rounded-lg p-2.5">
+                                                <option selected disabled>Select Sizes</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div className="mb-2">
-                                        <label
-                                            htmlFor="image"
-                                            className="block mb-2 text-md text-gray-500"
-                                        >
-                                            Available Sizes
-                                            <br />
-                                            <span className="text-red-600 pt-1 ">( Select all that applies )</span>
-                                        </label>
-
-                                        <select className="bg-gray-10 border border-gray-300 text-gray-500 text-sm block w-full rounded-lg p-2.5">
-                                            <option selected disabled>Select Sizes</option>
-                                        </select>
-                                    </div>
-                                </div>
-
+                                </section>
                             )
                         }, {
                             label: `Product Price`,
                             key: 'tab_4',
                             children: React.createElement('div', '',
+                                <section className="card flex flex-col py-2 space-2 rectCard">
+                                    < div className="flex flex-col" >
+                                        <div className="mb-2">
+                                            <label
+                                                htmlFor="image"
+                                                className="block mb-2 text-md text-gray-500"
+                                            >
+                                                Unit Price
+                                            </label>
 
-                                < div className="flex flex-col" >
-                                    <div className="mb-2">
-                                        <label
-                                            htmlFor="image"
-                                            className="block mb-2 text-md text-gray-500"
-                                        >
-                                            Unit Price
-                                        </label>
+                                            <input
+                                                type="number"
+                                                className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5 cursor-pointer"
+                                                placeholder="$0"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-2">
+                                            <label
+                                                htmlFor="image"
+                                                className="block mb-2 text-md text-gray-500"
+                                            >
+                                                Discount
+                                            </label>
 
-                                        <input
-                                            type="number"
-                                            className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5 cursor-pointer"
-                                            placeholder="$0"
-                                            required
-                                        />
+                                            <input
+                                                type="number"
+                                                className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5 cursor-pointer"
+                                                placeholder="2%"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-2">
+                                            <label
+                                                htmlFor="image"
+                                                className="block mb-2 text-md text-gray-500"
+                                            >
+                                                Quantity
+                                            </label>
+
+                                            <select className="bg-gray-10 border border-gray-300 text-gray-500 text-sm rounded-lg block w-full p-2.5">
+                                                <option>1</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div className="mb-2">
-                                        <label
-                                            htmlFor="image"
-                                            className="block mb-2 text-md text-gray-500"
-                                        >
-                                            Discount
-                                        </label>
-
-                                        <input
-                                            type="number"
-                                            className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5 cursor-pointer"
-                                            placeholder="2%"
-                                            required
-                                        />
-                                    </div>
-                                    <div className="mb-2">
-                                        <label
-                                            htmlFor="image"
-                                            className="block mb-2 text-md text-gray-500"
-                                        >
-                                            Quantity
-                                        </label>
-
-                                        <select className="bg-gray-10 border border-gray-300 text-gray-500 text-sm rounded-lg block w-full p-2.5">
-                                            <option>1</option>
-                                        </select>
-                                    </div>
-                                </div>
-
+                                </section>
                             )
                         },
                     ]}

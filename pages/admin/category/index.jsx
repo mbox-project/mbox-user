@@ -107,15 +107,14 @@ const index = () => {
 
                 <div>
 
+                      
                     <form>
+                        <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                <svg aria-hidden="true" className="w-5 h-5 text-gray-500 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                             </div>
-                            <input
-                                type="search"
-                                id="default-search"
-                                className="block w-auto p-2 mt-8 pl-10 text-sm text-gray-900 border border-gray-100 rounded bg-gray-100" placeholder="Search Categories here..." required />
+                            <input type="search" id="default-search" className="block w-auto p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search Categories here..." required />
                         </div>
                     </form>
                 </div>
@@ -568,7 +567,7 @@ const index = () => {
 
                 <>
 
-                    <Modal title="Add a New Category" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                    <Modal title="Add a New Category" open={isModalOpen} onOk={handleOk} footer={null} onCancel={handleCancel}>
                         <div className="bg-lightPink ">
                             <p className=" py-3 font-poppins text-xs text-[#ADAAA9]">
                                 please ensure you enter the following informations carefully and accurately
