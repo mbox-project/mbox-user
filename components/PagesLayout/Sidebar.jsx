@@ -10,8 +10,11 @@ import saved from "../../public/img/saved.svg";
 import thumb from "../../public/img/thumb.svg";
 import MobileSidebar from "./MobileSidebar";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { selectRole } from "../../store/selectors/selectors";
 
 const Sidebar = ({ showSideBar, isMerchant }) => {
+  const role = useSelector(selectRole);
   return (
     <>
       <aside className="hidden w-80 bg-white-700 mt-10 flex-col justify-between shadow-md md:block">
@@ -24,7 +27,7 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
               <Image src={profile} width={20} height={20} alt="profile" />
               <Link href="/editprofile/"> Edit Profile </Link>
             </li>
-            {isMerchant && (
+            {role === "vendor" && (
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <BsCartDash size={20} />
                 <Link href="/products/"> Products </Link>

@@ -32,7 +32,7 @@ const Category = () => {
             <div className=" mt-6 space-y-7 text-sm md:text-xl lg:text-sm ">
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={gift} />
                   </Link>
                 </div>
@@ -43,31 +43,31 @@ const Category = () => {
 
               <div>
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={men} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Mens Fashion</a>
                 </Link>
               </div>
               <div>
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={furniture} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Furniture</a>
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={skincare} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Skin care & body</a>
                 </Link>
               </div>
@@ -78,41 +78,41 @@ const Category = () => {
             <div className="flex flex-col mt-6 space-y-7 text-sm md:text-xl lg:text-sm ">
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={food} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Food</a>
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={womenfashion} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Womens Fashion</a>
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={drinks} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Drinks & L1quor</a>
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={automobile} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Automobile</a>
                 </Link>
               </div>

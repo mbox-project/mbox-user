@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from 'next/link'
+import Link from "next/link";
 import profile from "../public/img/profile.svg";
 import saved from "../public/img/saved.svg";
 import { BiQuestionMark } from "react-icons/bi";
 import PropTypes from "prop-types";
 import CustomModal from "./CustomModal";
+import { useSelector, useDispatch } from "react-redux";
+import { selectRole } from "../store/selectors/selectors";
+import { logout } from "../store/auth/authSlice";
 
 const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
   const [showVendorModal, setShowVendormodal] = useState(false);
+  const role = useSelector(selectRole);
+  const dispatch = useDispatch();
 
   const handleModalVisibility = () => {
     setShowVendormodal(!showVendorModal);
@@ -25,7 +30,7 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
           <span>Buyer</span>
         </div>
         <hr />
-        {!isMerchant ? (
+        {role === "user" && (
           <div className="flex space-x-2">
             <button
               className="border border-brightRed text-center rounded-lg p-3"
@@ -38,8 +43,6 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
               <BiQuestionMark className="text-black" />
             </span>
           </div>
-        ) : (
-          <div></div>
         )}
         <div className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
           <Image src={profile} width={20} height={20} alt="profile" />
@@ -50,8 +53,11 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
           <Link href="/saveditems/"> Saved Items </Link>
         </div>
         <hr />
-        <div className="flex justify-center items-center text-center text-red-500 mt-3">
-          <button onClick={() => handleLogout()}>Logout</button>
+        <div
+          onClick={() => dispatch(logout())}
+          className="flex justify-center items-center text-center text-red-500 mt-3"
+        >
+          <button onClick={() => dispatch(logout())}>Logout</button>
         </div>
       </div>
       {showVendorModal && (

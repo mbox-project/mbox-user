@@ -72,3 +72,9 @@ input[type="number"]::-webkit-outer-spin-button {
 .store {
   color: rgba(68, 68, 68, 0.5);
 }
+.ant-tabs-ink-bar {
+  background: #ef5612 !important;
+}
+.ant-tabs-tab-btn {
+  color: #ef5612 !important;
+}

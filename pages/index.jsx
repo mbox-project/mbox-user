@@ -1,5 +1,8 @@
 import React from "react";
 import Header from "../components/Header";
+import Navbar from "../components/PagesLayout/Navbar";
+import axios from "axios";
+import HomeNavbar from "../components/PagesLayout/HomeNavbar";
 import MainFooter from "../components/MainFooter";
 import Newsletter from "../components/Newsletter";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
@@ -24,6 +27,7 @@ import iconTwo from "/public/images/featureicon2.png";
 import iconThree from "/public/images/featureicon3.png";
 import Link from "next/link";
 import Button from "../components/Button";
+import { useSelector } from "react-redux";
 
 const featureCard = [
   {
@@ -74,9 +78,10 @@ let merchantCard = [
 ];
 
 const LandingPage = () => {
+  const user = useSelector((state) => state.auth.user);
   return (
     <div className="">
-      <Header />
+      {user.role ? <Navbar /> : <Header />}
       <section className="mr-0">
         <Carousel>
           <div>
@@ -180,5 +185,15 @@ const LandingPage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  const res = await axios.get(
+    "http://34.199.115.184:8005/api/Category/getallcategories"
+  );
+  console.log(res.data);
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
 
 export default LandingPage;

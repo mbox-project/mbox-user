@@ -31,7 +31,7 @@ const Receipt = ({ data }) => {
           {InvoiceApi.map((item) => {
             return (
               <div key={item.id}>
-                <p className="font-bold pt-1">{data.buyer}</p>
+                <p className="font-bold pt-1">{data?.buyer}</p>
                 <p className="pt-1">{item.Location}</p>
                 <p className="pt-1">{item.City}</p>
                 <p className="pt-1">{item.Telephone}</p>
@@ -45,17 +45,17 @@ const Receipt = ({ data }) => {
               <div key={item.id}>
                 <div className="flex">
                   <p className="font-bold"> Invoice Tag :</p>
-                  <p className="pl-2 pt-1">{data.tag}</p>
+                  <p className="pl-2 pt-1">{data?.tag}</p>
                 </div>
                 <div className="flex">
                   <p className="font-bold">Date:</p>
                   <p className="pl-2 pt-1">
-                    {new Date(data.date).toLocaleDateString()}
+                    {new Date(data?.date).toLocaleDateString()}
                   </p>
                 </div>
                 <div className="flex">
                   <p className="font-bold">Issued by:</p>
-                  <p className="pl-2 pt-1"> {data.issuer}</p>
+                  <p className="pl-2 pt-1"> {data?.issuer}</p>
                 </div>
               </div>
             );

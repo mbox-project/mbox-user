@@ -6,7 +6,7 @@ import AddNewProduct from "../../components/MerchantPages/AddNewProduct";
 
 const Index = () => {
   const [showAddProduct, setShowAddProduct] = useState(true);
-
+  const [data, setData] = useState({});
   const handleProdVisiblity = () => {
     setShowAddProduct(!showAddProduct);
     console.log("clicked", showAddProduct);
@@ -59,7 +59,11 @@ const Index = () => {
           </>
         ) : (
           <>
-            <AddNewProduct handleProdVisiblity={handleProdVisiblity} />
+            <AddNewProduct
+              data={data}
+              setData={setData}
+              handleProdVisiblity={handleProdVisiblity}
+            />
           </>
         )}
       </Layout>

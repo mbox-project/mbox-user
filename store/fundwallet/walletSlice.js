@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import walletService from "./walletService";
+import { HYDRATE } from "next-redux-wrapper";
 
 /**
  *

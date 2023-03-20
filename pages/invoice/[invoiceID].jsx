@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { getInvoice } from "../../store/invoice/invoiceSlice";
 import { useState } from "react";
+import invoiceService from "../../store/invoice/invoiceService";
 const invoiceID = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -22,6 +23,16 @@ const invoiceID = () => {
   }, []);
   const { isLoading } = useSelector((state) => state.invoice);
   return (
+    // <div>
+    //   <Header />
+    //   <div className="flex poppins pl-24 pt-5">
+    //     <p>Home </p>
+    //     <p className="pl-1">invoice</p>
+    //   </div>
+    //   <Edit />
+    //   {data && <Receipt data={data} />}
+    //   <MainFooter />
+    // </div>
     <>
       {isLoading ? (
         <Spinner />
@@ -41,3 +52,11 @@ const invoiceID = () => {
   );
 };
 export default invoiceID;
+
+// export async function getServerSideProps(context) {
+//   const id = context.params.invoiceID;
+//   const data = await invoiceService.getInvoice(id);
+//   return {
+//     props: { data },
+//   };
+// }
