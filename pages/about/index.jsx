@@ -13,10 +13,10 @@ const AboutUs = () => {
     <div className="">
       <Navbar />
       <section className=" w-full h-64 text-white aboutherobg block  ">
-        <h1 className="flex justify-center text-4xl lg:text-6xl poppins font-extrabold pt-16">
+        <h1 className="flex justify-center text-xl md:text-4xl lg:text-6xl poppins font-extrabold pt-16">
           About Us
         </h1>
-        <p className="flex justify-center  text-grayColor poppins text-base tracking-wide pt-4">
+        <p className="flex justify-center pt-2  text-grayColor poppins text-base tracking-wide md:pt-4">
           Learn more about our platform Mbox
         </p>
       </section>

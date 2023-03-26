@@ -12,9 +12,9 @@ const TeamMate = () => {
       <div className="max-w-screen-xl  px-4 py-6 mx-auto sm:px-6 lg:px-0">
         <div className="">
           {/* <div className="col-span-2 md:col-span-1 lg:col-span-2"> */}
-          <div className=" block md:grid grid-cols-2 gap-20 mt-8 lg:mt-5 lg:grid-cols-3 lg:gap-y-16">
-            <div className=" pt-2 md:pt-0  ">
-              <div className="    p-4  md:my-7 mx-auto ">
+          <div className=" grid grid-cols-2 gap-20 mt-1 lg:mt-5 lg:grid-cols-3 lg:gap-y-16">
+            <div className=" pt-0 md:pt-0  ">
+              <div className=" p-1 my-0   lg:p-4  md:my-7 mx-auto ">
                 <Image src={teammateimg1} />
                 <p className=" text-center lg:text-2xl font-semibold poppins md:text-left text-sm text-lightGray  poppins pt-2">
                   Asiwaju MBOX
@@ -24,8 +24,8 @@ const TeamMate = () => {
                 </div>
               </div>
             </div>
-            <div className=" pt-2 md:pt-0  ">
-              <div className="    p-4  md:my-7 mx-auto ">
+            <div className=" pt-0 md:pt-0  ">
+              <div className="   p-1  my-0  lg:p-4  md:my-7 mx-auto ">
                 <Image src={teammateimg2} />
                 <p className="text-sm text-center md:text-left lg:text-2xl font-semibold text-lightGray poppins pt-2">
                   Kehinde MBOX
@@ -35,8 +35,8 @@ const TeamMate = () => {
                 </div>
               </div>
             </div>
-            <div className=" pt-2 md:pt-0  ">
-              <div className="  p-4  md:my-7 mx-auto ">
+            <div className=" pt-0 md:pt-0  ">
+              <div className=" p-1 my-0   lg:p-4 md:my-7 mx-auto ">
                 <Image src={teammateimg3} />
                 <p className="text-sm text-center md:text-left  lg:text-2xl font-semibold text-lightGray poppins pt-2">
                   Ayobami MBOX
@@ -46,8 +46,8 @@ const TeamMate = () => {
                 </div>
               </div>
             </div>
-            <div className=" pt-2 md:pt-0  ">
-              <div className=" text-center  p-4  md:my-7 mx-auto ">
+            <div className=" pt-0 md:pt-0  ">
+              <div className=" text-center  p-1  my-0  lg:p-4  md:my-7 mx-auto ">
                 <Image src={teammateimg4} />
                 <p className="  text-center md:text-left text-sm  lg:text-2xl font-semibold text-lightGray poppins pt-2">
                   Sophie MBOX
@@ -57,8 +57,8 @@ const TeamMate = () => {
                 </div>
               </div>
             </div>
-            <div className=" pt-2 md:pt-0  ">
-              <div className=" text-center  duration-300  p-4  md:my-7 mx-auto ">
+            <div className=" pt-0 md:pt-0  ">
+              <div className=" text-center    p-1 my-0   lg:p-4   md:my-7 mx-auto ">
                 <Image src={teammateimg5} />
                 <p className="text-sm text-center md:text-left  lg:text-2xl font-semibold text-lightGray poppins pt-2">
                   Oluwatobi MBOX
@@ -68,8 +68,8 @@ const TeamMate = () => {
                 </div>
               </div>
             </div>
-            <div className=" pt-2 md:pt-0  ">
-              <div className=" text-center   p-4  md:my-7 mx-auto ">
+            <div className=" pt-0 md:pt-0  ">
+              <div className=" text-center   p-1  my-0  lg:p-4  md:my-7 mx-auto ">
                 <Image src={teammateimg6} />
                 <p className="text-sm text-center md:text-left  lg:text-2xl font-semibold text-lightGray poppins pt-2">
                   Ibukun MBOX

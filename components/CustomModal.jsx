@@ -2,9 +2,14 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { activateMerchant } from "../store/users/userSlice";
+import { createVendor } from "../store/auth/vendorService";
+import { useSelector } from "react-redux";
 
 const CustomModal = ({ closeModal, closeDropDown }) => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const state = useSelector((state) => state);
+  console.log(user, state);
 
   /**
    * When the user switchToMerchant..
@@ -13,6 +18,11 @@ const CustomModal = ({ closeModal, closeDropDown }) => {
    */
   const switchToMerchant = () => {
     dispatch(activateMerchant());
+    dispatch(createVendor({ id: user.userId, catId: "Furniture" })).then(
+      (action) => {
+        console.log(action);
+      }
+    );
     closeDropDown();
   };
 

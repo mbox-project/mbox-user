@@ -2,13 +2,13 @@ import React from "react";
 import Image from "next/image";
 import gift from "../../public/images/giftitem.png";
 import men from "../../public/images/mensfashion.png";
-import furniture from "../../public/images/furniture.png";
+import furniture from "../../public/images/furnIture.png";
 import skincare from "../../public/images/skincare.png";
 import food from "../../public/images/food.png";
 import drinks from "../../public/images/drinks.png";
 import crafts from "../../public/images/crafts.png";
 import books from "../../public/images/book.png";
-import automobile from "../../public/images/automobile.png";
+import automobile from "../../public/images/automobILe.png";
 import womenfashion from "../../public/images/womenfashion.png";
 import phones from "../../public/images/phones.png";
 import estate from "../../public/images/estate.png";
@@ -22,17 +22,17 @@ const Category = () => {
     <section className="aboutbg">
       <div className="max-w-screen-xl px-4 py-10 lg:py-16 mx-auto sm:px-6 lg:px-8">
         <div className="">
-          <h4 className=" text-lg lg:text-xl abouttext  flex justify-center lg:tracking-wider">
+          <h4 className=" text-lg md:text-2xl  lg:text-xl abouttext  flex justify-center lg:tracking-wider">
             Shop Items By{" "}
             <span className="text-orange-600 px-1">Category </span>
           </h4>
         </div>
         <div className=" grid grid-cols-2 lg:gap-4 mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">
           <div className="col-span-2 pt-6  sm:col-span-1 ">
-            <div className=" mt-6 space-y-7 text-sm ">
+            <div className=" mt-6 space-y-7 text-sm md:text-xl lg:text-sm ">
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={gift} />
                   </Link>
                 </div>
@@ -43,31 +43,31 @@ const Category = () => {
 
               <div>
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={men} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Mens Fashion</a>
                 </Link>
               </div>
               <div>
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={furniture} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Furniture</a>
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={skincare} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Skin care & body</a>
                 </Link>
               </div>
@@ -75,44 +75,44 @@ const Category = () => {
           </div>
 
           <div className="col-span-2 pt-6  sm:col-span-1 ">
-            <div className="flex flex-col mt-6 space-y-7 text-sm ">
+            <div className="flex flex-col mt-6 space-y-7 text-sm md:text-xl lg:text-sm ">
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={food} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Food</a>
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={womenfashion} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Womens Fashion</a>
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={drinks} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Drinks & L1quor</a>
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={automobile} />
                   </Link>
                 </div>
-                <Link href={""}>
+                <Link href="categories">
                   <a className="flex justify-center py-3">Automobile</a>
                 </Link>
               </div>
@@ -120,7 +120,7 @@ const Category = () => {
           </div>
 
           <div className="col-span-2 pt-6  sm:col-span-1">
-            <div className="flex flex-col mt-6 space-y-7 text-sm ">
+            <div className="flex flex-col mt-6 space-y-7 text-sm md:text-xl lg:text-sm  ">
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href={""}>
@@ -165,7 +165,7 @@ const Category = () => {
           </div>
 
           <div className="col-span-2 pt-6  sm:col-span-1">
-            <div className="flex flex-col mt-6 space-y-7 text-sm ">
+            <div className="flex flex-col mt-6 space-y-7 text-sm md:text-xl lg:text-sm  ">
               <div>
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
                   <Link href={""}>

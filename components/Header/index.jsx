@@ -7,60 +7,50 @@ import beforeyoureg from "../../public/images/beforeyoureg.png";
 import Link from "next/link";
 import Search from "../PagesLayout/Search";
 import Button from "../Button";
+import { useSelector } from "react-redux";
 import { BsCart3 } from "react-icons/bs";
 import { BsHeart } from "react-icons/bs";
 import { RiNotification4Line } from "react-icons/ri";
 import { TbSpeakerphone } from "react-icons/tb";
 import { GiBowTieRibbon } from "react-icons/gi";
+import { BsPerson } from "react-icons/bs";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <header className="shadow-sm">
       <div className=" lg:px-20 p-4 mx-auto">
         <div className="flex ">
-          <div className=" lg:pr-12">
+          <div className="hidden md:flex pl-10 mt-1  md:mt-0 md:pl-0 lg:pr-12">
             <Image src={logo} width="100px" height="50px" />
+          </div>
+          <div className="pl-10 mt-1 md:hidden  md:mt-0 md:pl-0 lg:pr-12">
+            <Image src={logo} width="80px" height="40px" />
           </div>
           <Search />
 
-          {/* <div className="flex lg:w-0 lg:flex-1   ">
-            <input className="w-full h-10 bg-gray-200 lg:-ml-48  rounded-lg" />
-          </div>
-          <div className="flex lg:w-0 ">
-            <Button className="px-5 py-2 text-sm font-medium text-white lg:-ml-44 bg-orange-600 rounded-lg">
-              Search
-            </Button>
-          </div> */}
-          <div className="items-center  hidden pl-12 space-x-4 md:flex">
+          <div className="items-center  hidden pl-0 md:pl-12 space-x-4 md:flex">
             <div className="pl-8">
               <Image src={icon} width={30} height={30} />
             </div>
-            <div className=" font-poppins pl-4 text-lightGray py-2 text-base font-medium ">
+            <div className=" poppins pl-4 text-lightGray py-2 text-base font-semibold ">
               <Link href="/auth/login">Log In</Link>
             </div>
-            <div className=" py-2 text-base text-lightGray font-medium">
+            <div className=" py-2 text-base poppins text-lightGray font-semibold">
               <Link href="/auth/register"> Sign up</Link>
             </div>
           </div>
+          <div className="md:hidden absolute right-6 mt-1 h-20 ">
+            <BsPerson size={40} />
+          </div>
 
           {!isOpen && (
-            // <div className=" w-1/2 -right-0 absolute flex flex-col text-center bg-orange-600  py-5 px-6 mt-16 z-20  text-white md:hidden">
-            //   <Link href="/auth/login" className=" py-2   text-md font-medium ">
-            //     Log in
-            //   </Link>
-
-            //   <Link
-            //     className="text-md  font-medium pt-5  "
-            //     href="/auth/register"
-            //   >
-            //     Sign up
-            //   </Link>
-            // </div>
             <div className="md:hidden w-full h-full top-20 bg-grayColor z-20 absolute -right-0 ">
               <div className="flex py-4">
-                <div className="px-6 ">
+                <div className="px-4 ">
                   <Image src={beforeyoureg} width={50} height={50} />
                 </div>
                 <Button className="bg-brightRed  h-10 mt-2 py-2 px-12  font-poppins text-sm font-medium   text-white  ">
@@ -103,7 +93,8 @@ const Header = () => {
               </div>
             </div>
           )}
-          <div className="relative left-52 top-3 md:hidden">
+
+          <div className="relative right-28 pr-4 top-4 md:hidden">
             <button
               className="  text-gray-600  rounded-lg"
               type="button"
@@ -112,7 +103,7 @@ const Header = () => {
               <span className="sr-only">Open menu</span>
               <svg
                 aria-hidden="true"
-                className="w-10 h-10"
+                className="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

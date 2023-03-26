@@ -38,20 +38,21 @@ const Register = () => {
   );
   // console.log("Error", isError, "isSuccess", isSuccess, "isLoading", isLoading);
 
-  useEffect(() => {
-    if (isError) {
-      toastify.alertError(message, 3000);
-    }
-    if (isSuccess) {
-      if (message == "User created succesfully") {
-        const mssg =
-          "A verification mail has been sent to your email for account verification";
-        toastify.alertSuccess(mssg, 5000);
-      }
-      router.push("/auth/login");
-    }
-    dispatch(reset());
-  }, [isError, isSuccess, message, user, router, dispatch]);
+  // useEffect(() => {
+  //   if (isError) {
+  //     toastify.alertError(message, 3000);
+  //   }
+
+  //   if (isSuccess) {
+  //     if (message == "User created succesfully") {
+  //       const mssg =
+  //         "A verification mail has been sent to your email for account verification";
+  //       toastify.alertSuccess(mssg, 5000);
+  //     }
+  //     router.push("/auth/login");
+  //   }
+  //   dispatch(reset());
+  // }, [isError, isSuccess, message, user, router, dispatch]);
 
   const onSubmitForm = (e) => {
     e.preventDefault();
@@ -68,7 +69,18 @@ const Register = () => {
       toastify.alertError("Please enter ommitted fields ", 3000);
     } else {
       //dispatch an action and sends the data to the server..
-      dispatch(register(registerData));
+      dispatch(register(registerData)).then((action) => {
+        if (action.payload.data) {
+          toastify.alertSuccess(
+            "A verification mail has been sent to your email for account verification",
+            3000
+          );
+          router.push("/login");
+        }
+        if (action.payload.error) {
+          toastify.alertError("An error ocurred", 3000);
+        }
+      });
     }
   };
 
