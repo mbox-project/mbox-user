@@ -13,6 +13,7 @@ import { logout } from "../store/auth/authSlice";
 const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
   const [showVendorModal, setShowVendormodal] = useState(false);
   const role = useSelector(selectRole);
+  const username = useSelector((state) => state.auth.user.username);
   const dispatch = useDispatch();
 
   const handleModalVisibility = () => {
@@ -26,8 +27,8 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
     <>
       <div className="absolute dropdown-content right-0 mt-8 z-50 flex flex-col space-y-4 justify-start pl-4 py-6 bg-white w-64 rounded-md">
         <div className="profileDetails mb-3">
-          <h3 className="text-lg font-bold">Wahab Micheal</h3>
-          <span>Buyer</span>
+          <h3 className="text-lg font-bold">{username}</h3>
+          <span>{role === "user" ? "Buyer" : "vendor"}</span>
         </div>
         <hr />
         {role === "user" && (

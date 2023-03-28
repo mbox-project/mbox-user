@@ -24,7 +24,11 @@ const AddNewProduct = ({ data, setData, handleProdVisiblity }) => {
           </div>
         ),
         children: (
-          <ProductInformation data={data} setActiveKey={setActiveKey} />
+          <ProductInformation
+            data={data}
+            setData={setData}
+            setActiveKey={setActiveKey}
+          />
         ),
       },
       {
@@ -49,7 +53,14 @@ const AddNewProduct = ({ data, setData, handleProdVisiblity }) => {
             Product Variation
           </div>
         ),
-        children: <ProductVariation data={data} setData={setData} />,
+        children: (
+          <ProductVariation
+            data={data}
+            setData={setData}
+            setActiveKey={setActiveKey}
+            handleProdVisiblity={handleProdVisiblity}
+          />
+        ),
       },
       {
         key: "4",
@@ -58,7 +69,13 @@ const AddNewProduct = ({ data, setData, handleProdVisiblity }) => {
             Product Price
           </div>
         ),
-        children: <ProductPrice data={data} setData={setData} />,
+        children: (
+          <ProductPrice
+            data={data}
+            setData={setData}
+            setActiveKey={setActiveKey}
+          />
+        ),
       },
     ];
   }, [data]);
@@ -71,17 +88,6 @@ const AddNewProduct = ({ data, setData, handleProdVisiblity }) => {
         items={items}
         onChange={onChange}
       />
-      <section className="flex flex-col space-y-4 items-center justify-center mt-5">
-        <button className="p-3 bg-brightRed text-white text-center rounded-md w-4/5">
-          <Link href="/productpicture">Next</Link>
-        </button>
-        <button
-          className="p-3 border border-brightRed text-center text-brightRed rounded-md w-4/5"
-          onClick={handleProdVisiblity}
-        >
-          Preview Products
-        </button>
-      </section>
     </>
   );
 };

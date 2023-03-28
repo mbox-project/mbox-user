@@ -6,7 +6,7 @@ import AddNewProduct from "../../components/MerchantPages/AddNewProduct";
 
 const Index = () => {
   const [showAddProduct, setShowAddProduct] = useState(true);
-  const [data, setData] = useState({});
+  const [data, setData] = useState({ vendorId: "" });
   const handleProdVisiblity = () => {
     setShowAddProduct(!showAddProduct);
     console.log("clicked", showAddProduct);

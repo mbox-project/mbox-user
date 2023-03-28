@@ -21,7 +21,7 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
     setShowDropDown(false);
   };
   return (
-    <div className="customNavbar mx-auto relative font-sans w-full">
+    <div className="customNavbar mx-auto sticky top-0 z-[10] bg-white font-sans w-full">
       <div className="p-2 mx-auto shadow-md hover:shadow-lg">
         {/* flex Container */}
         <div className="flex items-center justify-between px-5 md:px-8 md:space-x-10">
@@ -53,8 +53,10 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           )}
-          <div className="hidden md:block">
-            <Image src={logo} alt="logo" width="100px" height="50px" />
+          <div className="hidden md:block cursor-pointer">
+            <Link href="/">
+              <Image src={logo} alt="logo" width="100px" height="50px" />
+            </Link>
           </div>
           <Search />
           <div className="flex items-center space-x-6">

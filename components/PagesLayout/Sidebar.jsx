@@ -17,7 +17,7 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
   const role = useSelector(selectRole);
   return (
     <>
-      <aside className="hidden w-80 bg-white-700 mt-10 flex-col justify-between shadow-md md:block">
+      <aside className="hidden w-80 bg-white-700 mt10 flex-col justify-between shadow-md md:block">
         <h6 className="py-4 font-bold text-lg pl-5 text-white bg-brightRed">
           My Account
         </h6>

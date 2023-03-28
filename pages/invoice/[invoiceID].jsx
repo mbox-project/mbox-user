@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../../components/Header";
 import Edit from "../../components/InvoicePage/Edit";
 import Receipt from "../../components/InvoicePage/Receipt";
 import MainFooter from "../../components/MainFooter";
@@ -9,14 +8,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { getInvoice } from "../../store/invoice/invoiceSlice";
 import { useState } from "react";
-import invoiceService from "../../store/invoice/invoiceService";
+import Navbar from "../../components/PagesLayout/Navbar";
 const invoiceID = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const invoiceID = router.query.invoiceID;
   const [data, setData] = useState(null);
+  console.log(invoiceID);
   useEffect(() => {
-    dispatch(getInvoice(invoiceID)).then((action) => {
+    dispatch(getInvoice(router.query.invoiceID)).then((action) => {
       console.log(action);
       setData(action.payload.data);
     });
@@ -38,7 +37,7 @@ const invoiceID = () => {
         <Spinner />
       ) : (
         <div>
-          <Header />
+          <Navbar />
           <div className="flex poppins pl-24 pt-5">
             <p>Home </p>
             <p className="pl-1">invoice</p>

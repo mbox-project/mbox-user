@@ -21,8 +21,8 @@ const login = async (loginData) => {
   return response.data;
 };
 
-const getUser = async (id) => {
-  const response = await axios.get(`User/${id}`);
+const getUser = async () => {
+  const response = await getApi("user");
   return response.data;
 };
 

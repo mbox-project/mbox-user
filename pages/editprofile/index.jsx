@@ -8,20 +8,19 @@ import EditProfile from "../../components/BuyersPage/EditProfile";
 import VendorEditProfile from "../../components/MerchantPages/VendorEditProfile";
 
 const index = () => {
-  const [data, setData] = useState({});
   const dispatch = useDispatch();
-  const { user, isLoading } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.auth);
+  const [data, setData] = useState({});
   useEffect(() => {
-    dispatch(getUser(user.userId)).then((action) => {
-      console.log(action);
-      if (action.payload.data) {
+    dispatch(getUser())
+      .unwrap()
+      .then(({ data }) =>
         setData({
-          fullname:action.payload.data?.fullname,
-          email:action.payload.data?.email,
-          phoneNumber:action.payload.data?.phoneNumber
-        });
-      }
-    });
+          fullname: data?.fullname,
+          email: data?.email,
+          phoneNumber: data?.phoneNumber,
+        })
+      );
   }, []);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const role = useSelector(selectRole);

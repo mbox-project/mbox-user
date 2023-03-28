@@ -1,6 +1,6 @@
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
-const fs = require("fs");
+const fs = require("fs").promises;
 
 export const config = {
   api: {
@@ -43,6 +43,7 @@ export default async function handler(req, res) {
             res.status(200).json({
               publicId: result.public_id,
               imageUrl: result.url,
+              isThumbnail: true,
             });
           }
         });

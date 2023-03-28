@@ -51,6 +51,6 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 // eslint-disable-next-line react-hooks/rules-of-hooks
-// export default useAuthStatus(Layout);
-export default Layout;
+export default useAuthStatus(Layout);
+// export default Layout;
 //export default Layout;

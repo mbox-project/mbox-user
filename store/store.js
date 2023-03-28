@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
+import storage from "redux-persist/lib/storage";
 import user from "./users/userSlice";
 import auth from "./auth/authSlice";
 import invoice from "./invoice/invoiceSlice";
@@ -24,9 +25,27 @@ const masterReducer = (state, action) => {
     return rootReducer(state, action);
   }
 };
-export const makeStore = () =>
-  configureStore({
-    reducer: masterReducer,
-  });
+
+export const makeStore = () => {
+  const isClient = typeof window !== "undefined";
+  if (isClient) {
+    const { persistStore, persistReducer } = require("redux-persist");
+
+    const PersisitConfig = {
+      key: "root",
+      whiteList: ["auth"],
+      storage,
+    };
+
+    const persistedReducer = persistReducer(PersisitConfig, masterReducer);
+    const store = configureStore({
+      reducer: persistedReducer,
+    });
+    store.__persistor = persistStore(store);
+    return store;
+  } else {
+    return configureStore({ reducer: masterReducer });
+  }
+};
 
 export const wrapper = createWrapper(makeStore);

@@ -2,243 +2,285 @@ import React from "react";
 import { useState } from "react";
 import UploadImages from "../antd/UploadImages";
 
-export const ProductInformation = () => {
+export const ProductInformation = ({ setData, data, setActiveKey }) => {
+  const handleChange = (e) => {
+    setData((prev) => {
+      const update = {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+      return { ...update };
+    });
+    console.log(data);
+  };
+  const handleTagsChange = (e) => {
+    setData((prev) => {
+      const update = {
+        ...prev,
+        [e.target.name]: e.target.value.split(","),
+      };
+      return { ...update };
+    });
+    console.log(data);
+  };
   return (
     <section className="card rectCard flex flex-col py-2 space-2">
       <div className="flex flex-col">
-        <div className="mb-2">
-          <label htmlFor="name" className="block mb-2 text-md text-gray-500">
-            Product Name <span className="text-brightRed">*</span>
-          </label>
-          <input
-            type="text"
-            id="name"
-            className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
-            placeholder="Product Name"
-            required
-          />
-        </div>
-        <div className="mb-2">
-          <label htmlFor="qty" className="block mb-2 text-md text-gray-500">
-            Product Qty <span className="text-brightRed">*</span>
-          </label>
-          <input
-            type="number"
-            id="qty"
-            className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
-            placeholder="e.g 10"
-            required
-          />
-          {/* <select
-              id="prodcategory"
-              className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setActiveKey("2");
+          }}
+        >
+          <div className="mb-2">
+            <label htmlFor="name" className="block mb-2 text-md text-gray-500">
+              Product Name <span className="text-brightRed">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={data.name}
+              onChange={handleChange}
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="Product Name"
               required
-            >
-              <option disabled selected>
-                Select Category
-              </option>
-              <option value="m">Electronics</option>
-              <option value="f">Furnitures</option>
-            </select> */}
-        </div>
-        <div className="mb-2">
-          <label htmlFor="qty" className="block mb-2 text-md text-gray-500">
-            Product Tags<span className="text-brightRed">*</span>
-          </label>
-          <input
-            type="text"
-            id="tags"
-            className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
-            placeholder="e.g clothes, shoes, belt"
-            required
-          />
-        </div>
-        <div className="mb-2">
-          <label htmlFor="desc" className="block mb-2 text-md text-gray-500">
-            Description
-          </label>
-          <textarea
-            id="desc"
-            rows="4"
-            className="block p-4 w-full text-sm 
+            />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="qty" className="block mb-2 text-md text-gray-500">
+              Product Qty <span className="text-brightRed">*</span>
+            </label>
+            <input
+              type="number"
+              id="qty"
+              name="quantity"
+              value={data.quantity}
+              onChange={handleChange}
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="e.g 10"
+              required
+            />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="tags" className="block mb-2 text-md text-gray-500">
+              Product Tags<span className="text-brightRed">*</span>
+            </label>
+            <input
+              type="text"
+              id="tags"
+              name="tags"
+              value={data.tags}
+              onChange={handleTagsChange}
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="e.g clothes, shoes, belt"
+              required
+            />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="desc" className="block mb-2 text-md text-gray-500">
+              Description
+            </label>
+            <textarea
+              id="desc"
+              rows="4"
+              name="description"
+              value={data.description}
+              onChange={handleChange}
+              className="block p-4 w-full text-sm 
                   text-gray-900 bg-gray-50 rounded-md border border-gray-300"
-            placeholder="Write something about the product. "
-          ></textarea>
-        </div>
-      </div>
-      {/* <div className="mb-2">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            htmlFor="file_input"
+              placeholder="Write something about the product. "
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="p-3 bg-brightRed text-white text-center rounded-md w-4/5"
           >
-            Picture
-          </label>
-          <input
-            type="file"
-            className="bg-gray-50 border rounded-md block w-full p-2"
-            aria-describedby="file_input_pics"
-            id="file_input"
-          />
-          <p className="mt-1 text-sm dark:text-gray-300" id="file_input_pics">
-            PNG or JPG (Max size of 500kb).
-          </p>
-        </div> */}
+            Next
+          </button>
+        </form>
+      </div>
     </section>
   );
 };
 
-export const ProductPicture = () => {
+export const ProductPicture = ({ setData, setActiveKey }) => {
   const [res, setRes] = useState([]);
   return (
     <section className="card rectCard flex flex-col py-2 space-2">
       <UploadImages setData={setRes} />
-      {/* <div className="flex flex-col">
-        <div className="mb-2">
-          <label htmlFor="name" className="block mb-0 text-md text-gray-500">
-            Gallery Images<span className="text-brightRed">*</span>
-          </label>
-          <p className="text-brightRed text-xs mb-2">(Upload 4 images)</p>
-          <div className="flex">
-            <input
-              type="text"
-              id="name"
-              className="bg-white border  text-sm rounded-md block w-full p-2.5"
-              placeholder="Choose File"
-              required
-            />
-            <button className="bg-gray-50 border text-sm rounded-md block ml-3 w-24 p-2.">
-              {" "}
-              Browse
-            </button>
-          </div>
-        </div>
-        <div className="mb-2">
-          <label htmlFor="name" className="block mb-0 text-md text-gray-500">
-            Thumbnail Images<span className="text-brightRed">*</span>
-          </label>
-          <p className="text-brightRed text-xs mb-2">(Upload 4 images)</p>
-          <div className="flex">
-            <input
-              type="text"
-              id="name"
-              className="bg-white border  text-sm rounded-md block w-full p-2.5"
-              placeholder="Choose File"
-              required
-            />
-            <button className="bg-gray-50 border text-sm rounded-md block ml-3 w-24 p-2.">
-              {" "}
-              Browse
-            </button>
-          </div>
-        </div>
-      </div> */}
+      <button
+        onClick={() => {
+          if (setRes.length > 0) {
+            setData((prev) => {
+              return { ...prev, images: [...res] };
+            });
+            setActiveKey("3");
+          }
+        }}
+        type="submit"
+        className="p-3 bg-brightRed text-white text-center rounded-md w-4/5"
+      >
+        Next
+      </button>
     </section>
   );
 };
 
-export const ProductPrice = () => {
+export const ProductPrice = ({ data, setData, setActiveKey }) => {
+  const handleChange = (e) => {
+    setData((prev) => {
+      const update = {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+      return { ...update };
+    });
+    console.log(data);
+  };
   return (
     <section className="card flex flex-col py-2 space-2 rectCard">
       <div className="flex flex-col">
-        <div className="mb-2">
-          <label
-            htmlFor="unitprice"
-            className="block mb-2 text-md text-gray-500"
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <div className="mb-2">
+            <label
+              htmlFor="unitprice"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Unit Price <span className="text-brightRed">*</span>
+            </label>
+            <input
+              type="number"
+              id="unitprice"
+              name="price"
+              value={data.price}
+              onChange={handleChange}
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="Enter product unit price"
+              required
+            />
+          </div>
+          <div className="mb-2 relative">
+            <label
+              htmlFor="discount"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Discount <span className="text-brightRed">*</span>
+            </label>
+            <input
+              type="number"
+              id="discount"
+              name="discount"
+              value={data.discount}
+              onChange={handleChange}
+              className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
+              placeholder="Enter product discount in percentage"
+              required
+            />
+          </div>
+          <div className="mb-2">
+            <label
+              htmlFor="discount"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Quantity <span className="text-brightRed">*</span>
+            </label>
+            <input
+              type="number"
+              id="qty"
+              name="quantitiy"
+              value={data.quantity}
+              onChange={handleChange}
+              className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
+              placeholder="Enter product discount"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="p-3 bg-brightRed text-white text-center rounded-md w-4/5"
           >
-            Unit Price <span className="text-brightRed">*</span>
-          </label>
-          <input
-            type="text"
-            id="unitprice"
-            className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
-            placeholder="Enter product unit price"
-            required
-          />
-        </div>
-        <div className="mb-2">
-          <label
-            htmlFor="discount"
-            className="block mb-2 text-md text-gray-500"
-          >
-            Discount <span className="text-brightRed">*</span>
-          </label>
-          <input
-            type="text"
-            id="discount"
-            className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-            placeholder="Enter product discount"
-            required
-          />
-        </div>
-        <div className="mb-2">
-          <label
-            htmlFor="discount"
-            className="block mb-2 text-md text-gray-500"
-          >
-            Quantity <span className="text-brightRed">*</span>
-          </label>
-          <input
-            type="number"
-            id="qty"
-            className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-            placeholder="Enter product discount"
-            required
-          />
-        </div>
+            Next
+          </button>
+        </form>
       </div>
     </section>
   );
 };
 
-export const ProductVariation = () => {
+export const ProductVariation = ({
+  data,
+  setData,
+  setActiveKey,
+  handleProdVisiblity,
+}) => {
+  const handleChange = (e) => {
+    setData((prev) => {
+      const update = {
+        ...prev,
+        [e.target.name]: e.target.value.split(","),
+      };
+      return { ...update };
+    });
+    console.log(data);
+  };
   return (
     <section className="card flex flex-col py-2 space-2 rectCard">
       <div className="flex flex-col">
-        <div className="mb-2">
-          <label
-            htmlFor="unitprice"
-            className="block mb-2 text-md text-gray-500"
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <div className="mb-2">
+            <label
+              htmlFor="colors"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Available Colors <span className="text-brightRed">*</span>
+            </label>
+            <p className="text-brightRed text-xs mb-2">
+              (type all available colors seperated by ",")
+            </p>
+            <input
+              type="text"
+              id="colors"
+              name="colors"
+              value={data.colors}
+              onChange={handleChange}
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="Select Colors"
+              required
+            />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="sizes" className="block mb-2 text-md text-gray-500">
+              Available Sizes <span className="text-brightRed">*</span>
+            </label>
+            <p className="text-brightRed text-xs mb-2">
+              (type all available sizes seperated by ",")
+            </p>
+            <input
+              type="text"
+              id="sizes"
+              name="sizes"
+              value={data.sizes}
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="small, medium, large"
+              required
+            />
+          </div>
+          <button
+            className="p-3 border border-brightRed text-center text-brightRed rounded-md w-4/5"
+            onClick={handleProdVisiblity}
           >
-            Unit Price <span className="text-brightRed">*</span>
-          </label>
-          <input
-            type="text"
-            id="unitprice"
-            className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
-            placeholder="Enter product unit price"
-            required
-          />
-        </div>
-        <div className="mb-2">
-          <label
-            htmlFor="discount"
-            className="block mb-2 text-md text-gray-500"
-          >
-            Discount <span className="text-brightRed">*</span>
-          </label>
-          <input
-            type="text"
-            id="discount"
-            className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-            placeholder="Enter product discount"
-            required
-          />
-        </div>
-        <div className="mb-2">
-          <label
-            htmlFor="discount"
-            className="block mb-2 text-md text-gray-500"
-          >
-            Quantity <span className="text-brightRed">*</span>
-          </label>
-          <input
-            type="number"
-            id="qty"
-            className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-            placeholder="Enter product discount"
-            required
-          />
-        </div>
+            Preview Products
+          </button>
+        </form>
       </div>
     </section>
   );

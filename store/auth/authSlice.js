@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 import vendorService from "./vendorService";
 import { HYDRATE } from "next-redux-wrapper";
+import storage from "redux-persist/lib/storage";
 
 // /**
 //  * When the user login then we saved the userid, role, and token
@@ -66,8 +67,8 @@ export const login = createAsyncThunk(
 
 // logout user
 
-export const getUser = createAsyncThunk("auth/getUser", async (id) => {
-  return await authService.getUser(id);
+export const getUser = createAsyncThunk("auth/getUser", async () => {
+  return await authService.getUser();
 });
 
 //create the authReducer...
@@ -76,6 +77,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
+      storage.removeItem("root");
       state.user = initialState.user;
     },
     reset: (state) => {
@@ -138,7 +140,9 @@ export const authSlice = createSlice({
       .addCase(getUser.fulfilled, (state, action) => {
         state.isLoading = false;
       })
-      .addCase(getUser.rejected, (state, action) => {});
+      .addCase(getUser.rejected, (state, action) => {
+        state.isLoading = false;
+      });
   },
 });
 
