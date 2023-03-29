@@ -1,5 +1,4 @@
 import React from "react";
-// import Button from "../Button";
 import icon from "../../public/images/icon2.png";
 import Image from "next/image";
 import logo from "../../public/images/logo2.png";
@@ -21,7 +20,7 @@ const Header = () => {
   const user = useSelector((state) => state.auth.user);
 
   return (
-    <header className="shadow-sm">
+    <header className="shadow-sm sticky top-0 z-[100] bg-white">
       <div className=" lg:px-20 p-4 mx-auto">
         <div className="flex ">
           <div className="hidden md:flex pl-10 mt-1  md:mt-0 md:pl-0 lg:pr-12">
