@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import Spinner from "../components/Spinner";
-import { getUser } from "../store/auth/authSlice";
 
 export const useAuthStatus = (WrappedComponent) => {
   const RequiresAuthentication = (props) => {
