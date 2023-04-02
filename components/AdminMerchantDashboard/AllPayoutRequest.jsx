@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "../Input";
+import Scroll from "../Scroll";
 import Alloptions from "./Alloptions";
 const AllPayoutRequest = () => {
   return (
@@ -54,6 +55,7 @@ const AllPayoutRequest = () => {
       </div>
 
       <Alloptions />
+      <Scroll />
     </section>
   );
 };

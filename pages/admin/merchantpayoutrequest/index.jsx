@@ -2,9 +2,8 @@ import React from "react";
 import Layout from "../../../components/AdminPagesLayout/Layout";
 import Input from "../../../components/Input";
 import Addmerchant from "../../../components/AdminMerchantDashboard/Addmerchant";
-import Allmerchants from "../../../components/AdminMerchantDashboard/Allmerchants";
-
-const allmerchants = () => {
+import AllPayoutRequest from "../../../components/AdminMerchantDashboard/AllPayoutRequest";
+const merchantPayoutRequest = () => {
   return (
     <>
       <div className="newsletterbg">
@@ -17,15 +16,15 @@ const allmerchants = () => {
             <Input
               name="search"
               type="text"
-              placeHolder="Search Merchants here..."
+              placeHolder="Search Payouts here..."
               className="w-64 p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor  poppins mt-2 border-lightGray border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
               required
             />
           </form>
-          <Allmerchants />
+          <AllPayoutRequest />
         </Layout>
       </div>
     </>
   );
 };
-export default allmerchants;
+export default merchantPayoutRequest;

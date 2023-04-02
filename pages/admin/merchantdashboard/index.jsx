@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import adidas from "../../../public/img/adidas.png";
 import shirt from "../../../public/img/shirt.png";
-import { useSelector } from "react-redux";
 import Addmerchant from "../../../components/AdminMerchantDashboard/Addmerchant";
 import Layout from "../../../components/AdminPagesLayout/Layout";
 import Card from "../../../components/AdminMerchantDashboard/Card";

@@ -3,6 +3,7 @@ import Image from "next/dist/client/image";
 import mboximg from "../../public/images/mboximg.png";
 import AdminApi from "./AdminApi";
 import Input from "../Input";
+import Scroll from "../../components/Scroll";
 const Discount = () => {
   return (
     <section className=" mt-12  bg-white">
@@ -221,6 +222,8 @@ const Discount = () => {
           );
         })}
       </div>
+
+      <Scroll />
     </section>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../../components/AdminPagesLayout/Layout";
 import Input from "../../../components/Input";
 import Addmerchant from "../../../components/AdminMerchantDashboard/Addmerchant";
-import AllPayoutRequest from "../../../components/AdminMerchantDashboard/AllPayoutRequest";
+import AllPayout from "../../../components/AdminMerchantDashboard/AllPayout";
 const merchantPayout = () => {
   return (
     <>
@@ -21,7 +21,7 @@ const merchantPayout = () => {
               required
             />
           </form>
-          <AllPayoutRequest />
+          <AllPayout />
         </Layout>
       </div>
     </>
