@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <div className="flex font-sans relative">
+      <div className="flex font-sans relative bg-neutral-50">
         {/* SideBar Menu */}
         <SidebarComp showSideBar={showSideBar} isMerchant={isMerchant} />
 
