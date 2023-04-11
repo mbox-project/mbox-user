@@ -21,8 +21,9 @@ function ResetPassword() {
   return (
     <div className="flex">
       <div className=" hidden w-1/2 min-h-screen mx-auto lg:block bg-reset bg-cover">
-        <Image src={resetpasswordimg} height={830} />
+        <Image src={resetpasswordimg} width={1000} height={1100} />
       </div>
+
       <div className=" lg:w-1/2 mx-auto w-full inputcolor  ">
         <div className="w-full bg-grayColor">
           <div className="text-center">

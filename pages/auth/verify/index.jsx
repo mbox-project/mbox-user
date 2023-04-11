@@ -29,7 +29,7 @@ function VerifyOTP() {
   return (
     <div className="flex ">
       <div className=" hidden  min-h-screen w-1/2  mx-auto  lg:block bg-verify-img bg-cover ">
-        <Image src={verify} />
+        <Image src={verify} width={1000} height={1100} />
       </div>
 
       <div className="w-full lg:w-1/2 lg:mx-auto  px-4">

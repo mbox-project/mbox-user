@@ -19,7 +19,7 @@ const ForgotPassword = () => {
   return (
     <div className="flex">
       <div className=" hidden w-1/2  mx-auto min-h-screen lg:block ">
-        <Image src={loginbg} />
+        <Image src={loginbg} width={1000} height={1100} />
       </div>
       <div className="w-full lg:w-1/2  lg:mx-auto  mt-20 lg:mt-44">
         <div className="w-full  font-poppins text-center">

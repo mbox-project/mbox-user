@@ -12,7 +12,12 @@ const Index = () => {
     <>
       <div className="flex">
         <div className="hidden md:w-1/2 md:block">
-          <Image src={loginbg} height={830} className="object-cover " />
+          <Image
+            src={loginbg}
+            width={1000}
+            height={1100}
+            className="object-cover "
+          />
         </div>
         <div className="w-1/2 flex-col text-center space-y-2 mt-72">
           <div className="flex justify-center">
