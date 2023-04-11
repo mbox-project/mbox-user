@@ -9,11 +9,16 @@ import CustomModal from "./CustomModal";
 import { useSelector, useDispatch } from "react-redux";
 import { selectRole } from "../store/selectors/selectors";
 import { logout } from "../store/auth/authSlice";
+import { useStore } from "react-redux";
+import { makeStore } from "../store/store";
 
 const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
+  const store = makeStore();
   const [showVendorModal, setShowVendormodal] = useState(false);
   const role = useSelector(selectRole);
-  const username = useSelector((state) => state.auth.user.username);
+  const username = useSelector((state) => state.auth.user?.fullname)?.split(
+    " "
+  )[0];
   const dispatch = useDispatch();
 
   const handleModalVisibility = () => {
@@ -58,7 +63,20 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
           onClick={() => dispatch(logout())}
           className="flex justify-center items-center text-center text-red-500 mt-3"
         >
-          <button onClick={() => dispatch(logout())}>Logout</button>
+          <button
+            onClick={() => {
+              store.__persistor
+                .purge()
+                .then(() => console.log("state cleared"))
+                .catch(() => console.log("error"));
+              if (typeof window !== undefined) {
+                sessionStorage.removeItem("token");
+              }
+              dispatch(logout());
+            }}
+          >
+            Logout
+          </button>
         </div>
       </div>
       {showVendorModal && (

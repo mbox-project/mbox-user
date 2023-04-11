@@ -75,7 +75,7 @@ const Register = () => {
             "A verification mail has been sent to your email for account verification",
             3000
           );
-          router.push("/login");
+          router.push("/auth/login");
         }
         if (action.payload.error) {
           toastify.alertError("An error ocurred", 3000);

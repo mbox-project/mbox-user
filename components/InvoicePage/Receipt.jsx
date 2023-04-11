@@ -6,7 +6,7 @@ import PricetagApi from "./PricetagApi";
 import ProductDes from "./ProductDes";
 const Receipt = ({ data }) => {
   return (
-    <div className=" mx-2 md:mx-10 border rounded-md lg:mx-20 shadow-lg">
+    <div className="mx-2 md:mx-10 border rounded-md lg:mx-20 shadow-lg">
       <div className="flex justify-between">
         <div className="flex mt-3 ">
           <div className="ml-6">

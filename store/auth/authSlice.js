@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 import vendorService from "./vendorService";
-import { HYDRATE } from "next-redux-wrapper";
+// import { HYDRATE } from "next-redux-wrapper";
 import storage from "redux-persist/lib/storage";
 
 // /**
@@ -71,13 +71,19 @@ export const getUser = createAsyncThunk("auth/getUser", async () => {
   return await authService.getUser();
 });
 
+export const verifyEmail = createAsyncThunk(
+  "auth/verifyEmail",
+  async (body) => {
+    return await authService.verifyEmail(body);
+  }
+);
+
 //create the authReducer...
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
     logout: (state) => {
-      storage.removeItem("root");
       state.user = initialState.user;
     },
     reset: (state) => {
@@ -139,8 +145,18 @@ export const authSlice = createSlice({
       })
       .addCase(getUser.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.user = action.payload.data;
       })
       .addCase(getUser.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(verifyEmail.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(verifyEmail.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(verifyEmail.rejected, (state) => {
         state.isLoading = false;
       });
   },

@@ -1,16 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import walletService from "./walletService";
-import { HYDRATE } from "next-redux-wrapper";
+import walletService, {
+  getWallet,
+  getTransactions,
+  getTransactionDetails,
+  paystackFundWallet,
+  paystackVerifyPayment,
+  withdrawFundPaystack,
+} from "./walletService";
+// import { HYDRATE } from "next-redux-wrapper";
 
 /**
  *
  **/
 
 const initialState = {
-  wallet:
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("wallet"))
-      : null,
+  wallet: null,
+  transactions: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -66,35 +71,65 @@ export const walletSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(payStackFund.pending, (state) => {
+      .addCase(paystackFundWallet.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(payStackFund.fulfilled, (state, action) => {
+      .addCase(paystackFundWallet.fulfilled, (state, action) => {
         state.isSuccess = true;
         state.isLoading = false;
         state.wallet = action.payload.data;
         state.message = action.payload.message;
       })
-      .addCase(payStackFund.rejected, (state, action) => {
+      .addCase(paystackFundWallet.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.message = action.payload.message;
         state.wallet = null;
       })
-      .addCase(withdrawPaystack.pending, (state) => {
+      .addCase(withdrawFundPaystack.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(withdrawPaystack.fulfilled, (state, action) => {
+      .addCase(withdrawFundPaystack.fulfilled, (state, action) => {
         state.isSuccess = true;
         state.isLoading = false;
         state.wallet = action.payload.data;
         state.message = action.payload.message;
       })
-      .addCase(withdrawPaystack.rejected, (state, action) => {
+      .addCase(withdrawFundPaystack.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.message = action.payload.message;
         state.wallet = null;
+      })
+      .addCase(getWallet.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getWallet.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.wallet = action.payload.data;
+      })
+      .addCase(getWallet.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(getTransactions.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getTransactions.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.transactions = action.payload.data;
+      })
+      .addCase(getTransactions.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(getTransactionDetails.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getTransactionDetails.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.transactions = action.payload.data;
+      })
+      .addCase(getTransactionDetails.rejected, (state) => {
+        state.isLoading = false;
       });
   },
 });

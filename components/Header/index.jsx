@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <header className="shadow-sm sticky top-0 z-[100] bg-white">
       <div className=" lg:px-20 p-4 mx-auto">
-        <div className="flex ">
+        <div className="flex relative">
           <div className="hidden md:flex pl-10 mt-1  md:mt-0 md:pl-0 lg:pr-12">
             <Image src={logo} width="100px" height="50px" />
           </div>
@@ -47,16 +47,23 @@ const Header = () => {
           </div>
 
           {!isOpen && (
-            <div className="md:hidden w-full h-full top-20 bg-grayColor z-20 absolute -right-0 ">
-              <div className="flex py-4">
+            <div className="md:hidden w-full h-full top-[100%] bg-grayColor z-20 absolute left-0 bg">
+              <div className="flex items-center py-4 gap-2">
                 <div className="px-4 ">
                   <Image src={beforeyoureg} width={50} height={50} />
                 </div>
-                <Button className="bg-brightRed  h-10 mt-2 py-2 px-12  font-poppins text-sm font-medium   text-white  ">
-                  Login or Signup
-                </Button>
+                <Link href="/auth/login">
+                  <Button className="bg-brightRed px-2 py-1 font-poppins text-sm font-medium text-white">
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/auth/register">
+                  <Button className="bg-brightRed px-2 py-1 font-poppins text-sm font-medium text-white">
+                    Signup
+                  </Button>
+                </Link>
               </div>
-              <div className="pl-6">
+              <div className="p-6 bg-white">
                 <div className="flex pt-12 ">
                   <BsCart3 />
                   <p className="pl-3 text-base font-extralight"> Order</p>
@@ -95,7 +102,7 @@ const Header = () => {
 
           <div className="relative right-28 pr-4 top-4 md:hidden">
             <button
-              className="  text-gray-600  rounded-lg"
+              className="text-gray-600  rounded-lg"
               type="button"
               onClick={() => setIsOpen(!isOpen)}
             >

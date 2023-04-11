@@ -40,10 +40,11 @@ const Login = () => {
       toastify.alertWarning("Email or password cannot be empty", 3000);
     } else {
       dispatch(login(loginData))
+        .unwrap()
         .then((action) => {
           console.log(action);
           console.log("running");
-          sessionStorage.setItem("token", action.payload.data.token);
+          sessionStorage.setItem("token", action.data.token);
           router.push("/");
         })
         .catch((error) => {

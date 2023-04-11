@@ -27,13 +27,13 @@ const masterReducer = (state, action) => {
 };
 
 export const makeStore = () => {
-  const isClient = typeof window !== "undefined";
+  const isClient = typeof window !== undefined;
   if (isClient) {
     const { persistStore, persistReducer } = require("redux-persist");
 
     const PersisitConfig = {
       key: "root",
-      whiteList: ["auth"],
+      blacklist: ["wallet", "invoice"],
       storage,
     };
 

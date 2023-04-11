@@ -1,20 +1,45 @@
 import React from "react";
 import Layout from "../../components/PagesLayout/Layout";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useLayoutEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getTransactions,
+  getWallet,
+  getTransactionDetails,
+} from "../../store/fundwallet/walletService";
 const index = () => {
+  const { wallet, transactions } = useSelector((state) => state.wallet);
+  const { email } = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  useLayoutEffect(() => {
+    dispatch(getWallet(email))
+      .unwrap()
+      .then((action) => console.log(action))
+      .catch((error) => {
+        console.log(error);
+        router.back();
+      });
+    dispatch(getTransactions())
+      .unwrap()
+      .then((actions) => console.log(actions))
+      .catch((error) => console.log(error));
+  }, []);
   return (
     <Layout>
       {/* wallet Balance */}
       <section className="card rectCard flex justify-between flex-col text-lg border-b-2 mt-8 md:flex-row ">
         <h4>MBOX Wallet Balance </h4>
-        <h2 className="text-blue-700 text-2xl">$450,000.00 </h2>
+        <h2 className="text-blue-700 text-2xl">NGN {wallet?.balance}</h2>
       </section>
       {/* Transaction Card Summary */}
       <section className="card rectCard flex flex-col justify-around md:flex md:flex-row  ">
         <div className="flex flex-col items-start p-3 space-y-3">
           <h4 className="tracking-wide text-sm">Total spent</h4>
           <div className="flex justify-center items-center gap-4">
-            <div className="bg-brightRed px-4 py-2.5 rounded-2xl">
+            <div className="bg-[#F90808] px-4 py-2.5 rounded-2xl">
               <svg
                 width="18"
                 height="18"
@@ -29,13 +54,13 @@ const index = () => {
                 />
               </svg>
             </div>
-            <h5>$450,000</h5>
+            <h5>NGN {wallet?.totalSpent}</h5>
           </div>
         </div>
         <div className="flex flex-col items-start p-3 space-y-3">
           <h4 className="tracking-wide text-sm">Total Received</h4>
           <div className="flex justify-center items-center gap-4">
-            <div className="bg-teal-800 px-4 py-2.5 rounded-2xl">
+            <div className="bg-[#26A17B] px-4 py-2.5 rounded-2xl">
               <svg
                 width="18"
                 height="18"
@@ -49,7 +74,7 @@ const index = () => {
                 />
               </svg>
             </div>
-            <h5>$450,000</h5>
+            <h5>NGN {wallet?.totalReceived}</h5>
           </div>
         </div>
         <div className="flex flex-col items-start p-3 space-y-3">
@@ -116,7 +141,6 @@ const index = () => {
           </svg>
 
           <h4 className="tracking-wide">
-            {" "}
             <Link href="/withdrawfunds">Withdraw Funds </Link>
           </h4>
         </button>
@@ -138,31 +162,45 @@ const index = () => {
         </form>
       </section>
       {/* History Content*/}
-      <section className="card rectCard flex items-center overflow-x-auto text-sm gap-40">
-        <div className="flex gap-5 justify-center items-center">
-          <span className="border-red-400 border h-10 px-4 py-2 items-center rounded-full">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M17.502 1.00875C17.0644 0.559535 16.4166 0.392182 15.8126 0.568343L1.72809 4.66409C1.09083 4.84114 0.639145 
+      {transactions.map((e, i) => {
+        const date = new Date(e.createdAt).toDateString();
+        return (
+          <div className="card rectCard w-full grid grid-cols-[30%_30%_15%_15%] justify-between items-center overflow-x-auto text-sm">
+            <div className="flex gap-5 justify-start items-center">
+              <span className="border-red-400 border h-10 px-4 flex items-center rounded-full">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.502 1.00875C17.0644 0.559535 16.4166 0.392182 15.8126 0.568343L1.72809 4.66409C1.09083 4.84114 0.639145 
 								5.34936 0.51747 5.99499C0.393169 6.65208 0.827347 7.4862 1.39458 7.835L5.79851 10.5417C6.25019 10.8192 6.83318 10.7496 7.20696 10.3726L12.2499 5.29828C12.5038 5.03403 12.9239 5.03403 13.1778 5.29828C13.4316 5.55371 13.4316 5.96769 13.1778 6.23193L8.12608 11.3071C7.75143 11.6832 7.6814 12.269 7.95714 12.7235L10.648 17.1716C10.9631 17.7 11.5058 17.9995 12.1011 17.9995C12.1711 17.9995 12.2499 17.9995 12.3199 17.9907C13.0027 17.9026 13.5454 17.4358 13.7468 16.7752L17.9222 2.7087C18.106 2.10976 17.9397 1.45796 17.502 1.00875Z"
-                fill="#F90808"
-              />
-            </svg>
-          </span>{" "}
-          <span>Deducted for a purchase</span>
-        </div>
-        <div>Wed, Feb 01, 2022. 11:50AM</div>
-        <div>-$4,850</div>
-        <div className="bg-brightRed h-10 px-4 py-2 flex justify-center items-center text-white rounded-lg ">
-          Details
-        </div>
-      </section>
+                    fill="#F90808"
+                  />
+                </svg>
+              </span>
+              <span>{e.transactionType}</span>
+            </div>
+            {/* <div>Wed, Feb 01, 2022. 11:50AM</div> */}
+            <div>{date}</div>
+            <div>{`₦${e.amount}`}</div>
+            <button
+              onClick={() => {
+                dispatch(getTransactionDetails(e.transactionReference))
+                  .unwrap()
+                  .then((action) => console.log(action))
+                  .catch((error) => console.log(error));
+              }}
+              className="bg-brightRed h-10 px-4 py-2 flex justify-center items-center text-white rounded-lg "
+            >
+              Details
+            </button>
+          </div>
+        );
+      })}
     </Layout>
   );
 };

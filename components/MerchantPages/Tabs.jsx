@@ -262,13 +262,13 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
                 placeholder="MBOX Bank"
               />
             </div> */}
-            <div className="mb-2">
-              <label
+            <div className="mb-2 px-12 pt-3">
+              <Label
                 htmlFor="acctname"
-                className="block mb-2 text-md text-gray-500"
-              >
-                Account Name
-              </label>
+                // className="block mb-2 text-md text-gray-500"
+                className="text-[#C1C1C1]  text-xs"
+                title="Account Name"
+              />
               <input
                 type="text"
                 id="acctname"
@@ -292,7 +292,7 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
                 placeholder="0036789412"
               />
             </div> */}
-            <div className="mb-6">
+            <div className="mb-6 mx-auto text-center">
               <p>
                 Please ensure the{" "}
                 <span className="text-red-500">ACCOUNT NAME</span> correspond

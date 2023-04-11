@@ -5,14 +5,17 @@ import banner from "../../public/img/banner.svg";
 import lady from "../../public/img/lady.svg";
 import edit from "../../public/img/edit.svg";
 import caret from "../../public/img/caret.svg";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const user = useSelector((state) => state.auth.user);
+  const userName = user.fullname.split(" ")[0];
   return (
     <>
       {/* first section --Welcome buyer */}
       <section className="flex flex-col-reverse bg-white rounded-lg px-10 py-2 items-center justify-between mt-10 shadow-sm  hover:shadow-md md:flex-row">
         <div className="flex flex-col space-y-2">
-          <h2 className="text-3xl font-bold">Hello, Kingsley</h2>
+          <h2 className="text-3xl font-bold">Hello, {userName}</h2>
           <span>Welcome back!</span>
         </div>
         <div>
@@ -146,15 +149,15 @@ const Dashboard = () => {
             <ul className="mt-4 space-y-4">
               <li className="flex items-center space-x-24 text-sm hover:text-gray-600">
                 <h2 className="font-bold text-md">Name: </h2>
-                <span>TemiTope Jefferey</span>
+                <span>{user?.fullname}</span>
               </li>
               <li className="flex items-center text-sm space-x-24 hover:text-gray-600">
                 <h2 className="font-bold text-md">Email: </h2>
-                <span>temitopejeffery@mbox.com</span>
+                <span>{user?.email}</span>
               </li>
               <li className="flex items-center text-sm space-x-12 hover:text-gray-600">
                 <h2 className="font-bold text-md">Whatsap No: </h2>
-                <span>+2347037347461</span>
+                <span>{user?.phoneNumber}</span>
               </li>
               <li className="flex items-center text-sm space-x-20 hover:text-gray-600">
                 <h2 className="font-bold text-md">Address: </h2>

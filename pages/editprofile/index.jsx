@@ -9,32 +9,23 @@ import VendorEditProfile from "../../components/MerchantPages/VendorEditProfile"
 
 const index = () => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.auth);
-  const [data, setData] = useState({});
-  useEffect(() => {
-    dispatch(getUser())
-      .unwrap()
-      .then(({ data }) =>
-        setData({
-          fullname: data?.fullname,
-          email: data?.email,
-          phoneNumber: data?.phoneNumber,
-        })
-      );
-  }, []);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { isLoading, user } = useSelector((state) => state.auth);
+  const [data, setData] = useState({
+    fullname: user?.fullname,
+    email: user?.email,
+    phoneNumber: user?.phoneNumber,
+  });
   const role = useSelector(selectRole);
   return (
     <>
       <Layout>
-        {isLoading && <Spinner />}
         <h2 className="card text-2xl border-b-2 mt-8 rectCard">
           Edit Personal Information
         </h2>
         {role === "vendor" ? (
           <VendorEditProfile data={data} setData={setData} />
         ) : (
-          <EditProfile data={data} />
+          <EditProfile data={data} setData={setData} />
         )}
       </Layout>
     </>

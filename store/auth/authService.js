@@ -16,7 +16,7 @@ const login = async (loginData) => {
   const response = await postApi("User/login", loginData);
   //console.log("LoginResponse", response);
   if (response.data) {
-    localStorage.setItem("user", JSON.stringify(response.data));
+    // localStorage.setItem("user", JSON.stringify(response.data));
   }
   return response.data;
 };
@@ -26,11 +26,17 @@ const getUser = async () => {
   return response.data;
 };
 
+const verifyEmail = async (body) => {
+  const response = await postApi("user/confirmemail", { ...body });
+  return response.data;
+};
+
 // const logout = () => localStorage.removeItem("user");
 
 const authService = {
   register,
   login,
   getUser,
+  verifyEmail,
 };
 export default authService;

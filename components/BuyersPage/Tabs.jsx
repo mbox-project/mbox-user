@@ -146,8 +146,8 @@ export const BankInformation = () => {
                 placeholder="0036789412"
               />
             </div>
-            <div className="mb-6">
-              <p>
+            <div className="mb-6 mx-auto self-center">
+              <p className="text-center">
                 Please ensure the{" "}
                 <span className="text-red-500">ACCOUNT NAME</span> correspond
                 with the name given above in the

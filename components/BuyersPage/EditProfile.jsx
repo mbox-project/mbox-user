@@ -1,27 +1,43 @@
-import { Tabs, ConfigProvider } from "antd";
-import { PersonalDetails, BankInformation } from "./Tabs";
+import { Tabs } from "antd";
+import { useState } from "react";
+import { PersonalDetails, BankInformation } from "../MerchantPages/Tabs";
+import { useMemo } from "react";
 import React from "react";
 const onChange = (key) => {
   console.log(key);
 };
-const items = [
-  {
-    key: "1",
-    label: `Personal Details`,
-    children: <PersonalDetails />,
-  },
-  {
-    key: "2",
-    label: `Bank Information`,
-    children: <BankInformation />,
-  },
-];
-const EditProfile = () => (
-  <Tabs
-    tabBarStyle={{ color: "#333" }}
-    defaultActiveKey="1"
-    items={items}
-    onChange={onChange}
-  />
-);
+
+const EditProfile = ({ data, setData }) => {
+  const [activeKey, setActiveKey] = useState("1");
+  const items = useMemo(
+    () => [
+      {
+        key: "1",
+        label: `Personal Details`,
+        children: <PersonalDetails data={data} setActiveKey={setActiveKey} />,
+      },
+      {
+        key: "2",
+        label: `Bank Information`,
+        children: (
+          <BankInformation
+            data={data}
+            setData={setData}
+            setActiveKey={setActiveKey}
+          />
+        ),
+      },
+    ],
+    []
+  );
+  return (
+    <Tabs
+      tabBarStyle={{ color: "#333" }}
+      defaultActiveKey="1"
+      // activeKey={activeKey}
+      items={items}
+      onChange={onChange}
+    />
+  );
+};
 export default EditProfile;

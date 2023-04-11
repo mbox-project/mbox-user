@@ -1,59 +1,47 @@
-import { data } from "autoprefixer";
-import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { getApi, postApi, checkwalletApi } from "../../config/invoiceApi";
 
-const PAYMENT_API_URL = "http://52.87.168.25:8004/api";
+export const getWallet = createAsyncThunk("getwallet/wallet", async (email) => {
+  const response = await checkwalletApi(email);
+  return response.data;
+});
 
-const createWallet = (email) => {
-  fetch(`${PAYMENT_API_URL}/Wallet/checkalreadyhaswallet/${email}`)
-    .then((response) => {
-      console.log("success", response);
-      if (response.status == 404) {
-        const res = axios
-          .post(`${PAYMENT_API_URL}/Wallet/create`, {
-            email: email,
-          })
-          .then((res) => {
-            console.log("done", res.data.data);
-            return res.data.data;
-          });
-      }
-      return response.json();
-    })
-    .then((data) => console.log("error", data));
-};
-
-const paystackFundWallet = async (data) => {
-  //let res = createWallet(data.email);
-  const response = await axios.post(
-    `${PAYMENT_API_URL}/Wallet/paystack/fund-wallet`,
-    data
-  );
-  if (response.data) {
-    localStorage.setItem("wallet", JSON.stringify(response.data));
+export const getTransactions = createAsyncThunk(
+  "getTransactions/wallet",
+  async () => {
+    const response = await getApi("transactions");
+    return response.data;
   }
-  return response.data;
-};
+);
 
-const withdrawFundPaystack = async (data) => {
-  const response = await axios.post(
-    `${PAYMENT_API_URL}/wallet/paystack/withdraw`,
-    data
-  );
-  console.log(response);
-  return response.json();
-};
+export const getTransactionDetails = createAsyncThunk(
+  "getTransactionDetails/wallet",
+  async (id) => {
+    const response = await getApi(`transactions/${id}`);
+    return response.data;
+  }
+);
 
-const paystackVerifyPayment = async (reference) => {
-  const response = await axios.get(
-    `${PAYMENT_API_URL}/Wallet/paystack/verify?reference=${reference}`
-  );
-  // payment is validated .. credit user
-  return response.data;
-};
+export const paystackFundWallet = createAsyncThunk(
+  "paystackFundWallet/wallet",
+  async (data) => {
+    const response = await postApi("paystack/fund-wallet", data);
+    return response.data;
+  }
+);
 
-const walletService = {
-  paystackFundWallet,
-  withdrawFundPaystack,
-  paystackVerifyPayment,
-};
-export default walletService;
+export const withdrawFundPaystack = createAsyncThunk(
+  "withdrawFundPaystack/wallet",
+  async (data) => {
+    const response = await postApi("paystack/withdraw", data);
+    return response.data;
+  }
+);
+
+export const paystackVerifyPayment = createAsyncThunk(
+  "paystackVerifyPayment/wallet",
+  async (reference) => {
+    const response = await getApi(`paystack/verify/${reference}`);
+    return response.data;
+  }
+);
