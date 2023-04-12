@@ -14,7 +14,7 @@ api.interceptors.response.use(undefined, function (error) {
       if (!error.response) {
         return error.originalMessage;
       }
-      return error.response.data?.message.toString();
+      return error.response.data.message?.toString();
     },
   });
   return Promise.reject(error);
@@ -29,7 +29,7 @@ checkwalletreq.interceptors.response.use(undefined, function (error) {
       if (!error.response) {
         return error.originalMessage;
       }
-      return error.response.data?.message.toString();
+      return error.response.data.message?.toString();
     },
   });
   return Promise.reject(error);

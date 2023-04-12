@@ -48,7 +48,7 @@ const Register = () => {
         );
       })
       .catch((error) => {
-        toastify.alertError(error?.message, 3000);
+        toastify.alertError(error, 3000);
       });
   };
 

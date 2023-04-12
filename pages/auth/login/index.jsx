@@ -50,7 +50,8 @@ const Login = () => {
           router.push("/");
         })
         .catch((error) => {
-          toastify.alertError(error.message, 3000);
+          console.log(error);
+          toastify.alertError(error, 3000);
         });
     }
   };
