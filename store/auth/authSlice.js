@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 import vendorService from "./vendorService";
 // import { HYDRATE } from "next-redux-wrapper";
-import storage from "redux-persist/lib/storage";
 
 // /**
 //  * When the user login then we saved the userid, role, and token

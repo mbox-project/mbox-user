@@ -83,7 +83,7 @@ const LandingPage = () => {
   useGetUser();
   return (
     <div className="">
-      {user.role ? <Navbar /> : <Header />}
+      {user?.role ? <Navbar /> : <Header />}
       <section className="mr-0">
         <Carousel>
           <div>
