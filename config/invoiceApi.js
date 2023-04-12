@@ -7,8 +7,32 @@ const api = axios.create({
   baseURL,
 });
 
+api.interceptors.response.use(undefined, function (error) {
+  error.originalMessage = error.message;
+  Object.defineProperty(error, "message", {
+    get: function () {
+      if (!error.response) {
+        return error.originalMessage;
+      }
+      return error.response.data?.message.toString();
+    },
+  });
+  return Promise.reject(error);
+});
 const checkwalletreq = axios.create({
   baseURL: "http://34.199.115.184:8004/api/Wallet/checkalreadyhaswallet/",
+});
+checkwalletreq.interceptors.response.use(undefined, function (error) {
+  error.originalMessage = error.message;
+  Object.defineProperty(error, "message", {
+    get: function () {
+      if (!error.response) {
+        return error.originalMessage;
+      }
+      return error.response.data?.message.toString();
+    },
+  });
+  return Promise.reject(error);
 });
 
 const createWallet = async (email) => {
