@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Image from "next/image";
 import loginbg from "../../../public/images/loginbg.png";
 import Button from "../../../components/Button";
@@ -7,7 +8,7 @@ import Input from "../../../components/Input";
 import Label from "../../../components/Label";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { login, reset } from "../../../store/auth/authSlice";
+import { login } from "../../../store/auth/authSlice";
 import Spinner from "../../../components/Spinner";
 import { toastify } from "../../../helpers";
 
@@ -18,6 +19,7 @@ const Login = () => {
     password: "",
     rememberMe: false,
   });
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -95,35 +97,26 @@ const Login = () => {
               <div className="relative">
                 <Input
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   placeHolder="enter your password"
                   className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor  poppins mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                   onChange={onChangeInput}
                   required
                 />
-                <span className="absolute inset-y-0 inline-flex items-center right-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
+                  {showPassword ? (
+                    <AiOutlineEyeInvisible
+                      className="block cursor-pointer text-[1.2rem]"
+                      onClick={() => setShowPassword((prev) => !prev)}
                     />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  ) : (
+                    <AiOutlineEye
+                      className="block cursor-pointer text-[1.2rem]"
+                      onClick={() => setShowPassword((prev) => !prev)}
                     />
-                  </svg>
-                </span>
+                  )}
+                </div>
               </div>
             </div>
             <div className="py-3 flex justify-between text-gray-600">

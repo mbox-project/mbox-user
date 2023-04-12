@@ -62,13 +62,15 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
           <div className="flex items-center space-x-6">
             {role === "vendor" ? (
               <div className="flex gap-[0.5rem]">
-                <button
-                  className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
+                <Link href="/payinvoice">
+                  <button
+                    className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
                                  border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
-                >
-                  <span>Pay Invoice</span>
-                  <Image src={arrow} width={10} height={10} alt="arrow" />
-                </button>
+                  >
+                    <span>Pay Invoice</span>
+                    <Image src={arrow} width={10} height={10} alt="arrow" />
+                  </button>
+                </Link>
                 <Link href="/generateinvoice">
                   <button className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white">
                     <span>Generate Invoice</span>
@@ -77,21 +79,16 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
                 </Link>
               </div>
             ) : (
-              <button
-                className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
+              <Link href="/payinvoice">
+                <button
+                  className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
                                  border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
-              >
-                <span>Pay Invoice</span>
-                <Image src={arrow} width={10} height={10} alt="arrow" />
-              </button>
+                >
+                  <span>Pay Invoice</span>
+                  <Image src={arrow} width={10} height={10} alt="arrow" />
+                </button>
+              </Link>
             )}
-            {/* <button
-              className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
-                                 border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
-            >
-              <span>Pay Invoice</span>
-              <Image src={arrow} width={10} height={10} alt="arrow" />
-            </button> */}
             <div className="hidden m-0 md:block md:mt-2">
               <Image src={bell} width={25} height={30} alt="bell" />
             </div>

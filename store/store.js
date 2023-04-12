@@ -5,6 +5,7 @@ import user from "./users/userSlice";
 import auth from "./auth/authSlice";
 import invoice from "./invoice/invoiceSlice";
 import wallet from "./fundwallet/walletSlice";
+import product from "./product/productSlice";
 
 // Adding all the reducers to the global Store..
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   auth,
   invoice,
   wallet,
+  product,
 });
 
 const masterReducer = (state, action) => {
@@ -33,7 +35,7 @@ export const makeStore = () => {
 
     const PersisitConfig = {
       key: "root",
-      blacklist: ["wallet", "invoice"],
+      blacklist: ["wallet", "invoice", "product"],
       storage,
     };
 

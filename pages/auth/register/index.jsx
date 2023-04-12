@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register, reset } from "../../../store/auth/authSlice";
+import { register } from "../../../store/auth/authSlice";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useForm } from "react-hook-form";
+import { signUpSchema } from "../../../helpers/validationSchema/signupSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../../../components/Input";
 import Label from "../../../components/Label";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-//import Dropdown from "../../../components/Dropdown";
 import authbg from "../../../public/images/authbg.png";
 import { toastify } from "../../../helpers";
 import Spinner from "../../../components/Spinner";
@@ -14,74 +17,39 @@ import Spinner from "../../../components/Spinner";
 const Register = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [registerData, setRegisterData] = useState({
-    fullname: "",
-    email: "",
-    phoneNumber: "",
-    gender: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const { fullname, email, phoneNumber, gender, password, confirmPassword } =
-    registerData;
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const onChangeInput = (e) => {
-    setRegisterData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const {
+    register: initiate,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(signUpSchema),
+    reValidateMode: "onChange",
+  });
 
   //extract the values we need from auth slicer;
-  const { isError, isSuccess, isLoading, user, message } = useSelector(
-    (state) => state.auth
-  );
-  // console.log("Error", isError, "isSuccess", isSuccess, "isLoading", isLoading);
+  const { isLoading } = useSelector((state) => state.auth);
 
-  // useEffect(() => {
-  //   if (isError) {
-  //     toastify.alertError(message, 3000);
-  //   }
-
-  //   if (isSuccess) {
-  //     if (message == "User created succesfully") {
-  //       const mssg =
-  //         "A verification mail has been sent to your email for account verification";
-  //       toastify.alertSuccess(mssg, 5000);
-  //     }
-  //     router.push("/auth/login");
-  //   }
-  //   dispatch(reset());
-  // }, [isError, isSuccess, message, user, router, dispatch]);
-
-  const onSubmitForm = (e) => {
-    e.preventDefault();
-    //simple validation
-    if (registerData.password != registerData.confirmPassword) {
-      toastify.alertError("Password do not match", 3000);
-    } else if (
-      registerData.fullname == "" ||
-      registerData.email == "" ||
-      registerData.phoneNumber == "" ||
-      registerData.gender == "" ||
-      registerData.password == ""
-    ) {
-      toastify.alertError("Please enter ommitted fields ", 3000);
-    } else {
-      //dispatch an action and sends the data to the server..
-      dispatch(register(registerData)).then((action) => {
-        if (action.payload.data) {
-          toastify.alertSuccess(
-            "A verification mail has been sent to your email for account verification",
-            3000
-          );
-          router.push("/auth/login");
-        }
-        if (action.payload.error) {
-          toastify.alertError("An error ocurred", 3000);
-        }
+  const onSubmitForm = (data) => {
+    console.log(data);
+    dispatch(register(data))
+      .unwrap()
+      .then((action) => {
+        reset();
+        toastify.alertSuccess(
+          "A verification mail has been sent to your email for account verification",
+          3000,
+          () => {
+            router.push("/auth/login");
+          }
+        );
+      })
+      .catch((error) => {
+        toastify.alertError("An error ocurred", 3000);
       });
-    }
   };
 
   return (
@@ -103,7 +71,7 @@ const Register = () => {
           </div>
         </div>
         <form
-          onSubmit={onSubmitForm}
+          onSubmit={handleSubmit(onSubmitForm)}
           className="w-full px-0 lg:px-10 mt-10 lg:mt-4"
         >
           <div className="mb-4">
@@ -112,15 +80,16 @@ const Register = () => {
               htmlFor="text"
               title="Full Name *"
             />
-            <Input
-              name="fullname"
+            <input
               type="text"
-              value={fullname}
+              {...initiate("fullname")}
               placeHolder="enter your full name e.g Wahab Samuel"
               className=" w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-              onChange={onChangeInput}
               required
             />
+            <p className="text-sm text-orange-600 pt-2">
+              {errors.fullname?.message}
+            </p>
           </div>
           <div className="mb-4">
             <Label
@@ -130,15 +99,16 @@ const Register = () => {
             />
 
             <div className="relative">
-              <Input
-                name="email"
+              <input
                 type="email"
-                value={email}
+                {...initiate("email")}
                 placeHolder="Enter your email"
                 className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                onChange={onChangeInput}
                 required
               />
+              <p className="text-sm text-orange-600 pt-2">
+                {errors.email?.message}
+              </p>
             </div>
           </div>
           <div className="mb-4">
@@ -150,15 +120,15 @@ const Register = () => {
             />
 
             <div className="relative">
-              <Input
-                name="phoneNumber"
+              <input
                 type="number"
-                value={phoneNumber}
+                {...initiate("phoneNumber")}
                 className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                onChange={onChangeInput}
-                maxlength={11}
                 required
               />
+              <p className="text-sm text-orange-600 pt-2">
+                {errors.phoneNumber?.message}
+              </p>
             </div>
           </div>
           <div className="mb-4">
@@ -169,10 +139,8 @@ const Register = () => {
               title="Sex"
             />
             <select
-              name="gender"
-              value={gender}
+              {...initiate("gender")}
               className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-              onChange={onChangeInput}
               required
             >
               <option value="" disable selected>
@@ -181,21 +149,9 @@ const Register = () => {
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
-            {/* <div className="relative">
-              <Dropdown
-                name="sex"
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                required={true}
-                autoFocus={false}
-                onChange={onChangeInput}
-              >
-                {sexOptions.map((option) => (
-                  <option key={option.id} value={option.value}>
-                    {option.value}
-                  </option>
-                ))}
-              </Dropdown>
-            </div> */}
+            <p className="text-sm text-orange-600 pt-2">
+              {errors.gender?.message}
+            </p>
           </div>
           <div className="mb-4">
             <Label
@@ -204,17 +160,30 @@ const Register = () => {
               title="Password"
             />
             <div className="relative">
-              <Input
-                type="password"
-                name="password"
-                value={password}
-                placeHolder="enter your password"
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                onChange={onChangeInput}
-                required
-              />
-              <p className=" text-sm text-orange-600 pt-2">
-                Password should contain at least 8 characters
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  {...initiate("password")}
+                  placeHolder="enter your password"
+                  className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                  required
+                />
+                <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
+                  {showPassword ? (
+                    <AiOutlineEyeInvisible
+                      className="block cursor-pointer text-[1.2rem]"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    />
+                  ) : (
+                    <AiOutlineEye
+                      className="block cursor-pointer text-[1.2rem]"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    />
+                  )}
+                </div>
+              </div>
+              <p className="text-sm text-orange-600 pt-2">
+                {errors.password?.message}
               </p>
             </div>
           </div>
@@ -224,17 +193,35 @@ const Register = () => {
               htmlFor="confirmPassword"
               title="Re-Type Password *"
             />
-
-            <div className="relative">
-              <Input
-                type="password"
-                name="confirmPassword"
-                value={confirmPassword}
-                placeHolder="Confirm your password"
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm poppins  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                onChange={onChangeInput}
-                required
-              />
+            <div>
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  {...initiate("confirmPassword")}
+                  placeHolder="Confirm your password"
+                  className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm poppins  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                  required
+                />
+                <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
+                  {showConfirmPassword ? (
+                    <AiOutlineEyeInvisible
+                      className="block cursor-pointer text-[1.2rem]"
+                      onClick={() => {
+                        setShowConfirmPassword((prev) => !prev);
+                        console.log(errors);
+                      }}
+                    />
+                  ) : (
+                    <AiOutlineEye
+                      className="block cursor-pointer text-[1.2rem]"
+                      onClick={() => setShowConfirmPassword((prev) => !prev)}
+                    />
+                  )}
+                </div>
+              </div>
+              <p className="text-sm text-orange-600 pt-2">
+                {errors.confirmPassword?.message}
+              </p>
             </div>
           </div>
 
