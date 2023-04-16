@@ -9,7 +9,7 @@ export const getWallet = createAsyncThunk("getwallet/wallet", async (email) => {
 export const getTransactions = createAsyncThunk(
   "getTransactions/wallet",
   async () => {
-    const response = await getApi("transactions");
+    const response = await getApi("wallet/transactions");
     return response.data;
   }
 );
@@ -17,7 +17,7 @@ export const getTransactions = createAsyncThunk(
 export const getTransactionDetails = createAsyncThunk(
   "getTransactionDetails/wallet",
   async (id) => {
-    const response = await getApi(`transactions/${id}`);
+    const response = await getApi(`wallet/transactions/${id}`);
     return response.data;
   }
 );
@@ -25,7 +25,7 @@ export const getTransactionDetails = createAsyncThunk(
 export const paystackFundWallet = createAsyncThunk(
   "paystackFundWallet/wallet",
   async (data) => {
-    const response = await postApi("paystack/fund-wallet", data);
+    const response = await postApi("wallet/paystack/fund-wallet", data);
     return response.data;
   }
 );

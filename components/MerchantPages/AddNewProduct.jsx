@@ -2,10 +2,15 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 
 import { Tabs } from "antd";
+// import {
+//   ProductInformation,
+//   ProductPicture,
+//   ProductPrice,
+//   ProductVariation,
+// } from "./AddNewProductsTabs";
 import {
   ProductInformation,
   ProductPicture,
-  ProductPrice,
   ProductVariation,
 } from "./AddNewProductsTabs";
 import React, { useMemo, useState } from "react";
@@ -62,21 +67,21 @@ const AddNewProduct = ({ data, setData, handleProdVisiblity }) => {
           />
         ),
       },
-      {
-        key: "4",
-        label: (
-          <div className="text-gray-500" onClick={() => setActiveKey("4")}>
-            Product Price
-          </div>
-        ),
-        children: (
-          <ProductPrice
-            data={data}
-            setData={setData}
-            setActiveKey={setActiveKey}
-          />
-        ),
-      },
+      // {
+      //   key: "4",
+      //   label: (
+      //     <div className="text-gray-500" onClick={() => setActiveKey("4")}>
+      //       Product Price
+      //     </div>
+      //   ),
+      //   children: (
+      //     <ProductPrice
+      //       data={data}
+      //       setData={setData}
+      //       setActiveKey={setActiveKey}
+      //     />
+      //   ),
+      // },
     ];
   }, [data]);
   return (

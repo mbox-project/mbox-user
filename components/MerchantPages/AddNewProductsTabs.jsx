@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import UploadImages from "../antd/UploadImages";
+import { uploadProduct } from "../../store/product/productService";
+import { toastify } from "../../helpers";
+import { useDispatch } from "react-redux";
 
 export const ProductInformation = ({ setData, data, setActiveKey }) => {
   const handleChange = (e) => {
@@ -48,6 +51,24 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
             />
           </div>
           <div className="mb-2">
+            <label
+              htmlFor="unitprice"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Unit Price <span className="text-brightRed">*</span>
+            </label>
+            <input
+              type="number"
+              id="unitprice"
+              name="price"
+              value={data.price}
+              onChange={handleChange}
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="Enter product unit price"
+              required
+            />
+          </div>
+          <div className="mb-2">
             <label htmlFor="qty" className="block mb-2 text-md text-gray-500">
               Product Qty <span className="text-brightRed">*</span>
             </label>
@@ -74,6 +95,24 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
               onChange={handleTagsChange}
               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
               placeholder="e.g clothes, shoes, belt"
+              required
+            />
+          </div>
+          <div className="mb-2 relative">
+            <label
+              htmlFor="discount"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Discount <span className="text-brightRed">*</span>
+            </label>
+            <input
+              type="number"
+              id="discount"
+              name="discount"
+              value={data.discount}
+              onChange={handleChange}
+              className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
+              placeholder="Enter product discount in percentage"
               required
             />
           </div>
@@ -218,6 +257,7 @@ export const ProductVariation = ({
   setActiveKey,
   handleProdVisiblity,
 }) => {
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     setData((prev) => {
       const update = {
@@ -276,7 +316,19 @@ export const ProductVariation = ({
           </div>
           <button
             className="p-3 border border-brightRed text-center text-brightRed rounded-md w-4/5"
-            onClick={handleProdVisiblity}
+            // onClick={handleProdVisiblity}
+            onClick={() => {
+              dispatch(uploadProduct(data))
+                .unwrap()
+                .then((res) =>
+                  toastify.alertSuccess(
+                    "product uploaded successfully",
+                    3000,
+                    handleProdVisiblity
+                  )
+                )
+                .catch((error) => toastify.alertError(error, 3000));
+            }}
           >
             Preview Products
           </button>

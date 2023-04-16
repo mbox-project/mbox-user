@@ -8,3 +8,11 @@ export const getProductCategories = createAsyncThunk(
     return response.data;
   }
 );
+
+export const uploadProduct = createAsyncThunk(
+  "products/create",
+  async (body) => {
+    const response = await postApi("product/create", body);
+    return response.data;
+  }
+);

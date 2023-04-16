@@ -16,7 +16,7 @@ cloudinary.config({
 const upload = multer({
   dest: "uploads/",
   limits: {
-    fileSize: 10000,
+    fileSize: 5 * 1000 * 1000,
   },
 }).single("file");
 

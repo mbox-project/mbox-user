@@ -9,6 +9,7 @@ const UploadImages = ({ setData }) => {
   const props = {
     name: "file",
     multiple: true,
+    DocumentType: "",
     maxCount: 4,
     action: "/api/uploads",
     onChange(info) {
@@ -40,6 +41,22 @@ const UploadImages = ({ setData }) => {
           return false;
         });
     },
+    beforeUpload(file, fileList) {
+      const isJpgOrPng =
+        file.type === "image/jpeg" ||
+        file.type === "image/png" ||
+        fileList.every(
+          (mono) => mono.type === "image/png" || mono.type === "image/jpeg"
+        );
+      if (!isJpgOrPng) {
+        message.error("You can only upload JPG/PNG file!");
+      }
+      const isLt5M = file.size / 1024 / 1024 < 5;
+      if (!isLt5M) {
+        message.error("Image must smaller than 5MB!");
+      }
+      return isJpgOrPng && isLt5M;
+    },
   };
   return (
     <Dragger {...props}>
@@ -49,10 +66,6 @@ const UploadImages = ({ setData }) => {
       <p className="ant-upload-text">
         Click or drag file to this area to upload
       </p>
-      {/* <p className="ant-upload-hint">
-      Support for a single or bulk upload. Strictly prohibit from uploading
-      company data or other band files
-    </p> */}
       <p className="text-brightRed text-xs mb-2">(Upload 4 images)</p>
     </Dragger>
   );

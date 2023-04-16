@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { postApi } from "../../config/vendorApi";
+import { postApi, patchApi } from "../../config/vendorApi";
 
 export const createVendor = createAsyncThunk(
   "auth/createvendor",
@@ -12,7 +12,7 @@ export const createVendor = createAsyncThunk(
 export const registerVendor = createAsyncThunk(
   "auth/registerVendor",
   async (body) => {
-    const response = await postApi("vendor/registerVendor", body);
+    const response = await patchApi("vendor/updateVendor", body);
     return response.data;
   }
 );

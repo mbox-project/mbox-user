@@ -1,7 +1,6 @@
 import axios from "axios";
-import { AiOutlineSafety } from "react-icons/ai";
 
-const baseURL = "http://34.199.115.184:8004/api/wallet/";
+const baseURL = "http://34.199.115.184:8004/api/";
 
 const api = axios.create({
   baseURL,

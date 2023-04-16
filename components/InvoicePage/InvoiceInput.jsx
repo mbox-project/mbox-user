@@ -60,30 +60,26 @@ const invoiceInput = () => {
     e.preventDefault();
     // simple validation
     console.log(invoiceData);
-    if (invoiceData.buyer && invoiceData.tag) {
-      try {
-        const data = {
-          ...invoiceData,
-          issuer: fullname,
-          date: new Date().toISOString(),
-          products: productsList,
-          escFee: (subtotal / 100) * 5,
-          total: subtotal + (subtotal / 100) * 5,
-          subtotal,
-        };
-        dispatch(generateinvoice(data)).then((action) => {
-          console.log(action);
-          if (action.payload.data) {
-            router.push(`/invoice/${action.payload.data.id}`);
-          }
-          if (action.error) toastify.alertError("An error occured", 3000);
-        });
-        console.log("dispatched", invoiceState.invoiceLog, data);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      toastify.alertError("A field cannot be empty", 3000);
+    try {
+      const data = {
+        ...invoiceData,
+        issuer: fullname,
+        date: new Date().toISOString(),
+        products: productsList,
+        escFee: (subtotal / 100) * 5,
+        total: subtotal + (subtotal / 100) * 5,
+        subtotal,
+      };
+      dispatch(generateinvoice(data)).then((action) => {
+        console.log(action);
+        if (action.payload.data) {
+          router.push(`/invoice/${action.payload.data.id}`);
+        }
+        if (action.error) toastify.alertError("An error occured", 3000);
+      });
+      console.log("dispatched", invoiceState.invoiceLog, data);
+    } catch (error) {
+      console.log(error);
     }
   };
   return (

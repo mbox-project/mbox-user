@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.auth.user);
-  const userName = user.fullname.split(" ")[0];
+  const userName = user.fullname?.split(" ")[0];
   return (
     <>
       {/* first section --Welcome buyer */}
@@ -170,15 +170,15 @@ const Dashboard = () => {
             <ul className="mt-4 space-y-4">
               <li className="flex items-center space-x-32 text-sm hover:text-gray-600">
                 <h2 className="font-bold">Bank Name:</h2>
-                <span>Access Bank</span>
+                <span>Not Provided</span>
               </li>
               <li className="flex items-center space-x-24 text-sm hover:text-gray-600">
                 <h2 className="font-bold">Account Name: </h2>
-                <span>TemiTope Jefferey</span>
+                <span>Not Provided</span>
               </li>
               <li className="flex items-center space-x-20 text-sm hover:text-gray-600">
                 <h2 className="font-bold">Account Number: </h2>
-                <span>00377899234</span>
+                <span>Not Provided</span>
               </li>
             </ul>
           </div>
