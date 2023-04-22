@@ -75,7 +75,7 @@ const Register = () => {
   return (
     <div className="flex">
       <div className="hidden lg:w-1/2  lg:block bg-register-img bg-cover">
-        <Image src={authbg} width={1000} height={1500} />
+        <Image src={authbg} width={1000} style={{height: '70vh'}} /> 
       </div>
       {isLoading && <Spinner />}
       <div className=" bg-grayColor w-full lg:w-1/2  px-4 lg:px-0">

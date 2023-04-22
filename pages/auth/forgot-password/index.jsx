@@ -18,10 +18,10 @@ const ForgotPassword = () => {
   };
   return (
     <div className="flex">
-      <div className=" hidden w-1/2  mx-auto min-h-screen lg:block ">
-        <Image src={loginbg} width={1000} height={1100} />
+      <div className="hidden w-1/2  mx-auto min-h-screen lg:block ">
+        <Image src={loginbg} width={1000} style={{height: '100vh'}} />
       </div>
-      <div className="w-full lg:w-1/2  lg:mx-auto  mt-20 lg:mt-44">
+      <div style={{height: '100vh'}} className="w-full lg:w-1/2  lg:mx-auto  mt-20 lg:mt-44">
         <div className="w-full  font-poppins text-center">
           <h1 className="lg:text-3xl text-orange-600 text-3xl md:text-5xl lg:pt-0 font-poppins font-extrabold ">
             Recover Password

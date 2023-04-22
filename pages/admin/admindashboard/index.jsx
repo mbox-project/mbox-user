@@ -4,7 +4,7 @@ import Layout from "../../../components/AdminPagesLayout/Layout";
 
 const index = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { isMerchant } = useSelector((state) => state.user);
+  //const { isMerchant } = useSelector((state) => state.user);
   return (
     <>
       <Layout>

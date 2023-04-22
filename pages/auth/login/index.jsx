@@ -57,7 +57,7 @@ const Login = () => {
   return (
     <div className="flex">
       <div className="hidden w-1/2 backlogin lg:block">
-        <Image src={loginbg} width={1000} height={1100} />
+        <Image src={loginbg} width={1000} style={{height: '100vh'}} />
       </div>
       {isLoading && <Spinner />}
       <div className="w-full lg:w-1/2 px-4  bg-grayColor">
