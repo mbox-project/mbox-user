@@ -29,8 +29,8 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
   };
 
   return (
-    <>
-      <div className="absolute dropdown-content right-0 mt-8 z-50 flex flex-col space-y-4 justify-start pl-4 py-6 bg-white w-64 rounded-md">
+    <div>
+      <div className="flex flex-col space-y-4 justify-start pl-4 py-6 bg-white w-64 rounded-md">
         <div className="profileDetails mb-3">
           <h3 className="text-lg font-bold">{username}</h3>
           <span>{role === "user" ? "Buyer" : "vendor"}</span>
@@ -82,7 +82,7 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
       {showVendorModal && (
         <CustomModal closeModal={closeModal} closeDropDown={closeDropDown} />
       )}
-    </>
+    </div>
   );
 };
 

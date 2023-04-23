@@ -57,25 +57,25 @@ const Login = () => {
   };
 
   return (
-    <div className="flex">
-      <div className="hidden w-1/2 backlogin lg:block">
-        <Image src={loginbg} height={830} />
+    <div className="grid grid-cols-2 justify-items-center items-center justify-between">
+      <div className="hidden h-screen w-full lg:flex items-center">
+        <Image src={loginbg} className="w-full hfull my-auto" />
       </div>
       {isLoading && <Spinner />}
-      <div className="w-full lg:w-1/2 px-4  bg-grayColor">
-        <div>
-          <div className="text-center firstdiv">
-            <h1 className="text-lg md:text-3xl font-bold mt-20 lg:mt-28 font-poppins text-orange-600 ">
+      <div className="w-full h-full flex items-center justify-center bg-grayColor">
+        <div className="w-full h-full flex flex-col items-stretch justify-center my-auto">
+          <div className="text-center">
+            <h1 className="text-lg md:text-3xl font-bold mt20 lg:mt28 font-poppins text-orange-600 ">
               Login
             </h1>
             <p className=" hidden md:flex justify-center md:text-sm pt-2 font-poppins text-gray-700">
               Please enter your details.
             </p>
           </div>
-          <form className=" mt-6  px-0 lg:px-10">
-            <div className="mb-6 ">
+          <form className=" mt-6 px-0 lg:px-10">
+            <div className="mb-6">
               <Label
-                className="w-full  text-lg lg:text-base font-poppins text-[#9A9A9A]"
+                className="w-full text-lg lg:text-base font-poppins text-[#9A9A9A]"
                 htmlFor="email"
                 title="Email"
               />
@@ -120,26 +120,26 @@ const Login = () => {
                 </div>
               </div>
             </div>
-            <div className="py-3 flex justify-between text-gray-600">
-              <div>
+            <div className="py-3 flex justify-between items-center text-gray-600">
+              <div className="flex items-center justify-center gap-1">
                 <Input
                   type="checkbox"
-                  className="mr-2"
+                  className="cursor-pointer"
                   name="rememberMe"
                   required={false}
                   value={rememberMe}
                   onChange={onChangeInput}
                 />
-                {/* <input type="checkbox" value= /> */}
                 <span className="text-lg lg:text-sm poppins">
                   keep me Log in
                 </span>
               </div>
               <div>
-                <Link href={`/auth/forgot-password`}>
-                  <a className="underline text-orange-600 lg:text-lightGray text-lg lg:text-sm poppins">
-                    Forgot password?
-                  </a>
+                <Link
+                  href={`/auth/forgot-password`}
+                  className="underline text-orange-600 lg:text-lightGray text-lg lg:text-sm poppins"
+                >
+                  Forgot password?
                 </Link>
               </div>
             </div>
@@ -149,22 +149,20 @@ const Login = () => {
             >
               Login
             </Button>
-            <div className=" flex  pt-4 lg:pt-0 md:flex justify-center">
+            <div className="flex pt-4 lg:pt-0 items-center gap-1 justify-center">
               <span className="text-gray-600 flex poppins  justify-center text-sm lg:leading-0  lg:text-xs pt-1 lg:pt-0">
                 By Login, you’ve already agreed to our{" "}
               </span>
               <Link href="/">
-                <a className="text-gray-900  poppins pt-1 flex text-sm  lg:text-xs pl-2 justify-center  md:pt-3 lg:pt-0 font-bold">
+                <a className="text-orange-600 poppins pt-1 flex text-sm lg:text-xs justify-center  md:pt-3 lg:pt-0 font-bold">
                   Terms & Condition
                 </a>
               </Link>
             </div>
-            <div className="flex pt-5 lg:pt-0">
-              <p className=" text-gray-600 text-md poppins  pt-5 flex justify-center lg:text-base">
-                New User?
-              </p>
+            <div className="flex items-center gap-1 pt-5 lg:pt-0">
+              <p className=" text-gray-600 text-md lg:text-base">New User?</p>
               <Link href="/auth/register">
-                <a className="text-orange-600 poppins pl-3  flex justify-center pt-5 text-md lg:text-base underline">
+                <a className="text-orange-600 text-md lg:text-base underline">
                   Sign Up
                 </a>
               </Link>

@@ -1,11 +1,29 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UploadImages from "../antd/UploadImages";
-import { uploadProduct } from "../../store/product/productService";
+import {
+  uploadProduct,
+  getProductCategories,
+} from "../../store/product/productService";
 import { toastify } from "../../helpers";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const ProductInformation = ({ setData, data, setActiveKey }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProductCategories())
+      .unwrap()
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+    console.log("effect");
+  }, []);
+  const categories = useSelector((state) => state.product.categories);
+  const [category, setCategory] = useState("");
+  const onSelectCategory = (e) => {
+    setCategory(e.target.value);
+    setData((init) => ({ ...init, categoryId: e.target.value }));
+    console.log(e.target.value);
+  };
   const handleChange = (e) => {
     setData((prev) => {
       const update = {
@@ -85,6 +103,26 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
           </div>
           <div className="mb-2">
             <label htmlFor="tags" className="block mb-2 text-md text-gray-500">
+              Category<span className="text-brightRed">*</span>
+            </label>
+            <select
+              name="category"
+              id="category"
+              value={category}
+              onChange={onSelectCategory}
+              placeholder="select category"
+              className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
+            >
+              <option value="">select category</option>
+              {categories.map((e, i) => (
+                <option key={i} value={e.id}>
+                  {e.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="mb-2">
+            <label htmlFor="tags" className="block mb-2 text-md text-gray-500">
               Product Tags<span className="text-brightRed">*</span>
             </label>
             <input
@@ -133,7 +171,7 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
           </div>
           <button
             type="submit"
-            className="p-3 bg-brightRed text-white text-center rounded-md w-4/5"
+            className="p-3 bg-brightRed text-white text-center rounded-md w-full"
           >
             Next
           </button>
@@ -158,7 +196,7 @@ export const ProductPicture = ({ setData, setActiveKey }) => {
           }
         }}
         type="submit"
-        className="p-3 bg-brightRed text-white text-center rounded-md w-4/5"
+        className="p-3 mt-2 bg-brightRed text-white text-center rounded-md w-full"
       >
         Next
       </button>
@@ -241,7 +279,7 @@ export const ProductPrice = ({ data, setData, setActiveKey }) => {
           </div>
           <button
             type="submit"
-            className="p-3 bg-brightRed text-white text-center rounded-md w-4/5"
+            className="p-3 bg-brightRed text-white text-center rounded-md w-full"
           >
             Next
           </button>
@@ -309,13 +347,14 @@ export const ProductVariation = ({
               id="sizes"
               name="sizes"
               value={data.sizes}
+              onChange={handleChange}
               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
               placeholder="small, medium, large"
               required
             />
           </div>
           <button
-            className="p-3 border border-brightRed text-center text-brightRed rounded-md w-4/5"
+            className="p-3 border border-brightRed text-center text-brightRed rounded-md w-full"
             // onClick={handleProdVisiblity}
             onClick={() => {
               dispatch(uploadProduct(data))

@@ -30,7 +30,7 @@ const UploadImages = ({ setData }) => {
       console.log("Dropped files", e.dataTransfer.files);
     },
     onRemove(info) {
-      const public_id = info.response.publicId;
+      const public_id = info.response?.publicId;
       axios
         .patch("/api/delete", { id: public_id })
         .then(() => {

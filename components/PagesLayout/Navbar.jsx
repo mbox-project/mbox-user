@@ -10,21 +10,20 @@ import NavBarDropdown from "../NavBarDropdown";
 import { useSelector } from "react-redux";
 import { selectRole } from "../../store/selectors/selectors";
 import Link from "next/link";
+import { Popover } from "antd";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
-  const [showDropDown, setShowDropDown] = useState(false);
   const role = useSelector(selectRole);
-  const handleShowDropDown = () => {
-    setShowDropDown(!showDropDown);
-  };
-  const closeDropDown = () => {
-    setShowDropDown(false);
+  const [openNav, setOpenNav] = useState(false);
+  const handleNav = () => {
+    setOpenNav((prev) => !prev);
   };
   return (
     <div className="customNavbar mx-auto sticky top-0 z-[10] bg-white font-sans w-full">
       <div className="p-2 mx-auto shadow-md hover:shadow-lg">
         {/* flex Container */}
-        <div className="flex items-center justify-between px-5 md:px-8 md:space-x-10">
+        <div className="flex items-center justify-between gap-[1rem] px5 md:px8 md:space-x10">
           {!showSideBar ? (
             <svg
               className="flex mt-2 items-center cursor-pointer md:hidden"
@@ -59,7 +58,7 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
             </Link>
           </div>
           <Search />
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center justify-between gap-[0.8rem] space-x6">
             {role === "vendor" ? (
               <div className="flex gap-[0.5rem]">
                 <Link href="/payinvoice">
@@ -89,39 +88,26 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
                 </button>
               </Link>
             )}
-            <div className="hidden m-0 md:block md:mt-2">
+            {/* <div className="hidden m-0 md:block md:mt-2">
               <Image src={bell} width={25} height={30} alt="bell" />
-            </div>
-            <div className="dropdown relative mt-2 flex">
-              <div
-                className="flex items-center justify-center cursor-pointer"
-                onClick={handleShowDropDown}
-              >
-                <Image src={profile} width={25} height={30} alt="pics" />
-                <svg
-                  className="ml-2 w-4 h-4"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
-              </div>
-              {showDropDown && (
+            </div> */}
+            <Popover
+              content={
                 <NavBarDropdown
                   handleLogout={handleLogout}
-                  closeDropDown={closeDropDown}
                   isMerchant={isMerchant}
                 />
-              )}
-            </div>
+              }
+              trigger="click"
+              open={openNav}
+              onOpenChange={handleNav}
+              arrow={false}
+            >
+              <div className="flex items-center justify-center cursor-pointer">
+                <Image src={profile} width={25} height={30} alt="pics" />
+                <RiArrowDropDownLine />
+              </div>
+            </Popover>
           </div>
         </div>
       </div>

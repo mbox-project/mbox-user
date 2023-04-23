@@ -69,14 +69,15 @@ const invoiceInput = () => {
         escFee: (subtotal / 100) * 5,
         total: subtotal + (subtotal / 100) * 5,
         subtotal,
+        Id: "",
       };
-      dispatch(generateinvoice(data)).then((action) => {
-        console.log(action);
-        if (action.payload.data) {
-          router.push(`/invoice/${action.payload.data.id}`);
-        }
-        if (action.error) toastify.alertError("An error occured", 3000);
-      });
+      dispatch(generateinvoice(data))
+        .unwrap()
+        .then((action) => {
+          console.log(action);
+          // router.push(`/invoice/${action.payload.data.id}`);
+        })
+        .catch((error) => toastify.alertError(error, 3000));
       console.log("dispatched", invoiceState.invoiceLog, data);
     } catch (error) {
       console.log(error);
