@@ -29,7 +29,7 @@ const Questions = () => {
   };
 
   return (
-    <section className=" newsletterbg  pt-0 lg:pt-12 pb-28">
+    <section className=" newsletterbg  pt-0 lg:pt-12 pb-52 md:pb-28">
       <div className=" ">
         <div className="flex justify-center tracking-wide font-bold poppins textcolor text-base lg:text-2xl  pt-12 lg:pt-10  ">
           <h4>Your Question(s) is/are not listed?</h4>
@@ -93,7 +93,7 @@ const Questions = () => {
           </div>
           <Button
             type="submit"
-            className=" aboutherobg py-2 mt-7 lg:py-2 lg:absolute lg:right-96 px-8 lg:mr-10 shadow-lg rounded-md text-white text-lg font-semibold"
+            className=" aboutherobg py-2 mt-7  ml-4 lg:ml-0 lg:py-2 lg:absolute lg:right-96 px-8 lg:mr-10 shadow-lg rounded-md text-white text-lg font-semibold"
           >
             Submit
           </Button>

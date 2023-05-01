@@ -2,6 +2,8 @@ import React from "react";
 import Header from "../components/Header";
 import MainFooter from "../components/MainFooter";
 import Newsletter from "../components/Newsletter";
+import { ScrollMenu } from "react-horizontal-scrolling-menu";
+
 // import About from "../components/About";
 import Feature from "../components/Feature";
 import GenerateInvoice from "../components/GenerateInvoice";
@@ -17,7 +19,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import slide from "../public/images/slide.png";
 import PopularMerchants from "../components/PopularMerchants";
-import iconOne from "../public/images/featureicon1.png";
+import iconOne from "../public/images/featureicon1.PNG";
 import iconTwo from "/public/images/featureicon2.png";
 import iconThree from "/public/images/featureicon3.png";
 import Link from "next/link";
@@ -43,7 +45,7 @@ const featureCard = [
     icon: iconThree,
   },
 ];
-
+// const HorizontalScroll = require("react-horizontal-scrolling");
 let merchantCard = [
   {
     id: 1,
@@ -78,7 +80,7 @@ const LandingPage = () => {
       <section className="mr-0">
         <Carousel>
           <div>
-            <Button className="px-4 md:px-12 md:py-3 py-1 mt-24  uppercase lg:rounded-md md:mt-48 hover:-translate-y-1 hover:scale-110  duration-300  lg:mt-96  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-brightPurple font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto  bg-yellowColor lg:ml-16">
+            <Button className="px-4 md:px-12 md:py-3 py-1 mt-24  uppercase lg:rounded-md md:mt-48 hover:-translate-y-1 hover:scale-110  duration-300  lg:mt-96  absolute z-20 text-sm md:text-base   lg:text-lg font-bold tracking-wide  text-brightPurple font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto  bg-yellowColor lg:ml-16">
               <Link href={""}>Shop Now</Link>
             </Button>
             <Image src={slide} />
@@ -99,17 +101,17 @@ const LandingPage = () => {
           </div>
         </Carousel>
       </section>
-      <section className="featurebg -mt-12 ">
+      <section className=" bg-grayColor lg:bg-featureColor -mt-12 ">
         <div className="max-w-screen-xl px-4 py-6 md:py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-0">
-          <h2 className="flex justify-center py-1 uppercase font-poppins font-bold text-xl md:text-2xl lg:text-4xl  ">
+          <h2 className="flex justify-center md:mt-1 lg:mt-0 py-1 uppercase font-poppins font-bold text-xl md:text-3xl lg:text-4xl  ">
             Our Special<span className="text-orange-600 px-3 "> Features</span>
           </h2>
-          <div className=" block md:grid grid-cols-2 w-full   lg:flex">
+          <div className=" block  w-full   lg:flex">
             {featureCard.map((card, index) => {
               return (
                 <Feature
                   key={index}
-                  className="p-4 mx-2 my-6 pt-8 -mt-44 md:-mt-44 lg:-mt-44 lg:pt-16 md:my-8 lg:my-0 lg:mx-6 border-2 block  try rounded-xl  bg-grayColor"
+                  className="p-4 mx-2 my-1 pt-8 -mt-36 md:-mt-44 md:pt-12 lg:-mt-44 lg:pt-16 md:my-1 lg:my-0 lg:mx-6 border-2 block  try rounded-xl bg-grayColor lg:bg-grayColor"
                   header={card.name}
                   body={card.body}
                   icon={card.icon}
@@ -129,28 +131,28 @@ const LandingPage = () => {
             </h2>
             <p>See All</p>
           </div>
-          <div className="block pb-10 md:grid  md:grid-cols-2 lg:grid-cols-4 suggested">
-            {merchantCard.map((item, index) => {
-              return (
-                <SuggestedMerchant
-                  key={index}
-                  className="p-4 mx-3 mt-3 lg:mx-10 lg:w-72 border-2  lg:mt-10  shadow-md  rounded-lg  bg-white"
-                  header={item.name}
-                  body={item.count}
-                  categories={item.categories}
-                  button="View Store"
-                />
-              );
-            })}
-          </div>
+          <ScrollMenu>
+            <div className="flex pb-10 suggested">
+              {merchantCard.map((item, index) => {
+                return (
+                  <SuggestedMerchant
+                    key={index}
+                    className="p-4 mx-3 mt-3 lg:mx-10 w-72 lg:w-72 border-2  lg:mt-10  shadow-md  rounded-lg  bg-white"
+                    header={item.name}
+                    body={item.count}
+                    categories={item.categories}
+                    button="View Store"
+                  />
+                );
+              })}
+            </div>
+          </ScrollMenu>
         </div>
       </section>
       <Items />
       <section>
         <div className="max-w-screen-xl md:pb-12 lg:pb-16 px-4 -mt-10 pt-0 pb-6 lg:mx-auto sm:px-6 lg:px-8 ">
-
-          <Button className="px-4 md:px-12 md:py-3 py-1 mt-24   lg:rounded-md md:mt-48   lg:mt-96 right-52 lg:px-40  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-brightPurple lg:ml-16">
-          
+          <Button className="px-4 md:px-12 md:py-3 py-1 mt-24  lg:rounded-md md:mt-56   lg:mt-96 right-10 md:right-20 lg:right-52 lg:px-40  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-brightPurple lg:ml-16">
             <Link href={""}>Buy now</Link>
           </Button>
           <Link href={""}>
@@ -163,8 +165,7 @@ const LandingPage = () => {
       <BecomeAMerchant />
       <section>
         <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
-          <Button className="px-4 md:px-12 md:py-3 py-1 mt-24   lg:rounded-md md:mt-48   lg:mt-64 right-44 lg:px-44  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-lightYellow lg:ml-16">
-
+          <Button className="px-4 md:px-12 md:py-3 py-1 mt-16 lg:rounded-md md:mt-40  lg:mt-64 right-10 lg:right-44 lg:px-44  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-lightYellow lg:ml-16">
             <Link href={""}>Buy now</Link>
           </Button>
           <Link href={""}>

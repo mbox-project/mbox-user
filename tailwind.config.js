@@ -14,9 +14,10 @@ module.exports = {
             lightPink:'#FFF9FF',
             lightAsh:'#E5E5E5',
             deepGray:'#F7F7F7',
-
+            deepAsh : '#EFEFEF',
             lightYellow: '#BB800F',
-            lightGrayColor:'#9A9A9A'
+            lightGrayColor:'#9A9A9A',
+            featureColor:'#FFF9FF'
            
             
         },
