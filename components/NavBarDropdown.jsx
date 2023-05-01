@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import CustomModal from "./CustomModal";
 import { useSelector, useDispatch } from "react-redux";
 import { selectRole } from "../store/selectors/selectors";
-import { logout } from "../store/auth/authSlice";
+import { LogOut } from "../store/store";
 import { useStore } from "react-redux";
 import { makeStore } from "../store/store";
 
@@ -29,7 +29,7 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
   };
 
   return (
-    <div>
+    <div className="fixed top-[10%] right-0">
       <div className="flex flex-col space-y-4 justify-start pl-4 py-6 bg-white w-64 rounded-md">
         <div className="profileDetails mb-3">
           <h3 className="text-lg font-bold">{username}</h3>
@@ -72,7 +72,7 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
               if (typeof window !== undefined) {
                 sessionStorage.removeItem("token");
               }
-              dispatch(logout());
+              dispatch(LogOut());
             }}
           >
             Logout

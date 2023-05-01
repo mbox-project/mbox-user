@@ -57,7 +57,7 @@ const Login = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 justify-items-center items-center justify-between">
+    <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center items-center justify-between bg-grayColor">
       <div className="hidden h-screen w-full lg:flex items-center">
         <Image src={loginbg} className="w-full hfull my-auto" />
       </div>

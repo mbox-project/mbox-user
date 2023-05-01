@@ -21,7 +21,7 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
   };
   return (
     <div className="customNavbar mx-auto sticky top-0 z-[10] bg-white font-sans w-full">
-      <div className="p-2 mx-auto shadow-md hover:shadow-lg">
+      <div className="p-2 mx-auto shadow-md hover:shadow-lg relative">
         {/* flex Container */}
         <div className="flex items-center justify-between gap-[1rem] px5 md:px8 md:space-x10">
           {!showSideBar ? (
@@ -88,26 +88,26 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
                 </button>
               </Link>
             )}
-            {/* <div className="hidden m-0 md:block md:mt-2">
-              <Image src={bell} width={25} height={30} alt="bell" />
-            </div> */}
-            <Popover
-              content={
-                <NavBarDropdown
-                  handleLogout={handleLogout}
-                  isMerchant={isMerchant}
-                />
-              }
-              trigger="click"
-              open={openNav}
-              onOpenChange={handleNav}
-              arrow={false}
-            >
-              <div className="flex items-center justify-center cursor-pointer">
-                <Image src={profile} width={25} height={30} alt="pics" />
-                <RiArrowDropDownLine />
-              </div>
-            </Popover>
+            <div className="relative">
+              <Popover
+                content={
+                  <NavBarDropdown
+                    handleLogout={handleLogout}
+                    isMerchant={isMerchant}
+                  />
+                }
+                trigger="click"
+                open={openNav}
+                onOpenChange={handleNav}
+                arrow={false}
+                placement="bottom"
+              >
+                <div className="flex items-center justify-center cursor-pointer">
+                  <Image src={profile} width={25} height={30} alt="pics" />
+                  <RiArrowDropDownLine />
+                </div>
+              </Popover>
+            </div>
           </div>
         </div>
       </div>

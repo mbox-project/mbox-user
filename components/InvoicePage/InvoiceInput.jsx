@@ -16,10 +16,8 @@ const invoiceInput = () => {
   const fullname = useSelector((state) => state.user.fullname);
   const router = useRouter();
   const product = {
-    tag: "",
-    productDescription: "",
-    price: 0,
-    quantity: 0,
+    price: "",
+    quantity: "",
   };
   const [productsList, setProductsList] = useState([product]);
   const [invoiceData, setInvoiceData] = useState({
@@ -74,11 +72,11 @@ const invoiceInput = () => {
       dispatch(generateinvoice(data))
         .unwrap()
         .then((action) => {
-          console.log(action);
-          // router.push(`/invoice/${action.payload.data.id}`);
+          toastify.alertSuccess(action?.message, 3000, () =>
+            router.push(`invoice/${action?.data}`)
+          );
         })
         .catch((error) => toastify.alertError(error, 3000));
-      console.log("dispatched", invoiceState.invoiceLog, data);
     } catch (error) {
       console.log(error);
     }
@@ -155,14 +153,14 @@ const invoiceInput = () => {
                   <Label
                     className="text-lightAsh text-sm"
                     htmlFor="text"
-                    title="Product Qty"
+                    title="Unit Price"
                   />
                   <Input
-                    name="quantity"
+                    name="price"
                     type="number"
-                    placeHolder="GC-10234"
-                    className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm font-poppins mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                    value={e.quantity}
+                    placeHolder="Unit Price"
+                    className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
+                    value={e.price}
                     onChange={(cur) => onProductChangeInput(cur, i)}
                     required
                   />
@@ -171,14 +169,14 @@ const invoiceInput = () => {
                   <Label
                     className="text-lightAsh text-sm"
                     htmlFor="text"
-                    title="Unit Price"
+                    title="Product Qty"
                   />
                   <Input
-                    name="price"
+                    name="quantity"
                     type="number"
-                    placeHolder="GC-10234"
-                    className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                    value={e.price}
+                    placeHolder="Quantity"
+                    className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm font-poppins mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
+                    value={e.quantity}
                     onChange={(cur) => onProductChangeInput(cur, i)}
                     required
                   />

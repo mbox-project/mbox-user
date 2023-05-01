@@ -1,4 +1,8 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  combineReducers,
+  createAction,
+} from "@reduxjs/toolkit";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
 import storage from "redux-persist/lib/storage";
 import user from "./users/userSlice";
@@ -27,6 +31,8 @@ const masterReducer = (state, action) => {
     return rootReducer(state, action);
   }
 };
+
+export const LogOut = createAction("LOGOUT");
 
 export const makeStore = () => {
   const isClient = typeof window !== undefined;

@@ -13,25 +13,19 @@ const invoiceID = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [data, setData] = useState(null);
+  const { invoiceID } = router.query;
   console.log(invoiceID);
   useEffect(() => {
-    dispatch(getInvoice(router.query.invoiceID)).then((action) => {
-      console.log(action);
-      setData(action.payload.data);
-    });
-  }, []);
+    dispatch(getInvoice(invoiceID))
+      .unwrap()
+      .then((action) => {
+        console.log(action);
+        setData(action);
+      })
+      .catch((error) => console.log(error));
+  }, [invoiceID]);
   const { isLoading } = useSelector((state) => state.invoice);
   return (
-    // <div>
-    //   <Header />
-    //   <div className="flex poppins pl-24 pt-5">
-    //     <p>Home </p>
-    //     <p className="pl-1">invoice</p>
-    //   </div>
-    //   <Edit />
-    //   {data && <Receipt data={data} />}
-    //   <MainFooter />
-    // </div>
     <>
       {isLoading ? (
         <Spinner />

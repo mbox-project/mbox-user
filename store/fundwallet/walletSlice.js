@@ -130,6 +130,9 @@ export const walletSlice = createSlice({
       })
       .addCase(getTransactionDetails.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase("LOGOUT", (state) => {
+        state = initialState;
       });
   },
 });

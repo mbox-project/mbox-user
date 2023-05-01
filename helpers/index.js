@@ -6,11 +6,7 @@ export const toastify = {
     toast.success(message, {
       icon: true,
       autoClose: duration,
-      onClose: () => {
-        Close();
-      },
-      //theme: "colored",
-      //  position: toast.POSITION.TOP_RIGHT //..this is the default position anyways
+      onClose: Close,
     });
   },
 

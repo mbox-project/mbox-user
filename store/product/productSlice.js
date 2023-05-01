@@ -31,6 +31,9 @@ const productSlice = createSlice({
       })
       .addCase(uploadProduct.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase("LOGOUT", (state) => {
+        state = initialState;
       });
   },
 });

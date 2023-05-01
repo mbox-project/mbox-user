@@ -84,11 +84,15 @@ export const invoiceSlice = createSlice({
       // state.message = action.payload.message;
       // state.invoiceLog = action.payload.data;
     });
-    builder.addCase(getInvoice.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
-      // state.message = action.payload;
-    });
+    builder
+      .addCase(getInvoice.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        // state.message = action.payload;
+      })
+      .addCase("LOGOUT", (state) => {
+        state = initialState;
+      });
   },
 });
 

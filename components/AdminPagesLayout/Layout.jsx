@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Navbar from "./Navbar";
 import SidebarComp from "./SidebarComp";
 import PropTypes from "prop-types";
-import { logout, reset } from "../../store/auth/authSlice";
+import { reset } from "../../store/auth/authSlice";
+import { LogOut } from "../../store/store";
 import { useRouter } from "next/router";
 import { toastify } from "../../helpers";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
@@ -21,7 +22,7 @@ const Layout = ({ children }) => {
   const handleLogout = () => {
     const mssg = "Logged Out Successfully";
     toastify.alertSuccess(mssg, 3000);
-    dispatch(logout());
+    dispatch(LogOut());
     dispatch(reset()); // reset back to initialState..
     router.push("/auth/login");
   };

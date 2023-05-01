@@ -82,9 +82,6 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout: (state) => {
-      state.user = initialState.user;
-    },
     reset: (state) => {
       state.isLoading = false;
       state.isError = false;
@@ -157,9 +154,12 @@ export const authSlice = createSlice({
       })
       .addCase(verifyEmail.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase("LOGOUT", (state) => {
+        state = initialState;
       });
   },
 });
 
-export const { reset, logout } = authSlice.actions;
+export const { reset } = authSlice.actions;
 export default authSlice.reducer;
