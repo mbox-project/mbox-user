@@ -8,11 +8,17 @@ import PropTypes from "prop-types";
 import CustomModal from "./CustomModal";
 import { useSelector, useDispatch } from "react-redux";
 import { selectRole } from "../store/selectors/selectors";
-import { logout } from "../store/auth/authSlice";
+import { LogOut } from "../store/store";
+import { useStore } from "react-redux";
+import { makeStore } from "../store/store";
 
 const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
+  const store = makeStore();
   const [showVendorModal, setShowVendormodal] = useState(false);
   const role = useSelector(selectRole);
+  const username = useSelector((state) => state.auth.user?.fullname)?.split(
+    " "
+  )[0];
   const dispatch = useDispatch();
 
   const handleModalVisibility = () => {
@@ -23,11 +29,11 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
   };
 
   return (
-    <>
-      <div className="absolute dropdown-content right-0 mt-8 z-50 flex flex-col space-y-4 justify-start pl-4 py-6 bg-white w-64 rounded-md">
+    <div className="fixed top-[10%] right-0">
+      <div className="flex flex-col space-y-4 justify-start pl-4 py-6 bg-white w-64 rounded-md">
         <div className="profileDetails mb-3">
-          <h3 className="text-lg font-bold">Wahab Micheal</h3>
-          <span>Buyer</span>
+          <h3 className="text-lg font-bold">{username}</h3>
+          <span>{role === "user" ? "Buyer" : "vendor"}</span>
         </div>
         <hr />
         {role === "user" && (
@@ -57,13 +63,26 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
           onClick={() => dispatch(logout())}
           className="flex justify-center items-center text-center text-red-500 mt-3"
         >
-          <button onClick={() => dispatch(logout())}>Logout</button>
+          <button
+            onClick={() => {
+              store.__persistor
+                .purge()
+                .then(() => console.log("state cleared"))
+                .catch(() => console.log("error"));
+              if (typeof window !== undefined) {
+                sessionStorage.removeItem("token");
+              }
+              dispatch(LogOut());
+            }}
+          >
+            Logout
+          </button>
         </div>
       </div>
       {showVendorModal && (
         <CustomModal closeModal={closeModal} closeDropDown={closeDropDown} />
       )}
-    </>
+    </div>
   );
 };
 

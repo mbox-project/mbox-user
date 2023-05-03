@@ -16,13 +16,18 @@ const login = async (loginData) => {
   const response = await postApi("User/login", loginData);
   //console.log("LoginResponse", response);
   if (response.data) {
-    localStorage.setItem("user", JSON.stringify(response.data));
+    // localStorage.setItem("user", JSON.stringify(response.data));
   }
   return response.data;
 };
 
-const getUser = async (id) => {
-  const response = await axios.get(`User/${id}`);
+const getUser = async () => {
+  const response = await getApi("user");
+  return response.data;
+};
+
+const verifyEmail = async (body) => {
+  const response = await postApi("user/confirmemail", { ...body });
   return response.data;
 };
 
@@ -32,5 +37,6 @@ const authService = {
   register,
   login,
   getUser,
+  verifyEmail,
 };
 export default authService;

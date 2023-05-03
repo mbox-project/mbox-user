@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 import vendorService from "./vendorService";
-import { HYDRATE } from "next-redux-wrapper";
+// import { HYDRATE } from "next-redux-wrapper";
 
 // /**
 //  * When the user login then we saved the userid, role, and token
@@ -66,18 +66,22 @@ export const login = createAsyncThunk(
 
 // logout user
 
-export const getUser = createAsyncThunk("auth/getUser", async (id) => {
-  return await authService.getUser(id);
+export const getUser = createAsyncThunk("auth/getUser", async () => {
+  return await authService.getUser();
 });
+
+export const verifyEmail = createAsyncThunk(
+  "auth/verifyEmail",
+  async (body) => {
+    return await authService.verifyEmail(body);
+  }
+);
 
 //create the authReducer...
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout: (state) => {
-      state.user = initialState.user;
-    },
     reset: (state) => {
       state.isLoading = false;
       state.isError = false;
@@ -137,10 +141,25 @@ export const authSlice = createSlice({
       })
       .addCase(getUser.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.user = action.payload.data;
       })
-      .addCase(getUser.rejected, (state, action) => {});
+      .addCase(getUser.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(verifyEmail.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(verifyEmail.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(verifyEmail.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase("LOGOUT", (state) => {
+        state = initialState;
+      });
   },
 });
 
-export const { reset, logout } = authSlice.actions;
+export const { reset } = authSlice.actions;
 export default authSlice.reducer;

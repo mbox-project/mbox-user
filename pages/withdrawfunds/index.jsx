@@ -3,16 +3,16 @@ import Input from "../../components/Input";
 import Label from "../../components/Label";
 import Button from "../../components/Button";
 import Spinner from "../../components/Spinner";
-import { withdrawPaystack } from "../../store/fundwallet/walletSlice";
+import { withdrawFundPaystack } from "../../store/fundwallet/walletService";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { banks } from "../../components/data";
 import SearchSelect from "../../components/combobox";
+import { toastify } from "../../helpers";
 const withdrawFunds = ({}) => {
   const dispatch = useDispatch();
-  const { isLoading, isError, isSuccess, wallet, message } = useSelector(
-    (state) => state.wallet
-  );
+  const { isLoading } = useSelector((state) => state.wallet);
+  const { email } = useSelector((state) => state.auth.user);
   const [amount, setAmount] = useState("");
   const [bankName, setBankName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
@@ -21,11 +21,17 @@ const withdrawFunds = ({}) => {
     if (amount && bankName && accountNumber && bankName !== banks[0]) {
       const data = {
         amount: Number(amount),
-        email: "oijaware@vertex.com",
+        email,
         accountNumber,
         bankName: bankName.name,
       };
-      dispatch(withdrawPaystack(data));
+      dispatch(withdrawFundPaystack(data))
+        .unwrap()
+        .then((action) => console.log(action))
+        .catch((error) => {
+          console.log(error);
+          toastify.alertError(error, 3000);
+        });
     }
   };
   return (

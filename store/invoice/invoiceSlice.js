@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import invoiceService from "./invoiceService";
-import { HYDRATE } from "next-redux-wrapper";
+// import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
   invoiceLog: null,
@@ -84,11 +84,15 @@ export const invoiceSlice = createSlice({
       // state.message = action.payload.message;
       // state.invoiceLog = action.payload.data;
     });
-    builder.addCase(getInvoice.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
-      // state.message = action.payload;
-    });
+    builder
+      .addCase(getInvoice.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        // state.message = action.payload;
+      })
+      .addCase("LOGOUT", (state) => {
+        state = initialState;
+      });
   },
 });
 

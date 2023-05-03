@@ -2,10 +2,15 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 
 import { Tabs } from "antd";
+// import {
+//   ProductInformation,
+//   ProductPicture,
+//   ProductPrice,
+//   ProductVariation,
+// } from "./AddNewProductsTabs";
 import {
   ProductInformation,
   ProductPicture,
-  ProductPrice,
   ProductVariation,
 } from "./AddNewProductsTabs";
 import React, { useMemo, useState } from "react";
@@ -24,7 +29,11 @@ const AddNewProduct = ({ data, setData, handleProdVisiblity }) => {
           </div>
         ),
         children: (
-          <ProductInformation data={data} setActiveKey={setActiveKey} />
+          <ProductInformation
+            data={data}
+            setData={setData}
+            setActiveKey={setActiveKey}
+          />
         ),
       },
       {
@@ -49,17 +58,30 @@ const AddNewProduct = ({ data, setData, handleProdVisiblity }) => {
             Product Variation
           </div>
         ),
-        children: <ProductVariation data={data} setData={setData} />,
-      },
-      {
-        key: "4",
-        label: (
-          <div className="text-gray-500" onClick={() => setActiveKey("4")}>
-            Product Price
-          </div>
+        children: (
+          <ProductVariation
+            data={data}
+            setData={setData}
+            setActiveKey={setActiveKey}
+            handleProdVisiblity={handleProdVisiblity}
+          />
         ),
-        children: <ProductPrice data={data} setData={setData} />,
       },
+      // {
+      //   key: "4",
+      //   label: (
+      //     <div className="text-gray-500" onClick={() => setActiveKey("4")}>
+      //       Product Price
+      //     </div>
+      //   ),
+      //   children: (
+      //     <ProductPrice
+      //       data={data}
+      //       setData={setData}
+      //       setActiveKey={setActiveKey}
+      //     />
+      //   ),
+      // },
     ];
   }, [data]);
   return (
@@ -71,17 +93,6 @@ const AddNewProduct = ({ data, setData, handleProdVisiblity }) => {
         items={items}
         onChange={onChange}
       />
-      <section className="flex flex-col space-y-4 items-center justify-center mt-5">
-        <button className="p-3 bg-brightRed text-white text-center rounded-md w-4/5">
-          <Link href="/productpicture">Next</Link>
-        </button>
-        <button
-          className="p-3 border border-brightRed text-center text-brightRed rounded-md w-4/5"
-          onClick={handleProdVisiblity}
-        >
-          Preview Products
-        </button>
-      </section>
     </>
   );
 };

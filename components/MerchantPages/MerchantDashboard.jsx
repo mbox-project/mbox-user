@@ -1,13 +1,17 @@
 import React from "react";
 import Image from "next/image";
 import lady from "../../public/img/lady.svg";
+import { useSelector } from "react-redux";
 
 const MerchantDashboard = () => {
+  const username = useSelector((state) => state.auth.user.fullname).split(
+    " "
+  )[0];
   return (
     <>
       <section className="flex flex-col-reverse bg-white rounded-lg px-10 py-2 items-center justify-between mt-10 shadow-sm  hover:shadow-md md:flex-row">
         <div className="flex flex-col space-y-2">
-          <h2 className="text-3xl font-bold">Hello, Merchant</h2>
+          <h2 className="text-3xl font-bold">Hello, {username}</h2>
           <span>Welcome back!</span>
           <p>Get Started, upload your product by clicking on the produt link</p>
         </div>

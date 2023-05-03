@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://34.199.115.184:8001/api/";
+const baseURL = "http://34.199.115.184:8005/api/";
 
 const api = axios.create({
   baseURL,
@@ -18,7 +18,6 @@ api.interceptors.response.use(undefined, function (error) {
   });
   return Promise.reject(error);
 });
-
 export const getApi = (url) => {
   return api.get(url, {
     headers: {

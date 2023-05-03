@@ -3,21 +3,17 @@ import "../styles/globals.css";
 import { wrapper } from "../store/store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { PersistGate } from "redux-persist/integration/react";
+import { useStore } from "react-redux";
 
 const MyApp = ({ Component, pageProps }) => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state);
-  useEffect(() => {
-    console.log("running");
-    console.log(user);
-  });
+  const store = useStore((store) => store);
   return (
     <>
-      <Component {...pageProps} />
-      <ToastContainer theme="colored" />
+      <PersistGate persistor={store.__persistor} loading={null}>
+        <Component {...pageProps} />
+        <ToastContainer theme="colored" />
+      </PersistGate>
     </>
   );
 };

@@ -1,6 +1,6 @@
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
-const fs = require("fs");
+const fs = require("fs").promises;
 
 export const config = {
   api: {
@@ -16,7 +16,7 @@ cloudinary.config({
 const upload = multer({
   dest: "uploads/",
   limits: {
-    fileSize: 10000,
+    fileSize: 5 * 1000 * 1000,
   },
 }).single("file");
 
@@ -43,6 +43,7 @@ export default async function handler(req, res) {
             res.status(200).json({
               publicId: result.public_id,
               imageUrl: result.url,
+              isThumbnail: true,
             });
           }
         });

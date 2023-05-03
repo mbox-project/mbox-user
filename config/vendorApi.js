@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://34.199.115.184:8001/api/";
+const baseURL = "http://34.199.115.184:8003/api/";
 
 const api = axios.create({
   baseURL,
@@ -31,6 +31,16 @@ export const getApi = (url) => {
 
 export const postApi = (url, body) => {
   return api.post(url, body, {
+    headers: {
+      Authorization: `Bearer ${
+        typeof window !== undefined ? sessionStorage.getItem("token") : null
+      }`,
+    },
+  });
+};
+
+export const patchApi = (url, body) => {
+  return api.patch(url, body, {
     headers: {
       Authorization: `Bearer ${
         typeof window !== undefined ? sessionStorage.getItem("token") : null

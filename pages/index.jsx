@@ -28,6 +28,7 @@ import iconThree from "/public/images/featureicon3.png";
 import Link from "next/link";
 import Button from "../components/Button";
 import { useSelector } from "react-redux";
+import useGetUser from "../hooks/useGetUser";
 
 const featureCard = [
   {
@@ -79,9 +80,10 @@ let merchantCard = [
 
 const LandingPage = () => {
   const user = useSelector((state) => state.auth.user);
+  useGetUser();
   return (
     <div className="">
-      {user.role ? <Navbar /> : <Header />}
+      {user?.role ? <Navbar /> : <Header />}
       <section className="mr-0">
         <Carousel>
           <div>

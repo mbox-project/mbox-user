@@ -6,7 +6,8 @@ import Button from "../../components/Button";
 import Spinner from "../../components/Spinner";
 import { toastify } from "../../helpers";
 import { useRouter } from "next/router";
-import { payStackFund, reset } from "../../store/fundwallet/walletSlice";
+// import { payStackFund, reset } from "../../store/fundwallet/walletSlice";
+import { paystackFundWallet } from "../../store/fundwallet/walletService";
 
 const fundWallet = () => {
   // Add rememberMe property to it later..
@@ -22,31 +23,36 @@ const fundWallet = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { isLoading, isError, isSuccess, wallet, message } = useSelector(
-    (state) => state.wallet
-  );
+  const { isLoading } = useSelector((state) => state.wallet);
+  const { email } = useSelector((state) => state.auth.user);
   //check for error messages   typeof window !== "undefined" ?
-  useEffect(() => {
-    if (isError) {
-      toastify.alertError(message, 3000);
-    }
+  // useEffect(() => {
+  //   if (isError) {
+  //     toastify.alertError(message, 3000);
+  //   }
 
-    if (isSuccess) {
-      console.log("237237", wallet);
-      router.push(wallet);
-    }
-    dispatch(reset());
-  }, [isError, message, isSuccess, wallet, dispatch, router]);
+  //   if (isSuccess) {
+  //     console.log("237237", wallet);
+  //     router.push(wallet);
+  //   }
+  // }, [isError, message, isSuccess, wallet, dispatch, router]);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (fundWalletData.amount == "") {
       toastify.alertWarning("Enter a valid ammount", 3000);
     } else {
-      let email = "thomasonyemechi03@gmail.com";
-      fundWalletData.email = email;
       console.log(fundWalletData);
-      dispatch(payStackFund(fundWalletData));
+      dispatch(paystackFundWallet({ ...fundWalletData, email }))
+        .unwrap()
+        .then((action) => {
+          console.log(action);
+          window.open(action.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          toastify.alertError(error, 3000);
+        });
     }
   };
 
