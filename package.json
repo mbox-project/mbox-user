@@ -16,16 +16,11 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.7.8",
     "@reduxjs/toolkit": "^1.8.5",
-<<<<<<< HEAD
     "antd": "^5.2.1",
     "axios": "^0.27.2",
     "babel-plugin-macros": "^3.1.0",
-=======
-    "antd": "^5.2.0",
-    "axios": "^0.27.2",
     "cloudinary": "^1.35.0",
     "multer": "^1.4.5-lts.1",
->>>>>>> 7850d1d0a3298d0a9710922c1e92f7471c345141
     "next": "12.1.6",
     "next-redux-wrapper": "^7.0.5",
     "prop-types": "^15.8.1",
