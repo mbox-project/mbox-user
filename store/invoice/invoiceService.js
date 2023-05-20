@@ -1,21 +1,23 @@
 import axios from "axios";
+import { getApi, postApi } from "../../config/invoiceApi";
 // import { API_URL } from "../../config";
-
-const PAYMENT_API_URL = "http://3.90.62.24:8004/api";
 
 //Generate Invoice
 const invoice = async (invoiceData) => {
-  const response = await axios.post(
-    `${PAYMENT_API_URL}/Invoice/generateInvoice`,
-    invoiceData
-  );
-  if (response.data) {
-    localStorage.setItem("invoiceLog", JSON.stringify(response.data));
-  }
-  console.log("InvoiceResp", response);
+  const response = await postApi("Invoice/generateInvoice", invoiceData);
+  console.log(response.data, "logged");
   return response.data;
+};
+const getInvoice = async (id) => {
+  try {
+    const response = await getApi(`Invoice/getInvoiceById/?invoiceid=${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 const invoiceService = {
   invoice,
+  getInvoice,
 };
 export default invoiceService;

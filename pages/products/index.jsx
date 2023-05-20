@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Layout from "../../components/PagesLayout/Layout";
 import Products from "../../components/MerchantPages/Products";
 import { ProductsData } from "../../components/prodata";
+import { useSelector } from "react-redux";
 import AddNewProduct from "../../components/MerchantPages/AddNewProduct";
 
 const Index = () => {
   const [showAddProduct, setShowAddProduct] = useState(true);
-
+  const { vendorId } = useSelector((state) => state.auth.user);
+  const [data, setData] = useState({ vendorId });
   const handleProdVisiblity = () => {
     setShowAddProduct(!showAddProduct);
     console.log("clicked", showAddProduct);
@@ -59,7 +61,11 @@ const Index = () => {
           </>
         ) : (
           <>
-            <AddNewProduct handleProdVisiblity={handleProdVisiblity} />
+            <AddNewProduct
+              data={data}
+              setData={setData}
+              handleProdVisiblity={handleProdVisiblity}
+            />
           </>
         )}
       </Layout>

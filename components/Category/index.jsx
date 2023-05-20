@@ -32,43 +32,43 @@ const Category = () => {
             <div className=" mt-6 space-y-7 text-sm md:text-xl lg:text-sm ">
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={gift} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Gift Items</a>
+                <Link href={""} className="flex justify-center py-3">
+                  Gift Items
                 </Link>
               </div>
 
               <div>
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={men} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Mens Fashion</a>
+                <Link href="categories" className="flex justify-center py-3">
+                  Mens Fashion
                 </Link>
               </div>
               <div>
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={furniture} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Furniture</a>
+                <Link href="categories" className="flex justify-center py-3">
+                  Furniture
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={skincare} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Skin care & body</a>
+                <Link href="categories" className="flex justify-center py-3">
+                  Skin care & body
                 </Link>
               </div>
             </div>
@@ -78,42 +78,42 @@ const Category = () => {
             <div className="flex flex-col mt-6 space-y-7 text-sm md:text-xl lg:text-sm ">
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={food} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Food</a>
+                <Link href="categories" className="flex justify-center py-3">
+                  Food
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={womenfashion} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Womens Fashion</a>
+                <Link href="categories" className="flex justify-center py-3">
+                  Womens Fashion
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={drinks} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Drinks & L1quor</a>
+                <Link href="categories" className="flex justify-center py-3">
+                  Drinks & L1quor
                 </Link>
               </div>
               <div>
                 <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
-                  <Link href={""}>
+                  <Link href="categories">
                     <Image src={automobile} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Automobile</a>
+                <Link href="categories" className="flex justify-center py-3">
+                  Automobile
                 </Link>
               </div>
             </div>
@@ -127,8 +127,8 @@ const Category = () => {
                     <Image src={phones} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Phones & Tablets</a>
+                <Link href={""} className="flex justify-center py-3">
+                  Phones & Tablets
                 </Link>
               </div>
               <div>
@@ -137,8 +137,8 @@ const Category = () => {
                     <Image src={books} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Books & Stationery</a>
+                <Link href={""} className="flex justify-center py-3">
+                  Books & Stationery
                 </Link>
               </div>
               <div>
@@ -147,8 +147,8 @@ const Category = () => {
                     <Image src={crafts} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Arts & Crafts</a>
+                <Link href={""} className="flex justify-center py-3">
+                  Arts & Crafts
                 </Link>
               </div>
               <div>
@@ -157,8 +157,8 @@ const Category = () => {
                     <Image src={estate} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Real Estate</a>
+                <Link href={""} className="flex justify-center py-3">
+                  Real Estate
                 </Link>
               </div>
             </div>
@@ -172,8 +172,8 @@ const Category = () => {
                     <Image src={toys} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Toys & Kids</a>
+                <Link href={""} className="flex justify-center py-3">
+                  Toys & Kids
                 </Link>
               </div>
 
@@ -183,8 +183,8 @@ const Category = () => {
                     <Image src={elect} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">ELectronics</a>
+                <Link href={""} className="flex justify-center py-3">
+                  ELectronics
                 </Link>
               </div>
               <div>
@@ -193,10 +193,8 @@ const Category = () => {
                     <Image src={tools} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">
-                    Home / Kitchen Appliances
-                  </a>
+                <Link href={""} className="flex justify-center py-3">
+                  Home / Kitchen Appliances
                 </Link>
               </div>
               <div>
@@ -205,8 +203,8 @@ const Category = () => {
                     <Image src={decor} />
                   </Link>
                 </div>
-                <Link href={""}>
-                  <a className="flex justify-center py-3">Decor</a>
+                <Link href={""} className="flex justify-center py-3">
+                  Decor
                 </Link>
               </div>
             </div>

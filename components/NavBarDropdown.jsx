@@ -6,9 +6,20 @@ import saved from "../public/img/saved.svg";
 import { BiQuestionMark } from "react-icons/bi";
 import PropTypes from "prop-types";
 import CustomModal from "./CustomModal";
+import { useSelector, useDispatch } from "react-redux";
+import { selectRole } from "../store/selectors/selectors";
+import { LogOut } from "../store/store";
+import { useStore } from "react-redux";
+import { makeStore } from "../store/store";
 
 const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
+  const store = makeStore();
   const [showVendorModal, setShowVendormodal] = useState(false);
+  const role = useSelector(selectRole);
+  const username = useSelector((state) => state.auth.user?.fullname)?.split(
+    " "
+  )[0];
+  const dispatch = useDispatch();
 
   const handleModalVisibility = () => {
     setShowVendormodal(!showVendorModal);
@@ -18,14 +29,14 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
   };
 
   return (
-    <>
-      <div className="absolute dropdown-content right-0 mt-8 z-50 flex flex-col space-y-4 justify-start pl-4 py-6 bg-white w-64 rounded-md">
+    <div className="fixed top-[10%] right-0">
+      <div className="flex flex-col space-y-4 justify-start pl-4 py-6 bg-white w-64 rounded-md">
         <div className="profileDetails mb-3">
-          <h3 className="text-lg font-bold">Wahab Micheal</h3>
-          <span>Buyer</span>
+          <h3 className="text-lg font-bold">{username}</h3>
+          <span>{role === "user" ? "Buyer" : "vendor"}</span>
         </div>
         <hr />
-        {!isMerchant ? (
+        {role === "user" && (
           <div className="flex space-x-2">
             <button
               className="border border-brightRed text-center rounded-lg p-3"
@@ -38,8 +49,6 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
               <BiQuestionMark className="text-black" />
             </span>
           </div>
-        ) : (
-          <div></div>
         )}
         <div className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
           <Image src={profile} width={20} height={20} alt="profile" />
@@ -50,14 +59,30 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
           <Link href="/saveditems/"> Saved Items </Link>
         </div>
         <hr />
-        <div className="flex justify-center items-center text-center text-red-500 mt-3">
-          <button onClick={() => handleLogout()}>Logout</button>
+        <div
+          onClick={() => dispatch(logout())}
+          className="flex justify-center items-center text-center text-red-500 mt-3"
+        >
+          <button
+            onClick={() => {
+              store.__persistor
+                .purge()
+                .then(() => console.log("state cleared"))
+                .catch(() => console.log("error"));
+              if (typeof window !== undefined) {
+                sessionStorage.removeItem("token");
+              }
+              dispatch(LogOut());
+            }}
+          >
+            Logout
+          </button>
         </div>
       </div>
       {showVendorModal && (
         <CustomModal closeModal={closeModal} closeDropDown={closeDropDown} />
       )}
-    </>
+    </div>
   );
 };
 

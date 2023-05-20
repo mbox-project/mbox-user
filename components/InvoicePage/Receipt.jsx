@@ -4,9 +4,9 @@ import mboximg from "../../public/images/mboximg.png";
 import InvoiceApi from "./InvoiceApi";
 import PricetagApi from "./PricetagApi";
 import ProductDes from "./ProductDes";
-const Receipt = () => {
+const Receipt = ({ data }) => {
   return (
-    <div className=" mx-2 mb-20 md:mx-10 border rounded-md lg:mx-20 shadow-lg">
+    <div className="mx-2 md:mx-10 border rounded-md lg:mx-20 shadow-lg">
       <div className="flex justify-between">
         <div className="flex mt-3 ">
           <div className="ml-6">
@@ -31,7 +31,7 @@ const Receipt = () => {
           {InvoiceApi.map((item) => {
             return (
               <div key={item.id}>
-                <p className="font-bold pt-1">{item.Name}</p>
+                <p className="font-bold pt-1">{data?.buyer}</p>
                 <p className="pt-1">{item.Location}</p>
                 <p className="pt-1">{item.City}</p>
                 <p className="pt-1">{item.Telephone}</p>
@@ -45,22 +45,24 @@ const Receipt = () => {
               <div key={item.id}>
                 <div className="flex">
                   <p className="font-bold"> Invoice Tag :</p>
-                  <p className="pl-2 pt-1">{item.Tag}</p>
+                  <p className="pl-2 pt-1">{data?.tag}</p>
                 </div>
                 <div className="flex">
                   <p className="font-bold">Date:</p>
-                  <p className="pl-2 pt-1">{item.Date}</p>
+                  <p className="pl-2 pt-1">
+                    {new Date(data?.date).toLocaleDateString()}
+                  </p>
                 </div>
                 <div className="flex">
                   <p className="font-bold">Issued by:</p>
-                  <p className="pl-2 pt-1"> {item.Issue}</p>
+                  <p className="pl-2 pt-1"> {data?.issuer}</p>
                 </div>
               </div>
             );
           })}
         </div>
       </div>
-      <ProductDes />
+      <ProductDes data={data} />
     </div>
   );
 };

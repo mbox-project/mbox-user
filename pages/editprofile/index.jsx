@@ -1,19 +1,32 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../../store/auth/authSlice";
+import { selectRole } from "../../store/selectors/selectors";
+import Spinner from "../../components/Spinner";
 import Layout from "../../components/PagesLayout/Layout";
 import EditProfile from "../../components/BuyersPage/EditProfile";
 import VendorEditProfile from "../../components/MerchantPages/VendorEditProfile";
 
 const index = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { isMerchant } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { isLoading, user } = useSelector((state) => state.auth);
+  const [data, setData] = useState({
+    fullname: user?.fullname,
+    email: user?.email,
+    phoneNumber: user?.phoneNumber,
+  });
+  const role = useSelector(selectRole);
   return (
     <>
       <Layout>
         <h2 className="card text-2xl border-b-2 mt-8 rectCard">
           Edit Personal Information
         </h2>
-        {isMerchant ? <VendorEditProfile /> : <EditProfile />}
+        {role === "vendor" ? (
+          <VendorEditProfile data={data} setData={setData} />
+        ) : (
+          <EditProfile data={data} setData={setData} />
+        )}
       </Layout>
     </>
   );

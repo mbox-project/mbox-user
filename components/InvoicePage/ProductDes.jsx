@@ -1,34 +1,39 @@
 import React from "react";
-const ProductDes = () => {
+const ProductDes = ({ data }) => {
   return (
     <>
       <div>
-        <div className="flex justify-around bg-brightRed border mx-8 text-white mt-8 py-4">
-          <p>SN</p>
-          <p>Product Description</p>
-          <p>Price</p>
-          <p>Qty</p>
-          <p>Total</p>
-        </div>
-        <div>
-          <div className="flex justify-around  py-8">
-            <p>1</p>
-            <p>Air force II,skando Limited Edition</p>
-            <p>$40.00</p>
-            <p>5</p>
-            <p>$80.00</p>
+        <table className="w-full">
+          <tr className="bg-brightRed border mx-8 text-white mt-8 py-4">
+            <th className="py-[1rem]">SN</th>
+            <th className="py-[1rem]">Product Description</th>
+            <th className="py-[1rem]">Price</th>
+            <th className="py-[1rem]">Qty</th>
+            <th className="py-[1rem]">Total</th>
+          </tr>
+          {data?.products.map((e, i) => (
+            <tr className="py-8 text-center">
+              <td className="py-[2rem]">{i + 1}</td>
+              <td className="py-[2rem]">{e?.productDescription}</td>
+              <td className="py-[2rem]">N{e?.price}</td>
+              <td className="py-[2rem]">{e?.quantity}</td>
+              <td className="py-[2rem]">N{e?.price * e?.quantity}</td>
+            </tr>
+          ))}
+        </table>
+        <div className="flex items-center justify-end p-[1rem]">
+          <div className="grid grid-cols-2 justify-items-end gap-2">
+            <span>Sub Total</span>
+            <span className="text-right w-[50%]">N{data?.subTotal}</span>
+            <span>Escrow fee(5%)</span>
+            <span className="text-right w-[50%]">N{data?.escFee}</span>
           </div>
-          <hr></hr>
         </div>
-        <div>
-          <div className="flex justify-around  py-8">
-            <p>2</p>
-            <p>Air force II,skando Limited Edition</p>
-            <p>$40.00</p>
-            <p>5</p>
-            <p>$80.00</p>
+        <div className="bg-brightRed w-full px-[1rem] py-[0.5rem] text-white text-[1.2rem] font-[600]">
+          <div className="flex items-center justify-end gap-[2rem]">
+            <span>Total:</span>
+            <span>N{data?.total}</span>
           </div>
-          <hr></hr>
         </div>
         <div>
           <div className="flex justify-around  py-8">

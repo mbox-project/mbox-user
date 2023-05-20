@@ -7,21 +7,23 @@ import profile from "../../public/img/profile.svg";
 import Search from "./Search";
 import PropTypes from "prop-types";
 import NavBarDropdown from "../NavBarDropdown";
+import { useSelector } from "react-redux";
+import { selectRole } from "../../store/selectors/selectors";
+import Link from "next/link";
+import { Popover } from "antd";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
-  const [showDropDown, setShowDropDown] = useState(false);
-
-  const handleShowDropDown = () => {
-    setShowDropDown(!showDropDown);
-  };
-  const closeDropDown = () => {
-    setShowDropDown(false);
+  const role = useSelector(selectRole);
+  const [openNav, setOpenNav] = useState(false);
+  const handleNav = () => {
+    setOpenNav((prev) => !prev);
   };
   return (
-    <div className="customNavbar mx-auto relative font-sans w-full">
-      <div className="p-2 mx-auto shadow-md hover:shadow-lg">
+    <div className="customNavbar mx-auto sticky top-0 z-[10] bg-white font-sans w-full">
+      <div className="p-2 mx-auto shadow-md hover:shadow-lg relative">
         {/* flex Container */}
-        <div className="flex items-center justify-between px-5 md:px-8 md:space-x-10">
+        <div className="flex items-center justify-between gap-[1rem] px5 md:px8 md:space-x10">
           {!showSideBar ? (
             <svg
               className="flex mt-2 items-center cursor-pointer md:hidden"
@@ -50,50 +52,61 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           )}
-          <div className="hidden md:block">
-            <Image src={logo} alt="logo" width="100px" height="50px" />
+          <div className="hidden md:block cursor-pointer">
+            <Link href="/">
+              <Image src={logo} alt="logo" width="100px" height="50px" />
+            </Link>
           </div>
           <Search />
-          <div className="flex items-center space-x-6">
-            <button
-              className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
+          <div className="flex items-center justify-between gap-[0.8rem] space-x6">
+            {role === "vendor" ? (
+              <div className="flex gap-[0.5rem]">
+                <Link href="/payinvoice">
+                  <button
+                    className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
                                  border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
-            >
-              <span>Pay Invoice</span>
-              <Image src={arrow} width={10} height={10} alt="arrow" />
-            </button>
-            <div className="hidden m-0 md:block md:mt-2">
-              <Image src={bell} width={25} height={30} alt="bell" />
-            </div>
-            <div className="dropdown relative mt-2 flex">
-              <div
-                className="flex items-center justify-center cursor-pointer"
-                onClick={handleShowDropDown}
-              >
-                <Image src={profile} width={25} height={30} alt="pics" />
-                <svg
-                  className="ml-2 w-4 h-4"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
+                  >
+                    <span>Pay Invoice</span>
+                    <Image src={arrow} width={10} height={10} alt="arrow" />
+                  </button>
+                </Link>
+                <Link href="/generateinvoice">
+                  <button className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white">
+                    <span>Generate Invoice</span>
+                    <Image src={arrow} width={10} height={10} alt="arrow" />
+                  </button>
+                </Link>
               </div>
-              {showDropDown && (
-                <NavBarDropdown
-                  handleLogout={handleLogout}
-                  closeDropDown={closeDropDown}
-                  isMerchant={isMerchant}
-                />
-              )}
+            ) : (
+              <Link href="/payinvoice">
+                <button
+                  className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
+                                 border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
+                >
+                  <span>Pay Invoice</span>
+                  <Image src={arrow} width={10} height={10} alt="arrow" />
+                </button>
+              </Link>
+            )}
+            <div className="relative">
+              <Popover
+                content={
+                  <NavBarDropdown
+                    handleLogout={handleLogout}
+                    isMerchant={isMerchant}
+                  />
+                }
+                trigger="click"
+                open={openNav}
+                onOpenChange={handleNav}
+                arrow={false}
+                placement="bottom"
+              >
+                <div className="flex items-center justify-center cursor-pointer">
+                  <Image src={profile} width={25} height={30} alt="pics" />
+                  <RiArrowDropDownLine />
+                </div>
+              </Popover>
             </div>
           </div>
         </div>

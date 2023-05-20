@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register, reset } from "../../../store/auth/authSlice";
+import { register } from "../../../store/auth/authSlice";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useForm } from "react-hook-form";
+import { signUpSchema } from "../../../helpers/validationSchema/signupSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../../../components/Input";
 import Label from "../../../components/Label";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-//import Dropdown from "../../../components/Dropdown";
 import authbg from "../../../public/images/authbg.png";
 import { toastify } from "../../../helpers";
 import Spinner from "../../../components/Spinner";
@@ -14,241 +17,244 @@ import Spinner from "../../../components/Spinner";
 const Register = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [registerData, setRegisterData] = useState({
-    fullname: "",
-    email: "",
-    phoneNumber: "",
-    gender: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const { fullname, email, phoneNumber, gender, password, confirmPassword } =
-    registerData;
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const onChangeInput = (e) => {
-    setRegisterData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const {
+    register: initiate,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(signUpSchema),
+    reValidateMode: "onChange",
+  });
 
   //extract the values we need from auth slicer;
-  const { isError, isSuccess, isLoading, user, message } = useSelector(
-    (state) => state.auth
-  );
-  // console.log("Error", isError, "isSuccess", isSuccess, "isLoading", isLoading);
+  const { isLoading } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    if (isError) {
-      toastify.alertError(message, 3000);
-    }
-
-    if (isSuccess) {
-      if (message == "User created succesfully") {
-        const mssg =
-          "A verification mail has been sent to your email for account verification";
-        toastify.alertSuccess(mssg, 5000);
-      }
-      router.push("/auth/login");
-    }
-    dispatch(reset());
-  }, [isError, isSuccess, message, user, router, dispatch]);
-
-  const onSubmitForm = (e) => {
-    e.preventDefault();
-    //simple validation
-    if (registerData.password != registerData.confirmPassword) {
-      toastify.alertError("Password do not match", 3000);
-    } else if (
-      registerData.fullname == "" ||
-      registerData.email == "" ||
-      registerData.phoneNumber == "" ||
-      registerData.gender == "" ||
-      registerData.password == ""
-    ) {
-      toastify.alertError("Please enter ommitted fields ", 3000);
-    } else {
-      //dispatch an action and sends the data to the server..
-      dispatch(register(registerData));
-    }
+  const onSubmitForm = (data) => {
+    console.log(data);
+    dispatch(register(data))
+      .unwrap()
+      .then((action) => {
+        reset();
+        toastify.alertSuccess(
+          "A verification mail has been sent to your email for account verification",
+          3000,
+          () => {
+            router.push("/auth/login");
+          }
+        );
+      })
+      .catch((error) => {
+        toastify.alertError(error, 3000);
+      });
   };
 
   return (
-    <div className="flex">
-      <div className="hidden lg:w-1/2  lg:block bg-register-img bg-cover">
-        <Image src={authbg} height={1250} />
+    <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center items-center justify-center">
+      <div className="hidden w-full h-screen lg:flex items-center">
+        <Image
+          src={authbg}
+          height={1200}
+          className="w-full h-[200px] my-auto"
+        />
       </div>
       {isLoading && <Spinner />}
-      <div className=" bg-grayColor w-full lg:w-1/2  px-4 lg:px-0">
-        <div className="text-center ">
-          <h1 className="lg:text-4xl poppins text-orange-600 text-xl md:text-2xl mt-16 lg:mt-24 lg:pt-0  font-bold lg:font-extrabold tracking-wide ">
-            Create Account
-          </h1>
-          <div className=" flex justify-center">
-            <p className="hidden md:flex font-extralight text-md poppins lg:md:max-w-sm lg:text-sm mt-4 lg:mt-2 text-lightGray pl-16 md:pl-0  leading-8 ">
-              Let&apos;s get you all set up. Provide us with the following
-              information to get started
-            </p>
-          </div>
-        </div>
-        <form
-          onSubmit={onSubmitForm}
-          className="w-full px-0 lg:px-10 mt-10 lg:mt-4"
-        >
-          <div className="mb-4">
-            <Label
-              className="w-full pb-1 text-base poppins text-[#9A9A9A]"
-              htmlFor="text"
-              title="Full Name *"
-            />
-            <Input
-              name="fullname"
-              type="text"
-              value={fullname}
-              placeHolder="enter your full name e.g Wahab Samuel"
-              className=" w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-              onChange={onChangeInput}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <Label
-              className="w-full poppins text-base  text-[#9A9A9A]"
-              htmlFor="email"
-              title="Email *"
-            />
-
-            <div className="relative">
-              <Input
-                name="email"
-                type="email"
-                value={email}
-                placeHolder="Enter your email"
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                onChange={onChangeInput}
-                required
-              />
-            </div>
-          </div>
-          <div className="mb-4">
-            <Label
-              className="w-full  pb-1 text-base text-[#9A9A9A]"
-              htmlFor="number"
-              placeHolder="enter your phone number "
-              title="Whatapp No *"
-            />
-
-            <div className="relative">
-              <Input
-                name="phoneNumber"
-                type="number"
-                value={phoneNumber}
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                onChange={onChangeInput}
-                maxlength={11}
-                required
-              />
-            </div>
-          </div>
-          <div className="mb-4">
-            <Label
-              className="w-full font-poppins text-base text-[#9A9A9A]"
-              htmlFor="text"
-              placeHolder="male"
-              title="Sex"
-            />
-            <select
-              name="gender"
-              value={gender}
-              className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-              onChange={onChangeInput}
-              required
-            >
-              <option value="" disable selected>
-                Select your Gender
-              </option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-            {/* <div className="relative">
-              <Dropdown
-                name="sex"
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                required={true}
-                autoFocus={false}
-                onChange={onChangeInput}
-              >
-                {sexOptions.map((option) => (
-                  <option key={option.id} value={option.value}>
-                    {option.value}
-                  </option>
-                ))}
-              </Dropdown>
-            </div> */}
-          </div>
-          <div className="mb-4">
-            <Label
-              className="w-full text-base poppins text-[#9A9A9A]"
-              htmlFor="Password"
-              title="Password"
-            />
-            <div className="relative">
-              <Input
-                type="password"
-                name="password"
-                value={password}
-                placeHolder="enter your password"
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                onChange={onChangeInput}
-                required
-              />
-              <p className=" text-sm text-orange-600 pt-2">
-                Password should contain at least 8 characters
+      <div className="w-full h-full flex items-center justify-center bg-grayColor">
+        <div className="w-full h-full flex flex-col items-center justify-center my-auto">
+          <div className="text-center">
+            <h1 className="lg:text-4xl poppins text-orange-600 text-xl md:text-2xl lg:pt-0  font-bold lg:font-extrabold tracking-wide">
+              Create Account
+            </h1>
+            <div className="flex justify-center">
+              <p className="hidden md:flex font-extralight text-md poppins lg:md:max-w-sm lg:text-sm mt-4 lg:mt-2 text-lightGray pl-16 md:pl-0  leading-8 ">
+                Let&apos;s get you all set up. Provide us with the following
+                information to get started
               </p>
             </div>
           </div>
-          <div className="mb-4">
-            <Label
-              className="w-full text-base poppins text-[#9A9A9A]"
-              htmlFor="confirmPassword"
-              title="Re-Type Password *"
-            />
-
-            <div className="relative">
-              <Input
-                type="password"
-                name="confirmPassword"
-                value={confirmPassword}
-                placeHolder="Confirm your password"
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm poppins  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                onChange={onChangeInput}
+          <form
+            onSubmit={handleSubmit(onSubmitForm)}
+            className="w-[90%] mt-10 lg:mt-4"
+          >
+            <div className="mb-4">
+              <Label
+                className="w-full pb-1 text-base poppins text-[#9A9A9A]"
+                htmlFor="text"
+                title="Full Name *"
+              />
+              <input
+                type="text"
+                {...initiate("fullname")}
+                placeHolder="enter your full name e.g Wahab Samuel"
+                className=" w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required
               />
+              <p className="text-sm text-orange-600 pt-2">
+                {errors.fullname?.message}
+              </p>
             </div>
-          </div>
+            <div className="mb-4">
+              <Label
+                className="w-full poppins text-base  text-[#9A9A9A]"
+                htmlFor="email"
+                title="Email *"
+              />
 
-          <button
-            type="submit"
-            className="w-full bg-orange-600 p-2 mt-3 lg:mt-6 lg:p-2 font-poppins  shadow-lg rounded-md text-white text-lg font-semibold"
-          >
-            Sign Up
-          </button>
+              <div className="relative">
+                <input
+                  type="email"
+                  {...initiate("email")}
+                  placeHolder="Enter your email"
+                  className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                  required
+                />
+                <p className="text-sm text-orange-600 pt-2">
+                  {errors.email?.message}
+                </p>
+              </div>
+            </div>
+            <div className="mb-4">
+              <Label
+                className="w-full  pb-1 text-base text-[#9A9A9A]"
+                htmlFor="number"
+                title="Whatapp No *"
+              />
 
-          <div className="flex justify-center mb-3">
-            <span className="text-gray-600 poppins text-sm mt-2 lg:mt-1">
-              By Sign Up, you’ve already agreed to our{" "}
-              <Link href="/" className="text-gray-900 font-bold">
-                <a>Terms & Condition</a>
+              <div className="relative">
+                <input
+                  type="number"
+                  {...initiate("phoneNumber")}
+                  className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                  placeHolder="enter your phone number"
+                  required
+                />
+                <p className="text-sm text-orange-600 pt-2">
+                  {errors.phoneNumber?.message}
+                </p>
+              </div>
+            </div>
+            <div className="mb-4">
+              <Label
+                className="w-full font-poppins text-base text-[#9A9A9A]"
+                htmlFor="text"
+                placeHolder="male"
+                title="Sex"
+              />
+              <select
+                {...initiate("gender")}
+                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                required
+              >
+                <option value="" disable selected>
+                  Select your Gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+              <p className="text-sm text-orange-600 pt-2">
+                {errors.gender?.message}
+              </p>
+            </div>
+            <div className="mb-4">
+              <Label
+                className="w-full text-base poppins text-[#9A9A9A]"
+                htmlFor="Password"
+                title="Password"
+              />
+              <div className="relative">
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    {...initiate("password")}
+                    placeHolder="enter your password"
+                    className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                    required
+                  />
+                  <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
+                    {showPassword ? (
+                      <AiOutlineEyeInvisible
+                        className="block cursor-pointer text-[1.2rem]"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      />
+                    ) : (
+                      <AiOutlineEye
+                        className="block cursor-pointer text-[1.2rem]"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      />
+                    )}
+                  </div>
+                </div>
+                <p className="text-sm text-orange-600 pt-2">
+                  {errors.password?.message}
+                </p>
+              </div>
+            </div>
+            <div className="mb-4">
+              <Label
+                className="w-full text-base poppins text-[#9A9A9A]"
+                htmlFor="confirmPassword"
+                title="Re-Type Password *"
+              />
+              <div>
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    {...initiate("confirmPassword")}
+                    placeHolder="Confirm your password"
+                    className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm poppins  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                    required
+                  />
+                  <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
+                    {showConfirmPassword ? (
+                      <AiOutlineEyeInvisible
+                        className="block cursor-pointer text-[1.2rem]"
+                        onClick={() => {
+                          setShowConfirmPassword((prev) => !prev);
+                          console.log(errors);
+                        }}
+                      />
+                    ) : (
+                      <AiOutlineEye
+                        className="block cursor-pointer text-[1.2rem]"
+                        onClick={() => setShowConfirmPassword((prev) => !prev)}
+                      />
+                    )}
+                  </div>
+                </div>
+                <p className="text-sm text-orange-600 pt-2">
+                  {errors.confirmPassword?.message}
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-orange-600 p-2 mt-3 lg:mt-6 lg:p-2 font-poppins  shadow-lg rounded-md text-white text-lg font-semibold"
+            >
+              Sign Up
+            </button>
+
+            <div className="flex justify-center mb-3">
+              <span className="text-gray-600 poppins text-sm mt-2 lg:mt-1">
+                By Sign Up, you’ve already agreed to our{" "}
+                <Link href="/">
+                  <a className="text-orange-600 font-bold">Terms & Condition</a>
+                </Link>
+              </span>
+            </div>
+            <div className="flex items-center gap-1">
+              <p className="mt-3 text-lightGray text-md block">
+                Existing User?
+              </p>
+              <Link href="/auth/login">
+                <a className="text-orange-600 mt-3 text-md underline">Login</a>
               </Link>
-            </span>
-          </div>
-          <div className="flex">
-            <p className="mr-3 mt-3 text-lightGray text-md">Existing User?</p>
-            <Link href="/auth/login">
-              <a className="text-orange-600 mt-3 text-md underline">Login</a>
-            </Link>
-          </div>
-        </form>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
