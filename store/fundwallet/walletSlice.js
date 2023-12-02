@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import walletService, {
+import {
   getWallet,
   getTransactions,
   getTransactionDetails,
@@ -27,7 +27,7 @@ export const payStackFund = createAsyncThunk(
   "wallet/fund",
   async (fundWalletData, thunkAPI) => {
     try {
-      return await walletService.paystackFundWallet(fundWalletData);
+      return await paystackFundWallet(fundWalletData);
     } catch (error) {
       console.log("pay stack error", error);
       const message =
@@ -43,7 +43,7 @@ export const withdrawPaystack = createAsyncThunk(
   "wallet/withdraw",
   async (data, thunkAPI) => {
     try {
-      return await walletService.withdrawFundPaystack(data);
+      return await withdrawFundPaystack(data);
     } catch (error) {
       console.log("withdraw error", error);
       const message =
