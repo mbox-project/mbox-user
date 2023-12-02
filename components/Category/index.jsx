@@ -30,8 +30,8 @@ const Category = () => {
         <div className=" grid grid-cols-2 lg:gap-4 mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">
           <div className="col-span-2 pt-6  sm:col-span-1 ">
             <div className=" mt-6 space-y-7 text-sm md:text-xl lg:text-sm ">
-              <div>
-                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
+              <div className="flex flex-col items-center">
+                <div className=" ml12 md:ml-4 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href="categories">
                     <Image src={gift} />
                   </Link>
@@ -41,8 +41,8 @@ const Category = () => {
                 </Link>
               </div>
 
-              <div>
-                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
+              <div className="flex flex-col items-center">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml12 md:ml14">
                   <Link href="categories">
                     <Image src={men} />
                   </Link>
@@ -51,8 +51,8 @@ const Category = () => {
                   Mens Fashion
                 </Link>
               </div>
-              <div>
-                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
+              <div className="flex flex-col items-center">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml12 md:ml14">
                   <Link href="categories">
                     <Image src={furniture} />
                   </Link>
@@ -61,8 +61,8 @@ const Category = () => {
                   Furniture
                 </Link>
               </div>
-              <div>
-                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
+              <div className="flex flex-col items-center">
+                <div className="ml12 md:ml14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href="categories">
                     <Image src={skincare} />
                   </Link>
@@ -76,8 +76,8 @@ const Category = () => {
 
           <div className="col-span-2 pt-6  sm:col-span-1 ">
             <div className="flex flex-col mt-6 space-y-7 text-sm md:text-xl lg:text-sm ">
-              <div>
-                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
+              <div className="flex flex-col items-center">
+                <div className=" ml12 md:ml14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href="categories">
                     <Image src={food} />
                   </Link>
@@ -86,8 +86,8 @@ const Category = () => {
                   Food
                 </Link>
               </div>
-              <div>
-                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
+              <div className="flex flex-col items-center">
+                <div className=" ml12 md:ml14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href="categories">
                     <Image src={womenfashion} />
                   </Link>
@@ -96,8 +96,8 @@ const Category = () => {
                   Womens Fashion
                 </Link>
               </div>
-              <div>
-                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
+              <div className="flex flex-col items-center">
+                <div className=" ml12 md:ml14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href="categories">
                     <Image src={drinks} />
                   </Link>
@@ -106,8 +106,8 @@ const Category = () => {
                   Drinks & L1quor
                 </Link>
               </div>
-              <div>
-                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
+              <div className="flex flex-col items-center">
+                <div className=" ml12 md:ml14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href="categories">
                     <Image src={automobile} />
                   </Link>
@@ -121,8 +121,8 @@ const Category = () => {
 
           <div className="col-span-2 pt-6  sm:col-span-1">
             <div className="flex flex-col mt-6 space-y-7 text-sm md:text-xl lg:text-sm  ">
-              <div>
-                <div className=" ml-12 md:ml-14 hover:-translate-y-1 hover:scale-110  duration-300">
+              <div className="flex flex-col items-center">
+                <div className=" ml12 md:ml14 hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href={""}>
                     <Image src={phones} />
                   </Link>
@@ -131,8 +131,8 @@ const Category = () => {
                   Phones & Tablets
                 </Link>
               </div>
-              <div>
-                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
+              <div className="flex flex-col items-center">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml12 md:ml14">
                   <Link href={""}>
                     <Image src={books} />
                   </Link>
@@ -141,8 +141,8 @@ const Category = () => {
                   Books & Stationery
                 </Link>
               </div>
-              <div>
-                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
+              <div className="flex flex-col items-center">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml12 md:ml14">
                   <Link href={""}>
                     <Image src={crafts} />
                   </Link>
@@ -151,8 +151,8 @@ const Category = () => {
                   Arts & Crafts
                 </Link>
               </div>
-              <div>
-                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
+              <div className="flex flex-col items-center">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml12 md:ml14">
                   <Link href={""}>
                     <Image src={estate} />
                   </Link>
@@ -166,8 +166,8 @@ const Category = () => {
 
           <div className="col-span-2 pt-6  sm:col-span-1">
             <div className="flex flex-col mt-6 space-y-7 text-sm md:text-xl lg:text-sm  ">
-              <div>
-                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
+              <div className="flex flex-col items-center">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml12 md:ml14">
                   <Link href={""}>
                     <Image src={toys} />
                   </Link>
@@ -177,8 +177,8 @@ const Category = () => {
                 </Link>
               </div>
 
-              <div>
-                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
+              <div className="flex flex-col items-center">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml12 md:ml14">
                   <Link href={""}>
                     <Image src={elect} />
                   </Link>
@@ -187,8 +187,8 @@ const Category = () => {
                   ELectronics
                 </Link>
               </div>
-              <div>
-                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
+              <div className="flex flex-col items-center">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml12 md:ml14">
                   <Link href={""}>
                     <Image src={tools} />
                   </Link>
@@ -197,8 +197,8 @@ const Category = () => {
                   Home / Kitchen Appliances
                 </Link>
               </div>
-              <div>
-                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml-12 md:ml-14">
+              <div className="flex flex-col items-center">
+                <div className="hover:-translate-y-1 hover:scale-110  duration-300 ml12 md:ml14">
                   <Link href={""}>
                     <Image src={decor} />
                   </Link>

@@ -31,7 +31,7 @@ const Header = () => {
           </div>
           <Search />
 
-          <div className="items-center  hidden pl-0 md:pl-12 space-x-4 md:flex">
+          <div className="items-center  hidden pl-0 md:pl-12 space-x-4 md:flex bg-white">
             <div className="pl-8">
               <Image src={icon} width={30} height={30} />
             </div>
@@ -47,8 +47,8 @@ const Header = () => {
           </div>
 
           {!isOpen && (
-            <div className="md:hidden w-full h-full top-[100%] bg-grayColor z-20 absolute left-0 bg">
-              <div className="flex items-center py-4 gap-2">
+            <div className="md:hidden w-full h-[60vh] top-[100%] bg-white z-20 absolute left-0 bg">
+              <div className="flex items-center pt-4 gap-2">
                 <div className="px-4 ">
                   <Image src={beforeyoureg} width={50} height={50} />
                 </div>
@@ -63,7 +63,7 @@ const Header = () => {
                   </Button>
                 </Link>
               </div>
-              <div className="p-6 bg-white">
+              <div className="px-6 bg-white">
                 <div className="flex pt-12 ">
                   <BsCart3 />
                   <p className="pl-3 text-base font-extralight"> Order</p>

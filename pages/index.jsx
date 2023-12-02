@@ -172,7 +172,7 @@ const LandingPage = () => {
       <BecomeAMerchant />
       <section>
         <div className="max-w-screen-xl px-4 py-10 lg:py-16 lg:mx-auto sm:px-6 lg:px-8">
-          <Button className="px-4 md:px-12 md:py-3 py-1 mt-16 lg:rounded-md md:mt-40  lg:mt-64 right-10 lg:right-44 lg:px-44  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide  text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-lightYellow lg:ml-16">
+          <Button className="px-4 md:px-12 md:py-3 py-1 mt-16 lg:rounded-md md:mt-40  lg:mt-64 right-10 lg:right-44 lg:px-44  absolute z-20 text-sm  lg:text-lg font-bold tracking-wide text-white font-poppins ml-4 md:ml-8 sm:flex-shrink-0 sm:w-auto   bg-lightYellow lg:ml-16">
             <Link href={""}>Buy now</Link>
           </Button>
           <Link href={""}>
@@ -188,14 +188,14 @@ const LandingPage = () => {
   );
 };
 
-export async function getServerSideProps(context) {
-  const res = await axios.get(
-    "http://34.199.115.184:8005/api/Category/getallcategories"
-  );
-  console.log(res.data);
-  return {
-    props: {}, // will be passed to the page component as props
-  };
-}
+// export async function getServerSideProps(context) {
+//   const res = await axios.get(
+//     "http://34.199.115.184:8005/api/Category/getallcategories"
+//   );
+//   console.log(res.data);
+//   return {
+//     props: {}, // will be passed to the page component as props
+//   };
+// }
 
 export default LandingPage;
