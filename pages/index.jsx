@@ -100,11 +100,9 @@ const LandingPage = () => {
           </div>
           <div>
             <Image src={slide} />
-            <p className="legend ">Legend 3</p>
           </div>
           <div>
             <Image src={slide} />
-            <p className="legend">Legend 3</p>
           </div>
         </Carousel>
       </section>
