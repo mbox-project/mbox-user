@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from "../../../components/AdminPagesLayout/Layout";
-import OrderTable from "../../../components/AdminDataTable/Ordertable";
 import Pagination from "../../../components/AdminDataTable/Pagenation";
 import { BsPlusCircle } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
+import OrderTable from "../../../components/AdminDataTable/Ordertable";
 
 const index = () => {
   return (
@@ -41,4 +41,3 @@ const index = () => {
 };
 
 export default index;
- 
