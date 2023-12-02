@@ -3,7 +3,7 @@ import Layout from "../../../components/AdminPagesLayout/Layout";
 import Pagination from "../../../components/AdminDataTable/Pagenation";
 import { BsPlusCircle } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
-import OrderTable from "../../../components/AdminDataTable/Ordertable";
+import OrderTable from "../../../components/AdminDataTable/OrderTable";
 
 const index = () => {
   return (
