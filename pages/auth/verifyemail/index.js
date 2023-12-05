@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { verifyEmail } from "../../../store/auth/authSlice";
 import { useSelector } from "react-redux";
 import Spinner from "../../../components/Spinner";
+import { toastify } from "../../../helpers";
 
 const Index = () => {
   const router = useRouter();
