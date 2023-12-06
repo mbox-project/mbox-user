@@ -1,11 +1,7 @@
 import axios from "axios";
-import { getApi, postApi } from "../../config/api";
+import { getApi, postApi, patchApi } from "../../config/api";
 import { API_URL } from "../../config";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-//const API_URL = "http://54.174.220.112/api/";
-
-//Register user
 const register = async (registerData) => {
   const response = await postApi("User/register", registerData);
   //console.log("RegisterResp", response);
@@ -31,6 +27,16 @@ const verifyEmail = async (body) => {
   return response.data;
 };
 
+const forgotPassword = async (body) => {
+  const response = await postApi("user/forgotpassword", { ...body });
+  return response.data;
+};
+
+const resetPassword = async (body) => {
+  const response = await patchApi("user/resetpassword", { ...body });
+  return response.data;
+};
+
 // const logout = () => localStorage.removeItem("user");
 
 const authService = {
@@ -38,5 +44,7 @@ const authService = {
   login,
   getUser,
   verifyEmail,
+  resetPassword,
+  forgotPassword,
 };
 export default authService;

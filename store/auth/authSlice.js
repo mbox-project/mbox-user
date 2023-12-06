@@ -77,6 +77,20 @@ export const verifyEmail = createAsyncThunk(
   }
 );
 
+export const forgotpassword = createAsyncThunk(
+  "auth/forgotpassword",
+  async (body) => {
+    return await authService.forgotPassword(body);
+  }
+);
+
+export const resetpassword = createAsyncThunk(
+  "auth/resetpassword",
+  async (body) => {
+    return await authService.resetPassword(body);
+  }
+);
+
 //create the authReducer...
 export const authSlice = createSlice({
   name: "auth",
@@ -153,6 +167,24 @@ export const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(verifyEmail.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(forgotpassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(forgotpassword.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(forgotpassword.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(resetpassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(resetpassword.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(resetpassword.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase("LOGOUT", (state) => {

@@ -38,3 +38,13 @@ export const postApi = (url, body) => {
     },
   });
 };
+
+export const patchApi = (url, body) => {
+  return api.patch(url, body, {
+    headers: {
+      Authorization: `Bearer ${
+        typeof window !== undefined ? sessionStorage.getItem("token") : null
+      }`,
+    },
+  });
+};
