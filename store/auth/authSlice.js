@@ -142,14 +142,18 @@ export const authSlice = createSlice({
       .addCase(createVendor.fulfilled, (state, action) => {
         state.isLoading = false;
       })
-      .addCase(createVendor.rejected, (state, action) => {})
+      .addCase(createVendor.rejected, (state, action) => {
+        state.isLoading = false;
+      })
       .addCase(registerVendor.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(registerVendor.fulfilled, (state, action) => {
         state.isLoading = false;
       })
-      .addCase(registerVendor.rejected, (state, action) => {})
+      .addCase(registerVendor.rejected, (state, action) => {
+        state.isLoading = false;
+      })
       .addCase(getUser.pending, (state) => {
         state.isLoading = true;
       })
