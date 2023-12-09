@@ -10,9 +10,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectRole } from "../store/selectors/selectors";
 import { LogOut } from "../store/store";
 import { useStore } from "react-redux";
+import { useRouter } from "next/router";
 import { makeStore } from "../store/store";
 
 const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
+  const { replace } = useRouter();
   const store = makeStore();
   const [showVendorModal, setShowVendormodal] = useState(false);
   const role = useSelector(selectRole);
@@ -60,7 +62,7 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
         </div>
         <hr />
         <div
-          onClick={() => dispatch(logout())}
+          // onClick={() => dispatch(LogOut())}
           className="flex justify-center items-center text-center text-red-500 mt-3"
         >
           <button
@@ -73,6 +75,7 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
                 sessionStorage.removeItem("token");
               }
               dispatch(LogOut());
+              replace("/auth/login");
             }}
           >
             Logout
