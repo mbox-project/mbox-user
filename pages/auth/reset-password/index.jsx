@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import resetpasswordimg from "../../../public/images/loginbg.png";
-
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Button from "../../../components/Button";
 // import Footer from "../../../components/Footer";
 import Label from "../../../components/Label";
@@ -28,8 +28,8 @@ function ResetPassword() {
     });
   }, [JSON.stringify(query)]);
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.auth);
-
+  const { isLoading } = useSelector((state) => state.auth); 
+  const [showPassword, setShowPassword] = useState(false);
   const onChangeInput = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
@@ -93,35 +93,27 @@ function ResetPassword() {
               <div className="relative">
                 <Input
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
+                  placeHolder="enter new password"
                   className="w-full p-1 md:p-2  lg:py-2.5 poppins bg-grayColor focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                   autoFocus={true}
                   required={true}
                   onChange={onChangeInput}
                   value={value?.password}
                 />
-                <span className="absolute inset-y-0 inline-flex items-center right-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
+                  {showPassword ? (
+                    <AiOutlineEyeInvisible
+                      className="block cursor-pointer text-[1.2rem]"
+                      onClick={() => setShowPassword((prev) => !prev)}
                     />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  ) : (
+                    <AiOutlineEye
+                      className="block cursor-pointer text-[1.2rem]"
+                      onClick={() => setShowPassword((prev) => !prev)}
                     />
-                  </svg>
-                </span>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -129,13 +121,14 @@ function ResetPassword() {
               <Label
                 className="w-full text-lg lg:text-base text-[#9A9A9A]"
                 htmlFor="password"
-                title=" Confirm New Password"
+                title=" Confirm Password"
               />
 
               <div className="relative">
                 <Input
                   name="confirmPassword"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
+                  placeHolder="confirm new password"
                   className="w-full p-1 md:p-2 lg:py-2.5 poppins bg-grayColor  focus:outline-none pr-12 text-lg lg:text-base  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                   autoFocus={true}
                   required={true}
@@ -143,28 +136,19 @@ function ResetPassword() {
                   value={value?.confirmPassword}
                 />
 
-                <span className="absolute inset-y-0 inline-flex items-center right-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
+                  {showPassword ? (
+                    <AiOutlineEyeInvisible
+                      className="block cursor-pointer text-[1.2rem]"
+                      onClick={() => setShowPassword((prev) => !prev)}
                     />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  ) : (
+                    <AiOutlineEye
+                      className="block cursor-pointer text-[1.2rem]"
+                      onClick={() => setShowPassword((prev) => !prev)}
                     />
-                  </svg>
-                </span>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -174,7 +158,9 @@ function ResetPassword() {
             >
               Reset my password
             </Button>
+
             {/* <Footer /> */}
+            
           </form>
           <div className="flex justify-center">
             <button
