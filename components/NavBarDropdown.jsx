@@ -22,7 +22,6 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
     " "
   )[0];
   const dispatch = useDispatch();
-
   const handleModalVisibility = () => {
     setShowVendormodal(!showVendorModal);
   };

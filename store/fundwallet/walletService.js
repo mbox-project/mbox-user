@@ -1,10 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getApi, postApi, checkwalletApi } from "../../config/invoiceApi";
+import { checkwalletApi } from "../../config/invoiceApi";
+import { getApi, postApi } from "../../config/api";
 
 export const getWallet = createAsyncThunk("getwallet/wallet", async (email) => {
   const response = await checkwalletApi(email);
   return response.data;
 });
+
+export const createWallet = createAsyncThunk(
+  "createWallet/wallet",
+  async () => {
+    const response = await postApi("Wallet/create", {});
+    return response.data;
+  }
+);
 
 export const getTransactions = createAsyncThunk(
   "getTransactions/wallet",

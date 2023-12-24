@@ -1,6 +1,7 @@
 import axios from "axios";
+import { getApi, postApi, patchApi } from "./api";
 
-const baseURL = "http://34.199.115.184:8004/api/";
+const baseURL = "http://ec2-52-20-74-193.compute-1.amazonaws.com:8004/api/";
 
 const api = axios.create({
   baseURL,
@@ -19,7 +20,8 @@ api.interceptors.response.use(undefined, function (error) {
   return Promise.reject(error);
 });
 const checkwalletreq = axios.create({
-  baseURL: "http://34.199.115.184:8004/api/Wallet/checkalreadyhaswallet/",
+  baseURL:
+    "http://ec2-52-20-74-193.compute-1.amazonaws.com:8004/api/Wallet/checkalreadyhaswallet/",
 });
 checkwalletreq.interceptors.response.use(undefined, function (error) {
   error.originalMessage = error.message;
@@ -35,19 +37,9 @@ checkwalletreq.interceptors.response.use(undefined, function (error) {
 });
 
 const createWallet = async (email) => {
-  const response = await axios.post(
-    "http://34.199.115.184:8004/api/Wallet/create",
-    {
-      email,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${
-          typeof window !== undefined ? sessionStorage.getItem("token") : null
-        }`,
-      },
-    }
-  );
+  const response = await postApi("Wallet/create", {
+    email,
+  });
   return response.data;
 };
 
@@ -67,31 +59,26 @@ checkwalletreq.interceptors.response.use(undefined, function (error) {
 });
 
 export const checkwalletApi = (email) => {
-  return checkwalletreq.get(`${email}`, {
-    headers: {
-      Authorization: `Bearer ${
-        typeof window !== undefined ? sessionStorage.getItem("token") : null
-      }`,
-    },
-  });
+  const response = getApi(`Wallet/checkalreadyhaswallet/${email}`);
+  return response;
 };
 
-export const getApi = (url) => {
-  return api.get(url, {
-    headers: {
-      Authorization: `Bearer ${
-        typeof window !== undefined ? sessionStorage.getItem("token") : null
-      }`,
-    },
-  });
-};
+// export const getApi = (url) => {
+//   return api.get(url, {
+//     headers: {
+//       Authorization: `Bearer ${
+//         typeof window !== undefined ? sessionStorage.getItem("token") : null
+//       }`,
+//     },
+//   });
+// };
 
-export const postApi = (url, body) => {
-  return api.post(url, body, {
-    headers: {
-      Authorization: `Bearer ${
-        typeof window !== undefined ? sessionStorage.getItem("token") : null
-      }`,
-    },
-  });
-};
+// export const postApi = (url, body) => {
+//   return api.post(url, body, {
+//     headers: {
+//       Authorization: `Bearer ${
+//         typeof window !== undefined ? sessionStorage.getItem("token") : null
+//       }`,
+//     },
+//   });
+// };

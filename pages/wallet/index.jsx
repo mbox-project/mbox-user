@@ -8,6 +8,7 @@ import {
   getTransactions,
   getWallet,
   getTransactionDetails,
+  createWallet,
 } from "../../store/fundwallet/walletService";
 const index = () => {
   const { wallet, transactions } = useSelector((state) => state.wallet);
@@ -20,11 +21,11 @@ const index = () => {
       .then((action) => console.log(action))
       .catch((error) => {
         console.log(error);
-        router.back();
+        createWallet();
       });
     dispatch(getTransactions())
       .unwrap()
-      .then((actions) => console.log(actions))
+      .then((actions) => {})
       .catch((error) => console.log(error));
   }, []);
   return (

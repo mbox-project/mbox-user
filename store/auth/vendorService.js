@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { postApi, patchApi } from "../../config/vendorApi";
+import { getApi, postApi, patchApi } from "../../config/api";
 
 export const createVendor = createAsyncThunk(
   "auth/createvendor",

@@ -21,8 +21,7 @@ const CustomModal = ({ closeModal, closeDropDown }) => {
     dispatch(getProductCategories())
       .unwrap()
       .then((action) => {
-        console.log(action);
-        setCategory(action.data[0].id);
+        // setCategory(action.data[0].id);
       })
       .catch((error) => console.log(error));
   }, []);

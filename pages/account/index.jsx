@@ -9,7 +9,6 @@ import { wrapper } from "../../store/store";
 const Index = () => {
   const role = useSelector(selectRole);
   const auth = useSelector((state) => state.auth);
-  console.log(auth);
   return (
     <>
       <Layout>

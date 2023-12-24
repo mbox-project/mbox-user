@@ -18,7 +18,7 @@ const productSlice = createSlice({
       })
       .addCase(getProductCategories.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.categories = action.payload.data;
+        state.categories = action.payload.data.$values;
       })
       .addCase(getProductCategories.rejected, (state) => {
         state.isLoading = false;

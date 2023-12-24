@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getApi, postApi } from "./api";
 
 const baseURL = "http://34.199.115.184:8005/api/";
 
@@ -18,22 +19,22 @@ api.interceptors.response.use(undefined, function (error) {
   });
   return Promise.reject(error);
 });
-export const getApi = (url) => {
-  return api.get(url, {
-    headers: {
-      Authorization: `Bearer ${
-        typeof window !== undefined ? sessionStorage.getItem("token") : null
-      }`,
-    },
-  });
-};
+// export const getApi = (url) => {
+//   return api.get(url, {
+//     headers: {
+//       Authorization: `Bearer ${
+//         typeof window !== undefined ? sessionStorage.getItem("token") : null
+//       }`,
+//     },
+//   });
+// };
 
-export const postApi = (url, body) => {
-  return api.post(url, body, {
-    headers: {
-      Authorization: `Bearer ${
-        typeof window !== undefined ? sessionStorage.getItem("token") : null
-      }`,
-    },
-  });
-};
+// export const postApi = (url, body) => {
+//   return api.post(url, body, {
+//     headers: {
+//       Authorization: `Bearer ${
+//         typeof window !== undefined ? sessionStorage.getItem("token") : null
+//       }`,
+//     },
+//   });
+// };
