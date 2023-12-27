@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import profile from "../public/img/profile.svg";
-import saved from "../public/img/saved.svg";
+/* import saved from "../public/img/saved.svg"; */
 import { BiQuestionMark } from "react-icons/bi";
 import PropTypes from "prop-types";
 import CustomModal from "./CustomModal";
@@ -55,10 +55,10 @@ const NavBarDropdown = ({ handleLogout, closeDropDown, isMerchant }) => {
           <Image src={profile} width={20} height={20} alt="profile" />
           <Link href="/account/"> My Account </Link>
         </div>
-        <div className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
+        {/* <div className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
           <Image src={saved} width={20} height={20} alt="profile" />
           <Link href="/saveditems/"> Saved Items </Link>
-        </div>
+        </div> */}
         <hr />
         <div
           // onClick={() => dispatch(LogOut())}

@@ -41,9 +41,9 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
               <BsCartDash size={20} />
               <Link href="/orders/"> Orders </Link>
             </li>
-            <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
-              <Image src={saved} width={20} height={20} alt="profile" />
-              <Link href="/saveditems/"> Saved Items </Link>
+            <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
+              <Image src={profile} width={20} height={20} alt="profile" />
+              <Link href="dispute"> Disputes </Link>
             </li>
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={purchase} width={20} height={20} alt="profile" />
@@ -72,9 +72,9 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
               <Image src={report} width={20} height={20} alt="profile" />
               <Link href="#"> Report a Vendor </Link>
             </li>
-            <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-              <Image src={profile} width={20} height={20} alt="profile" />
-              <Link href="dispute"> Disputes </Link>
+            <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
+              <Image src={saved} width={20} height={20} alt="profile" />
+              <Link href="/saveditems/"> Saved Items </Link>
             </li>
           </ul>
         </div>
