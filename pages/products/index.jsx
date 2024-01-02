@@ -13,7 +13,7 @@ const Index = () => {
   const user = useSelector((state) => state.auth.user);
   useGetUser();
   console.log(user);
-  const [data, setData] = useState({ vendorId });
+  const [data, setData] = useState({ vendorId: user?.id });
   const handleProdVisiblity = () => {
     setShowAddProduct(!showAddProduct);
     console.log("clicked", showAddProduct);
