@@ -7,6 +7,7 @@ import {
   paystackVerifyPayment,
   withdrawFundPaystack,
   createWallet,
+  payInvoice,
 } from "./walletService";
 // import { HYDRATE } from "next-redux-wrapper";
 
@@ -140,6 +141,15 @@ export const walletSlice = createSlice({
         state.transactions = action.payload.data;
       })
       .addCase(getTransactionDetails.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(payInvoice.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(payInvoice.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(payInvoice.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase("LOGOUT", (state) => {

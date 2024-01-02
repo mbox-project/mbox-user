@@ -27,12 +27,12 @@ const invoiceInput = () => {
   });
   const [subtotal, setSubtotal] = useState(0);
 
-  //  const onChangeInput = (e) => {
-  //   setInvoiceData((prevState) => ({
-  //     ...prevState,
-  //     [e.target.name]: e.target.value,
-  //   }));
-  // };
+  const onChangeInput = (e) => {
+    setInvoiceData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const onProductChangeInput = (e, index) => {
     setProductsList((init) => {
@@ -56,8 +56,6 @@ const invoiceInput = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    // simple validation
-    console.log(invoiceData);
     try {
       const data = {
         ...invoiceData,
@@ -110,7 +108,7 @@ const invoiceInput = () => {
                 type="text"
                 placeHolder="GC-10234"
                 className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                value={invoiceData?.issuer}
+                value={invoiceData?.buyer}
                 onChange={onChangeInput}
                 required
               />

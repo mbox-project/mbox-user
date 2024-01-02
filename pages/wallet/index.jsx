@@ -20,8 +20,8 @@ const index = () => {
       .unwrap()
       .then((action) => console.log(action))
       .catch((error) => {
-        console.log(error);
-        createWallet();
+        if (error?.message === "Wallet does not exist")
+          dispatch(createWallet());
       });
     dispatch(getTransactions())
       .unwrap()

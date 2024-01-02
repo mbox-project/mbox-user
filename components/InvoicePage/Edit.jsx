@@ -3,7 +3,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 
 const Edit = () => {
   return (
-    <div className="flex   justify-end py-10 pr-20 ">
+    <div className="flex   justify-end py10 pr20 ">
       <button className="poppins flex  px-10 py-2 border-2 ml-5 rounded-sm border-lightGray">
         <AiOutlineEdit className="pt-1" /> Edit
       </button>

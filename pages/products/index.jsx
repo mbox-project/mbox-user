@@ -4,10 +4,15 @@ import Products from "../../components/MerchantPages/Products";
 import { ProductsData } from "../../components/prodata";
 import { useSelector } from "react-redux";
 import AddNewProduct from "../../components/MerchantPages/AddNewProduct";
+import useGetUser from "../../hooks/useGetUser";
 
 const Index = () => {
+  useGetUser();
   const [showAddProduct, setShowAddProduct] = useState(true);
   const { vendorId } = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
+  useGetUser();
+  console.log(user);
   const [data, setData] = useState({ vendorId });
   const handleProdVisiblity = () => {
     setShowAddProduct(!showAddProduct);

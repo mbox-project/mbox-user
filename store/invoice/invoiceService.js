@@ -1,5 +1,4 @@
-import axios from "axios";
-import { getApi, postApi } from "../../config/invoiceApi";
+import { getApi, postApi } from "../../config/api";
 // import { API_URL } from "../../config";
 
 //Generate Invoice

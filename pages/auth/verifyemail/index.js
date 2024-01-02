@@ -18,9 +18,7 @@ const Index = () => {
     const params = Object.fromEntries(new URLSearchParams(location.search));
     dispatch(verifyEmail({ email: params.email, token: params.token }))
       .unwrap()
-      .then((action) => {
-        console.log(action, "success");
-      })
+      .then((action) => {})
       .catch((error) => {
         console.log(error, "error");
       });

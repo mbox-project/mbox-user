@@ -4,15 +4,21 @@ import Label from "../../components/Label";
 import Input from "../../components/Input";
 import { getInvoice } from "../../store/invoice/invoiceSlice";
 import { toastify } from "../../helpers";
-import { Button } from "antd";
+import { useRouter } from "next/router";
 
 const index = () => {
   const dispatch = useDispatch();
+  const { push } = useRouter();
   const [option, setOption] = useState(false);
   const [invoiceTag, setInvoiceTag] = useState("");
   const [invoiceData, setInvoiceData] = useState("");
-  const onChangeInput = (e) => {};
-  const onSubmitHandler = () => {};
+  const onChangeInput = (e) => {
+    setInvoiceTag(e.target.value);
+  };
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    push(`/invoice/${invoiceTag}`);
+  };
   const GetInfo = async (id) => {
     await dispatch(getInvoice(id))
       .unwrap()
@@ -24,9 +30,12 @@ const index = () => {
       });
   };
   return (
-    <div className="h-screen overflow-hidden w-full">
+    <div className="h-screen overflow-hidden w-full my-auto">
       <div className="overflow-y-scroll h-full">
-        <div className="border rounded-md shadow-lg w-[98%] md:w-[60%] mx-auto relative">
+        <form
+          onSubmit={onSubmitHandler}
+          className="border rounded-md shadow-lg w-[98%] md:w-[60%] mx-auto relative"
+        >
           <div className="bg-brightRed sticky top-0">
             <p className=" py-4 px-10 text-white font-poppins text-xl">
               Pay an Invoice
@@ -42,7 +51,7 @@ const index = () => {
             <Label
               className="text-lightAsh text-sm"
               htmlFor="text"
-              title="Product Tag"
+              title="Invoice Tag"
             />
             <Input
               name="tag"
@@ -54,7 +63,7 @@ const index = () => {
               required
             />
           </div>
-          <div className="w-[80%] pt-3 mx-auto">
+          {/* <div className="w-[80%] pt-3 mx-auto">
             <Label
               className="text-lightAsh text-sm"
               htmlFor="text"
@@ -69,8 +78,8 @@ const index = () => {
               disabled={true}
               required
             />
-          </div>
-          <div className="w-[80%] pt-3 mx-auto">
+          </div> */}
+          {/* <div className="w-[80%] pt-3 mx-auto">
             <Label
               className="text-lightAsh text-sm"
               htmlFor="text"
@@ -85,8 +94,8 @@ const index = () => {
               disabled={true}
               required
             />
-          </div>
-          <div className="w-[80%] pt-3 mx-auto">
+          </div> */}
+          {/* <div className="w-[80%] pt-3 mx-auto">
             <Label
               className="text-lightAsh text-sm"
               htmlFor="text"
@@ -101,8 +110,8 @@ const index = () => {
               disabled={true}
               required
             />
-          </div>
-          <div className="w-[80%] pt-3 mx-auto">
+          </div> */}
+          {/* <div className="w-[80%] pt-3 mx-auto">
             <Label
               className="text-lightAsh text-sm"
               htmlFor="text"
@@ -117,8 +126,8 @@ const index = () => {
               disabled={true}
               required
             />
-          </div>
-          <div className="w-[80%] pt-3 mx-auto">
+          </div> */}
+          {/* <div className="w-[80%] pt-3 mx-auto">
             <Label
               className="text-lightAsh text-sm"
               htmlFor="text"
@@ -133,7 +142,7 @@ const index = () => {
               required
               disabled={true}
             />
-          </div>
+          </div> */}
           <div className="mx-auto w-[80%] my-1">
             <div>Select Payment Option</div>
             <div className="flex items-center gap-[0.6rem]">
@@ -147,12 +156,12 @@ const index = () => {
             </div>
             <button
               className="w-full my-4 rounded-md shadow-lg bg-brightRed py-[0.5rem] text-white text-base poppins"
-              onClick={onSubmitHandler}
+              type="submit"
             >
               Pay Now
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

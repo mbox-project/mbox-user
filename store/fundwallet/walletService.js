@@ -54,3 +54,14 @@ export const paystackVerifyPayment = createAsyncThunk(
     return response.data;
   }
 );
+
+export const payInvoice = createAsyncThunk(
+  "payInvoice/wallet",
+  async (invoiceId) => {
+    const response = await postApi(
+      `wallet/payforinvoice?invoiceId=${invoiceId}`,
+      {}
+    );
+    return response.data;
+  }
+);
