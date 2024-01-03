@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://ec2-3-90-247-73.compute-1.amazonaws.com/api/";
+const baseURL = "http://ec2-184-72-144-61.compute-1.amazonaws.com/api/";
 
 const api = axios.create({
   baseURL,

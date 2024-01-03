@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getApi, postApi, patchApi } from "./api";
 
-const baseURL = "http://ec2-52-20-74-193.compute-1.amazonaws.com:8004/api/";
+const baseURL = "http://ec2-184-72-144-61.compute-1.amazonaws.com:8004/api/";
 
 const api = axios.create({
   baseURL,
@@ -21,7 +21,7 @@ api.interceptors.response.use(undefined, function (error) {
 });
 const checkwalletreq = axios.create({
   baseURL:
-    "http://ec2-52-20-74-193.compute-1.amazonaws.com:8004/api/Wallet/checkalreadyhaswallet/",
+    "http://ec2-184-72-144-61.compute-1.amazonaws.com:8004/api/Wallet/checkalreadyhaswallet/",
 });
 checkwalletreq.interceptors.response.use(undefined, function (error) {
   error.originalMessage = error.message;
