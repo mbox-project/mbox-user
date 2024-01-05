@@ -46,8 +46,8 @@ const fundWallet = () => {
       dispatch(paystackFundWallet({ ...fundWalletData, email }))
         .unwrap()
         .then((action) => {
-          console.log(action);
-          window.open(action.data);
+          // console.log(action);
+          // window.open(action.data);
         })
         .catch((error) => {
           console.log(error);
@@ -155,9 +155,9 @@ const fundWallet = () => {
           </Button>
         </div>
       </div>
-      <Button className=" w-full my-4 rounded-md shadow-lg  bg-brightRed  py-2  text-white  justify-center text-base poppins">
+      {/* <Button className=" w-full my-4 rounded-md shadow-lg  bg-brightRed  py-2  text-white  justify-center text-base poppins">
         Pay Now ($4000)
-      </Button>
+      </Button> */}
     </div>
   );
 };
