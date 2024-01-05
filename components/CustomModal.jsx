@@ -6,10 +6,17 @@ import { createVendor } from "../store/auth/vendorService";
 import { useSelector } from "react-redux";
 import { getProductCategories } from "../store/product/productService";
 import { useState } from "react";
+import { toastify } from "../helpers";
+import { LogOut } from "../store/store";
+import { makeStore } from "../store/store";
 
 const CustomModal = ({ closeModal, closeDropDown }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  //const { replace } = useRouter();
+  const store = makeStore();
+
   const user = useSelector((state) => state.auth.user);
   const { categories } = useSelector((state) => state.product);
   const [category, setCategory] = useState("");
@@ -33,14 +40,28 @@ const CustomModal = ({ closeModal, closeDropDown }) => {
    */
   const switchToMerchant = (category) => {
     console.log(user.id, category);
-    dispatch(createVendor({ id: user.id, catId: category }))
-      .unwrap()
-      .then((action) => {
-        console.log(action);
-        closeDropDown();
-        router.push("/editprofile");
-      })
-      .catch((error) => console.log(error));
+    
+      dispatch(createVendor({ id: user.id, catId: category }))
+       .unwrap()
+       .then((action) => {
+          toastify.alertSuccess("You are now a vendor", 3000);
+          //console.log(action);
+          //closeDropDown();
+          //router.push("/editprofile");
+
+          // Logout logic
+          store.__persistor
+          .purge()
+          .then(() => console.log("state cleared"))
+          .catch(() => console.log("error"));
+          if (typeof window !== undefined) {
+            sessionStorage.removeItem("token");
+          }
+          dispatch(LogOut());
+          router.push("/auth/login");
+        }
+    )
+    .catch((error) => console.log(error));
   };
 
   return (
@@ -77,6 +98,9 @@ const CustomModal = ({ closeModal, closeDropDown }) => {
                   placeholder="select category"
                   className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
                 >
+                  <option value="" disabled selected>
+                    Select a category
+                  </option>
                   {categories.map((e, i) => (
                     <option key={i} value={e.id}>
                       {e.name}

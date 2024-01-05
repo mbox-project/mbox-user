@@ -7,13 +7,32 @@ import Spinner from "../../components/Spinner";
 import { toastify } from "../../helpers";
 import { useRouter } from "next/router";
 // import { payStackFund, reset } from "../../store/fundwallet/walletSlice";
-import { paystackFundWallet } from "../../store/fundwallet/walletService";
+import { paystackFundWallet, paystackVerifyPayment } from "../../store/fundwallet/walletService";
 
 const fundWallet = () => {
   // Add rememberMe property to it later..
   const [fundWalletData, setFundWalletData] = useState({
     amount: "",
   });
+
+  const queryParams = new URLSearchParams(window.location.search);
+  const referenceFromURL = queryParams.get("reference");
+
+  useEffect(() => {
+    if (referenceFromURL) {
+      //alert(referenceFromURL);
+      dispatch(paystackVerifyPayment(referenceFromURL)).then((response) => {
+        // console.log(response, 11);
+        // console.log(response.type, 22222);
+        console.log(response.payload.message, 33);
+        toastify.alertSuccess(response.payload.message, 3000);
+      })
+      .catch((error) => {
+        console.log(error);
+        toastify.alertError(error, 3000);
+      });
+    }
+  }, [referenceFromURL]);
 
   const { amount } = fundWalletData;
   const onChangeInput = (e) => {
@@ -25,29 +44,26 @@ const fundWallet = () => {
 
   const { isLoading } = useSelector((state) => state.wallet);
   const { email } = useSelector((state) => state.auth.user);
-  //check for error messages   typeof window !== "undefined" ?
-  // useEffect(() => {
-  //   if (isError) {
-  //     toastify.alertError(message, 3000);
-  //   }
-
-  //   if (isSuccess) {
-  //     console.log("237237", wallet);
-  //     router.push(wallet);
-  //   }
-  // }, [isError, message, isSuccess, wallet, dispatch, router]);
-
+ 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (fundWalletData.amount == "") {
-      toastify.alertWarning("Enter a valid ammount", 3000);
+    if (fundWalletData.amount === "") {
+      toastify.alertWarning("Enter a valid amount", 3000);
     } else {
       console.log(fundWalletData);
       dispatch(paystackFundWallet({ ...fundWalletData, email }))
         .unwrap()
         .then((action) => {
-          console.log(action);
-          window.open(action.data);
+          //console.log(action);
+          const popup = window.open(action.data, "_blank", "noopener,noreferrer");
+          if (popup) {
+            // If the window successfully opened
+            popup.focus();
+          } else {
+            // If pop-up blocker is detected or window failed to open
+            //toastify.alertWarning("Please allow pop-ups for this site.", 3000);
+            window.location.href = action.data; // Fallback to redirecting in the same window
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -55,6 +71,7 @@ const fundWallet = () => {
         });
     }
   };
+ 
 
   return (
     <div className=" border rounded-md lg:mx-96 my-20 shadow-lg">
@@ -90,63 +107,10 @@ const fundWallet = () => {
             onChange={onChangeInput}
           />
         </div>
-        {/* <p className="text-[#9A9A9A] text-sm text-semibold poppins py-2 border-b  border-t-0 border-x-0 mx-12 mt-8  pt-4  shadow-sm bg-white px-4 ">
-          Billing Information
-            className="text-[#C1C1C1]  text-xs"
-            title="Card Number"
-          />
-          <Input
-            name="card_number"
-            type="number"
-            placeHolder="1357 0245 6456 9981"
-            className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-            required
-            onChange={onChangeInput}
-          />
-        </div> */}
-        {/* <div className="flex px-8 pt-2 ">
-          <div className="px-4 ">
-            <Label
-              className="text-[#C1C1C1] text-xs"
-              htmlFor="text"
-              title="expires"
-            />
-            <Input
-              name="expiry_date"
-              type="number"
-              placeHolder="09/2028"
-              className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white  md:border-2  md:rounded-md shadow-sm rounded-none"
-              required
-              onChange={onChangeInput}
-            />
-          </div>
-          <div className=" px-4">
-            <Label
-              className="text-[#C1C1C1] lg:pl-5 text-xs"
-              htmlFor="text"
-              title="CVV"
-            />
-            <Input
-              name="cvv"
-              type="number"
-              placeHolder="334"
-              className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins lg:ml-4 mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-              required
-              onChange={onChangeInput}
-            />
-          </div>
-        </div> */}
+       
 
         <div className=" flex px-12 pt-2">
-          {/* <div>
-            <input type="checkbox" />
-          </div>
-          <div>
-            <p className="px-2 text-[#13519B] text-xs poppins pt-1 ">
-              Saved card
-            </p>
-          </div> */}
-
+          
           <Button
             className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins"
             onClick={onSubmitHandler}
@@ -155,9 +119,7 @@ const fundWallet = () => {
           </Button>
         </div>
       </div>
-      <Button className=" w-full my-4 rounded-md shadow-lg  bg-brightRed  py-2  text-white  justify-center text-base poppins">
-        Pay Now ($4000)
-      </Button>
+      
     </div>
   );
 };
