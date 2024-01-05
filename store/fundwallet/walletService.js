@@ -50,7 +50,7 @@ export const withdrawFundPaystack = createAsyncThunk(
 export const paystackVerifyPayment = createAsyncThunk(
   "paystackVerifyPayment/wallet",
   async (reference) => {
-    const response = await getApi(`paystack/verify/${reference}`);
+    const response = await getApi(`Wallet/paystack/verify?reference=${reference}`);
     return response.data;
   }
 );
