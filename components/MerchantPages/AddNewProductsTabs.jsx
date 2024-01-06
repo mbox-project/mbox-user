@@ -369,7 +369,7 @@ export const ProductVariation = ({
                 .catch((error) => toastify.alertError(error, 3000));
             }}
           >
-            Preview Products
+            Upload Products
           </button>
         </form>
       </div>

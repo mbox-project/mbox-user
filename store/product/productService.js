@@ -16,3 +16,12 @@ export const uploadProduct = createAsyncThunk(
     return response.data;
   }
 );
+
+export const getVendorProducts = createAsyncThunk(
+  "Product/getVendorProducts",
+  async (data) => {
+    //console.log(data.pageNumber, data.pageSize, 7777)
+    const response = await getApi(`Product/getVendorProducts?pageNumber=${data.pageNumber}&pageSize=${data.pageSize}`);
+    return response.data;
+  }
+);
