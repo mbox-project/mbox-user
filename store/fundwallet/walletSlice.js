@@ -79,14 +79,21 @@ export const walletSlice = createSlice({
       .addCase(paystackFundWallet.fulfilled, (state, action) => {
         state.isSuccess = true;
         state.isLoading = false;
-        state.wallet = action.payload.data;
-        state.message = action.payload.message;
       })
       .addCase(paystackFundWallet.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
-        state.message = action.payload.message;
-        state.wallet = null;
+      })
+      .addCase(paystackVerifyPayment.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(paystackVerifyPayment.fulfilled, (state, action) => {
+        state.isSuccess = true;
+        state.isLoading = false;
+      })
+      .addCase(paystackVerifyPayment.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
       })
       .addCase(withdrawFundPaystack.pending, (state) => {
         state.isLoading = true;
@@ -94,14 +101,10 @@ export const walletSlice = createSlice({
       .addCase(withdrawFundPaystack.fulfilled, (state, action) => {
         state.isSuccess = true;
         state.isLoading = false;
-        state.wallet = action.payload.data;
-        state.message = action.payload.message;
       })
       .addCase(withdrawFundPaystack.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
-        state.message = action.payload.message;
-        state.wallet = null;
       })
       .addCase(getWallet.pending, (state) => {
         state.isLoading = true;
