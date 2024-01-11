@@ -59,7 +59,7 @@ const invoiceInput = () => {
     try {
       const data = {
         ...invoiceData,
-        issuer: fullname,
+        //issuer: fullname,
         date: new Date().toISOString(),
         products: productsList,
         escFee: (subtotal / 100) * 5,

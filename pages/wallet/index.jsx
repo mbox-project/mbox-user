@@ -95,7 +95,7 @@ const index = () => {
                 />
               </svg>
             </div>
-            <h5>4460</h5>
+            <h5>NGN {wallet?.totalSpent}</h5>
           </div>
         </div>
       </section>

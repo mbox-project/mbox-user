@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseURL = "http://ec2-3-208-29-158.compute-1.amazonaws.com/api/";
-//const baseURL = "https://localhost:44378/api/";
+//const baseURL = "http://ec2-3-208-29-158.compute-1.amazonaws.com/api/";
+const baseURL = "https://localhost:44378/api/";
 
 const api = axios.create({
   baseURL,
