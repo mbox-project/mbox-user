@@ -10,7 +10,7 @@ import {
   getTransactionDetails,
   createWallet,
 } from "../../store/fundwallet/walletService";
-import FundWallet from "../../components/fundWallet/fundWallet";
+import FundWallet from "../../components/FundWallet/FundWalletModal";
 const index = () => {
   const [open, setOpen] = useState(false);
   const { wallet, transactions } = useSelector((state) => state.wallet);
