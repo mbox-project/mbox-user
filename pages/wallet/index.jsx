@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/PagesLayout/Layout";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getTransactions,
@@ -10,7 +10,9 @@ import {
   getTransactionDetails,
   createWallet,
 } from "../../store/fundwallet/walletService";
+import FundWallet from "../../components/fundWallet/fundWallet";
 const index = () => {
+  const [open, setOpen] = useState(false);
   const { wallet, transactions } = useSelector((state) => state.wallet);
   const { email } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -121,7 +123,7 @@ const index = () => {
 
           <h4 className="tracking-wide">
             {" "}
-            <Link href="/fundwallet">Fund Wallet</Link>
+            <span onClick={() => setOpen(true)}>Fund Wallet</span>
           </h4>
         </button>
         <button
@@ -202,6 +204,7 @@ const index = () => {
           </div>
         );
       })}
+      <FundWallet open={open} setOpen={setOpen} />
     </Layout>
   );
 };
