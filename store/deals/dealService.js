@@ -5,7 +5,7 @@ export const getAllDeals = createAsyncThunk(
   "Deal/all",
   async (data) => {
     //console.log(data.pageNumber, data.pageSize, 7777)
-    const response = await getApi(`Deal/all/${1}?pageNumber=${data.pageNumber}&pageSize=${data.pageSize}`);
+    const response = await getApi(`Deal/all/${data.dealStatus}?pageNumber=${data.pageNumber}&pageSize=${data.pageSize}`);
     return response.data;
   }
 );

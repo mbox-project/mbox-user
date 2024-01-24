@@ -101,12 +101,12 @@ const invoiceInput = () => {
               <Label
                 className="text-lightAsh text-sm"
                 htmlFor="text"
-                title="Buyers Name"
+                title="Buyers Email"
               />
               <Input
                 name="buyer"
                 type="text"
-                placeHolder="GC-10234"
+                placeHolder="test@email.com"
                 className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
                 value={invoiceData?.buyer}
                 onChange={onChangeInput}

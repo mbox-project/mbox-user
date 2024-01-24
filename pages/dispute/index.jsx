@@ -1,9 +1,65 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../components/PagesLayout/Layout";
 import { orderProducts } from "../../components/data";
 import DisputePage from "../../components/DisputePage";
+import { useDispatch } from "react-redux";
+import { getAllDeals } from "../../store/deals/dealService";
 
 const index = () => {
+  const dispatch = useDispatch();
+  const [deals, setDeals] = useState();
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(3);
+  const dealStatus = 3;
+
+  useEffect(() => {
+    dispatch(getAllDeals({ dealStatus, pageNumber, pageSize })).unwrap()
+    .then((res) => {
+      console.log(res.data?.items?.$values);
+      setDeals(res.data?.items?.$values || []);
+    })
+    .catch((error) => console.log(error));;
+  }, [dispatch, pageNumber, pageSize]);
+
+  const handleNextPage = () => {
+    setPageNumber(pageNumber + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (pageNumber > 1) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  const renderDeals = () => {
+    return deals?.map((product) => (
+        <DisputePage product={product} key={product.id} />
+        // <PendingProducts key={product.id} product={product} />
+    ));
+  };
+
+  const renderPaginationButtons = () => {
+    return (
+      <div className="flex justify-center items-center mt-8 space-x-4">
+        <button
+          className={`px-4 py-2 border border-gray-300 rounded-md ${pageNumber === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
+          onClick={handlePrevPage}
+          disabled={pageNumber === 1}
+        >
+          Previous
+        </button>
+        <button
+          className="px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50"
+          onClick={handleNextPage}
+        >
+          Next
+        </button>
+      </div>
+    );
+  };
+
+
+
   return (
     <Layout>
       <section className="card rectCard flex justify-between items-center text-lg border-b-2 mt-8 md:flex-row ">
@@ -23,10 +79,12 @@ const index = () => {
       </section>
       {/* Orders Content  */}
       <section className="card rectCard flex flex-col space-y-5">
-        {orderProducts.map((prod) => {
+      {renderDeals()}
+        {/* {orderProducts.map((prod) => {
           return <DisputePage product={prod} key={prod.id} />;
-        })}
+        })} */}
       </section>
+      {renderPaginationButtons()}
 
       <div className="flex justify-end mt-5 space-x-3">
         <p className="text-brightRed underline">Show More</p>
