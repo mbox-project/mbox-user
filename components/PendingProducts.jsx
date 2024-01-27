@@ -21,8 +21,9 @@ const PendingProducts = ({ product }) => {
         toastify.alertSuccess("Deal Approved", 3000);
       })
       .catch((error) => {
+        toastify.alertError(error.message, 3000)
         console.log(error);
-        toastify.alertError(error, 3000)
+        
       });
   };
 
@@ -31,11 +32,12 @@ const PendingProducts = ({ product }) => {
       .unwrap()
       .then((res) => {
         console.log(res.data?.items?.$values);
-        toastify.alertSuccess("Deal Approved", 3000);
+        toastify.alertSuccess("Deal Disputed", 3000);
       })
       .catch((error) => {
+        toastify.alertError(error.message, 3000)
         console.log(error);
-        toastify.alertError(error, 3000)
+        
       });
   };
 

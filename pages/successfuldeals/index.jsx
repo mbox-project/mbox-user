@@ -11,7 +11,7 @@ const index = () => {
   const [deals, setDeals] = useState();
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(3);
-  const dealStatus = 1;
+  const dealStatus = 2;
 
   useEffect(() => {
     dispatch(getAllDeals({ dealStatus, pageNumber, pageSize })).unwrap()
@@ -62,7 +62,7 @@ const index = () => {
   return (
     <Layout>
       <section className="card rectCard flex justify-between items-center text-lg border-b-2 mt-8 md:flex-row ">
-        <h4 className="text-2xl font-medium mt-5">Pending Deals</h4>
+        <h4 className="text-2xl font-medium mt-5">Successful Deals</h4>
         <form>
           <select
             id="sort"
