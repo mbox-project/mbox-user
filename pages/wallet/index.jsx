@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/PagesLayout/Layout";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useLayoutEffect, useEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getTransactions,
