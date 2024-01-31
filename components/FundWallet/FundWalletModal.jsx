@@ -42,7 +42,7 @@ const FundWallet = ({ open, setOpen }) => {
 
   return (
     <Modal open={open} onCancel={() => setOpen(false)} footer={null}>
-      <div className=" border rounded-md lg:mx-96 my-20 shadow-lg">
+      <div className="border shadow-lg">
         {isLoading && <Spinner />}
 
         <div className="bg-brightRed">
