@@ -62,7 +62,7 @@ const MobileSidebar = ({ showSideBar }) => {
               </li>
               <li className="flex items-center  text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={report} width={20} height={20} alt="profile" />
-                <Link href="#"> Report a Vendor </Link>
+                <Link href="/report"> Report a Vendor </Link>
               </li>
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={profile} width={20} height={20} alt="profile" />
