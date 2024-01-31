@@ -85,10 +85,10 @@ const index = () => {
 
       {/* Orders Content  */}
       <section className="flex flex-col bg-[#FAFAFA] py-5 space-y-5">
-        {renderDeals()}
-        {orderProducts.map((prod) => {
+        {renderDeals()} 
+        {/* {orderProducts.map((prod) => {
           return <SuccessfulProducts product={prod} key={prod.id} />;
-        })}
+        })} */}
       </section>
       {renderPaginationButtons()}
       {/* <PageScroll /> */}
