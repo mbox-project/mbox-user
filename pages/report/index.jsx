@@ -6,9 +6,9 @@ import Button from "../../components/Button";
 import { useSelector, useDispatch } from "react-redux";
 import baseURL from "../../config/api";
 import { toastify } from "../../helpers";
-import { getEndorsements } from "../../store/endorseandreport/endorseandreport";
+import { getReports } from "../../store/endorseandreport/endorseandreport";
 
-const endorse = () => {
+const Report = () => {
   const dispatch = useDispatch();
   const [endorse, setEndorse] = useState();
   const [pageNumber, setPageNumber] = useState(1);
@@ -17,7 +17,7 @@ const endorse = () => {
   const [endorseData, setData] = useState({
     storeName: "",
     comment: "",
-    endorse: 1
+    endorse: 2
   });
 
   const onChangeInput = (e) => {
@@ -28,7 +28,7 @@ const endorse = () => {
   };
 
   useEffect(() => {
-    dispatch(getEndorsements({ pageNumber, pageSize })).unwrap()
+    dispatch(getReports({ pageNumber, pageSize })).unwrap()
     .then((res) => {
       console.log(res);
 
@@ -37,7 +37,6 @@ const endorse = () => {
     })
     .catch((error) => console.log(error));;
   }, [dispatch, pageNumber, pageSize]);
-
 
   const handleEndorseForm = async (e) => {
     e.preventDefault();
@@ -56,13 +55,12 @@ const endorse = () => {
     if (response.ok) {
       const result = await response.text();
       if(result === 'true'){
-        toastify.alertSuccess("Endorsement successful");
+        toastify.alertSuccess("Report successful");
       }else{
         toastify.alertSuccess(result);
       }
 
       window.reload();
-      
     } else {
       const errorResult = await response.text();
       toastify.alertError(errorResult);
@@ -74,7 +72,7 @@ const endorse = () => {
       <Layout>
         <section className="card rectCard flex justify-between items-center !bg-[#FAFAFA] text-lg border-b-2 mt-8 md:flex-row ">
           <div className="mt-5">
-            <h4 className="text-xl font-medium">Endorse a Store</h4>
+            <h4 className="text-xl font-medium">Report A Vendor</h4>
           </div>
         </section>
 
@@ -128,7 +126,7 @@ const endorse = () => {
         <div>
           <section className="card rectCard flex justify-between items-center text-[#26A17B] !bg-[#FAFAFA] text-lg border-b-2 mt-8">
             <div className="mt-5">
-              <h4 className="text-xl font-medium">Endorsed Businesses</h4>
+              <h4 className="text-xl font-medium">Reported Businesses</h4>
             </div>
             <form>
               <select
@@ -164,4 +162,4 @@ const endorse = () => {
     </>
   );
 };
-export default endorse;
+export default Report;
