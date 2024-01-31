@@ -43,11 +43,11 @@ const MobileSidebar = ({ showSideBar }) => {
               </li>
               <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
                 <BsCartDash size={20} />
-                <Link href="#"> Pending Deals </Link>
+                <Link href="/pendingdeals"> Pending Deals </Link>
               </li>
               <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
                 <BsCartDash size={20} />
-                <Link href="#"> Succesful Deals</Link>
+                <Link href="/successfuldeals"> Successful Deals</Link>
               </li>
             </ul>
           </div>
@@ -58,7 +58,7 @@ const MobileSidebar = ({ showSideBar }) => {
             <ul className="space-y-8 pt-10">
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={thumb} width={20} height={20} alt="profile" />
-                <Link href="#"> Endorsed Business </Link>
+                <Link href="/endorse"> Endorsed Business </Link>
               </li>
               <li className="flex items-center  text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={report} width={20} height={20} alt="profile" />
