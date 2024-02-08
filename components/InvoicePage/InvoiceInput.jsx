@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { generateinvoice, reset } from "../../store/invoice/invoiceSlice";
@@ -8,8 +8,7 @@ import Input from "../Input";
 import Label from "../Label";
 import Button from "../Button";
 import { FiMinusCircle } from "react-icons/fi";
-import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { useCallback } from "react";
+import { MdOutlineAddCircleOutline } from "react-icons/md"
 const invoiceInput = () => {
   // Add rememberMe property to it later.
   const dispatch = useDispatch();
@@ -82,11 +81,11 @@ const invoiceInput = () => {
   return (
     <>
       {isLoading && <Spinner />}
-      <div className="h-screen overflow-hidden w-full">
-        <div className="overflow-y-scroll h-full">
-          <div className="border rounded-md shadow-lg w-[98%] md:w-[60%] mx-auto relative">
+      <div className="font-poppins w-full">
+        <div className="pt-5">
+          <div className="border rounded-md shadow-lg w-full md:w-[60%] mx-auto relative">
             <div className="bg-brightRed sticky top-0">
-              <p className="py-4 px-10 text-white font-poppins text-xl">
+              <p className="py-4 px-2 md:px-10 text-white text-xl text-center">
                 Generate an Invoice
               </p>
               <div className="bg-lightPink ">

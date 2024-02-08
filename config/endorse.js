@@ -1,7 +1,7 @@
 import axios from "axios";
+import baseURL from "./api";
 
-const baseURL = "http://52.2.104.53/api/";
-//const baseURL = "https://localhost:44378/api/";
+
 
 const api = axios.create({
   baseURL,
@@ -39,15 +39,3 @@ export const postApi = (url, body) => {
     },
   });
 };
-
-export const patchApi = (url, body) => {
-  return api.patch(url, body, {
-    headers: {
-      Authorization: `Bearer ${
-        typeof window !== undefined ? sessionStorage.getItem("token") : null
-      }`,
-    },
-  });
-};
-
-export default baseURL;
