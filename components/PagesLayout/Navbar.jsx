@@ -13,11 +13,13 @@ import Link from "next/link";
 import { Popover } from "antd";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import PayInvoiceModal from "../payInvoice/PayInvoice";
+import PromoteBusinessModal from "../PromoteBusinessModal/PromoteBusinessModal";
 
 const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
   const role = useSelector(selectRole);
   const [openNav, setOpenNav] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openPromoteStore, setOpenPromoteStore] = useState(false);
   const handleNav = () => {
     setOpenNav((prev) => !prev);
   };
@@ -65,11 +67,11 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
               {role === "vendor" ? (
                 <div className="flex gap-[0.5rem]">
                   <button
-                    onClick={() => setOpen(true)}
+                    onClick={() => setOpenPromoteStore(true)}
                     className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
                                  border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
                   >
-                    <span>Pay Invoice</span>
+                    <span>Promote Store</span>
                     <Image src={arrow} width={10} height={10} alt="arrow" />
                   </button>
 
@@ -115,6 +117,10 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
         </div>
       </div>
       <PayInvoiceModal open={open} setOpen={setOpen} />
+      <PromoteBusinessModal
+        open={openPromoteStore}
+        setOpen={setOpenPromoteStore}
+      />
     </>
   );
 };
