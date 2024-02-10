@@ -32,7 +32,7 @@ const Category = () => {
         </div>
 
         <div className="py-5 text-xs">
-          <div className="grid grid-cols-4 lg:grid-cols-6 gap-2 lg:gap-4">
+          <div className="flex flex-wrap justify-center gap-2 lg:gap-4">
             <div className="flex flex-col items-center space-y-5">
               <div className="flex justify-center items-center h-32 w-32 border rounded-full shadow-md hover:-translate-y-1 hover:scale-110  duration-300">
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300">
