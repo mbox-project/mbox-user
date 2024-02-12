@@ -111,7 +111,7 @@ const LandingPage = () => {
           <h2 className="flex justify-center md:mt-1 lg:mt-0 py-1 uppercase font-poppins font-bold text-xl md:text-3xl lg:text-4xl  ">
             Our Special<span className="text-orange-600 px-3 "> Features</span>
           </h2>
-          <div className=" block  w-full   lg:flex">
+          <div className=" block w-full lg:flex">
             {featureCard.map((card, index) => {
               return (
                 <Feature
