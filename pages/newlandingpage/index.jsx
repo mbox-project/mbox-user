@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import Navbar from "../../components/PagesLayout/Navbar";
 import NavTag from "../../components/PagesLayout/NavTag";
 import Category from "../../components/Category";
+import NewArrivals from "../../components/NewArrivals";
 import GettingStarted from "../../components/GettingStarted";
 import PopularMerchants from "../../components/PopularMerchants";
 import Newsletter from "../../components/Newsletter";
@@ -22,6 +23,9 @@ const NewLandingPage = () => {
         <di>
           <GettingStarted />
         </di>
+        <div>
+          <NewArrivals />
+        </div>
         <div>
           <Category />
         </div>

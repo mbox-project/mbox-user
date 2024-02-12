@@ -4,7 +4,7 @@ import Button from "../Button";
 const Newsletter = () => {
   return (
     <div className="newsletterbg py-10 font-poppins">
-      <div className="flex flex-row md:flex-col justify-center">
+      <div className="flex flex-col justify-center text-center px-2">
         <div className="w-full">
           <div>
             <h2 className="text-2xl lg:text-3xl font-semibold text-lightGray md:flex justify-center py-5">
