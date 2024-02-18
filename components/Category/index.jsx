@@ -10,7 +10,7 @@ import food from "../../public/images/food.png";
 import drinks from "../../public/images/drinks.png";
 import crafts from "../../public/images/crafts.png";
 import books from "../../public/images/book.png";
-//import automobile from "../../public/images/automobile.png";
+import automobile from "../../public/images/automobile.png";
 import women from "../../public/images/women.png";
 import phones from "../../public/images/phones.png";
 import appliances from "../../public/images/appliances.png";
@@ -130,7 +130,7 @@ const Category = () => {
               <div className="flex justify-center items-center h-32 w-32 border rounded-full shadow-md hover:-translate-y-1 hover:scale-110  duration-300">
                 <div className="hover:-translate-y-1 hover:scale-110  duration-300">
                   <Link href={""}>
-                    
+                    <Image src={automobile} />
                   </Link>
                 </div>
               </div>
