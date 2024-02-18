@@ -61,7 +61,7 @@ const endorse = () => {
         toastify.alertSuccess(result);
       }
 
-      window.reload();
+      //window.reload();
       
     } else {
       const errorResult = await response.text();
