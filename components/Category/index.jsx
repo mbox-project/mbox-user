@@ -20,6 +20,8 @@ import toys from "../../public/images/toys.png";
 import elect from "../../public/images/elect.png";
 import tools from "../../public/images/tools.png";
 import decor from "../../public/images/decor.png";
+
+
 const Category = () => {
   return (
     <section className="">
