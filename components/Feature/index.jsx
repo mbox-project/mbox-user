@@ -12,19 +12,15 @@ const Feature = ({ header, body, className, icon }) => {
   };
   return (
     <div className="block">
-      <div className="hidden md:block pt-3 md:pt-6 pr-20 -ml-12 md:-ml-12 lg:ml-0 ">
-        <Image src={icon} height={200} width={200} />
-      </div>
-      <div className="block md:hidden pt-3 md:pt-6 pr-20 -ml-9 md:-ml-12 lg:ml-0 ">
+      <div className="hidden md:block">
         <Image src={icon} height={150} width={150} />
       </div>
+      <div className="block md:hidden">
+        <Image src={icon} height={100} width={100} />
+      </div>
       <div className={className}>
-        <p className="text-base md:text-2xl mt-3 md:mt-0 lg:text-lg poppins font-bold text-lightGray ">
-          {header}
-        </p>
-        <p className="text-base md:text-xl leading-loose lg:leading-8 lg:text-base text-gray-400 poppins pt-4">
-          {body}
-        </p>
+        <p className="text-sm md:text-lg py-2">{header}</p>
+        <p className="text-xs md:text-sm text-gray-400 px-5 py-2">{body}</p>
       </div>
     </div>
   );
