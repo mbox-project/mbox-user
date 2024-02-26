@@ -1,5 +1,46 @@
 import Link from "next/link";
 import React from "react";
+import { ScrollMenu } from "react-horizontal-scrolling-menu";
+
+const PopularVendor = [
+  {
+    id: "f1",
+    Ques: "AMVDII Potrait Came...",
+    Answer: "$800",
+    Answers: "$11120.00",
+  },
+  {
+    id: "f2",
+    Ques: "AMVDII Potrait Came...",
+    Answer: "$800",
+    Answers: "$11120.00",
+  },
+  {
+    id: "f3",
+    Ques: "AMVDII Potrait Came...",
+    Answer: "$800",
+    Answers: "$11120.00",
+  },
+  {
+    id: "f4",
+    Ques: "AMVDII Potrait Came...",
+    Answer: "$800",
+    Answers: "$11120.00",
+  },
+  {
+    id: "f5",
+    Ques: "AMVDII Potrait Came...",
+    Answer: "$800",
+    Answers: "$11120.00",
+  },
+  {
+    id: "f6",
+    Ques: "AMVDII Potrait Came...",
+    Answer: "$800",
+    Answers: "$11120.00",
+  },
+];
+
 const PopularMerchants = () => {
   return (
     <section>
@@ -12,136 +53,31 @@ const PopularMerchants = () => {
               </h2>
             </div>
 
-            <div className="block md:grid grid-cols-2 gap-5 mt-8 lg:mt-5 lg:grid-cols-4">
-              <div className="bg-card pt-7 md:pt-0 bg-cover h-64 rounded-lg">
-                <Link href={""}>
-                  <div className="bg-white  text-center hover:-translate-y-1 hover:scale-110  duration-300 h-34 w-48 p-4  md:my-7 mx-auto ">
-                    <h4 className="text-md md:text-base lg:text-md font-bold pt-2  poppins ">
-                      NIKE STORES & CO
-                    </h4>
-                    <p className="text-sm md:text-base lg:text-sm text-gray-400 pt-2 poppins">
-                      Dealer in all kind of sneakrers, shoes and many other
-                      footwears you wanteds
-                    </p>
-                    <div className="text-red-600 underline py-2">
-                      <Link href={""}>Go to store</Link>
+            <ScrollMenu>
+              <div className="flex w-full py-10">
+                {PopularVendor.map((items) => {
+                  return (
+                    <div key={items.id} className=" w-60">
+                      <div className="bg-card bg-cover rounded-lg p-5 mr-5">
+                        <Link href={""}>
+                          <div className="bg-white text-center md:text-left p-3 hover:-translate-y-1 hover:scale-110  duration-300">
+                            <h4 className="text-sm md:text-base font-semibold py-2">
+                              NIKE STORES & CO
+                            </h4>
+                            <p className="text-xs md:text-sm text-gray-400 py-2">
+                              Dealer in all kind of sneakrers & accessories...
+                            </p>
+                            <div className="text-sm text-[#EF5612] underline py-2">
+                              <Link href={""}>Go to store</Link>
+                            </div>
+                          </div>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  );
+                })}
               </div>
-              <div className="bg-card bg-cover pt-2 mt-4 md:mt-0 md:pt-0 h-64 ">
-                <Link href={""}>
-                  <div className="bg-white text-center hover:-translate-y-1 hover:scale-110  duration-300 h-34 w-48 p-4  my-7 mx-auto ">
-                    <h4 className="text-md font-bold pt-2 poppins ">
-                      NIKE STORES & CO
-                    </h4>
-                    <p className="text-sm  md:text-base lg:text-sm text-gray-400 pt-2">
-                      Dealer in all kind of sneakrers, shoes and many other
-                      footwears you wanteds
-                    </p>
-                    <div className="text-red-600 underline py-2">
-                      <Link href={""}>Go to store</Link>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-              <div className="bg-card bg-cover  h-64 invisible lg:visible ">
-                <Link href={""}>
-                  <div className="bg-white text-center hover:-translate-y-1 hover:scale-110  duration-300 h-34 w-48 p-4  my-7 mx-auto ">
-                    <h4 className="text-md font-bold pt-2 ">
-                      NIKE STORES & CO
-                    </h4>
-                    <p className="text-sm md:text-base lg:text-sm text-gray-400 pt-2 poppins">
-                      Dealer in all kind of sneakrers, shoes and many other
-                      footwears you wanteds
-                    </p>
-                    <div className="text-red-600 underline py-2 poppins">
-                      <Link href={""}>Go to store</Link>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-              <div className="bg-card bg-cover  h-64 invisible lg:visible ">
-                <Link href={""}>
-                  <div className="bg-white text-center hover:-translate-y-1 hover:scale-110  duration-300 h-34 w-48 p-4  my-7 mx-auto ">
-                    <h4 className="text-md font-bold pt-2 ">
-                      NIKE STORES & CO
-                    </h4>
-                    <p className="text-sm md:text-base lg:text-sm text-gray-400 pt-2 poppins">
-                      Dealer in all kind of sneakrers, shoes and many other
-                      footwears you wanteds
-                    </p>
-                    <div className="text-red-600 underline py-2 poppins">
-                      <Link href={""}>Go to store</Link>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-              <div className="bg-card bg-cover  h-64 invisible lg:visible ">
-                <Link href={""}>
-                  <div className="bg-white text-center hover:-translate-y-1 hover:scale-110  duration-300 h-34 w-48 p-4  my-7 mx-auto ">
-                    <h4 className="text-md font-bold pt-2 ">
-                      NIKE STORES & CO
-                    </h4>
-                    <p className="text-sm md:text-base lg:text-sm text-gray-400 pt-2 poppins">
-                      Dealer in all kind of sneakrers, shoes and many other
-                      footwears you wanteds
-                    </p>
-                    <div className="text-red-600 underline py-2 poppins">
-                      <Link href={""}>Go to store</Link>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-              <div className="bg-card bg-cover  h-64 invisible lg:visible ">
-                <Link href={""}>
-                  <div className="bg-white text-center hover:-translate-y-1 hover:scale-110  duration-300 h-34 w-48 p-4  my-7 mx-auto ">
-                    <h4 className="text-md font-bold pt-2 ">
-                      NIKE STORES & CO
-                    </h4>
-                    <p className="text-sm md:text-base lg:text-sm text-gray-400 pt-2 poppins">
-                      Dealer in all kind of sneakrers, shoes and many other
-                      footwears you wanteds
-                    </p>
-                    <div className="text-red-600 underline py-2 poppins">
-                      <Link href={""}>Go to store</Link>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-              <div className="bg-card bg-cover  h-64 invisible lg:visible ">
-                <Link href={""}>
-                  <div className="bg-white text-center hover:-translate-y-1 hover:scale-110  duration-300 h-34 w-48 p-4  my-7 mx-auto ">
-                    <h4 className="text-md font-bold pt-2 ">
-                      NIKE STORES & CO
-                    </h4>
-                    <p className="text-sm md:text-base lg:text-sm text-gray-400 pt-2 poppins">
-                      Dealer in all kind of sneakrers, shoes and many other
-                      footwears you wanteds
-                    </p>
-                    <div className="text-red-600 underline py-2 poppins">
-                      <Link href={""}>Go to store</Link>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-              <div className="bg-card bg-cover  h-64 invisible lg:visible ">
-                <Link href={""}>
-                  <div className="bg-white text-center hover:-translate-y-1 hover:scale-110  duration-300 h-34 w-48 p-4  my-7 mx-auto ">
-                    <h4 className="text-md font-bold pt-2 ">
-                      NIKE STORES & CO
-                    </h4>
-                    <p className="text-sm md:text-base lg:text-sm text-gray-400 pt-2 poppins">
-                      Dealer in all kind of sneakrers, shoes and many other
-                      footwears you wanteds
-                    </p>
-                    <div className="text-red-600 underline py-2 poppins">
-                      <Link href={""}>Go to store</Link>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            </div>
+            </ScrollMenu>
 
             {/* <div className=" block md:grid grid-cols-2 gap-20  -mt-64 lg:mt-5 lg:grid-cols-3 lg:gap-y-16">
               <div className="bg-card bg-cover pt-2 mt-4 md:mt-0 md:pt-0 h-64 ">

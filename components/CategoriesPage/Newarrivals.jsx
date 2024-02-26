@@ -23,7 +23,7 @@ const Newarrivals = () => {
             {Fakeapi.map((items) => {
               return (
                 <div key={items.id}>
-                  <div className="flex mx-4  rounded-lg   ">
+                  <div className="flex mx-4 rounded-lg">
                     <div>
                       <Image src={dealsimg} />
                     </div>
