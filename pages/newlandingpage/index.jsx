@@ -12,7 +12,7 @@ import Newsletter from "../../components/Newsletter";
 import MainFooter from "../../components/MainFooter";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 
-import iconOne from "/public/images/featureicon1.png";
+import iconOne from "/public/images/featureicon1.PNG";
 import iconTwo from "/public/images/featureicon2.png";
 import iconThree from "/public/images/featureicon3.png";
 
