@@ -10,11 +10,21 @@ import SuggestedMerchant from "../../components/SuggestedMerchant";
 import PopularMerchants from "../../components/PopularMerchants";
 import Newsletter from "../../components/Newsletter";
 import MainFooter from "../../components/MainFooter";
+import Image from "next/image";
+import Link from "next/link";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 
 import iconOne from "/public/images/featureicon1.PNG";
 import iconTwo from "/public/images/featureicon2.png";
 import iconThree from "/public/images/featureicon3.png";
+import banner1bg from "/public/images/banner1bg.png";
+import banner2bg from "/public/images/banner2bg.png";
+import banner3bg from "/public/images/banner3bg.png";
+import banner4bg from "/public/images/banner4bg.png";
+import banner1 from "/public/images/banner1.png";
+import banner2 from "/public/images/banner2.png";
+import banner3 from "/public/images/banner3.png";
+import banner4 from "/public/images/banner4.png";
 
 const featureCard = [
   {
@@ -73,6 +83,32 @@ const NewLandingPage = () => {
           <NavTag />
         </div>
       </header>
+
+      <section className="px-2 md:px-16 py-10">
+        <div className="static text-white">
+          <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner1bg.png')]">
+            <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
+              <div className="flex flex-col justify-between px-10">
+                <h1 className="text-3xl py-3 font-bold">
+                  The Best Digital Marketplace for{" "}
+                  <span className="text-[#EF5612]">SMEs</span>
+                </h1>
+                <p className="text-base py-2">
+                  We want to make life better by establishing a safe social
+                  marketplace where viable businesses can be built and more can
+                  be done with ease.
+                </p>
+                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#FFA721] text-[#491546] font-medium">
+                  SHOP NOW
+                </button>
+              </div>
+            </div>
+            <div className="w-full md:w-1/2 h-1/2 md:h-auto">
+              <Image src={banner1} alt="ad" />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="px-2 md:px-16">
         <di>
@@ -148,11 +184,87 @@ const NewLandingPage = () => {
           </div>
         </section>
 
+        <div className="static">
+          <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner2bg.png')]">
+            <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
+              <div className="flex flex-col justify-between px-10">
+                <h1 className="text-3xl text-[#491546] py-3 font-bold">
+                  ENDORSE <br />
+                  <span className="text-[#EF5612]">BUSINESSES 👇</span>
+                </h1>
+                <p className="text-sm text-[#8492A7] py-2">
+                  Express your support for friends business by endorsing their
+                  business on <span className="text-[#EF5612]">Mbox </span> .
+                </p>
+                <p className="text-base">WE RISE BY LIFTING OTHERS !!!</p>
+                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-sm text-white">
+                  Endorse Businesses
+                </button>
+              </div>
+            </div>
+            <div className="w-full md:w-1/2 h-1/2 md:h-auto">
+              <Image src={banner2} alt="ad" />
+            </div>
+          </div>
+        </div>
+
         <div>
           <Category />
         </div>
+
+        <div className="static text-[#444444]">
+          <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner3bg.png')]">
+            <div className="w-full md:w-1/2 h-1/2 md:h-auto">
+              <Image src={banner3} alt="ad" />
+            </div>
+
+            <div className="flex justify-end w-full md:w-1/2 h-1/2 md:h-auto p-5">
+              <div className="flex flex-col justify-between px-5 text-left md:text-right">
+                <h1 className="text-3xl py-3 font-bold">
+                  Giveon’s Crib 50% off
+                </h1>
+                <p className="text-2xl py-2">
+                  2nd - 31st December <br />
+                  <p className="text-sm py-5">
+                    Enjoy discount on all our products
+                  </p>
+                </p>
+                <div className=" justify-end">
+                  <button className="w-fit justify-self-end p-2 px-5 my-3 rounded-lg bg-[#491546] text-sm text-white">
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div>
           <PopularMerchants />
+        </div>
+
+        <div className="static text-[#444444]">
+          <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner4bg.png')]">
+            <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
+              <div className="flex flex-col justify-between px-5">
+                <h1 className="text-3xl py-3 font-bold">
+                  Giveon’s Crib 50% off
+                </h1>
+                <p className="text-2xl py-2">
+                  2nd - 31st December
+                  <p className="text-sm py-5">
+                    Enjoy discount on all our products
+                  </p>
+                </p>
+                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-sm text-white">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+            <div className="w-full md:w-1/2 h-1/2 md:h-auto">
+              <Image src={banner4} alt="ad" />
+            </div>
+          </div>
         </div>
       </section>
 
