@@ -16,11 +16,7 @@ import { ScrollMenu } from "react-horizontal-scrolling-menu";
 
 import iconOne from "/public/images/featureicon1.PNG";
 import iconTwo from "/public/images/featureicon2.png";
-import iconThree from "/public/images/featureicon3.png";
-import banner1bg from "/public/images/banner1bg.png";
-import banner2bg from "/public/images/banner2bg.png";
-import banner3bg from "/public/images/banner3bg.png";
-import banner4bg from "/public/images/banner4bg.png";
+import iconThree from "/public/images/featureicon3.png";2
 import banner1 from "/public/images/banner1.png";
 import banner2 from "/public/images/banner2.png";
 import banner3 from "/public/images/banner3.png";
