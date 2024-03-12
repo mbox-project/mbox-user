@@ -2,6 +2,7 @@ import React, from "react";
 import Header from "../components/Header";
 import Navbar from "../components/PagesLayout/Navbar";
 import NavTag from "../components/PagesLayout/NavTag";
+import Banner from "../components/Banner";
 import Category from "../components/Category";
 import NewArrivals from "../components/NewArrivals";
 import GettingStarted from "../components/GettingStarted";
@@ -85,29 +86,7 @@ const LandingPage = () => {
       </header>
 
       <section className="px-2 md:px-16 py-10">
-        <div className="static text-white">
-          <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner1bg.png')]">
-            <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
-              <div className="flex flex-col justify-between px-10">
-                <h1 className="text-3xl py-3 font-bold">
-                  The Best Digital <br /> Marketplace for <br />
-                  <span className="text-[#EF5612]">SMEs</span>
-                </h1>
-                <p className="text-base py-2">
-                  We want to make life better by establishing a safe
-                  <br /> social marketplace where viable businesses <br />
-                  can be built and more can be done with ease.
-                </p>
-                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#FFA721] text-[#491546] font-medium">
-                  SHOP NOW
-                </button>
-              </div>
-            </div>
-            <div className="w-full md:w-1/2 h-1/2 md:h-auto">
-              <Image src={banner1} alt="ad" />
-            </div>
-          </div>
-        </div>
+        <Banner />
       </section>
 
       <section className="px-2 md:px-16">
@@ -185,7 +164,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <div className="static">
+        <div className="static py-2 md:py-10">
           <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner2bg.png')]">
             <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
               <div className="flex flex-col justify-between px-10">
@@ -213,7 +192,7 @@ const LandingPage = () => {
           <Category />
         </div>
 
-        <div className="static text-[#444444]">
+        <div className="static text-[#444444] py-2 md:py-10">
           <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner3bg.png')]">
             <div className="w-full md:w-1/2 h-1/2 md:h-auto">
               <Image src={banner3} alt="ad" />
@@ -244,7 +223,7 @@ const LandingPage = () => {
           <PopularMerchants />
         </div>
 
-        <div className="static text-[#444444]">
+        <div className="static text-[#444444] pb-2 md:pb-16">
           <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner4bg.png')]">
             <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
               <div className="flex flex-col justify-between px-5">

@@ -6,8 +6,6 @@ import HomeNavbar from "../../components/PagesLayout/HomeNavbar";
 import MainFooter from "../../components/MainFooter";
 import Newsletter from "../../components/Newsletter";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
-
-// import About from "../../components/About";
 import Feature from "../../components/Feature";
 import GenerateInvoice from "../../components/GenerateInvoice";
 import BuyNow from "../../components/BuyNow";

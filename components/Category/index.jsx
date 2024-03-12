@@ -66,22 +66,22 @@ const Category = () => {
           <div>
             {showAllCategories ? (
               <div className="my-3 text-nowrap">
-                <button
+                <Button
                   onClick={toggleCategories}
                   className="p-2 text-xs md:text-sm font-medium"
                 >
                   Show Less
-                </button>
+                </Button>
                 <Image src={stroke} height={10} width={10} />
               </div>
             ) : (
               <div className="my-3 text-nowrap">
-                <button
+                <Button
                   onClick={toggleCategories}
                   className="p-2 text-xs md:text-sm font-medium"
                 >
                   Show All
-                </button>
+                </Button>
                 <Image src={stroke} height={10} width={10} />
               </div>
             )}
