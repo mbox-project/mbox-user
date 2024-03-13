@@ -20,7 +20,7 @@ import estate from "../../public/images/estate.png";
 import toys from "../../public/images/toys.png";
 import elect from "../../public/images/elect.png";
 import decor from "../../public/images/decor.png";
-import stroke from "../../public/images/stroke.png";
+import stroke from "../../public/images/Stroke.png";
 
 const Category = () => {
   const [showAllCategories, setShowAllCategories] = useState(false);
