@@ -42,7 +42,10 @@ export const paystackFundWallet = createAsyncThunk(
 export const withdrawFundPaystack = createAsyncThunk(
   "withdrawFundPaystack/wallet",
   async (data) => {
-    const response = await postApi("paystack/withdraw", data);
+    
+    const response = await postApi("Wallet/paystack/withdraw", data);
+    console.log(response, response.data);
+
     return response.data;
   }
 );

@@ -37,7 +37,7 @@ const withdrawFunds = ({}) => {
   return (
     <>
       {isLoading && <Spinner />}
-      <div className=" border rounded-md lg:mx-96 my-20 shadow-lg">
+      <div className="border rounded-md lg:mx-96 my-20 shadow-lg">
         <div className="bg-brightRed ">
           <p className=" py-4 px-4 text-white font-poppins text-xl">
             Withdraw Funds

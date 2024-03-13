@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 const MerchantDashboard = () => {
-  const username = useSelector((state) => state.auth.user.fullname).split(
+  const username = useSelector((state) => state.auth.user.username).split(
     " "
   )[0];
   const { push } = useRouter();

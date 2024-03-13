@@ -11,6 +11,8 @@ import {
   createWallet,
 } from "../../store/fundwallet/walletService";
 import FundWallet from "../../components/FundWallet/FundWalletModal";
+import Withdraw from "../../components/Withdraw/WithdrawModal";
+
 const index = () => {
   const [open, setOpen] = useState(false);
   const { wallet, transactions } = useSelector((state) => state.wallet);
@@ -144,7 +146,8 @@ const index = () => {
           </svg>
 
           <h4 className="tracking-wide">
-            <Link href="/withdrawfunds">Withdraw Funds </Link>
+            {/* <Link href="/withdrawfunds">Withdraw Funds </Link> */}
+            <span onClick={() => setOpen(true)}>Withdraw Funds</span>
           </h4>
         </button>
       </section>
@@ -204,7 +207,8 @@ const index = () => {
           </div>
         );
       })}
-      <FundWallet open={open} setOpen={setOpen} />
+      {/* <FundWallet open={open} setOpen={setOpen} /> */}
+      <Withdraw open={open} setOpen={setOpen} />  
     </Layout>
   );
 };

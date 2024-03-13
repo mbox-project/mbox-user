@@ -1,7 +1,7 @@
 import axios from "axios";
-import { getApi, postApi, patchApi } from "./api";
+import { getApi, postApi, patchApi, baseURL } from "./api";
 
-const baseURL = "http://52.2.104.53/api/";
+
 
 const api = axios.create({
   baseURL,
@@ -20,8 +20,9 @@ api.interceptors.response.use(undefined, function (error) {
   return Promise.reject(error);
 });
 const checkwalletreq = axios.create({
-  baseURL: "http://52.2.104.53/api/Wallet/checkalreadyhaswallet/",
+  baseURL: `${baseURL}Wallet/checkalreadyhaswallet/`,
 });
+
 checkwalletreq.interceptors.response.use(undefined, function (error) {
   error.originalMessage = error.message;
   Object.defineProperty(error, "message", {

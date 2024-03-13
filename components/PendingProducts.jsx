@@ -1,10 +1,11 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { approveDeal, disputeDeals } from "../store/deals/dealService";
 import { toastify } from "../helpers";
+import ApproveDealModal from "./DealsModal/ApproveDealModal";
 
 const PendingProducts = ({ product }) => {
   const { name, type, product_id, owner, price, size, color, qty } = product;
@@ -12,6 +13,7 @@ const PendingProducts = ({ product }) => {
   const dealId = product.id;
 
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
   
   const handleApproveDeal = () => {
     dispatch(approveDeal(dealId))
@@ -71,7 +73,13 @@ const PendingProducts = ({ product }) => {
           <button
             type="button"
             className="bg-[#26A17B] text-white text-center items-center rounded-lg  p-2 px-8 h-12"
-            onClick={handleApproveDeal}
+            //onClick={handleApproveDeal}
+
+            //show modal
+            onClick={() => setOpen(true)}
+
+
+
           >
             Approve
           </button>
@@ -88,6 +96,8 @@ const PendingProducts = ({ product }) => {
           </p> 
         </div>
       </div>
+
+      <ApproveDealModal open={open} setOpen={setOpen} />
     </>
   );
 };
