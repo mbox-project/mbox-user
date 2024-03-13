@@ -11,12 +11,12 @@ const Feature = ({ header, body, className, icon }) => {
     icon: PropTypes.string.isRequired,
   };
   return (
-    <div className="block">
+    <div className="block shadow-md p-4 m-4">
       <div className="hidden md:block">
-        <Image src={icon} height={150} width={150} />
+        <Image src={icon} height={60} width={60} />
       </div>
       <div className="block md:hidden">
-        <Image src={icon} height={100} width={100} />
+        <Image src={icon} height={48} width={48} />
       </div>
       <div className={className}>
         <p className="text-sm md:text-lg py-2">{header}</p>
