@@ -1,7 +1,8 @@
 import React from "react";
 //import Link from "next/link";
 import Image from "next/image";
-//import men from "../../public/images/men.png";
+import men from "../../public/images/men.png";
+import profile from "../../public/images/mboximg.png";
 import dealsimg from "../../public/images/dealsimg.png";
 import { BsHeart } from "react-icons/bs";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
@@ -65,9 +66,12 @@ const NewArrivals = () => {
             {Fakeapi.map((items) => {
               return (
                 <div key={items.id}>
-                  <div className="flex mx-4 rounded-lg">
-                    <div>
-                      <Image src={dealsimg} />
+                  <div className="flex m-2 p-2 rounded-lg border shadow-md">
+                    <div className="p-1">
+                      <Image src={profile} height={30} width={30} />
+                    </div>
+                    <div className="p-5">
+                      <Image src={men} />
                     </div>
                   </div>
                   <div className="flex justify-between px-5 md:px-10">
