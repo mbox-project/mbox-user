@@ -62,7 +62,7 @@ const Register = () => {
         />
       </div>
       {isLoading && <Spinner />}
-      <div className="w-full h-full flex items-center justify-center bg-grayColor">
+      <div className="w-full h-full flex items-center justify-center bg-grayColor py-8 lg:p-0">
         <div className="w-full h-full flex flex-col items-center justify-center my-auto">
           <div className="text-center">
             <h1 className="lg:text-4xl poppins text-orange-600 text-xl md:text-2xl lg:pt-0  font-bold lg:font-extrabold tracking-wide">

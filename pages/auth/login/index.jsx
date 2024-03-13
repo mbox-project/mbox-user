@@ -62,7 +62,7 @@ const Login = () => {
         <Image src={loginbg} className="w-full hfull my-auto" />
       </div>
       {isLoading && <Spinner />}
-      <div className="w-full h-full flex items-center justify-center bg-grayColor">
+      <div className="w-full h-full flex items-center justify-center bg-grayColor py-8 px-4 lg:p-0">
         <div className="w-full h-full flex flex-col items-stretch justify-center my-auto">
           <div className="text-center">
             <h1 className="text-lg md:text-3xl font-bold mt20 lg:mt28 font-poppins text-orange-600 ">
