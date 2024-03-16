@@ -47,7 +47,7 @@ const Login = () => {
           console.log(action);
           console.log("running");
           sessionStorage.setItem("token", action.data.token);
-          router.push("/");
+          router.push("/account");
         })
         .catch((error) => {
           console.log(error);
