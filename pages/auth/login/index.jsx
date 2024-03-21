@@ -21,7 +21,7 @@ const Login = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const router = useRouter();
+  const { push } = useRouter();
 
   const { isLoading, isError, isSuccess, user, message } = useSelector(
     (state) => state.auth
@@ -47,7 +47,7 @@ const Login = () => {
           console.log(action);
           console.log("running");
           sessionStorage.setItem("token", action.data.token);
-          router.push("/account");
+          push("/account");
         })
         .catch((error) => {
           console.log(error);

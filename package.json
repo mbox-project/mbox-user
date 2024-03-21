@@ -38,6 +38,8 @@
     "redux-persist": "^6.0.0",
     "yup": "^1.0.2",
     "yup-phone-lite": "^2.0.1"
+   
+    
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",

@@ -1,4 +1,4 @@
-import React, from "react";
+import React from "react";
 import Header from "../components/Header";
 import Navbar from "../components/PagesLayout/Navbar";
 import NavTag from "../components/PagesLayout/NavTag";
@@ -79,7 +79,7 @@ const LandingPage = () => {
   return (
     <main>
       <header>
-        <div>{user?.role ? <Navbar /> : <Header />}</div>
+        <div>{user?.userId ? <Navbar /> : <Header />}</div>
         <div className="px-2 md:px-16">
           <NavTag />
         </div>
