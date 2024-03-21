@@ -3,7 +3,7 @@ import Image from "next/image";
 import shirt from "../public/img/shirt.png";
 import PropTypes from "prop-types";
 
-const PendingSales = ({ product }) => {
+const PendingDeals = ({ product }) => {
   const { name, type, product_id, owner, price, size, color, qty } = product;
   return (
     <>
@@ -51,8 +51,8 @@ const PendingSales = ({ product }) => {
 };
 
 //proptypes validation...
-PendingSales.propTypes = {
+PendingDeals.propTypes = {
   product: PropTypes.object.isRequired,
 };
 
-export default PendingSales;
+export default PendingDeals;

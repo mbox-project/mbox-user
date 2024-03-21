@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/PagesLayout/Layout";
 import { orderProducts } from "../../components/data";
-import PendingSales from "../../components/PendingSales";
+import PendingDeals from "../../components/PendingDeals";
 import Pagenation from "../../components/Pagenation";
 
 const index = () => {
@@ -9,7 +9,7 @@ const index = () => {
   return (
     <Layout>
       <section className="card rectCard flex justify-between items-center text-lg border-b-2 mt-8 md:flex-row ">
-        <h4 className="text-2xl font-medium mt-5">Pending Sales ({counter})</h4>
+        <h4 className="text-2xl font-medium mt-5">Pending Deals ({counter})</h4>
         <form>
           <select
             id="sort"
@@ -26,7 +26,7 @@ const index = () => {
       {/* Saved Content  */}
       <section className="card rectCard flex flex-col space-y-5">
         {orderProducts.map((prod) => {
-          return <PendingSales product={prod} key={prod.id} />;
+          return <PendingDeals product={prod} key={prod.id} />;
         })}
       </section>
       <Pagenation />
