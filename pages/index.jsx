@@ -90,9 +90,9 @@ const LandingPage = () => {
       </section>
 
       <section className="px-2 md:px-16">
-        <di>
+        <div>
           <GettingStarted />
-        </di>
+        </div>
         <div>
           <NewArrivals />
         </div>
@@ -182,7 +182,7 @@ const LandingPage = () => {
                 </button>
               </div>
             </div>
-            <div className="w-full md:w-1/2 h-1/2 md:h-auto">
+            <div className="w-full flex justify-end md:w-1/2 h-1/2 md:h-auto">
               <Image src={banner2} alt="ad" />
             </div>
           </div>
@@ -241,7 +241,7 @@ const LandingPage = () => {
                 </button>
               </div>
             </div>
-            <div className="w-full md:w-1/2 h-1/2 md:h-auto">
+            <div className="w-full flex justify-end md:w-1/2 h-1/2 md:h-auto">
               <Image src={banner4} alt="ad" />
             </div>
           </div>

@@ -10,6 +10,8 @@ import { FaMailBulk } from "react-icons/fa";
 import { BsTwitter } from "react-icons/bs";
 
 const MainFooter = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footerbg">
       <div className="w-full px-5 py-5 mx-auto sm:px-5 lg:px-16 text-sm md:text-base text-white">
@@ -49,7 +51,7 @@ const MainFooter = () => {
                 <div className="flex">
                   <FaLinkedin />
                   <a className="inline-block pl-3" href="">
-                    linkedin
+                    LinkedIn
                   </a>
                 </div>
                 <div className="flex">
@@ -85,7 +87,10 @@ const MainFooter = () => {
                 </div>
                 <div className="flex">
                   <FaMailBulk />
-                  <a className="inline-block pl-3 underline" href="">
+                  <a
+                    className="inline-block pl-3 underline"
+                    href="mailto:info@mbox.ng"
+                  >
                     info@mbox.ng
                   </a>
                 </div>
@@ -104,7 +109,7 @@ const MainFooter = () => {
       <div className="text-white">
         <div className="w-full py-4 border-t border-[#ABABAB]">
           <p className="text-base text-center">
-            &copy; 2024 All copyright Reserved
+            &copy; {currentYear} All Copyright Reserved
           </p>
         </div>
       </div>

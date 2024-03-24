@@ -22,7 +22,7 @@ const GettingStarted = () => {
         </div>
       </div>
 
-      <div className="block md:flex w-full py-5 gap-5">
+      <div className="block md:flex justify-around w-full py-5 gap-5">
         <div>
           <Image src={vendorstarted} />
         </div>

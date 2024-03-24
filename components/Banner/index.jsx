@@ -9,7 +9,7 @@ import banner3 from "../../public/images/banner3.png";
 
 const Banner = () => {
   return (
-    <Carousel>
+    <Carousel autoPlay infiniteLoop>
       <div className="md:flex w-full h-auto rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner1bg.png')]">
         <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
           <div className="flex flex-col justify-between text-left text-white px-10">
@@ -58,7 +58,7 @@ const Banner = () => {
           <Image src={banner2} alt="ad" sizes="20" />
         </div>
       </div>
-      <div className="md:flex w-full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner1bg.png')]">
+      <div className="md:flex justify-between w-full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner1bg.png')]">
         <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
           <div className="flex flex-col justify-between text-left text-white px-10">
             <h1 className="text-3xl py-3 font-bold">
@@ -75,8 +75,8 @@ const Banner = () => {
             </button>
           </div>
         </div>
-        <div className="w-full md:w-1/2 h-1/2 md:h-auto">
-          <Image src={banner3} alt="ad" sizes="1" />
+        <div className="w-full h-1/2 md:w-1/2 md:h-auto">
+          <Image src={banner3} alt="ad" sizes="20" />
         </div>
       </div>
     </Carousel>
