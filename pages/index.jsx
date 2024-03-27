@@ -167,16 +167,16 @@ const LandingPage = () => {
         <div className="static py-2 md:py-10">
           <div className="md:flex w=full h-full rounded-xl bg-[#FFF7ED]">
             <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
-              <div className="flex flex-col justify-around px-10">
-                <h1 className="text-[] md:text-[40px] text-[#491546] py-3 font-medium">
+              <div className="flex flex-col gap-3 justify-around md:px-10 px-2">
+                <h1 className="text-[20px] md:text-[40px] text-[#491546] py-3 font-medium">
                   ENDORSE <br />
                   <span className="text-[#EF5612]">BUSINESSES 👇</span>
                 </h1>
-                <p className="text-[] md:text-[18px] text-[#444444] py-2">
+                <p className="text-[12px] md:text-[18px] text-[#444444] py-2">
                   Express your support for friends business by endorsing their
                   business on <span className="text-[#EF5612]">Mbox </span> .
                 </p>
-                <p className="text-[] md:text-[20px]">
+                <p className="text-[14px] md:text-[20px]">
                   WE RISE BY LIFTING OTHERS !!!
                 </p>
                 <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-[] md:text-[20px] text-white">
