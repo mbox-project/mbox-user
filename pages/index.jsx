@@ -80,16 +80,16 @@ const LandingPage = () => {
     <main>
       <header>
         <div>{user?.userId ? <Navbar /> : <Header />}</div>
-        <div className="px-2 md:px-16">
+        <div className="px-4 md:px-16">
           <NavTag />
         </div>
       </header>
 
-      <section className="px-2 md:px-16 py-10">
+      <section className="px-4 md:px-16 py-10">
         <Banner />
       </section>
 
-      <section className="px-2 md:px-16">
+      <section className="px-4 md:px-16">
         <div>
           <GettingStarted />
         </div>
@@ -165,19 +165,21 @@ const LandingPage = () => {
         </section>
 
         <div className="static py-2 md:py-10">
-          <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner2bg.png')]">
+          <div className="md:flex w=full h-full rounded-xl bg-[#FFF7ED]">
             <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
-              <div className="flex flex-col justify-between px-10">
-                <h1 className="text-3xl text-[#491546] py-3 font-bold">
+              <div className="flex flex-col justify-around px-10">
+                <h1 className="text-[] md:text-[40px] text-[#491546] py-3 font-medium">
                   ENDORSE <br />
                   <span className="text-[#EF5612]">BUSINESSES 👇</span>
                 </h1>
-                <p className="text-sm text-[#8492A7] py-2">
+                <p className="text-[] md:text-[18px] text-[#444444] py-2">
                   Express your support for friends business by endorsing their
                   business on <span className="text-[#EF5612]">Mbox </span> .
                 </p>
-                <p className="text-base">WE RISE BY LIFTING OTHERS !!!</p>
-                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-sm text-white">
+                <p className="text-[] md:text-[20px]">
+                  WE RISE BY LIFTING OTHERS !!!
+                </p>
+                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-[] md:text-[20px] text-white">
                   Endorse Businesses
                 </button>
               </div>
@@ -199,18 +201,18 @@ const LandingPage = () => {
             </div>
 
             <div className="flex justify-end w-full md:w-1/2 h-1/2 md:h-auto p-5">
-              <div className="flex flex-col justify-between px-5 text-left md:text-right">
-                <h1 className="text-3xl py-3 font-bold">
+              <div className="flex flex-col justify-around px-5 text-left md:text-right">
+                <h1 className="md:text-[48px] text-[] py-3 font-medium">
                   Giveon’s Crib 50% off
                 </h1>
-                <p className="text-2xl py-2">
+                <p className="text-[] md:text-[36px] py-2">
                   2nd - 31st December <br />
-                  <p className="text-sm py-5">
+                  <p className="text-base py-5">
                     Enjoy discount on all our products
                   </p>
                 </p>
                 <div className=" justify-end">
-                  <button className="w-fit justify-self-end p-2 px-5 my-3 rounded-lg bg-[#491546] text-sm text-white">
+                  <button className="w-fit justify-self-end p-2 px-5 my-3 rounded-lg bg-[#491546] text-[20px] text-white">
                     Buy Now
                   </button>
                 </div>
@@ -223,20 +225,20 @@ const LandingPage = () => {
           <PopularMerchants />
         </div>
 
-        <div className="static text-[#444444] pb-2 md:pb-16">
+        <div className="static text-[#444444] pb-2 md:py-16">
           <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner4bg.png')]">
             <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
-              <div className="flex flex-col justify-between px-5">
-                <h1 className="text-3xl py-3 font-bold">
+              <div className="flex flex-col justify-around px-5">
+                <h1 className="text-[] md:text-[48px] py-3 font-medium">
                   Giveon’s Crib 50% off
                 </h1>
-                <p className="text-2xl py-2">
+                <p className="text-[] md:text-[36px] py-2">
                   2nd - 31st December
-                  <p className="text-sm py-5">
+                  <p className="text-base py-5">
                     Enjoy discount on all our products
                   </p>
                 </p>
-                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-sm text-white">
+                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-[] md:text-[20px] text-white">
                   Buy Now
                 </button>
               </div>

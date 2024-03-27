@@ -3,11 +3,11 @@ import React from "react";
 import Button from "../Button";
 const Newsletter = () => {
   return (
-    <div className="newsletterbg py-5 font-poppins">
-      <div className="flex flex-col justify-center text-center px-2">
+    <div className="newsletterbg py-10 font-poppins">
+      <div className="flex flex-col gap-[32px] justify-center text-center px-4">
         <div className="w-full">
           <div>
-            <h2 className="text-xl md:text-2xl font-semibold text-lightGray md:flex justify-center py-2">
+            <h2 className="text-[xl] md:text-[32px] font-medium text-lightGray md:flex justify-center py-2">
               <span className="text-orange-600 lg:pr-4">Newsletter </span>
               Sign Up
             </h2>
@@ -31,7 +31,7 @@ const Newsletter = () => {
               />
 
               <Button
-                className="w-full md:w-auto h-10 px-5 text-sm rounded-md text-white bg-[#EF5612]"
+                className="w-full md:w-auto h-10 px-5 text-sm md:text-[18px] rounded-md text-white bg-[#EF5612]"
                 type="submit"
               >
                 <Link href={""}>Subscribe</Link>
