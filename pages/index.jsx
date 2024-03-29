@@ -121,7 +121,10 @@ const LandingPage = () => {
               </div>
             </div>
 
-            <div className="block md:flex w-full text-sm mt-10 justify-center pt-5 gap-5 space-y-3 md:space-y-0">
+            <div
+              className={`block  w-full text-sm mt-10 justify-center pt-5 gap-5 space-y-3 md:space-y-0 ${user.userId ? 'hidden' : 'md:flex'
+                }`}
+            >
               <button className="h-12 w-full md:w-auto px-5 border-2 rounded-lg text-[#EF5612] border-[#EF5612]">
                 Sign up with us
               </button>

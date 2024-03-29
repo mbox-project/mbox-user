@@ -9,10 +9,25 @@ export const createVendor = createAsyncThunk(
   }
 );
 
+export const updateVendor = createAsyncThunk(
+  "auth/updateVendor",
+  async (body) => {
+    const response = await patchApi("vendor/updateVendor", body);
+    return response.data;
+  }
+);
+
 export const registerVendor = createAsyncThunk(
   "auth/registerVendor",
   async (body) => {
-    const response = await patchApi("vendor/updateVendor", body);
+    const response = await postApi("Vendor/registerVendor", body);
+    return response.data;
+  }
+);
+export const convertToVendor = createAsyncThunk(
+  "auth/convertToVendor",
+  async (body) => {
+    const response = await postApi("Vendor/convert-to-vendor", body);
     return response.data;
   }
 );
@@ -20,6 +35,7 @@ export const registerVendor = createAsyncThunk(
 const vendorService = {
   createVendor,
   registerVendor,
+  updateVendor
 };
 
 export default vendorService;

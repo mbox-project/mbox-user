@@ -38,16 +38,8 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
               <Link href="/wallet/"> My Wallet </Link>
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-              <BsCartDash size={20} />
-              <Link href="/orders/"> Orders </Link>
-            </li>
-            <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={profile} width={20} height={20} alt="profile" />
               <Link href="dispute"> Disputes </Link>
-            </li>
-            <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
-              <Image src={purchase} width={20} height={20} alt="profile" />
-              <Link href="#"> Purchase History </Link>
             </li>
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
               <BsCartDash size={20} />

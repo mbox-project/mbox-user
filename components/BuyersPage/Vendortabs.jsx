@@ -1,48 +1,52 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Label from "../Label";
 import { useState } from "react";
 import SearchSelect from "../combobox";
 import { banks } from "../data";
-import { BsFillCameraFill } from "react-icons/bs";
-import { BiEditAlt, BiTrashAlt } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { updateVendor } from "../../store/auth/vendorService";
+import { convertToVendor } from "../../store/auth/vendorService";
+import { toastify } from "../../helpers";
 
-export const PersonalDetails = ({ data, setActiveKey }) => {
+export const PersonalDetails = ({ data, setData, setActiveKey }) => {
+  const { categories } = useSelector((state) => state.product);
+  const onSelectCategory = (e) => {
+    setData((prevData) => ({
+      ...prevData,
+      catId: e.target.value
+    }));
+  };
   return (
     <form>
       <section
         className="card flex flex-col py-2 space-2"
         style={{ "border-radius": "0px" }}
       >
-        <div className="flex justify-between p-3">
-          <h4 className="text-gray-500">Profile Picture</h4>
-          <div className="flex space-x-2">
-            <span className="rounded-full p-1 bg-blue-100">
-              <BiEditAlt className="text-blue-400" />
-            </span>
-            <span className="rounded-full p-1 bg-red-50">
-              <BiTrashAlt className="text-brightRed" />
-            </span>
-          </div>
-        </div>
-        <div className="p-16 mt-5 mb-3 bg-gray-200 w-48 profilePics">
-          <BsFillCameraFill size={60} className="text-white" />
-        </div>
         <div className="flex flex-col">
-          <div className="mb-2">
-            <label htmlFor="name" className="block mb-2 text-md text-gray-500">
-              Name
-            </label>
-            <input
-              type="name"
-              id="name"
-              className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5"
-              placeholder="Taylor Mason"
-              value={data?.fullname}
-              required
-            />
-          </div>
+        <div className="mb-10 mt-3">
+                <label
+                  htmlFor="category"
+                  className="block mb-2 text-sm text-gray-500"
+                >
+                  Please choose a store category
+                </label>
+                <select
+                  name="category"
+                  id="category"
+                  value={data?.catId}
+                  onChange={onSelectCategory}
+                  placeholder="select category"
+                  className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
+                >
+                  <option value="" disabled selected>
+                    Select a category
+                  </option>
+                  {categories.map((e, i) => (
+                    <option key={i} value={e.id}>
+                      {e.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
           <div className="mb-2">
             <label htmlFor="email" className="block mb-2 text-md text-gray-500">
               Email
@@ -56,28 +60,21 @@ export const PersonalDetails = ({ data, setActiveKey }) => {
               required
             />
           </div>
-          <div className="mb-2">
-            <label
-              htmlFor="whatsapp"
-              className="block mb-2 text-md text-gray-500"
-            >
-              WhatsApp no
-            </label>
-            <input
-              type="text"
-              id="whatsapp"
-              className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-              placeholder="+234-813-4567-567"
-              required
-              value={data?.phoneNumber}
-            />
-          </div>
+        
         </div>
       </section>
       <div className="flex justify-end mt-5 ">
         <button
           onClick={(e) => {
             e.preventDefault();
+            if (
+              !data.catId ||
+              !data.email 
+             
+            ) {
+              toastify.alertWarning('Fill all fields');
+              return;
+            }
             setActiveKey("2");
           }}
           className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
@@ -90,21 +87,24 @@ export const PersonalDetails = ({ data, setActiveKey }) => {
 };
 
 export const StoreInformation = ({ data, setData, setActiveKey }) => {
+  
   const handleChange = (e) => {
-    setData((prev) => {
-      const update = {
+    const { name, value } = e.target;
+    if (name === 'storeName' && value.length > 30) {
+      return; // Do not update state if exceeds 30 characters for store name
+    } else if (name === 'storeDescription' && value.length > 100) {
+      return; // Do not update state if exceeds 100 characters for store description
+    }
+    // Check if the value exceeds the character limit
+    
+      setData((prev) => ({
         ...prev,
-        [e.target.name]: e.target.value,
-      };
-      return { ...update };
-    });
-    console.log(data);
+        [name]: value,
+      }));
+    
   };
   return (
     <form>
-      <h2 className="card text-2xl border-b-2 mt-10 rectCard">
-        Store Information
-      </h2>
       <section className="card rectCard flex flex-col py-2 space-2">
         <div className="flex flex-col">
           <div className="mb-2">
@@ -124,6 +124,8 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
               placeholder="Taylor Mason"
               required
             />
+            <p className={ data?.storeName?.length === 30? " text-red-700" : " text-lime-800"}
+              >Characters Remaining: {30 - (data?.storeName?.length || 0)}</p>
           </div>
           <div className="mb-2">
             <label
@@ -157,6 +159,8 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
                   text-gray-900 bg-gray-50 rounded-md border border-gray-300"
               placeholder="Takeaway Enterprice Dot Epitomic Ventures"
             ></textarea>
+              <p className={ data?.storeDescription?.length === 100? " text-red-700" : " text-lime-800"}
+              >Characters Remaining: {100 -( data?.storeDescription?.length || 0)}</p>
           </div>
           <div className="mb-2">
             <label
@@ -170,7 +174,7 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
               id="storeAddress"
               name="storeAddress"
               className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-              placeholder="+234-813-4567-567"
+              placeholder="No 1. lekki lagos, Nigeria"
               value={data?.storeAddress}
               onChange={handleChange}
               required
@@ -182,6 +186,15 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
         <button
           onClick={(e) => {
             e.preventDefault();
+            if (
+              !data.storeName ||
+              !data.storeAbbrevation ||
+              !data.storeDescription ||
+              !data.storeAddress
+            ) {
+              toastify.alertWarning('Fill all fields');
+              return;
+            }
             setActiveKey("3");
           }}
           className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
@@ -192,10 +205,12 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
     </form>
   );
 };
-export const BankInformation = ({ data, setData, setActiveKey }) => {
+export const BankInformation = ({ data, setData, showModal }) => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.isLoading);
   const [bankName, setBankName] = useState("");
+ 
+
   const handleChange = (e) => {
     setData((prev) => {
       const update = {
@@ -208,16 +223,21 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
-    dispatch(updateVendor(data)).then((action) => {
-      console.log(action);
-    });
+    
+    dispatch(convertToVendor(data))
+       .unwrap()
+       .then((action) => {
+        showModal();
+        }
+    )
+    .catch((error) =>{
+       console.log(error)
+      });
   };
+  
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e, data)} className="">
-        <h2 className="card text-2xl border-b-2 mt-10 rectCard">
-          Bank Information
-        </h2>
         <section className="card flex flex-col py-2 space-2 rectCard">
           <div className="flex flex-col">
             <div className=" px-12 pt-3">
@@ -272,7 +292,8 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
               <input
                 type="text"
                 id="acctname"
-                name="accountName"
+                //name="accountName"
+                value={data?.accountName}
                 onChange={handleChange}
                 className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
                 placeholder="Taylor Mason"
@@ -311,6 +332,7 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
           </button>
         </div>
       </form>
+     
     </>
   );
 };

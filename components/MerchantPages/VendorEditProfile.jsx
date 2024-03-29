@@ -35,7 +35,7 @@ const VendorEditProfile = ({ data, setData }) => {
       {
         key: "3",
         label: (
-          <div className="text-gray-500" onClick={() => setActiveKey("2")}>
+          <div className="text-gray-500" onClick={() => setActiveKey("3")}>
             Bank Information
           </div>
         ),
