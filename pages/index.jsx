@@ -22,6 +22,7 @@ import iconTwo from "/public/images/featureicon2.png";
 import iconThree from "/public/images/featureicon3.png";
 import banner1 from "/public/images/banner1.png";
 import banner2 from "/public/images/banner2.png";
+import banner2mobile from "/public/images/banner2-mobile.png";
 import banner3 from "/public/images/banner3.png";
 import banner4 from "/public/images/banner4.png";
 
@@ -184,8 +185,11 @@ const LandingPage = () => {
                 </button>
               </div>
             </div>
-            <div className="w-full flex justify-end md:w-1/2 h-1/2 md:h-auto">
+            <div className="w-full md:flex hidden justify-end md:w-1/2 h-1/2 md:h-auto">
               <Image src={banner2} alt="ad" />
+            </div>
+            <div className="w-full flex md:hidden justify-end md:w-1/2 h-1/2 md:h-auto">
+              <Image src={banner2mobile} alt="ad" />
             </div>
           </div>
         </div>
