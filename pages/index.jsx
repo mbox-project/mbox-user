@@ -22,6 +22,8 @@ import iconTwo from "/public/images/featureicon2.png";
 import iconThree from "/public/images/featureicon3.png";
 import banner1 from "/public/images/banner1.png";
 import banner2 from "/public/images/banner2.png";
+import mobilebanner1 from "/public/images/mobile-banner1.png";
+import mobilebanner2 from "/public/images/mobile-banner2.png";
 import banner2mobile from "/public/images/banner2-mobile.png";
 import banner3 from "/public/images/banner3.png";
 import banner4 from "/public/images/banner4.png";
@@ -122,7 +124,7 @@ const LandingPage = () => {
               </div>
             </div>
 
-            <div className="block md:flex w-full text-sm mt-10 justify-center pt-5 gap-5 space-y-3 md:space-y-0">
+            <div className="block md:flex w-full text-sm mt-10 justify-center pt-5 gap-5 space-y-[32px] md:space-y-0">
               <button className="h-12 w-full md:w-auto px-5 border-2 rounded-lg text-[#EF5612] border-[#EF5612]">
                 Sign up with us
               </button>
@@ -198,7 +200,7 @@ const LandingPage = () => {
           <Category />
         </div>
 
-        <div className="static text-[#444444] py-2 md:py-10">
+        <div className="static hidden md:block text-[#444444] pb-2 md:py-16">
           <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner3bg.png')]">
             <div className="w-full md:w-1/2 h-1/2 md:h-auto">
               <Image src={banner3} alt="ad" />
@@ -225,11 +227,36 @@ const LandingPage = () => {
           </div>
         </div>
 
+        {/* mobile banner */}
+        <div className="relative md:hidden flex justify-center text-[#444444] py-8">
+          <Image
+            src={mobilebanner1}
+            alt="ad"
+            className="w-full min-w-full mx-auto"
+          />
+          <div className="absolute w-max bottom-12">
+            <div className="flex flex-col justify-around max-w-[300px]">
+              <h1 className="text-[32px] py-3 font-medium">
+                Giveon’s Crib 50% off
+              </h1>
+              <p className="text-[18px] py-2">
+                2nd - 31st December
+                <p className="text-[14px] py-5">
+                  Enjoy discount on all our products
+                </p>
+              </p>
+              <button className="w-fit justify-self-end p-2 px-5 my-3 rounded-lg bg-[#491546] text-[20px] text-white">
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div>
           <PopularMerchants />
         </div>
 
-        <div className="static text-[#444444] pb-2 md:py-16">
+        <div className="static hidden md:block text-[#444444] pb-2 md:py-16">
           <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner4bg.png')]">
             <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
               <div className="flex flex-col justify-around px-5">
@@ -249,6 +276,30 @@ const LandingPage = () => {
             </div>
             <div className="w-full flex justify-end md:w-1/2 h-1/2 md:h-auto">
               <Image src={banner4} alt="ad" />
+            </div>
+          </div>
+        </div>
+        {/* mobile banner */}
+        <div className="relative md:hidden flex justify-center text-[#444444] py-8">
+          <Image
+            src={mobilebanner2}
+            alt="ad"
+            className="w-full min-w-full mx-auto"
+          />
+          <div className="absolute w-max bottom-12">
+            <div className="flex flex-col justify-around max-w-[300px]">
+              <h1 className="text-[32px] py-3 font-medium">
+                Giveon’s Crib 50% off
+              </h1>
+              <p className="text-[18px] py-2">
+                2nd - 31st December
+                <p className="text-[14px] py-5">
+                  Enjoy discount on all our products
+                </p>
+              </p>
+              <button className="w-fit p-2 px-12 my-3 rounded-lg bg-[#EF5612] text-[] md:text-[20px] text-white">
+                Buy Now
+              </button>
             </div>
           </div>
         </div>
