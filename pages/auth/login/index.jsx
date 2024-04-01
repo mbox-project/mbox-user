@@ -131,7 +131,7 @@ const Login = () => {
                   onChange={onChangeInput}
                 />
                 <span className="text-lg lg:text-sm poppins">
-                  keep me Log in
+                  Keep me logged in
                 </span>
               </div>
               <div>
