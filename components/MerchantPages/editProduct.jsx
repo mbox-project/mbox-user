@@ -1,31 +1,46 @@
+import PropTypes from "prop-types";
+import Link from "next/link";
+
 import { Tabs } from "antd";
-import { PersonalDetails, BankInformation, StoreInformation } from "./Tabs";
+
+import {
+  ProductInformation,
+  ProductPicture,
+  ProductVariation,
+} from "./editProductTab";
 import React, { useMemo, useState } from "react";
 const onChange = (key) => {
   console.log(key);
 };
-const VendorEditProfile = ({ data, setData }) => {
+const EditProduct = ({ data, setData }) => {
   const [activeKey, setActiveKey] = useState("1");
   const items = useMemo(() => {
+ 
     return [
       {
         key: "1",
         label: (
           <div className="text-gray-500" onClick={() => setActiveKey("1")}>
-            Personal Details
+            Product Information
           </div>
         ),
-        children: <PersonalDetails data={data} setActiveKey={setActiveKey} setData={setData} />,
+        children: (
+          <ProductInformation
+            data={data}
+            setData={setData}
+            setActiveKey={setActiveKey}
+          />
+        ),
       },
       {
         key: "2",
         label: (
           <div className="text-gray-500" onClick={() => setActiveKey("2")}>
-            Store Information
+            Product Pictures
           </div>
         ),
         children: (
-          <StoreInformation
+          <ProductPicture
             data={data}
             setData={setData}
             setActiveKey={setActiveKey}
@@ -36,15 +51,23 @@ const VendorEditProfile = ({ data, setData }) => {
         key: "3",
         label: (
           <div className="text-gray-500" onClick={() => setActiveKey("3")}>
-            Bank Information
+            Product Variation
           </div>
         ),
-        children: <BankInformation data={data} setData={setData} />,
+        children: (
+          <ProductVariation
+            data={data}
+            setData={setData}
+            setActiveKey={setActiveKey}
+          />
+        ),
       },
+     
     ];
   }, [data]);
   return (
     <>
+       <div className=" pt-5 font-medium text-4xl">Edit Product</div>
       <Tabs
         tabBarStyle={{ color: "#998" }}
         defaultActiveKey={activeKey}
@@ -52,13 +75,10 @@ const VendorEditProfile = ({ data, setData }) => {
         items={items}
         onChange={onChange}
       />
-      <div className="mb-6">
-        <p>
-          You have reported 4 buyers so far, would you like to review decisions?
-        </p>
-        <span className="text-red-500">CLICK HERE</span>
-      </div>
     </>
   );
 };
-export default VendorEditProfile;
+
+
+
+export default EditProduct;

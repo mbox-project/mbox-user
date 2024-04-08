@@ -75,11 +75,11 @@ let merchantCard = [
 
 const LandingPage = () => {
   const user = useSelector((state) => state.auth.user);
-  useGetUser();
+  //useGetUser();
   return (
     <main>
       <header>
-        <div>{user?.userId ? <Navbar /> : <Header />}</div>
+        <div>{user?.id ? <Navbar /> : <Header />}</div>
         <div className="px-2 md:px-16">
           <NavTag />
         </div>
@@ -122,7 +122,7 @@ const LandingPage = () => {
             </div>
 
             <div
-              className={`block  w-full text-sm mt-10 justify-center pt-5 gap-5 space-y-3 md:space-y-0 ${user.userId ? 'hidden' : 'md:flex'
+              className={`block  w-full text-sm mt-10 justify-center pt-5 gap-5 space-y-3 md:space-y-0 ${user.id ? 'hidden' : 'md:flex'
                 }`}
             >
               <button className="h-12 w-full md:w-auto px-5 border-2 rounded-lg text-[#EF5612] border-[#EF5612]">

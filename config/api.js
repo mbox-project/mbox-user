@@ -49,5 +49,14 @@ export const patchApi = (url, body) => {
     },
   });
 };
+export const deleteApi = (url, body) => {
+  return api.delete(url, body, {
+    headers: {
+      Authorization: `Bearer ${
+        typeof window !== undefined ? sessionStorage.getItem("token") : null
+      }`,
+    },
+  });
+};
 
 export default baseURL;

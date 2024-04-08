@@ -11,9 +11,9 @@ const index = () => {
   const dispatch = useDispatch();
   const { isLoading, user } = useSelector((state) => state.auth);
   const [data, setData] = useState({
+    userId: user?.userId,
     fullname: user?.fullname,
     email: user?.email,
-    phoneNumber: user?.phoneNumber,
   });
   const role = useSelector(selectRole);
   return (

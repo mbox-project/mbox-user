@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getProductCategories,
    uploadProduct, 
    getProductCategoryId,
-   getProducts
+   getProducts,
+   deleteProduct,
+   editProduct
   } from "./productService";
 
 const initialState = {
@@ -41,7 +43,25 @@ const productSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.products = action.payload.data.$values;
+      })
+      .addCase(deleteProduct.pending, (state) => {
         state.isLoading = true;
+      })
+      .addCase(deleteProduct.rejected, (state) => {
+        state.isLoading = false;
+        //state.products = action.payload.data.$values;
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        //state.products = action.payload.data.$values;
+      })
+      .addCase(editProduct.pending, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(editProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.products = action.payload.data.$values;
       })
       .addCase(uploadProduct.pending, (state) => {

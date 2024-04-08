@@ -9,33 +9,54 @@ import { useDispatch } from "react-redux";
 import { getVendorProducts } from "../../store/product/productService";
 import UploadIcon from "../../components/assets/UploadIcon";
 import PieCharts from "../../components/assets/PieChart";
+import {Spin } from 'antd';
 
 //import axios from "axios";
 
 const Index = () => {
   const dispatch = useDispatch();
-  useGetUser();
+  // useGetUser();
   const [showAddProduct, setShowAddProduct] = useState(true);
-  const { vendorId } = useSelector((state) => state.auth.user);
+  //const { vendorId } = useSelector((state) => state.auth.user.id);
   const user = useSelector((state) => state.auth.user);
 
   console.log(user, "user");
 
-  useGetUser();
 
-  const [data, setData] = useState({ vendorId: user?.id });
+  const [data, setData] = useState({
+    vendorId: user?.userId,
+    name: "",
+    description: "",
+    quantity: 0,
+    price: 0,
+    discount: 0,
+    categoryId: "",
+    images: [],
+    tags: [],
+    colors: [],
+    sizes: [],
+  });
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(1);
-  const [products, setProducts] = useState();
+  const [loading, setLoading] = useState(true); // State to track loading state
+  const [pageSize, setPageSize] = useState(10);
+  const [products, setProducts] = useState([]);
+  const [totalProducts, setTotalProducts] = useState(0);
+
 
   useEffect(() => {
     dispatch(getVendorProducts({ pageNumber, pageSize }))
       .unwrap()
       .then((res) => {
         setProducts(res.data?.items?.$values || []);
+        setTotalProducts(res.data?.totalCount || 0);
+        setLoading(false); 
       })
-      .catch((error) => console.log(error));
-  }, [dispatch, vendorId, pageNumber, pageSize]);
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  }, [dispatch, pageNumber, pageSize]);
+
 
   const handleNextPage = () => {
     setPageNumber(pageNumber + 1);
@@ -53,6 +74,19 @@ const Index = () => {
   };
 
   const renderProducts = () => {
+    if (loading) {
+      return (
+        <div className=" h-32 w-full flex justify-center items-center">
+        <Spin tip="Loading" size="large">
+        <div className="content" />
+      </Spin>
+      </div>
+      ); // Render a loading spinner while products are loading
+    }
+
+    if (products.length === 0) {
+      return <p>No products available</p>; // Render a message if products array is empty
+    }
     return products?.map((product) => (
       <Products key={product.id} product={product} />
     ));
@@ -72,11 +106,10 @@ const Index = () => {
     return (
       <div className="flex justify-center items-center mt-8 space-x-4">
         <button
-          className={`px-4 py-2 border border-gray-300 rounded-md ${
-            pageNumber === 1
+          className={`px-4 py-2 border border-gray-300 rounded-md ${pageNumber === 1
               ? "bg-gray-200 text-gray-500 cursor-not-allowed"
               : "bg-white text-gray-700 hover:bg-gray-50"
-          }`}
+            }`}
           onClick={handlePrevPage}
           disabled={pageNumber === 1}
         >
@@ -123,7 +156,7 @@ const Index = () => {
               </span>
               <div className="rounded-[8px] border-[2px] border-[#E5E7EB] bg-white p-[4%] flex flex-col items-center justify-center">
                 <p className="text-[#6B7280] text-[16px] font-[500] text-center">
-                  All Uploaded Products (3,412)
+                  All Uploaded Products ({totalProducts})
                 </p>
                 <PieCharts />
                 <span className="grid grid-cols-2">
@@ -166,17 +199,8 @@ const Index = () => {
               </form>
             </section>
 
-            <section className="card rectCard grid grid-cols-2 gap-10 mb-5 md:grid-cols-3">
+            <section className="card rectCard grid grid-cols-2 gap-10 mb-5 md:grid-cols-3 ">
               {renderProducts()}
-              {/* {ProductsData.map((prod) => {
-                return (
-                  <Products
-                    products={prod}
-                    key={prod.id}
-                    showAddProduct={showAddProduct}
-                  />
-                );
-              })} */}
             </section>
             {/* <section className="flex flex-col space-y-4 items-center justify-center">
               <h3 className="text-lg text-center mt-5">

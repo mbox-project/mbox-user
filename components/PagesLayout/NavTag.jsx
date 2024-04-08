@@ -5,7 +5,7 @@ import { getProductCategories } from "../../store/product/productService";
 
 const NavTag = () => {
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.product.categories.slice(0, 9)); 
+  const categories = useSelector((state) => state.product.categories?.slice(0, 9)); 
 
   useEffect(() => {
     dispatch(getProductCategories());

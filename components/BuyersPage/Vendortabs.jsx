@@ -328,7 +328,7 @@ export const BankInformation = ({ data, setData, showModal }) => {
             type="submit"
             className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
           >
-            Save
+            Become a vendor
           </button>
         </div>
       </form>

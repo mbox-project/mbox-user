@@ -12,7 +12,8 @@ import { MdOutlineAddCircleOutline } from "react-icons/md"
 const invoiceInput = () => {
   // Add rememberMe property to it later.
   const dispatch = useDispatch();
-  const fullname = useSelector((state) => state.user.fullname);
+  const user = useSelector((state) => state.auth.user);
+  //const fullname = useSelector((state) => state.user.fullname);
   const router = useRouter();
   const product = {
     price: "",
@@ -20,7 +21,7 @@ const invoiceInput = () => {
   };
   const [productsList, setProductsList] = useState([product]);
   const [invoiceData, setInvoiceData] = useState({
-    tag: "",
+   // tag: "",
     products: productsList,
     buyer: "",
   });
@@ -64,7 +65,7 @@ const invoiceInput = () => {
         escFee: (subtotal / 100) * 5,
         total: subtotal + (subtotal / 100) * 5,
         subtotal,
-        Id: "",
+        issuer: user?.userId,
       };
       dispatch(generateinvoice(data))
         .unwrap()

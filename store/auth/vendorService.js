@@ -31,11 +31,19 @@ export const convertToVendor = createAsyncThunk(
     return response.data;
   }
 );
+export const getVendor = createAsyncThunk(
+  "auth/getVendor",
+  async () => {
+    const response = await getApi("Vendor");
+    return response.data;
+  }
+);
 
 const vendorService = {
   createVendor,
   registerVendor,
-  updateVendor
+  updateVendor,
+  getVendor
 };
 
 export default vendorService;

@@ -1,14 +1,37 @@
 import React from "react";
 import Label from "../Label";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchSelect from "../combobox";
 import { banks } from "../data";
 import { BsFillCameraFill } from "react-icons/bs";
 import { BiEditAlt, BiTrashAlt } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { updateVendor } from "../../store/auth/vendorService";
+import UploadProfileImages from "../antd/uploadProfile";
+import { getProductCategories } from "../../store/product/productService";
+import { toastify } from "../../helpers";
 
-export const PersonalDetails = ({ data, setActiveKey }) => {
+export const PersonalDetails = ({ data, setData, setActiveKey }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProductCategories())
+      .unwrap()
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+    console.log("effect");
+  }, []);
+  const { categories } = useSelector((state) => state.product);
+  const [res, setRes] = useState();
+  const onSelectCategory = (e) => {
+    setData((prevData) => {
+     const proUpdate = {
+      ...prevData,
+      categoryId: e.target.value,
+      imageUrl: res?.imageUrl
+     }
+     return {...proUpdate}
+    });
+  };
   return (
     <form>
       <section
@@ -26,23 +49,8 @@ export const PersonalDetails = ({ data, setActiveKey }) => {
             </span>
           </div>
         </div>
-        <div className="p-16 mt-5 mb-3 bg-gray-200 w-48 profilePics">
-          <BsFillCameraFill size={60} className="text-white" />
-        </div>
+        <UploadProfileImages setData={setRes}/>
         <div className="flex flex-col">
-          <div className="mb-2">
-            <label htmlFor="name" className="block mb-2 text-md text-gray-500">
-              Name
-            </label>
-            <input
-              type="name"
-              id="name"
-              className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5"
-              placeholder="Taylor Mason"
-              value={data?.fullname}
-              required
-            />
-          </div>
           <div className="mb-2">
             <label htmlFor="email" className="block mb-2 text-md text-gray-500">
               Email
@@ -58,19 +66,28 @@ export const PersonalDetails = ({ data, setActiveKey }) => {
           </div>
           <div className="mb-2">
             <label
-              htmlFor="whatsapp"
+              htmlFor="category"
               className="block mb-2 text-md text-gray-500"
             >
-              WhatsApp no
+              Category
             </label>
-            <input
-              type="text"
-              id="whatsapp"
-              className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-              placeholder="+234-813-4567-567"
-              required
-              value={data?.phoneNumber}
-            />
+            <select
+                  name="category"
+                  id="category"
+                  value={data?.catId}
+                  onChange={onSelectCategory}
+                  placeholder="select category"
+                  className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
+                >
+                  <option value="" disabled selected>
+                    Select a category
+                  </option>
+                  {categories.map((e, i) => (
+                    <option key={i} value={e.id}>
+                      {e.name}
+                    </option>
+                  ))}
+                </select>
           </div>
         </div>
       </section>
@@ -78,7 +95,7 @@ export const PersonalDetails = ({ data, setActiveKey }) => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            setActiveKey("2");
+              setActiveKey("2");         
           }}
           className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
         >
@@ -195,22 +212,27 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
 export const BankInformation = ({ data, setData, setActiveKey }) => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.isLoading);
-  const [bankName, setBankName] = useState("");
+  const [bankName, setBankName] = useState({});
   const handleChange = (e) => {
     setData((prev) => {
       const update = {
         ...prev,
         [e.target.name]: e.target.value,
+        bankName: bankName?.name
       };
-      return { ...update, bankName: bankName.name };
+      return { ...update,  };
     });
     console.log(data);
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
-    dispatch(updateVendor(data)).then((action) => {
-      console.log(action);
-    });
+    dispatch(updateVendor(data))
+    .unwrap()
+      .then((action) => {
+        toastify.alertSuccess("Updated profile successfully ");
+        console.log(action);
+      })
+      .catch((error) => toastify.alertError(error, 3000));
   };
   return (
     <>
