@@ -1,6 +1,7 @@
 import Label from "../../components/Label";
 import Button from "../Button";
 import React, { useState } from "react";
+
 const Questions = () => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -31,15 +32,15 @@ const Questions = () => {
   return (
     <section className=" newsletterbg py-6 md:py-10 lg:py-16 border-b">
       <div className=" ">
-        <div className="flex justify-center tracking-wide font-bold poppins textcolor text-base lg:text-2xl">
+        <div className="flex justify-center px-4 lg:px-0 tracking-wide font-medium poppins textcolor text-xl md:text-[32px]">
           <h4>Your Question(s) is/are not listed?</h4>
         </div>
         <form
           onSubmit={submitHandler}
           className="mt-8 max-w-[900px] mx-auto px-4 lg:px-0 space-y-4"
         >
-          <div className="block lg:flex lg:justify-center gap-10 space-y-4 md:space-y-0">
-            <div className="flex flex-col gap-2">
+          <div className="block lg:flex lg:justify-between gap-10 space-y-4 md:space-y-0">
+            <div className="flex flex-col gap-2 w-full">
               <Label
                 className="text-base text-[#9A9A9A]"
                 htmlFor="Name"
@@ -56,7 +57,7 @@ const Questions = () => {
                 onChange={nameChangeHandler}
               />
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-full">
               <Label
                 className="text-base text-[#9A9A9A]"
                 htmlFor="email"
@@ -75,7 +76,7 @@ const Questions = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col gap-2 lg:max-w-xl mx-auto">
+          <div className="flex flex-col gap-2">
             <Label
               className="text-base text-[#9A9A9A]"
               htmlFor="Your Questions"
@@ -92,10 +93,10 @@ const Questions = () => {
               onChange={textChangeHandler}
             />
           </div>
-          <div className="flex lg:justify-center pt-4">
+          <div className="flex lg:justify-end pt-4">
             <Button
               type="submit"
-              className=" aboutherobg py-2 px-8 shadow-lg rounded-md text-white font-semibold text-base lg:text-md"
+              className=" aboutherobg py-2 px-8 shadow-lg shadow-[#49154612] rounded-md text-white font-semibold text-base lg:text-md"
             >
               Submit
             </Button>
