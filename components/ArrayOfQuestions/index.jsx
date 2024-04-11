@@ -1,57 +1,58 @@
+import Link from "next/link";
+
 const ArrayOfQuestions = [
   {
     id: "e1",
-    Ques: "what is Mbox?",
+    Ques: "What is Marketbox?",
     Answer:
-      "Mbox is a digital marketplace that allows SMEs a digital version of their businesses",
+      "A marketplace for SMEs connect, digitize and build a reputation for their online business.",
   },
   {
     id: "e2",
-    Ques: "How do I join Mbox?",
-    Answer:
-      "Mbox is a digital marketplace that allows SMEs a diogital version of their businesses ",
+    Ques: "How do I join Marketbox?",
+    Answer: "Click on the signup button and register for free.",
   },
   {
     id: "e3",
-    Ques: "What do you mean by buyer and seller protection(escrow)??",
+    Ques: "What do you mean by escrow protection?",
     Answer:
-      "Mbox is a digital marketplace that allows SMEs a digital version of their businesses",
+      "Escrow protection protects both vendors and buyers from dubious deals by allowing us be the fair middleman in the deal. ",
   },
   {
     id: "e4",
-    Ques: "How do i create invoice?",
+    Ques: "How much do I pay for advertising store/brand?",
     Answer:
-      "Mbox is a digital marketplace that allows SMEs a digital version of their businesses",
+      "1000 naira weekly for category boost and 20000 naira weekly for a banner advert. ",
   },
   {
     id: "e5",
-    Ques: "How much do you cahrge on escrow service?",
+    Ques: "How important am I to marketbox?",
     Answer:
-      "Mbox is a digital marketplace that allows SMEs a digital version of their businesses",
+      " Without you and our users, we are nothing. It is as simple as that.",
   },
   {
     id: "e6",
-    Ques: "What can I sell using Mbox?",
+    Ques: "How does marketbox help my business? ",
     Answer:
-      "Mbox is a digital marketplace that allows SMEs a digital version of their businesses",
+      "Marketbox is your partner in progress in your entire entrepreneurship journey. Helping you achieve your business goals is why we are here for you.",
   },
   {
     id: "e7",
-    Ques: "How much I pay to give my store more coverage?",
-    Answer:
-      "Mbox is a digital marketplace that allows SMEs a digital version of their businesses",
+    Ques: "How to generate invoice?",
+    Answer: (
+      <span className="text-[#EF5612]">
+        <Link href="">Watch video</Link>
+      </span>
+    ),
   },
   {
     id: "e8",
-    Ques: "How important am I to Mbox?",
-    Answer:
-      "Mbox is a digital marketplace that allows SMEs a digital version of their businesses",
-  },
-  {
-    id: "e9",
-    Ques: "Any plans for return policy?",
-    Answer:
-      "Mbox is a digital marketplace that allows SMEs a digital version of their businesses",
+    Ques: "How to pay invoice?",
+    Answer: (
+      <span className="text-[#EF5612]">
+        <Link href="">Watch video</Link>
+      </span>
+    ),
   },
 ];
 
