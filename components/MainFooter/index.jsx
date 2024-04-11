@@ -9,7 +9,7 @@ import {
   FaPhoneSquare,
   FaMailBulk,
 } from "react-icons/fa";
-import { BsTwitter } from "react-icons/bs";
+import { FaXTwitter, FaSquareXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 
 const MainFooter = () => {
@@ -41,6 +41,9 @@ const MainFooter = () => {
                 <Link className="inline-block" href="">
                   Privacy policy
                 </Link>
+                <Link className="inline-block" href="">
+                  Cookies
+                </Link>
                 <Link className="inline-block" href="faq">
                   FAQs
                 </Link>
@@ -70,9 +73,10 @@ const MainFooter = () => {
                   </Link>
                 </div>
                 <div className="flex gap-2 items-center">
-                  <BsTwitter className="w-5 h-5" />
+                  {/* <FaXTwitter className="w-5 h-5" /> */}
+                  <FaSquareXTwitter className="w-5 h-5" />
                   <Link className="inline-block" href="">
-                    Twitter
+                    X (Twitter)
                   </Link>
                 </div>
               </nav>

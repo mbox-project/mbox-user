@@ -4,6 +4,7 @@ import Newsletter from "../../components/Newsletter";
 import MainFooter from "../../components/MainFooter";
 import Questions from "../../components/Questions";
 import ArrayOfQuestions from "../../components/ArrayOfQuestions";
+
 const FAQSPage = () => {
   return (
     <div>
@@ -17,13 +18,15 @@ const FAQSPage = () => {
           case you could not find yours, use the box provided below.
         </p>
       </section>
-      <section className=" px-4 pt-16  sm:px-6 lg:px-8 ">
+      <section className=" px-4 md:py-14 py-10 sm:px-6 lg:px-8 ">
         <div>
           {ArrayOfQuestions.map((question) => {
             return (
               <div key={question.id}>
                 <p className="font-bold text-base py-5">{question.Ques}</p>
-                <p className="pb-3 text-wider">{question.Answer}</p>
+                <p className="pb-3 text-wider text-current">
+                  {question.Answer}
+                </p>
 
                 <hr className="font-extrabold"></hr>
               </div>
