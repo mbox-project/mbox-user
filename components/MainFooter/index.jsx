@@ -35,16 +35,16 @@ const MainFooter = () => {
                 <Link className="inline-block" href="about">
                   About
                 </Link>
-                <Link className="inline-block" href="">
+                <Link className="inline-block" href="terms-of-use">
                   Terms of use
                 </Link>
-                <Link className="inline-block" href="">
+                <Link className="inline-block" href="privacy-policy">
                   Privacy policy
                 </Link>
-                <Link className="inline-block" href="">
+                <Link className="inline-block" href="cookies">
                   Cookies
                 </Link>
-                <Link className="inline-block" href="faq">
+                <Link className="inline-block" href="faqs">
                   FAQs
                 </Link>
               </nav>
