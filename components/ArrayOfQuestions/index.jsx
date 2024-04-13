@@ -22,7 +22,7 @@ const ArrayOfQuestions = [
     id: "e4",
     Ques: "How much do I pay for advertising store/brand?",
     Answer:
-      "1000 naira weekly for category boost and 20000 naira weekly for a banner advert. ",
+      "1000 Naira weekly for category boost and 20000 Naira weekly for a banner advert. ",
   },
   {
     id: "e5",
