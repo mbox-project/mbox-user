@@ -41,9 +41,6 @@ const MainFooter = () => {
                 <Link className="inline-block" href="privacy-policy">
                   Privacy policy
                 </Link>
-                <Link className="inline-block" href="cookies">
-                  Cookies
-                </Link>
                 <Link className="inline-block" href="faqs">
                   FAQs
                 </Link>
