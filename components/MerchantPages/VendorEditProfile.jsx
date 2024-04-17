@@ -4,7 +4,7 @@ import React, { useMemo, useState } from "react";
 const onChange = (key) => {
   console.log(key);
 };
-const VendorEditProfile = ({ data, setData }) => {
+const VendorEditProfile = ({ data, setData }) => {   
   const [activeKey, setActiveKey] = useState("1");
   const items = useMemo(() => {
     return [

@@ -33,6 +33,12 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
                 <Link href="/products/"> Products </Link>
               </li>
             )}
+            {role === "vendor" && (
+              <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                <BsCartDash size={20} />
+                <Link href="/orders/"> Orders </Link>
+              </li>
+            )}
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
               <BiWallet size={20} />
               <Link href="/wallet/"> My Wallet </Link>

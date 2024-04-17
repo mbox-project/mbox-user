@@ -6,6 +6,8 @@ import Spinner from "../../components/Spinner";
 import Layout from "../../components/PagesLayout/Layout";
 import EditProfile from "../../components/BuyersPage/EditProfile";
 import VendorEditProfile from "../../components/MerchantPages/VendorEditProfile";
+import { getVendor } from "../../store/auth/vendorService";
+import { toastify } from "../../helpers";
 
 const index = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,25 @@ const index = () => {
     fullname: user?.fullname,
     email: user?.email,
   });
+  const [vendorData, setVendorData] = useState({
+    userId: user?.userId,
+    //fullname: user?.fullname,
+    email: user?.email,
+  });
+
+  useEffect(() => {
+    dispatch(getVendor())
+    .unwrap()
+    .then((response) => {
+      setVendorData(response?.data)
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+      toastify.alertError("Could not get Profile data", 300)
+    });
+
+  },[])
   const role = useSelector(selectRole);
   return (
     <>
@@ -23,7 +44,7 @@ const index = () => {
           Edit Personal Information
         </h2>
         {role === "vendor" ? (
-          <VendorEditProfile data={data} setData={setData} />
+          <VendorEditProfile data={vendorData} setData={setVendorData} />
         ) : (
           <EditProfile data={data} setData={setData} />
         )}

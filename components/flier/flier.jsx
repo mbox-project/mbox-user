@@ -18,10 +18,10 @@ const Flyer = () => {
   const [flyerImage, setFlyerImage] = useState()
   const dispatch = useDispatch();
 
-  
-const name = flyer?.storeName.split(' ')
-let fisdt = name?.[0]
-let rest = name?.[1]
+
+  const name = flyer?.storeName.split(' ')
+  let first = name?.[0]
+  let rest = name?.[1]
 
 
   useEffect(() => {
@@ -38,7 +38,7 @@ let rest = name?.[1]
         setLoading(false)
         toastify.alertError("Could not get flyer data", 300)
       });
-   
+
   }, []);
   return (
     <div className="flyer">
@@ -46,15 +46,15 @@ let rest = name?.[1]
         <div className="text-content">
           <h1 className="endorse">ENDORSE</h1>
           <h2 className=" marv">
-            { loading === true ?
+            {loading === true ?
               <Skeleton rows={1} active className=' ' title={false} />
               :
-              <> {fisdt} <br/> {rest}</>
+              <> {first} <br /> {rest}</>
             }
-           
-            </h2>
+
+          </h2>
           <div className=" name-parent">
-            <h3 className="name">By Kemisola Daniels</h3>
+            <h3 className="name">By {flyer?.fullName}</h3>
             <div className=" higlight"></div>
           </div>
           <p className="Mb"> On <Image src={mBox} className=" mbox-img" /></p>
@@ -64,9 +64,9 @@ let rest = name?.[1]
             <div className="white-circle">
               <div className=" inner-circle">
                 {flyer?.imageUrl ? (
-                  <Image src={flyer.imageUrl} alt="flyerimage" 
-                  className=''
-                 layout='fill'
+                  <Image src={flyer.imageUrl} alt="flyerimage"
+                    className=''
+                    layout='fill'
                   />
                 ) : (
                   <span></span>
@@ -82,13 +82,13 @@ let rest = name?.[1]
           <div className=" descripton-parent">
 
             <p className=" descripton">
-            { loading === true ?
-              <Skeleton rows={1} active className='  w-[400px]' title={false} />
-              :
-              <> {flyer?.storeDescription}</>
-            }
-             
-              </p>
+              {loading === true ?
+                <Skeleton rows={1} active className='  w-[400px]' title={false} />
+                :
+                <> {flyer?.storeDescription}</>
+              }
+
+            </p>
             <Image src={X} />
           </div>
           <p className="social">@mboxexpress</p>

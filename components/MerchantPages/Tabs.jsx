@@ -51,6 +51,19 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
         </div>
         <UploadProfileImages setData={setRes}/>
         <div className="flex flex-col">
+        <div className="mb-2 mt-4">
+            <label htmlFor="name" className="block mb-2 text-md text-gray-500">
+              Full Name
+            </label>
+            <input
+              type="name"
+              id="name"
+              className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5"
+              placeholder="Taylor Mason"
+              value={data?.fullName}
+              required
+            />
+          </div>
           <div className="mb-2">
             <label htmlFor="email" className="block mb-2 text-md text-gray-500">
               Email

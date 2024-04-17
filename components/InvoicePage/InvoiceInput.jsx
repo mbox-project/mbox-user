@@ -16,6 +16,7 @@ const invoiceInput = () => {
   //const fullname = useSelector((state) => state.user.fullname);
   const router = useRouter();
   const product = {
+    productId: "1",
     price: "",
     quantity: "",
   };
@@ -65,7 +66,7 @@ const invoiceInput = () => {
         escFee: (subtotal / 100) * 5,
         total: subtotal + (subtotal / 100) * 5,
         subtotal,
-        issuer: user?.userId,
+        issuer: user?.username,
       };
       dispatch(generateinvoice(data))
         .unwrap()
