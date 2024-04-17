@@ -1,15 +1,20 @@
 import React from "react";
 import logo3 from "../../public/images/logo3.png";
 import Image from "next/image";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaWhatsappSquare } from "react-icons/fa";
-import { FaPhoneSquare } from "react-icons/fa";
-import { FaMailBulk } from "react-icons/fa";
-import { BsTwitter } from "react-icons/bs";
+import {
+  FaTiktok,
+  FaInstagramSquare,
+  FaFacebookSquare,
+  FaWhatsappSquare,
+  FaPhoneSquare,
+  FaMailBulk,
+} from "react-icons/fa";
+import { FaXTwitter, FaSquareXTwitter } from "react-icons/fa6";
+import Link from "next/link";
 
 const MainFooter = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footerbg">
       <div className="w-full px-5 py-5 mx-auto sm:px-5 lg:px-16 text-sm md:text-base text-white">
@@ -27,18 +32,21 @@ const MainFooter = () => {
               <p className="font-bold text-lg"> Our Support </p>
 
               <nav className="flex flex-col my-4 space-y-2">
-                <a className="inline-block" href="">
+                <Link className="inline-block" href="about">
                   About
-                </a>
-                <a className="inline-block" href="">
+                </Link>
+                <Link className="inline-block" href="terms-of-use">
                   Terms of use
-                </a>
-                <a className="inline-block" href="">
+                </Link>
+                <Link className="inline-block" href="privacy-policy">
                   Privacy policy
-                </a>
-                <a className="inline-block" href="">
+                </Link>
+                <Link className="inline-block" href="cookies">
+                  Cookies
+                </Link>
+                <Link className="inline-block" href="faqs">
                   FAQs
-                </a>
+                </Link>
               </nav>
             </div>
 
@@ -46,29 +54,30 @@ const MainFooter = () => {
               <p className="font-bold"> Social Media</p>
 
               <nav className="flex flex-col my-4 space-y-2">
-                <div className="flex">
-                  <FaLinkedin />
-                  <a className="inline-block pl-3" href="">
-                    linkedin
-                  </a>
+                <div className="flex gap-2 items-center">
+                  <FaTiktok className="w-5 h-5" />
+                  <Link className="inline-block" href="">
+                    TikTok
+                  </Link>
                 </div>
-                <div className="flex">
-                  <FaFacebookSquare />
-                  <a className="inline-block pl-3" href="">
+                <div className="flex gap-2 items-center">
+                  <FaFacebookSquare className="w-5 h-5" />
+                  <Link className="inline-block" href="">
                     Facebook
-                  </a>
+                  </Link>
                 </div>
-                <div className="flex">
-                  <FaInstagramSquare />
-                  <a className="inline-block pl-3" href="">
+                <div className="flex gap-2 items-center">
+                  <FaInstagramSquare className="w-5 h-5" />
+                  <Link className="inline-block" href="">
                     Instagram
-                  </a>
+                  </Link>
                 </div>
-                <div className="flex">
-                  <BsTwitter />
-                  <a className="inline-block pl-3" href="">
-                    Twitter
-                  </a>
+                <div className="flex gap-2 items-center">
+                  {/* <FaXTwitter className="w-5 h-5" /> */}
+                  <FaSquareXTwitter className="w-5 h-5" />
+                  <Link className="inline-block" href="">
+                    X (Twitter)
+                  </Link>
                 </div>
               </nav>
             </div>
@@ -77,23 +86,29 @@ const MainFooter = () => {
               <p className="font-bold"> Contact Us</p>
 
               <nav className="flex flex-col my-4 space-y-2">
-                <div className="flex">
-                  <FaWhatsappSquare />
-                  <a className="inline-block pl-3" href="">
+                <div className="flex gap-2 items-center">
+                  <FaWhatsappSquare className="w-5 h-5" />
+                  <Link className="inline-block" href="">
                     WhatsApp
-                  </a>
+                  </Link>
                 </div>
-                <div className="flex">
-                  <FaMailBulk />
-                  <a className="inline-block pl-3 underline" href="">
+                <div className="flex gap-2 items-center">
+                  <FaMailBulk className="w-5 h-5" />
+                  <Link
+                    className="inline-block underline"
+                    href="mailto:info@mbox.ng"
+                  >
                     info@mbox.ng
-                  </a>
+                  </Link>
                 </div>
-                <div className="flex">
-                  <FaPhoneSquare />
-                  <a className="inline-block pl-3 underline" href="">
+                <div className="flex gap-2 items-center">
+                  <FaPhoneSquare className="w-5 h-5" />
+                  <Link
+                    className="inline-block underline"
+                    href="tel:+2348134567876"
+                  >
                     (+234) 813 4567 876
-                  </a>
+                  </Link>
                 </div>
               </nav>
             </div>
@@ -104,7 +119,7 @@ const MainFooter = () => {
       <div className="text-white">
         <div className="w-full py-4 border-t border-[#ABABAB]">
           <p className="text-base text-center">
-            &copy; 2024 All copyright Reserved
+            &copy; {currentYear} All Copyright Reserved
           </p>
         </div>
       </div>

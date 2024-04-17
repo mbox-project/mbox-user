@@ -113,7 +113,7 @@ const Category = () => {
                     </Link>
                   </div>
                 </div>
-                <Link href="" className="flex justify-center py-3">
+                <Link href="" className="flex text-base justify-center py-3">
                   {category.name}
                 </Link>
               </div>

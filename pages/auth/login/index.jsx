@@ -62,10 +62,10 @@ const Login = () => {
         <Image src={loginbg} className="w-full hfull my-auto" />
       </div>
       {isLoading && <Spinner />}
-      <div className="w-full h-full flex items-center justify-center bg-grayColor">
+      <div className="w-full h-full flex items-center justify-center bg-grayColor py-8 px-4 lg:p-0">
         <div className="w-full h-full flex flex-col items-stretch justify-center my-auto">
           <div className="text-center">
-            <h1 className="text-lg md:text-3xl font-bold mt20 lg:mt28 font-poppins text-orange-600 ">
+            <h1 className="text-xl md:text-3xl font-bold mt20 lg:mt28 font-poppins text-orange-600 ">
               Login
             </h1>
             <p className=" hidden md:flex justify-center md:text-sm pt-2 font-poppins text-gray-700">
@@ -83,7 +83,7 @@ const Login = () => {
                 name="email"
                 type="email"
                 value={email}
-                placeHolder="enter your email"
+                placeHolder="Enter your email"
                 className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 onChange={onChangeInput}
                 required
@@ -100,7 +100,7 @@ const Login = () => {
                   name="password"
                   type={showPassword ? "text" : "password"}
                   value={password}
-                  placeHolder="enter your password"
+                  placeHolder="Enter your password"
                   className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor  poppins mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                   onChange={onChangeInput}
                   required
@@ -131,7 +131,7 @@ const Login = () => {
                   onChange={onChangeInput}
                 />
                 <span className="text-lg lg:text-sm poppins">
-                  keep me Log in
+                  Keep me logged in
                 </span>
               </div>
               <div>

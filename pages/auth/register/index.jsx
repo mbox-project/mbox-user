@@ -55,14 +55,10 @@ const Register = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center items-center justify-center">
       <div className="hidden w-full h-screen lg:flex items-center">
-        <Image
-          src={authbg}
-          height={1200}
-          className="w-full h-[200px] my-auto"
-        />
+        <Image src={authbg} height={1200} className="w-full h-screen my-auto" />
       </div>
       {isLoading && <Spinner />}
-      <div className="w-full h-full flex items-center justify-center bg-grayColor">
+      <div className="w-full h-full flex items-center justify-center bg-grayColor py-8 lg:p-0">
         <div className="w-full h-full flex flex-col items-center justify-center my-auto">
           <div className="text-center">
             <h1 className="lg:text-4xl poppins text-orange-600 text-xl md:text-2xl lg:pt-0  font-bold lg:font-extrabold tracking-wide">
@@ -88,7 +84,7 @@ const Register = () => {
               <input
                 type="text"
                 {...initiate("fullname")}
-                placeHolder="enter your full name e.g Wahab Samuel"
+                placeHolder="Enter your full name e.g Wahab Samuel"
                 className=" w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required
               />
@@ -120,7 +116,7 @@ const Register = () => {
               <Label
                 className="w-full  pb-1 text-base text-[#9A9A9A]"
                 htmlFor="number"
-                title="Whatapp No *"
+                title="WhatsApp No *"
               />
 
               <div className="relative">
@@ -128,7 +124,7 @@ const Register = () => {
                   type="number"
                   {...initiate("phoneNumber")}
                   className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                  placeHolder="enter your phone number"
+                  placeHolder="Enter your phone number"
                   required
                 />
                 <p className="text-sm text-orange-600 pt-2">
@@ -140,7 +136,7 @@ const Register = () => {
               <Label
                 className="w-full font-poppins text-base text-[#9A9A9A]"
                 htmlFor="text"
-                placeHolder="male"
+                placeHolder="Male"
                 title="Sex"
               />
               <select
@@ -169,7 +165,7 @@ const Register = () => {
                   <input
                     type={showPassword ? "text" : "password"}
                     {...initiate("password")}
-                    placeHolder="enter your password"
+                    placeHolder="Enter your password"
                     className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                     required
                   />
