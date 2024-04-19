@@ -1,5 +1,5 @@
 import React from "react";
-import logo3 from "../../public/images/logo3.png";
+import logo1 from "../../public/images/logo1.png";
 import Image from "next/image";
 import { FaLinkedin } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
@@ -15,7 +15,7 @@ const MainFooter = () => {
       <div className="w-full px-5 py-5 mx-auto sm:px-5 lg:px-16 text-sm md:text-base text-white">
         <div className="block md:flex justify-between pt-5">
           <div className="w-full md:w-3/12">
-            <Image src={logo3} width={120} height={56} />
+            <Image src={logo1} width={140} height={26} />
             <p className="py-2">
               Empowering businesses, simplifying transactions with maximum
               security.{" "}
