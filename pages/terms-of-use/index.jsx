@@ -7,8 +7,8 @@ const TermsOfUse = () => {
   return (
     <div className="">
       <Navbar />
-      <section className=" w-full h-64 text-white aboutherobg block  ">
-        <h1 className="flex justify-center text-xl md:text-4xl lg:text-6xl poppins font-extrabold pt-16">
+      <section className=" w-full h-64 text-white aboutherobg flex flex-col justify-center items-center text-center">
+        <h1 className="flex justify-center text-xl md:text-4xl lg:text-6xl poppins font-extrabold ">
           Terms Of Use
           {/* The Use Terms and Conditions */}
         </h1>
