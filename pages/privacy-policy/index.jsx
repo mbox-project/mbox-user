@@ -207,7 +207,8 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://support.google.com/chrome/answer/95647 "
-                  className="text-brightRed hover:underline"
+                  className=" hover:underline"
+                  // text-brightRed
                 >
                   {""}
                   https://support.google.com/chrome/answer/95647
@@ -220,7 +221,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop"
-                  className="text-brightRed hover:underline"
+                  className=" hover:underline"
                 >
                   {""}
                   https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop
@@ -233,7 +234,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://help.opera.com/en/latest/security-and-privacy/"
-                  className="text-brightRed hover:underline"
+                  className=" hover:underline"
                 >
                   {""}
                   https://help.opera.com/en/latest/security-and-privacy/
@@ -246,7 +247,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://support.microsoft.com/en-gb/help/17442/windows-internet-explorer-delete-manage-cookies"
-                  className="text-brightRed hover:underline"
+                  className=" hover:underline"
                 >
                   {""}
                   https://support.microsoft.com/en-gb/help/17442/windows-internet-explorer-delete-manage-cookies
@@ -259,7 +260,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://support.apple.com/en-gb/guide/safari/manage-cookies-and-website-data-sfri11471/mac"
-                  className="text-brightRed hover:underline"
+                  className=" hover:underline"
                 >
                   {""}
                   https://support.apple.com/en-gb/guide/safari/manage-cookies-and-website-data-sfri11471/mac
@@ -272,7 +273,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://support.microsoft.com/en-gb/help/4468242/microsoft-edge-browsing-data-and-privacy"
-                  className="text-brightRed hover:underline"
+                  className=" hover:underline"
                 >
                   https://support.microsoft.com/en-gb/help/4468242/microsoft-edge-browsing-data-and-privacy
                 </a>{" "}
@@ -314,7 +315,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href=""
-                  className="underline hover:no-underline text-brightRed"
+                  className="underline hover:no-underline "
                 >
                   contact form
                 </a>
@@ -322,21 +323,15 @@ const PrivacyPolicy = () => {
               </li>
               <li className="">
                 (c) &nbsp; By telephone, on{" "}
-                <a
-                  href="tel:+2348134567876"
-                  className="text-brightRed hover:underline"
-                >
+                <a href="tel:+2348134567876" className=" hover:underline">
                   (+234) 813 4567 876
                 </a>
                 ; or
               </li>
               <li className="">
                 (d) &nbsp; By email, using{" "}
-                <a
-                  href="mailto:info@mbox.ng"
-                  className="text-brightRed hover:underline"
-                >
-                  {/* text-brightRed */}
+                <a href="mailto:info@mbox.ng" className=" hover:underline">
+                  {/*  */}
                   info@mbox.ng
                 </a>
               </li>
