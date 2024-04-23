@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../Button";
@@ -22,14 +22,26 @@ import elect from "../../public/images/elect.png";
 import decor from "../../public/images/decor.png";
 import stroke from "../../public/images/Stroke.png";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getProductCategories } from "../../store/product/productService";
+
 const Category = () => {
+  const dispatch = useDispatch();
+   const categories = useSelector((state) => state.product.categories)
   const [showAllCategories, setShowAllCategories] = useState(false);
+
+  useEffect(() => {
+    dispatch(getProductCategories());
+   
+  }, [dispatch]);
+  
 
   const toggleCategories = () => {
     setShowAllCategories(!showAllCategories);
   };
 
-  const categories = [
+  /**
+   * const categories = [
     { name: "Phones & Tablets", image: phones },
     { name: "Beauty & Skincare", image: skincare },
     { name: "Men's Fashion", image: men },
@@ -49,6 +61,7 @@ const Category = () => {
     { name: "Appliances", image: appliances },
     { name: "Real Estate", image: estate },
   ];
+   */
 
   const displayedCategories = showAllCategories
     ? categories
@@ -96,11 +109,11 @@ const Category = () => {
                 <div className="flex justify-center items-center h-32 w-32 border rounded-full shadow-md hover:-translate-y-1 hover:scale-110  duration-300">
                   <div className="hover:-translate-y-1 hover:scale-110  duration-300">
                     <Link href="">
-                      <Image src={category.image} />
+                      <Image src={phones} />
                     </Link>
                   </div>
                 </div>
-                <Link href="" className="flex justify-center py-3">
+                <Link href="" className="flex text-base justify-center py-3">
                   {category.name}
                 </Link>
               </div>

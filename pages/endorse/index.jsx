@@ -36,7 +36,7 @@ const endorse = () => {
       setEndorse(res.data?.items?.$values || []);
     })
     .catch((error) => console.log(error));;
-  }, [dispatch, pageNumber, pageSize]);
+  }, [dispatch, pageNumber, pageSize, setEndorse]);
 
 
   const handleEndorseForm = async (e) => {

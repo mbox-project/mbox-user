@@ -9,7 +9,7 @@ import { toastify } from "../../helpers";
 // import { payStackFund, reset } from "../../store/fundwallet/walletSlice";
 import { paystackFundWallet } from "../../store/fundwallet/walletService";
 
-const FundWallet = ({ open, setOpen }) => {
+const FundWallet = ({ openFund, setOpenFund }) => {
   // Add rememberMe property to it later..
   const [fundWalletData, setFundWalletData] = useState({
     amount: "",
@@ -41,7 +41,7 @@ const FundWallet = ({ open, setOpen }) => {
   };
 
   return (
-    <Modal open={open} onCancel={() => setOpen(false)} footer={null}>
+    <Modal open={openFund} onCancel={() => setOpenFund(false)} footer={null}>
       <div className="">
         {isLoading && <Spinner />}
 

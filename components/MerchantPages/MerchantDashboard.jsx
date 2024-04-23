@@ -1,17 +1,59 @@
-import React from "react";
+import React, { useState } from 'react';
 import Image from "next/image";
 import lady from "../../public/img/lady.svg";
 import JpegIcon from "../assets/JpegIcon";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+//import htmlToImage from 'html-to-image';
+import { toPng } from 'html-to-image';
+import { toastify } from '../../helpers';
+import Flyer from '../flier/flier';
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const MerchantDashboard = () => {
-  const username = useSelector((state) => state.auth.user.username).split(
+  const [showFlyer, setShowFlyer] = useState(true);
+  const [flyerImage, setFlyerImage] = useState('');
+  const [loading, setLoading] = useState(false)
+  const [imageGenerated, setImageGenerated] = useState(false); 
+  const username = useSelector((state) => state.auth.user.username)?.split(
     " "
   )[0];
   const { push } = useRouter();
+  const generateFlyer = () => {
+    setLoading(true)
+    toPng(document.querySelector('.flyer'))
+      .then(function (dataUrl) {
+        setFlyerImage(dataUrl);
+        setImageGenerated(true); 
+        toastify.alertSuccess("successfully generated flyer")
+        setLoading(false)
+      })
+      .catch(function (error) {
+        console.error('Error generating flyer:', error);
+      });
+  };
+
+  const handleFlyerVisiblity = () => {
+    setShowFlyer(!showFlyer);
+    setImageGenerated(false)
+    console.log("clicked", showFlyer);
+  };
+
+
+  // Function to handle download button click
+  const downloadFlyer = () => {
+    const link = document.createElement('a');
+    link.href = flyerImage;
+    link.download = 'flyer.png';
+    document.body.appendChild(link);
+    link.click();
+    setImageGenerated(false)
+  };
+
   return (
     <>
+  { showFlyer ?
+  (  <>
       <section className="grid grid-cols-2 gap-[0.5rem] py-[0.5rem]">
         <div className="flex flex-col space-y-2 bg-white rounded-lg px-10 py-2 items-center justify-between mt10 shadow-sm  hover:shadow-md">
           <Image
@@ -36,7 +78,7 @@ const MerchantDashboard = () => {
             Get a nice free store flier and share with your friends to support
             your business
           </p>
-          <button className="rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB]">
+          <button onClick={handleFlyerVisiblity} className="rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB]">
             Get Store Flier{" "}
           </button>
         </div>
@@ -101,7 +143,27 @@ const MerchantDashboard = () => {
             </div>
           </div>
         </div>
+       
       </section>
+    </>):
+    (
+     <>
+     <button  onClick={handleFlyerVisiblity} className=' flex gap-2 items-center text-xl my-5'> <IoMdArrowRoundBack/> Back</button>
+
+     <div className=' flex gap-3 mb-5'>
+     <button onClick={generateFlyer} className="rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB]">
+          {
+            loading === true ? "Generating..." : "Generate Flier"
+          }
+          </button>
+          <button disabled={!imageGenerated} onClick={downloadFlyer} className={`rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB] ${!imageGenerated && 'opacity-50 cursor-not-allowed'}`}>
+            Download Flier{" "}
+          </button>
+     </div>
+      <Flyer />
+     </>
+    )
+    }
     </>
   );
 };

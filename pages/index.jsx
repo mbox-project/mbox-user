@@ -1,4 +1,4 @@
-import React, from "react";
+import React from "react";
 import Header from "../components/Header";
 import Navbar from "../components/PagesLayout/Navbar";
 import NavTag from "../components/PagesLayout/NavTag";
@@ -22,8 +22,12 @@ import iconTwo from "/public/images/featureicon2.png";
 import iconThree from "/public/images/featureicon3.png";
 import banner1 from "/public/images/banner1.png";
 import banner2 from "/public/images/banner2.png";
+import mobilebanner1 from "/public/images/mobile-banner1.png";
+import mobilebanner2 from "/public/images/mobile-banner2.png";
+import banner2mobile from "/public/images/banner2-mobile.png";
 import banner3 from "/public/images/banner3.png";
 import banner4 from "/public/images/banner4.png";
+
 
 const featureCard = [
   {
@@ -75,24 +79,25 @@ let merchantCard = [
 
 const LandingPage = () => {
   const user = useSelector((state) => state.auth.user);
-  useGetUser();
+  //useGetUser();
   return (
+    
     <main>
       <header>
-        <div>{user?.role ? <Navbar /> : <Header />}</div>
-        <div className="px-2 md:px-16">
+        <div>{user?.userId ? <Navbar /> : <Header />}</div>
+        <div className="px-4 md:px-16">
           <NavTag />
         </div>
       </header>
 
-      <section className="px-2 md:px-16 py-10">
+      <section className="px-4 md:px-16 py-10">
         <Banner />
       </section>
 
-      <section className="px-2 md:px-16">
-        <di>
+      <section className="px-4 md:px-16">
+        <div>
           <GettingStarted />
-        </di>
+        </div>
         <div>
           <NewArrivals />
         </div>
@@ -121,7 +126,7 @@ const LandingPage = () => {
               </div>
             </div>
 
-            <div className="block md:flex w-full text-sm mt-10 justify-center pt-5 gap-5 space-y-3 md:space-y-0">
+            <div className="block md:flex w-full text-sm mt-10 justify-center pt-5 gap-5 space-y-[32px] md:space-y-0">
               <button className="h-12 w-full md:w-auto px-5 border-2 rounded-lg text-[#EF5612] border-[#EF5612]">
                 Sign up with us
               </button>
@@ -165,25 +170,30 @@ const LandingPage = () => {
         </section>
 
         <div className="static py-2 md:py-10">
-          <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner2bg.png')]">
+          <div className="md:flex w=full h-full rounded-xl bg-[#FFF7ED]">
             <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
-              <div className="flex flex-col justify-between px-10">
-                <h1 className="text-3xl text-[#491546] py-3 font-bold">
+              <div className="flex flex-col gap-3 justify-around md:px-10 px-2">
+                <h1 className="text-[20px] md:text-[40px] text-[#491546] py-3 font-medium">
                   ENDORSE <br />
                   <span className="text-[#EF5612]">BUSINESSES 👇</span>
                 </h1>
-                <p className="text-sm text-[#8492A7] py-2">
+                <p className="text-[12px] md:text-[18px] text-[#444444] py-2">
                   Express your support for friends business by endorsing their
                   business on <span className="text-[#EF5612]">Mbox </span> .
                 </p>
-                <p className="text-base">WE RISE BY LIFTING OTHERS !!!</p>
-                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-sm text-white">
+                <p className="text-[14px] md:text-[20px]">
+                  WE RISE BY LIFTING OTHERS !!!
+                </p>
+                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-[] md:text-[20px] text-white">
                   Endorse Businesses
                 </button>
               </div>
             </div>
-            <div className="w-full md:w-1/2 h-1/2 md:h-auto">
+            <div className="w-full md:flex hidden justify-end md:w-1/2 h-1/2 md:h-auto">
               <Image src={banner2} alt="ad" />
+            </div>
+            <div className="w-full flex md:hidden justify-end md:w-1/2 h-1/2 md:h-auto">
+              <Image src={banner2mobile} alt="ad" />
             </div>
           </div>
         </div>
@@ -192,25 +202,25 @@ const LandingPage = () => {
           <Category />
         </div>
 
-        <div className="static text-[#444444] py-2 md:py-10">
+        <div className="static hidden md:block text-[#444444] pb-2 md:py-16">
           <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner3bg.png')]">
             <div className="w-full md:w-1/2 h-1/2 md:h-auto">
               <Image src={banner3} alt="ad" />
             </div>
 
             <div className="flex justify-end w-full md:w-1/2 h-1/2 md:h-auto p-5">
-              <div className="flex flex-col justify-between px-5 text-left md:text-right">
-                <h1 className="text-3xl py-3 font-bold">
+              <div className="flex flex-col justify-around px-5 text-left md:text-right">
+                <h1 className="md:text-[48px] text-[] py-3 font-medium">
                   Giveon’s Crib 50% off
                 </h1>
-                <p className="text-2xl py-2">
+                <p className="text-[] md:text-[36px] py-2">
                   2nd - 31st December <br />
-                  <p className="text-sm py-5">
+                  <p className="text-base py-5">
                     Enjoy discount on all our products
                   </p>
                 </p>
                 <div className=" justify-end">
-                  <button className="w-fit justify-self-end p-2 px-5 my-3 rounded-lg bg-[#491546] text-sm text-white">
+                  <button className="w-fit justify-self-end p-2 px-5 my-3 rounded-lg bg-[#491546] text-[20px] text-white">
                     Buy Now
                   </button>
                 </div>
@@ -219,30 +229,79 @@ const LandingPage = () => {
           </div>
         </div>
 
+        {/* mobile banner */}
+        <div className="relative md:hidden flex justify-center text-[#444444] py-8">
+          <Image
+            src={mobilebanner1}
+            alt="ad"
+            className="w-full min-w-full mx-auto"
+          />
+          <div className="absolute w-max bottom-12">
+            <div className="flex flex-col justify-around max-w-[300px]">
+              <h1 className="text-[32px] py-3 font-medium">
+                Giveon’s Crib 50% off
+              </h1>
+              <p className="text-[18px] py-2">
+                2nd - 31st December
+                <p className="text-[14px] py-5">
+                  Enjoy discount on all our products
+                </p>
+              </p>
+              <button className="w-fit justify-self-end p-2 px-5 my-3 rounded-lg bg-[#491546] text-[20px] text-white">
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div>
           <PopularMerchants />
         </div>
 
-        <div className="static text-[#444444] pb-2 md:pb-16">
+        <div className="static hidden md:block text-[#444444] pb-2 md:py-16">
           <div className="md:flex w=full h-full rounded-xl bg-no-repeat bg-cover bg-center bg-[url('../public/images/banner4bg.png')]">
             <div className="flex w-full md:w-1/2 h-1/2 md:h-auto p-5">
-              <div className="flex flex-col justify-between px-5">
-                <h1 className="text-3xl py-3 font-bold">
+              <div className="flex flex-col justify-around px-5">
+                <h1 className="text-[] md:text-[48px] py-3 font-medium">
                   Giveon’s Crib 50% off
                 </h1>
-                <p className="text-2xl py-2">
+                <p className="text-[] md:text-[36px] py-2">
                   2nd - 31st December
-                  <p className="text-sm py-5">
+                  <p className="text-base py-5">
                     Enjoy discount on all our products
                   </p>
                 </p>
-                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-sm text-white">
+                <button className="w-fit p-2 px-5 my-3 rounded-lg bg-[#EF5612] text-[] md:text-[20px] text-white">
                   Buy Now
                 </button>
               </div>
             </div>
-            <div className="w-full md:w-1/2 h-1/2 md:h-auto">
+            <div className="w-full flex justify-end md:w-1/2 h-1/2 md:h-auto">
               <Image src={banner4} alt="ad" />
+            </div>
+          </div>
+        </div>
+        {/* mobile banner */}
+        <div className="relative md:hidden flex justify-center text-[#444444] py-8">
+          <Image
+            src={mobilebanner2}
+            alt="ad"
+            className="w-full min-w-full mx-auto"
+          />
+          <div className="absolute w-max bottom-12">
+            <div className="flex flex-col justify-around max-w-[300px]">
+              <h1 className="text-[32px] py-3 font-medium">
+                Giveon’s Crib 50% off
+              </h1>
+              <p className="text-[18px] py-2">
+                2nd - 31st December
+                <p className="text-[14px] py-5">
+                  Enjoy discount on all our products
+                </p>
+              </p>
+              <button className="w-fit p-2 px-12 my-3 rounded-lg bg-[#EF5612] text-[] md:text-[20px] text-white">
+                Buy Now
+              </button>
             </div>
           </div>
         </div>

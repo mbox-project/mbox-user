@@ -28,38 +28,32 @@ const Receipt = ({ data }) => {
       <div className="flex justify-between font-poppins">
         <div className="pl-7 mt-3">
           <p>Invoice to:</p>
-          {InvoiceApi.map((item) => {
-            return (
-              <div key={item.id}>
+              <div>
                 <p className="font-bold pt-1">{data?.buyer}</p>
-                <p className="pt-1">{item.Location}</p>
-                <p className="pt-1">{item.City}</p>
-                <p className="pt-1">{item.Telephone}</p>
-              </div>
-            );
-          })}
+                <p className="pt-1">{data.Location}</p>
+                <p className="pt-1">{data.City}</p>
+                <p className="pt-1">{data.Telephone}</p>
+              </div>  
         </div>
         <div className="pr-4 mt-2">
-          {PricetagApi.map((item) => {
-            return (
-              <div key={item.id}>
+              <div>
                 <div className="flex">
                   <p className="font-bold"> Invoice Tag :</p>
                   <p className="pl-2 pt-1">{data?.tag}</p>
                 </div>
                 <div className="flex">
                   <p className="font-bold">Date:</p>
-                  <p className="pl-2 pt-1">
-                    {new Date(data?.date).toLocaleDateString()}
+                  <p className="pl-2 ">
+                    {new Date(data?.dateCreated).toLocaleDateString()}
                   </p>
                 </div>
                 <div className="flex">
                   <p className="font-bold">Issued by:</p>
-                  <p className="pl-2 pt-1"> {data?.issuer}</p>
+                  <p className="pl-2"> {data?.issuer}</p>
                 </div>
               </div>
-            );
-          })}
+           
+        
         </div>
       </div>
       <ProductDes data={data} />

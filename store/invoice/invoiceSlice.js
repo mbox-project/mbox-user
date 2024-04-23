@@ -8,6 +8,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
+  invoice: []
 };
 
 //Generate Invoice
@@ -47,6 +48,12 @@ export const getInvoice = createAsyncThunk(
     return await invoiceService.getInvoice(id);
   }
 );
+export const getAllInvoice = createAsyncThunk(
+  "getallinvoice",
+  async () => {
+    return await invoiceService.getAllInvoice();
+  }
+);
 //create the invoiceReducer...
 export const invoiceSlice = createSlice({
   name: "invoice",
@@ -81,7 +88,7 @@ export const invoiceSlice = createSlice({
     builder.addCase(getInvoice.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
-      // state.message = action.payload.message;
+       state.invoice = action.payload;
       // state.invoiceLog = action.payload.data;
     });
     builder

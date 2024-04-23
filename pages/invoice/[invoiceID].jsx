@@ -23,6 +23,7 @@ const invoiceID = () => {
         .unwrap()
         .then((action) => {
           setData(action);
+          console.log(action)
         })
         .catch((error) => console.log(error));
   }, [invoiceID]);
@@ -65,7 +66,7 @@ const invoiceID = () => {
               <Edit />
             )}
           </div>
-          {data && <Receipt data={data} />}
+          {data && <Receipt data={data?.data} />}
           <MainFooter />
         </div>
       )}

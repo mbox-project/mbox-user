@@ -62,7 +62,8 @@ const NewArrivals = () => {
         </div>
 
         <ScrollMenu>
-          <div className="-mx-5 flex md:grid grid-cols-2 lg:flex py-10">
+          <div className="-mr-5 flex lg:flex py-10">
+            {/* md:grid grid-cols-2 */}
             {Fakeapi.map((items) => {
               return (
                 <div key={items.id}>
@@ -74,7 +75,7 @@ const NewArrivals = () => {
                       <Image src={men} />
                     </div>
                   </div>
-                  <div className="flex justify-between px-5 md:px-10">
+                  <div className="flex gap-3 justify-between px-5 md:px-10">
                     <p className="text-xs md:text-sm text-nowrap">
                       {items.Ques}
                     </p>

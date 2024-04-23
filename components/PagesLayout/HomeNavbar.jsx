@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import logo from "../../public/img/logo.svg";
+import newLogo from "../../public/img/marketbox.png";
 import arrow from "../../public/img/arrow.svg";
 import bell from "../../public/img/bell.svg";
 import profile from "../../public/img/profile.svg";
@@ -62,7 +63,14 @@ const HomeNavbar = () => {
             </svg>
           )} */}
             <div className="block">
-              <Image src={logo} alt="logo" width="100px" height="50px" />
+              {/* <Image src={logo} alt="logo" width="100px" height="50px" /> */}
+              <Image
+                src={newLogo}
+                alt="logo"
+                width={200}
+                height={50}
+                // className="max-w-4 max-h-2"
+              />
             </div>
             <Search />
             <div className="flex items-center space-x-6">

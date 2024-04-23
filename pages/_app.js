@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/globals.css";
+import "../styles/flier.css"
 import { wrapper } from "../store/store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
