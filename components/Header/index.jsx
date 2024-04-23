@@ -16,7 +16,7 @@ import { GiBowTieRibbon } from "react-icons/gi";
 import { BsPerson } from "react-icons/bs";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
 
   const user = useSelector((state) => state.auth.user);
 
