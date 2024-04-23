@@ -4,7 +4,7 @@ import React, { useMemo, useState } from "react";
 const onChange = (key) => {
   console.log(key);
 };
-const VendorEditProfile = ({ data, setData }) => {
+const VendorEditProfile = ({ data, setData }) => {   
   const [activeKey, setActiveKey] = useState("1");
   const items = useMemo(() => {
     return [
@@ -15,7 +15,7 @@ const VendorEditProfile = ({ data, setData }) => {
             Personal Details
           </div>
         ),
-        children: <PersonalDetails data={data} setActiveKey={setActiveKey} />,
+        children: <PersonalDetails data={data} setActiveKey={setActiveKey} setData={setData} />,
       },
       {
         key: "2",
@@ -35,7 +35,7 @@ const VendorEditProfile = ({ data, setData }) => {
       {
         key: "3",
         label: (
-          <div className="text-gray-500" onClick={() => setActiveKey("2")}>
+          <div className="text-gray-500" onClick={() => setActiveKey("3")}>
             Bank Information
           </div>
         ),

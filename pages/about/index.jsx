@@ -8,26 +8,25 @@ import MainFooter from "../../components/MainFooter";
 import OurTeam from "../../components/OurTeam";
 import TeamMate from "../../components/TeamMate";
 import OurProducts from "../../components/OurProducts";
+
 const AboutUs = () => {
   return (
     <div className="">
       <Navbar />
-      <section className=" w-full h-64 text-white aboutherobg block  ">
-        <h1 className="flex justify-center text-xl md:text-4xl lg:text-6xl poppins font-extrabold pt-16">
+      <section className=" w-full h-64 text-white aboutherobg flex flex-col justify-center items-center">
+        <h1 className="flex justify-center text-xl md:text-4xl lg:text-6xl poppins font-extrabold ">
           About Us
         </h1>
-        <p className="flex justify-center pt-2  text-grayColor poppins text-base tracking-wide md:pt-4">
+        <p className="flex justify-center pt-2 text-center text-grayColor poppins text-base tracking-wide md:pt-4">
           Learn more about our platform Mbox
         </p>
       </section>
       <Platform />
-      <section className="max-w-screen-xl px-4 py-10  md:py-8 lg:py-16 mx-auto sm:px-6 lg:px-8">
+      <section className="max-w-screen-xl p-4 mx-auto">
         <Image src={dividerimg} />
       </section>
-      <section>
+      <section className="py-8 lg:py-16 border-b">
         <OurTeam />
-      </section>
-      <section>
         <TeamMate />
       </section>
       <section>

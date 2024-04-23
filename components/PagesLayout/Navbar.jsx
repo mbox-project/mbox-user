@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import logo from "../../public/img/logo.svg";
+import newLogo from "../../public/img/marketbox.png";
 import arrow from "../../public/img/arrow.svg";
 import bell from "../../public/img/bell.svg";
 import profile from "../../public/img/profile.svg";
@@ -57,9 +58,17 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             )}
-            <div className="hidden md:block cursor-pointer">
-              <Link href="/">
-                <Image src={logo} alt="logo" width="100px" height="50px" />
+            <div className="hidden md:block cursor-pointer px-2">
+              <Link href="/" className="w-[100px] h-[50px]">
+                {/* <Image src={logo} alt="logo" width="100px" height="50px" /> */}
+
+                <Image
+                  src={newLogo}
+                  alt="logo"
+                  width={200}
+                  height={50}
+                  // className="max-w-4 max-h-2"
+                />
               </Link>
             </div>
             <Search />

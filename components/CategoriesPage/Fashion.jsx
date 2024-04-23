@@ -5,7 +5,7 @@ import ItemsApi from "./ItemsApi";
 import fashion from "../../public/images/fashion.png";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 
-const Fashion = () => {
+const Fashion = ({catName}) => {
   return (
     <section className="newsletterbg ">
       <div>
@@ -18,7 +18,7 @@ const Fashion = () => {
       >
         Find <span className="text-orange-600 px-1">Items </span>{" "}
         <span className="underline  decoration-brightRed  underline-offset-8 px-1">
-          Under Men’s Fashion Category{" "}
+          Under {catName.name} Category{" "}
         </span>
         Fast
       </h3>

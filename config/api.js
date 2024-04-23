@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //const baseURL = "http://52.2.104.53/api/";
-const baseURL = "https://localhost:44378/api/";
+const baseURL = " http://ec2-52-2-104-53.compute-1.amazonaws.com/api/";
 
 const api = axios.create({
   baseURL,
@@ -14,7 +14,7 @@ api.interceptors.response.use(undefined, function (error) {
       if (!error.response) {
         return error.originalMessage;
       }
-      return error.response.data.message?.toString();
+      return error.response.data?.message?.toString();
     },
   });
   return Promise.reject(error);
@@ -42,6 +42,15 @@ export const postApi = (url, body) => {
 
 export const patchApi = (url, body) => {
   return api.patch(url, body, {
+    headers: {
+      Authorization: `Bearer ${
+        typeof window !== undefined ? sessionStorage.getItem("token") : null
+      }`,
+    },
+  });
+};
+export const deleteApi = (url, body) => {
+  return api.delete(url, body, {
     headers: {
       Authorization: `Bearer ${
         typeof window !== undefined ? sessionStorage.getItem("token") : null

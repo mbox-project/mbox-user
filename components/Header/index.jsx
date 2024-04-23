@@ -2,6 +2,7 @@ import React from "react";
 import icon from "../../public/images/icon2.png";
 import Image from "next/image";
 import logo from "../../public/images/logo2.png";
+import newLogo from "../../public/img/marketbox.png";
 import beforeyoureg from "../../public/images/beforeyoureg.png";
 import Link from "next/link";
 import Search from "../PagesLayout/Search";
@@ -24,10 +25,24 @@ const Header = () => {
       <div className=" lg:px-20 p-4 mx-auto">
         <div className="flex relative">
           <div className="hidden md:flex pl-10 mt-1  md:mt-0 md:pl-0 lg:pr-12">
-            <Image src={logo} width="100px" height="50px" />
+            {/* <Image src={logo} width="100px" height="50px" /> */}
+            <Image
+              src={newLogo}
+              alt="logo"
+              width={200}
+              height={50}
+              // className="max-w-4 max-h-2"
+            />
           </div>
           <div className="pl-10 mt-1 md:hidden  md:mt-0 md:pl-0 lg:pr-12">
-            <Image src={logo} width="80px" height="40px" />
+            {/* <Image src={logo} width="80px" height="40px" /> */}
+            <Image
+              src={newLogo}
+              alt="logo"
+              width={160}
+              height={40}
+              // className="max-w-4 max-h-2"
+            />
           </div>
           <Search />
 
@@ -100,7 +115,7 @@ const Header = () => {
             </div>
           )}
 
-          <div className="relative right-28 pr-4 top-4 md:hidden">
+          <div className="relative right-48 pr-4 top-4 md:hidden">
             <button
               className="text-gray-600  rounded-lg"
               type="button"
