@@ -27,6 +27,7 @@ import mobilebanner2 from "/public/images/mobile-banner2.png";
 import banner2mobile from "/public/images/banner2-mobile.png";
 import banner3 from "/public/images/banner3.png";
 import banner4 from "/public/images/banner4.png";
+import Head from "next/head";
 
 const featureCard = [
   {
@@ -80,7 +81,9 @@ const LandingPage = () => {
   const user = useSelector((state) => state.auth.user);
   //useGetUser();
   return (
+    
     <main>
+      <Head><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/></Head>
       <header>
         <div>{user?.userId ? <Navbar /> : <Header />}</div>
         <div className="px-4 md:px-16">
