@@ -4,12 +4,11 @@ import Link from "next/link";
 import Header from "./Header";
 import Button from "../../components/Button";
 // import PreLaunchHeader from "../../../components/PreLaunchHeader";
-// import Seeds from "../../../public/images/seeds.png";
-// import Ourcare from "../../../public/images/ourcare.png";
+import Step from "../../public/images/step.png";
+import Benefit from "../../public/images/benefit.png";
 import Marketbox from "../../public/images/marketbox.png";
 import Partner from "../../public/images/partner.png";
-// import mailbg from "../../../public/img/mailbg.svg";
-// import ouroffer from "../../../public/img/ouroffer.svg";
+import Offer from "../../public/images/offer.png";
 import Growth from "../../public/images/growth.png";
 import Team from "../../public/images/team.png";
 import MainFooter from "../../components/MainFooter";
@@ -20,24 +19,28 @@ const landingpage = () => {
       <Header />
 
       <section>
-        <div className="flex flex-col justify-center bg-gray-100 pb-10">
-          <div className=" self-center m-5 p-5">
-            <h2 className="text-2xl font-semibold">
+        <div className="flex flex-col bg-[url('../public/images/stepbg.png')] bg-contain bg-[#F2F2F2]">
+          <div className="py-5">
+            <h2 className="text-lg md:text-4xl font-bold p-5 md:px-10">
               When You Plant Your Business Seeds Online;
             </h2>
           </div>
-          <div className=" self-center p-5">{/* <Image src={Seeds} /> */}</div>
+          <div className="px-5 cursor-pointer">
+            <Image src={Step} width={1200} height={500} />
+          </div>
         </div>
       </section>
 
       <section>
-        <div className="flex flex-col m-5 py-14">
-          <div className="self-center m-5 p-5">
-            <h2 className="text-2xl font-semibold">
+        <div className="flex flex-col py-14">
+          <div className="self-center p-5">
+            <h2 className="text-lg md:text-2xl font-bold">
               AND BECAUSE WE TRULY CARE, YOU WOULD NEVER HAVE TO WORRY ABOUT;
             </h2>
           </div>
-          <div className="self-center p-5">{/* <Image src={Ourcare} /> */}</div>
+          <div className="p-5 cursor-pointer">
+            <Image src={Benefit} width={1150} height={450} />
+          </div>
         </div>
       </section>
 
@@ -143,11 +146,15 @@ const landingpage = () => {
       </section>
 
       <section>
-        <div>
+        <div className="py-5">
           <div className="flex justify-center p-5">
-            <p className="text-2xl font-bold">A TIP INTO WHAT WE OFFER</p>
+            <p className="text-lg md:text-2xl font-bold">
+              A TIP INTO WHAT WE OFFER
+            </p>
           </div>
-          <div className="p-5">{/* <Image src={ouroffer} /> */}</div>
+          <div className="p-5 cursor-pointer">
+            <Image src={Offer} width={1100} height={700} />
+          </div>
         </div>
       </section>
 
@@ -167,7 +174,7 @@ const landingpage = () => {
       </section>
 
       <section>
-        <div className="block w-full h-auto p-10 md:p-20">
+        <div className="block w-full h-auto p-10 md:p-20 cursor-pointer">
           <Image src={Marketbox} width={1000} height={350} />
         </div>
       </section>
