@@ -1,9 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Header from "./Header";
 import Button from "../../components/Button";
-// import PreLaunchHeader from "../../../components/PreLaunchHeader";
 import Step from "../../public/images/step.png";
 import Benefit from "../../public/images/benefit.png";
 import Marketbox from "../../public/images/marketbox.png";
@@ -134,7 +132,7 @@ const landingpage = () => {
                         className="w-fit h-12 px-6 md:px-6 py-3 mt-1 rounded-md md:rounded-l-none lg:-ml-2 lg:mt-8 text-lg font-semibold tracking-wide  bg-[#EF5612] md:mt-4   sm:flex-shrink-0 sm:w-auto sm:mt-0"
                         type="submit"
                       >
-                        <Link href={""}>NOTIFY ME</Link>
+                        NOTIFY ME
                       </Button>
                     </div>
                   </div>

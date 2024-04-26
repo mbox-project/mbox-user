@@ -5,12 +5,8 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { signUpSchema } from "../../../helpers/validationSchema/signupSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Input from "../../../components/Input";
 import Label from "../../../components/Label";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import authbg from "../../../public/images/authbg.png";
 import { toastify } from "../../../helpers";
 import Spinner from "../../../components/Spinner";
 
@@ -54,13 +50,6 @@ const Register = () => {
 
   return (
     <div className="flex h-auto w-full items-center justify-between">
-      {/* <div className="hidden w-full h-screen lg:flex items-center">
-        <Image
-          src={authbg}
-          height={1200}
-          className="w-full h-[200px] my-auto"
-        />
-      </div> */}
       <div className="hidden md:block bg-[url('../public/images/preregisterbg.png')] bg-center bg-no-repeat bg-cover h-[1000px] w-5/12"></div>
 
       {isLoading && <Spinner />}

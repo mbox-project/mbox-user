@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/Link";
 import Logo from "../../public/images/logo1.png";
 
 const Header = () => {
@@ -13,8 +12,8 @@ const Header = () => {
               <Image src={Logo} alt="logo" width={140} height={20} />
             </div>
             <div className="flex p-2 md:p-5 gap-5 text-xs md:text-base">
-              <Link href="#">ABOUT US</Link>
-              <Link href="#">CONTACT US</Link>
+              <a href="#">ABOUT US</a>
+              <a href="#">CONTACT US</a>
             </div>
           </nav>
           <div className="flex flex-col text-center">
@@ -26,11 +25,11 @@ const Header = () => {
             </h3>
           </div>
           <div className="flex justify-center text-sm md:text-base font-semibold gap-5 py-3 md:pt-28">
-            <button className="w-32 h-auto p-1 md:p-3 bg-orange-600 rounded-lg">
+            <button className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg">
               Pre-Register
             </button>
 
-            <button className="w-32 h-auto p-1 md:p-3 bg-orange-600 rounded-lg">
+            <button className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg">
               Log-In
             </button>
           </div>
