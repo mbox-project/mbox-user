@@ -3,10 +3,8 @@ import Platform from "../../../components/Platform";
 import Image from "next/image";
 import Logo from "../../../public/images/logo1.png";
 import dividerimg from "../../../public/images/dividerimg.png";
-import Newsletter from "../../../components/Newsletter";
 import MainFooter from "../../../components/MainFooter";
 import OurTeam from "../../../components/OurTeam";
-import TeamMate from "../../../components/TeamMate";
 import OurProducts from "../../../components/OurProducts";
 
 const AboutUs = () => {
@@ -27,7 +25,7 @@ const AboutUs = () => {
               </nav>
 
               <div className="flex flex-col text-center">
-                <h1 className="self-center font-semibold lg:text-5xl text-3xl text-[#EF5612] py-2 md:py-10">
+                <h1 className="self-center font-semibold lg:text-6xl text-3xl text-[#EF5612] py-2 md:py-10">
                   COMING SOON
                 </h1>
                 <h3 className="self-center md:text-3xl text-sm w-fit p-1 md:p-3 mt-0 md:mt-10 rounded-md">
@@ -58,7 +56,7 @@ const AboutUs = () => {
       <section>
         <OurProducts />
       </section>
-      
+
       <section>
         <MainFooter />
       </section>

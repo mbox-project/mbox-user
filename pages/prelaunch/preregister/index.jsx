@@ -81,7 +81,7 @@ const Register = () => {
               <input
                 type="text"
                 {...initiate("fullname")}
-                placeHolder="enter your full name e.g Taylor Mason"
+                placeholder="enter your full name e.g Taylor Mason"
                 className=" w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required
               />
