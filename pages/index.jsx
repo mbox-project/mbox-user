@@ -28,6 +28,7 @@ import banner2mobile from "/public/images/banner2-mobile.png";
 import banner3 from "/public/images/banner3.png";
 import banner4 from "/public/images/banner4.png";
 
+
 const featureCard = [
   {
     id: 1,
@@ -78,8 +79,9 @@ let merchantCard = [
 
 const LandingPage = () => {
   const user = useSelector((state) => state.auth.user);
-  useGetUser();
+  //useGetUser();
   return (
+    
     <main>
       <header>
         <div>{user?.userId ? <Navbar /> : <Header />}</div>

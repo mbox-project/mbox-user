@@ -7,6 +7,14 @@ const invoice = async (invoiceData) => {
   console.log(response.data, "logged");
   return response.data;
 };
+const getAllInvoice = async () => {
+  try {
+    const response = await getApi("Invoice/getAllInvoice");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 const getInvoice = async (id) => {
   try {
     const response = await getApi(`Invoice/getInvoiceById/?invoiceid=${id}`);
@@ -18,5 +26,6 @@ const getInvoice = async (id) => {
 const invoiceService = {
   invoice,
   getInvoice,
+  getAllInvoice
 };
 export default invoiceService;

@@ -14,7 +14,7 @@ api.interceptors.response.use(undefined, function (error) {
       if (!error.response) {
         return error.originalMessage;
       }
-      return error.response.data.message?.toString();
+      return error.response.data?.message?.toString();
     },
   });
   return Promise.reject(error);
@@ -42,6 +42,15 @@ export const postApi = (url, body) => {
 
 export const patchApi = (url, body) => {
   return api.patch(url, body, {
+    headers: {
+      Authorization: `Bearer ${
+        typeof window !== undefined ? sessionStorage.getItem("token") : null
+      }`,
+    },
+  });
+};
+export const deleteApi = (url, body) => {
+  return api.delete(url, body, {
     headers: {
       Authorization: `Bearer ${
         typeof window !== undefined ? sessionStorage.getItem("token") : null

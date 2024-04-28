@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/PagesLayout/Layout";
-import { orderProducts } from "../../components/data";
+import { useDispatch } from "react-redux";
+import { getAllInvoice } from "../../store/invoice/invoiceSlice";
 import OrderProducts from "../../components/OrderProducts";
-import Pagenation from "../../components/Pagenation";
+import Pagination from "../../components/Pagenation";
 
-const index = () => {
+const Index = () => {
+  const dispatch = useDispatch();
+  const [orderProducts, setOrderProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(5); // You can change this value to set how many products per page
+
+  useEffect(() => {
+    dispatch(getAllInvoice())
+      .unwrap()
+      .then((response) => {
+        setOrderProducts(response?.$values);
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+  }, [dispatch]);
+
+  // Pagination logic
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = orderProducts?.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <Layout>
       <section className="card rectCard flex justify-between items-center text-lg border-b-2 mt-8 md:flex-row ">
@@ -24,13 +51,18 @@ const index = () => {
       </section>
       {/* Orders Content  */}
       <section className="card rectCard flex flex-col space-y-5">
-        {orderProducts.map((prod) => {
-          return <OrderProducts product={prod} key={prod.id} />;
-        })}
+        {currentProducts?.map((prod) => (
+          <OrderProducts product={prod} key={prod.id} />
+        ))}
       </section>
-      <Pagenation />
+      <Pagination
+        productsPerPage={productsPerPage}
+        totalProducts={orderProducts?.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
     </Layout>
   );
 };
 
-export default index;
+export default Index;

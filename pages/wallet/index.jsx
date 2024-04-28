@@ -15,6 +15,7 @@ import Withdraw from "../../components/Withdraw/WithdrawModal";
 
 const index = () => {
   const [open, setOpen] = useState(false);
+  const [openFund, setOpenFund] = useState(false);
   const { wallet, transactions } = useSelector((state) => state.wallet);
   const { email } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -125,7 +126,7 @@ const index = () => {
 
           <h4 className="tracking-wide">
             {" "}
-            <span onClick={() => setOpen(true)}>Fund Wallet</span>
+            <span onClick={() => setOpenFund(true)}>Fund Wallet</span>
           </h4>
         </button>
         <button
@@ -207,7 +208,7 @@ const index = () => {
           </div>
         );
       })}
-      {/* <FundWallet open={open} setOpen={setOpen} /> */}
+       <FundWallet openFund={openFund} setOpenFund={setOpenFund} /> 
       <Withdraw open={open} setOpen={setOpen} />  
     </Layout>
   );

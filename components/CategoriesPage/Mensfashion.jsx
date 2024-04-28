@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Data from "./Data";
 import Api from "./Api";
+import { useSelector, useDispatch } from "react-redux";
 import Image from "next/dist/client/image";
 import dealsimg from "../../public/images/dealsimg.png";
 import { BsHeart } from "react-icons/bs";
 import rectangle from "../../public/images/rectangle.png";
-const Mensfashion = () => {
+import { getProducts } from "../../store/product/productService";
+const Mensfashion = ({catName}) => {
+  const subCategories = useSelector((state) => state.product.subCategory)
+  const categoryIdToFilter = catName.id; // Example category ID to filter
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product.products)
+
+  useEffect(() => {
+      dispatch(getProducts());
+  }, [dispatch]);
+
+// Filter the products based on the category ID
+const filteredProducts = product?.filter(product => {
+    return product.categoryId === categoryIdToFilter;
+});
+
   return (
     <section className="block lg:flex pt-20  newsletterbg ">
       <div className="">
         <div className="bg-grayColor hidden lg:block ml-0 lg:ml-20 space-y-6 poppins pt-4 pl-4">
           <h5 className="font-medium poppins uppercase text-lg">Category</h5>
-          <p className="font-medium poppins text-base ">Mens Fashion</p>
-          {Data.map((item) => {
+          <p className="font-medium poppins text-base ">{catName.name}</p>
+          {subCategories.map((item) => {
             return (
-              <div key={item.id} className="block w-52 poppins pl-4 font-light">
-                <p className="pl-4">{item.type}</p>
+              <div key={item.$id} className="block w-52 poppins pl-4 font-light">
+                <p className="pl-4">{item.name}</p>
               </div>
             );
           })}
@@ -43,11 +59,11 @@ const Mensfashion = () => {
       <div className="newsletter">
         <div className=" hidden lg:flex bg-grayColor ml-0 lg:ml-6 p-4 ">
           <h5 className="font-bold text-2xl poppins pt-6  ">
-            Me
+           {catName.name?.substring(0, 2)}
             <span className="underline  decoration-brightRed  underline-offset-8">
-              n&apos;s Fash
+            {catName.name?.slice(2)}
             </span>
-            ion
+           
           </h5>
           <p className="font-light text-base px-24 pt-6 text-lightGray">
             price
@@ -74,8 +90,8 @@ const Mensfashion = () => {
           <h2 className="  pt-10 flex lg:hidden poppins justify-center text-2xl">
             Mens Fashion
           </h2>
-          <div className="grid grid-cols-2 md:flex  p-4 ">
-            {Api.map((items) => {
+          <div className="grid grid-cols-sm-auto md:grid-cols-3 md:gap-4 ">
+            {filteredProducts?.map((items) => {
               return (
                 <div key={items.id}>
                   <div className="flex mx-4  rounded-lg   ">
@@ -85,67 +101,20 @@ const Mensfashion = () => {
                   </div>
                   <div className="flex poppins ">
                     <p className=" pl-10 text-sm font-poppins font-extralight ">
-                      {items.Ques}
+                      {items.name}
                     </p>
                     <BsHeart size={20} />
                   </div>
                   <div className="flex ">
                     <p className="pl-10 font-poppins font-semibold">
-                      {items.Answers}
+                      {items.price}
                     </p>
                   </div>
                 </div>
               );
             })}
           </div>
-          <div className="grid grid-cols-2  md:flex  p-4 ">
-            {Api.map((items) => {
-              return (
-                <div key={items.id}>
-                  <div className="flex mx-4  rounded-lg   ">
-                    <div>
-                      <Image src={dealsimg} />
-                    </div>
-                  </div>
-                  <div className="flex poppins ">
-                    <p className=" pl-10 text-sm font-poppins font-extralight ">
-                      {items.Ques}
-                    </p>
-                    <BsHeart size={20} />
-                  </div>
-                  <div className="flex ">
-                    <p className="pl-10 font-poppins font-semibold">
-                      {items.Answers}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="grid grid-cols-2 md:flex  p-4 ">
-            {Api.map((items) => {
-              return (
-                <div key={items.id}>
-                  <div className="flex mx-4  rounded-lg   ">
-                    <div>
-                      <Image src={dealsimg} />
-                    </div>
-                  </div>
-                  <div className="flex poppins ">
-                    <p className=" pl-10 text-sm font-poppins font-extralight ">
-                      {items.Ques}
-                    </p>
-                    <BsHeart size={20} />
-                  </div>
-                  <div className="flex ">
-                    <p className="pl-10 font-poppins font-semibold">
-                      {items.Answers}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+         
         </div>
         <div className="flex justify-center bg-grayColor py-20 ml-0 lg:ml-6">
           <div>
