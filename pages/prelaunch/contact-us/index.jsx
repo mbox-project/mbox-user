@@ -4,6 +4,7 @@ import Logo from "../../../public/images/logo1.png";
 import Telephone from "../../../public/images/telephone.png";
 import MainFooter from "../../../components/MainFooter";
 import Label from "../../../components/Label";
+import Link from "next/link";
 
 const ContactUs = () => {
   return (
@@ -17,8 +18,8 @@ const ContactUs = () => {
                   <Image src={Logo} alt="logo" width={140} height={20} />
                 </div>
                 <div className="flex p-2 md:p-5 gap-5 text-xs md:text-base">
-                  <a href="#">ABOUT US</a>
-                  <a href="#">CONTACT US</a>
+                  <Link href="/prelaunch/about">ABOUT US</Link>
+                  <Link href="">CONTACT US</Link>
                 </div>
               </nav>
 

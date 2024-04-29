@@ -25,14 +25,16 @@ const Header = () => {
       <div className=" lg:px-20 p-4 mx-auto">
         <div className="flex relative">
           <div className="hidden md:flex pl-10 mt-1  md:mt-0 md:pl-0 lg:pr-12">
-            {/* <Image src={logo} width="100px" height="50px" /> */}
-            <Image
-              src={newLogo}
-              alt="logo"
-              width={200}
-              height={50}
-              // className="max-w-4 max-h-2"
-            />
+            <Link href="/">
+              {/* <Image src={logo} width="100px" height="50px" /> */}
+              <Image
+                src={newLogo}
+                alt="logo"
+                width={200}
+                height={50}
+                // className="max-w-4 max-h-2"
+              />
+            </Link>
           </div>
           <div className="pl-10 mt-1 md:hidden  md:mt-0 md:pl-0 lg:pr-12">
             {/* <Image src={logo} width="80px" height="40px" /> */}

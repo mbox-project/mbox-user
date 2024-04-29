@@ -6,6 +6,7 @@ import dividerimg from "../../../public/images/dividerimg.png";
 import MainFooter from "../../../components/MainFooter";
 import OurTeam from "../../../components/OurTeam";
 import OurProducts from "../../../components/OurProducts";
+import Link from "next/link";
 
 const AboutUs = () => {
   return (
@@ -19,8 +20,8 @@ const AboutUs = () => {
                   <Image src={Logo} alt="logo" width={140} height={20} />
                 </div>
                 <div className="flex p-2 md:p-5 gap-5 text-xs md:text-base">
-                  <a href="#">ABOUT US</a>
-                  <a href="#">CONTACT US</a>
+                  <Link href="">ABOUT US</Link>
+                  <Link href="/prelaunch/contact-us">CONTACT US</Link>
                 </div>
               </nav>
 
