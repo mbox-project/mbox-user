@@ -4,6 +4,15 @@ import Logo from "../../../public/images/logo1.png";
 import Telephone from "../../../public/images/telephone.png";
 import MainFooter from "../../../components/MainFooter";
 import Label from "../../../components/Label";
+import {
+  FaTiktok,
+  FaInstagramSquare,
+  FaFacebookSquare,
+  FaWhatsappSquare,
+  FaLinkedin,
+  FaMailBulk,
+} from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const ContactUs = () => {
   return (
@@ -51,82 +60,181 @@ const ContactUs = () => {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row py-5">
-            <div className="w-5/12 pr-0 md:pr-10">
-              <Image src={Telephone} />
+          <div>
+            <div className="flex flex-col md:flex-row py-5">
+              <div className="w-full md:w-5/12 pr-0 md:pr-10">
+                <Image src={Telephone} />
+              </div>
+
+              <div className="w-full md:w-7/12 h-auto">
+                <form className="grid content-between h-full">
+                  <div className="pb-2">
+                    <Label
+                      className="w-full pb-1 text-base text-[#9A9A9A]"
+                      htmlFor="text"
+                      title="Full Name *"
+                    />
+                    <input
+                      type="text"
+                      placeholder="e.g Taylor Mason"
+                      className="!w-full p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="py-2">
+                    <Label
+                      className="w-full pb-1 text-base text-[#9A9A9A]"
+                      htmlFor="email"
+                      title="Email *"
+                    />
+                    <input
+                      type="email"
+                      placeholder="e.g taylormason@gmail.com"
+                      className="!w-full p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="py-2">
+                    <Label
+                      className="w-full pb-1 text-base text-[#9A9A9A]"
+                      htmlFor="number"
+                      title="Phone Number *"
+                    />
+                    <input
+                      type="number"
+                      placeholder="(+234) 81 5657 8901"
+                      className="!w-full p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="py-2">
+                    <Label
+                      className="w-full pb-1 text-base text-[#9A9A9A]"
+                      htmlFor="text"
+                      title="Message *"
+                    />
+
+                    <textarea
+                      type="text"
+                      placeholder="Type your message here..."
+                      className="!w-full h-44 p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                      required
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end">
+            <button className="h-12 w-auto px-5 rounded-md text-white bg-[#EF5612]">
+              Submit
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="w-full h-auto px-10 py-5 md:py-16 text-[#444444]">
+          <div className="w-full p-2 md:p-10 border border-[#9A9A9A] rounded-xl shadow">
+            <div className="text-lg md:text-3xl font-semibold">
+              <h2>You could also reach us through our social media pages</h2>
             </div>
 
-            <div className="w-7/12">
-              <form className="">
-                <div className="pb-2">
-                  <Label
-                    className="w-full pb-1 text-base text-[#9A9A9A]"
-                    htmlFor="text"
-                    title="Full Name *"
-                  />
-                  <input
-                    type="text"
-                    placeholder="e.g Taylor Mason"
-                    className="!w-full p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                    required
+            <div className="pt-5 md:pt-10">
+              <div className="flex py-5">
+                <div className="grid content-center mr-2 md:mr-5">
+                  <FaFacebookSquare
+                    color="#EFEFEF"
+                    className="w-16 h-16 rounded-lg bg-[#444444]"
                   />
                 </div>
+                <div className="p-1 overflow-auto">
+                  <p className="text-sm md:text-lg">
+                    Be the first to get updates on our products, packages and
+                    other exciting information. Likes and follow us on facebook
+                    via{" "}
+                    <a className="text-[#EF5612]">
+                      {" "}
+                      https://www.facebook.com/marketbox.ng{" "}
+                    </a>
+                  </p>
+                </div>
+              </div>
 
-                <div className="py-2">
-                  <Label
-                    className="w-full pb-1 text-base text-[#9A9A9A]"
-                    htmlFor="email"
-                    title="Email *"
-                  />
-                  <input
-                    type="email"
-                    placeholder="e.g taylormason@gmail.com"
-                    className="!w-full p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                    required
+              <div className="flex py-5">
+                <div className="grid content-center mr-2 md:mr-5">
+                  <FaSquareXTwitter
+                    color="#EFEFEF"
+                    className="w-16 h-16 rounded-lg bg-[#444444]"
                   />
                 </div>
+                <div className="p-1 overflow-auto">
+                  <p className="text-sm md:text-lg">
+                    Join the Mbox conversations, business pointers and
+                    suggestions. Follow and engage Mbox on Twitter via
+                    <a className="text-[#EF5612]">
+                      {" "}
+                      https://www.twitter.com/marketbox.ng{" "}
+                    </a>
+                  </p>
+                </div>
+              </div>
 
-                <div className="py-2">
-                  <Label
-                    className="w-full pb-1 text-base text-[#9A9A9A]"
-                    htmlFor="number"
-                    title="Phone Number *"
-                  />
-                  <input
-                    type="number"
-                    placeholder="(+234) 81 5657 8901"
-                    className="!w-full p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                    required
+              <div className="flex py-5">
+                <div className="grid content-center mr-2 md:mr-5">
+                  <FaLinkedin
+                    color="#EFEFEF"
+                    className="w-16 h-16 rounded-lg bg-[#444444]"
                   />
                 </div>
-
-                <div className="py-2">
-                  <Label
-                    className="w-full pb-1 text-base text-[#9A9A9A]"
-                    htmlFor="text"
-                    title="Message *"
-                  />
-
-                  <textarea
-                    type="text"
-                    placeholder="Type your message here..."
-                    className="!w-full h-44 p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                    required
-                  />
+                <div className="p-1 overflow-auto">
+                  <p className="text-sm md:text-lg">
+                    To catch up with exciting banner, ads, promotions, and other
+                    graphics contents, follow and stick to Mbox on Instagram via
+                    <a className="text-[#EF5612]">
+                      {" "}
+                      https://www.linkedin.com/marketbox.ng
+                    </a>
+                  </p>
                 </div>
-              </form>
-
-              <div className="flex justify-end pt-5">
-                <button className="h-12 w-auto px-5 rounded-md text-white bg-[#EF5612]">
-                  Submit
-                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section></section>
+      <section>
+        <div className="w-full h-auto px-10 py-5 md:py-16 text-[#444444]">
+          <div className="p-2 md:p-10 border border-[#9A9A9A] rounded-xl shadow">
+            <div className="text-lg md:text-3xl font-semibold text-balance">
+              <p>Chat with our customer care agent 24/7 on WhatsApp</p>
+            </div>
+
+            <div className="flex py-5">
+              <div className="grid content-center mr-2 md:mr-5">
+                <FaWhatsappSquare
+                  color="#EFEFEF"
+                  className="w-16 h-16 rounded-lg bg-[#444444]"
+                />
+              </div>
+              <div className="p-1 overflow-auto">
+                <p className="text-sm md:text-lg">
+                  For questions, enquiry and directions about Mbox, reach out to
+                  our customer care representative on WhatsApp via
+                  <a className="text-[#EF5612]">
+                    {" "}
+                    https://wa.me/2348145678709{" "}
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section>
         <MainFooter />

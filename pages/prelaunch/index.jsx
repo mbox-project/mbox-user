@@ -54,7 +54,9 @@ const landingpage = () => {
                 You now have a partner in progress!!!
               </h3>
             </div>
-            <Image src={Partner} width={350} height={200} />
+            <div className="hidden md:flex">
+              <Image src={Partner} width={350} height={200} />
+            </div>
           </div>
         </div>
       </section>
@@ -67,14 +69,14 @@ const landingpage = () => {
             </h2>
           </div>
 
-          <div className="flex flex-col w-full h-auto">
-            <div className="flex flex-row justify-evenly w-full h-auto">
-              <div className="md:flex lg:flex w-1/2 h-auto">
+          <div className="flex flex-col w-full h-auto gap-5">
+            <div className="flex flex-col md:flex-row justify-evenly w-full h-auto">
+              <div className="md:flex lg:flex w-full md:w-1/2 h-auto">
                 <Image src={Growth} width={550} height={500} />
               </div>
-              <div className="md:flex lg:flex w-1/2 h-auto">
-                <div className="flex md:px-16 justify-center items-center text-left">
-                  <p className="text-xl md:text-2xl">
+              <div className="md:flex lg:flex w-full md:w-1/2 h-auto">
+                <div className="flex h-auto px-5 md:px-16 justify-center items-center text-left">
+                  <p className="text-xl md:text-2xl text-center">
                     We help you grow your business online and together we can
                     make that happen!
                   </p>
@@ -82,15 +84,18 @@ const landingpage = () => {
               </div>
             </div>
 
-            <div className="flex flex-row justify-evenly w-full h-auto">
-              <div className="md:flex lg:flex w-1/2 h-auto">
-                <div className="flex md:px-16 justify-center items-center text-left">
-                  <p className="text-xl md:text-2xl">
+            <div className="flex flex-col md:flex-row justify-evenly w-full h-auto">
+              <div className="flex md:hidden lg:flex w-full md:w-1/2 h-auto">
+                <Image src={Team} width={550} height={500} />
+              </div>
+              <div className="md:flex lg:flex w-full md:w-1/2 h-auto pb-5 md:pb-0">
+                <div className="flex h-auto px-5 md:px-16 justify-center items-center text-left">
+                  <p className="text-xl md:text-2xl text-center">
                     We absolutely make your happiness and goals our priority!
                   </p>
                 </div>
               </div>
-              <div className="md:flex lg:flex w-1/2 h-auto">
+              <div className="hidden md:flex lg:flex w-full md:w-1/2 h-auto">
                 <Image src={Team} width={550} height={500} />
               </div>
             </div>
