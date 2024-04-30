@@ -3,8 +3,11 @@ import Image from "next/image";
 import Logo from "../../public/images/logo1.png";
 import newLogo from "../../public/img/marketbox.png";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <div className="font-poppins text-[#FAFAFA]">
       <header className="h-auto md:h-screen w-full bg-[url('../public/images/headerbg.png')] bg-contain md:bg-cover md:bg-center">
@@ -29,11 +32,17 @@ const Header = () => {
             </h3>
           </div>
           <div className="flex justify-center text-sm md:text-base font-semibold gap-5 py-3 md:pt-28">
-            <button className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg">
+            <button
+              onClick={() => router.push("/auth/register")}
+              className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg"
+            >
               Pre-Register
             </button>
 
-            <button className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg">
+            <button
+              onClick={() => router.push("/auth/login")}
+              className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg"
+            >
               Log-In
             </button>
           </div>
