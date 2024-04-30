@@ -11,6 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import authbg from "../../../public/images/authbg.png";
+import registerbg from "../../../public/images/registerbg.png";
 import { toastify } from "../../../helpers";
 import Spinner from "../../../components/Spinner";
 
@@ -53,203 +54,218 @@ const Register = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center items-center justify-center">
-      <div className="hidden w-full h-screen lg:flex items-center">
-        <Image src={authbg} height={1200} className="w-full h-screen my-auto" />
+    <div className="grid grid-cols-1 lg:grid-cols-[45%_55%]">
+      <div className="hidden w-full h-screen max-h-screen lg:flex relative">
+        {/* bg-[#EF5612] */}
+        <img
+          // src="../../../public/images/authbg.png"
+          src="https://ucarecdn.com/a4cc7371-5eb0-453e-a38a-cc7831b320e7/registerbg.png"
+          // src="https://ucarecdn.com/8573206f-6b15-4017-bd67-214cb316e3fa/authpattern.png"
+          // height={1200}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
       </div>
       {isLoading && <Spinner />}
-      <div className="w-full h-full flex items-center justify-center bg-grayColor py-8 lg:p-0">
-        <div className="w-full h-full flex flex-col items-center justify-center my-auto">
-          <div className="text-center">
-            <h1 className="lg:text-4xl poppins text-orange-600 text-xl md:text-2xl lg:pt-0  font-bold lg:font-extrabold tracking-wide">
-              Create Account
-            </h1>
-            <div className="flex justify-center">
-              <p className="hidden md:flex font-extralight text-md poppins lg:md:max-w-sm lg:text-sm mt-4 lg:mt-2 text-lightGray pl-16 md:pl-0  leading-8 ">
-                Let&apos;s get you all set up. Provide us with the following
-                information to get started
-              </p>
-            </div>
-          </div>
-          <form
-            onSubmit={handleSubmit(onSubmitForm)}
-            className="w-[90%] mt-10 lg:mt-4"
-          >
-            <div className="mb-4">
-              <Label
-                className="w-full pb-1 text-base poppins text-[#9A9A9A]"
-                htmlFor="text"
-                title="Full Name *"
-              />
-              <input
-                type="text"
-                {...initiate("fullname")}
-                placeHolder="Enter your full name e.g Wahab Samuel"
-                className=" w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                required
-              />
-              <p className="text-sm text-orange-600 pt-2">
-                {errors.fullname?.message}
-              </p>
-            </div>
-            <div className="mb-4">
-              <Label
-                className="w-full poppins text-base  text-[#9A9A9A]"
-                htmlFor="email"
-                title="Email *"
-              />
-
-              <div className="relative">
-                <input
-                  type="email"
-                  {...initiate("email")}
-                  placeHolder="Enter your email"
-                  className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                  required
-                />
-                <p className="text-sm text-orange-600 pt-2">
-                  {errors.email?.message}
+      <div className="bg-grayColor w-full px-4 lg:px-0 h-full lg:max-h-screen lg:overflow-y-scroll">
+        <div className="w-full max-w-screen-sm lg:max-w-screen-md mx-auto h-full">
+          <div className="w-full h-full flex flex-col py-8">
+            <div className="text-center">
+              <h1 className="lg:text-4xl poppins text-orange-600 text-xl md:text-2xl lg:pt-4  font-bold lg:font-extrabold tracking-wide">
+                Create Account
+              </h1>
+              <div className="flex justify-center">
+                <p className="hidden md:flex font-extralight text-md poppins lg:md:max-w-sm lg:text-sm mt-4 lg:mt-2 text-lightGray pl-16 md:pl-0  leading-8 ">
+                  Let&apos;s get you all set up. Provide us with the following
+                  information to get started
                 </p>
               </div>
             </div>
-            <div className="mb-4">
-              <Label
-                className="w-full  pb-1 text-base text-[#9A9A9A]"
-                htmlFor="number"
-                title="WhatsApp No *"
-              />
-
-              <div className="relative">
-                <input
-                  type="number"
-                  {...initiate("phoneNumber")}
-                  className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                  placeHolder="Enter your phone number"
-                  required
-                />
-                <p className="text-sm text-orange-600 pt-2">
-                  {errors.phoneNumber?.message}
-                </p>
-              </div>
-            </div>
-            <div className="mb-4">
-              <Label
-                className="w-full font-poppins text-base text-[#9A9A9A]"
-                htmlFor="text"
-                placeHolder="Male"
-                title="Sex"
-              />
-              <select
-                {...initiate("gender")}
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                required
-              >
-                <option value="" disable selected>
-                  Select your Gender
-                </option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-              <p className="text-sm text-orange-600 pt-2">
-                {errors.gender?.message}
-              </p>
-            </div>
-            <div className="mb-4">
-              <Label
-                className="w-full text-base poppins text-[#9A9A9A]"
-                htmlFor="Password"
-                title="Password"
-              />
-              <div className="relative">
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    {...initiate("password")}
-                    placeHolder="Enter your password"
-                    className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                    required
-                  />
-                  <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
-                    {showPassword ? (
-                      <AiOutlineEyeInvisible
-                        className="block cursor-pointer text-[1.2rem]"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                      />
-                    ) : (
-                      <AiOutlineEye
-                        className="block cursor-pointer text-[1.2rem]"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                      />
-                    )}
-                  </div>
-                </div>
-                <p className="text-sm text-orange-600 pt-2">
-                  {errors.password?.message}
-                </p>
-              </div>
-            </div>
-            <div className="mb-4">
-              <Label
-                className="w-full text-base poppins text-[#9A9A9A]"
-                htmlFor="confirmPassword"
-                title="Re-Type Password *"
-              />
-              <div>
-                <div className="relative">
-                  <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    {...initiate("confirmPassword")}
-                    placeHolder="Confirm your password"
-                    className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm poppins  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
-                    required
-                  />
-                  <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
-                    {showConfirmPassword ? (
-                      <AiOutlineEyeInvisible
-                        className="block cursor-pointer text-[1.2rem]"
-                        onClick={() => {
-                          setShowConfirmPassword((prev) => !prev);
-                          console.log(errors);
-                        }}
-                      />
-                    ) : (
-                      <AiOutlineEye
-                        className="block cursor-pointer text-[1.2rem]"
-                        onClick={() => setShowConfirmPassword((prev) => !prev)}
-                      />
-                    )}
-                  </div>
-                </div>
-                <p className="text-sm text-orange-600 pt-2">
-                  {errors.confirmPassword?.message}
-                </p>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-orange-600 p-2 mt-3 lg:mt-6 lg:p-2 font-poppins  shadow-lg rounded-md text-white text-lg font-semibold"
+            <form
+              onSubmit={handleSubmit(onSubmitForm)}
+              className=" mt-10 lg:mt-4"
             >
-              Sign Up
-            </button>
+              <div className="mb-4">
+                <Label
+                  className="w-full pb-1 text-base poppins text-[#9A9A9A]"
+                  htmlFor="text"
+                  title="Full Name *"
+                />
+                <input
+                  type="text"
+                  {...initiate("fullname")}
+                  placeHolder="Enter your full name e.g Wahab Samuel"
+                  className=" w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                  required
+                />
+                <p className="text-sm text-orange-600 pt-2">
+                  {errors.fullname?.message}
+                </p>
+              </div>
+              <div className="mb-4">
+                <Label
+                  className="w-full poppins text-base  text-[#9A9A9A]"
+                  htmlFor="email"
+                  title="Email *"
+                />
 
-            <div className="flex justify-center mb-3">
-              <span className="text-gray-600 poppins text-sm mt-2 lg:mt-1">
-                By Sign Up, you’ve already agreed to our{" "}
-                <Link href="/">
-                  <a className="text-orange-600 font-bold">Terms & Condition</a>
+                <div className="relative">
+                  <input
+                    type="email"
+                    {...initiate("email")}
+                    placeHolder="Enter your email"
+                    className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 font-poppins border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                    required
+                  />
+                  <p className="text-sm text-orange-600 pt-2">
+                    {errors.email?.message}
+                  </p>
+                </div>
+              </div>
+              <div className="mb-4">
+                <Label
+                  className="w-full  pb-1 text-base text-[#9A9A9A]"
+                  htmlFor="number"
+                  title="WhatsApp No *"
+                />
+
+                <div className="relative">
+                  <input
+                    type="number"
+                    {...initiate("phoneNumber")}
+                    className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                    placeHolder="Enter your phone number"
+                    required
+                  />
+                  <p className="text-sm text-orange-600 pt-2">
+                    {errors.phoneNumber?.message}
+                  </p>
+                </div>
+              </div>
+              <div className="mb-4">
+                <Label
+                  className="w-full font-poppins text-base text-[#9A9A9A]"
+                  htmlFor="text"
+                  placeHolder="Male"
+                  title="Sex"
+                />
+                <select
+                  {...initiate("gender")}
+                  className="w-full p-1 text-[#9A9A9A]  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                  required
+                >
+                  <option value="" disable selected>
+                    Select your Gender
+                  </option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+                <p className="text-sm text-orange-600 pt-2">
+                  {errors.gender?.message}
+                </p>
+              </div>
+              <div className="mb-4">
+                <Label
+                  className="w-full text-base poppins text-[#9A9A9A]"
+                  htmlFor="Password"
+                  title="Password"
+                />
+                <div className="relative">
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      {...initiate("password")}
+                      placeHolder="Enter your password"
+                      className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                      required
+                    />
+                    <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
+                      {showPassword ? (
+                        <AiOutlineEyeInvisible
+                          className="block cursor-pointer text-[1.2rem]"
+                          onClick={() => setShowPassword((prev) => !prev)}
+                        />
+                      ) : (
+                        <AiOutlineEye
+                          className="block cursor-pointer text-[1.2rem]"
+                          onClick={() => setShowPassword((prev) => !prev)}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-sm text-orange-600 pt-2">
+                    {errors.password?.message}
+                  </p>
+                </div>
+              </div>
+              <div className="mb-4">
+                <Label
+                  className="w-full text-base poppins text-[#9A9A9A]"
+                  htmlFor="confirmPassword"
+                  title="Re-Type Password *"
+                />
+                <div>
+                  <div className="relative">
+                    <input
+                      type={showConfirmPassword ? "text" : "password"}
+                      {...initiate("confirmPassword")}
+                      placeHolder="Confirm your password"
+                      className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm poppins  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                      required
+                    />
+                    <div className="absolute translate-y-[-50%] text-[#899A9A] top-[55%] my-auto right-[3%]">
+                      {showConfirmPassword ? (
+                        <AiOutlineEyeInvisible
+                          className="block cursor-pointer text-[1.2rem]"
+                          onClick={() => {
+                            setShowConfirmPassword((prev) => !prev);
+                            console.log(errors);
+                          }}
+                        />
+                      ) : (
+                        <AiOutlineEye
+                          className="block cursor-pointer text-[1.2rem]"
+                          onClick={() =>
+                            setShowConfirmPassword((prev) => !prev)
+                          }
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-sm text-orange-600 pt-2">
+                    {errors.confirmPassword?.message}
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-orange-600 p-2 mt-3 lg:mt-6 lg:p-2 font-poppins  shadow-lg rounded-md text-white text-lg font-semibold"
+              >
+                Sign Up
+              </button>
+
+              <div className="flex justify-center mb-3">
+                <span className="text-gray-600 poppins text-sm mt-2 lg:mt-1">
+                  By Sign Up, you’ve already agreed to our{" "}
+                  <Link href="/">
+                    <a className="text-orange-600 font-bold">
+                      Terms & Conditions
+                    </a>
+                  </Link>
+                </span>
+              </div>
+              <div className="flex items-center gap-1 pb-8">
+                <p className="mt-3 text-lightGray text-md block">
+                  Existing User?
+                </p>
+                <Link href="/auth/login">
+                  <a className="text-orange-600 mt-3 text-md underline">
+                    Login
+                  </a>
                 </Link>
-              </span>
-            </div>
-            <div className="flex items-center gap-1">
-              <p className="mt-3 text-lightGray text-md block">
-                Existing User?
-              </p>
-              <Link href="/auth/login">
-                <a className="text-orange-600 mt-3 text-md underline">Login</a>
-              </Link>
-            </div>
-          </form>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
