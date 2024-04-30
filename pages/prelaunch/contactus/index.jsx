@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Logo from "../../../public/images/logo1.png";
 import Telephone from "../../../public/images/telephone.png";
 import MainFooter from "../../../components/MainFooter";
@@ -23,11 +24,13 @@ const ContactUs = () => {
             <div className="h-auto md:h-screen w-full bg-[#070207] bg-opacity-60">
               <nav className="flex flex-row justify-between p-2 md:p-10 w-full h-auto">
                 <div className="p-2 md:p-5">
-                  <Image src={Logo} alt="logo" width={140} height={20} />
+                  <Link href={"./"}>
+                    <Image src={Logo} alt="logo" width={140} height={20} />
+                  </Link>
                 </div>
                 <div className="flex p-2 md:p-5 gap-5 text-xs md:text-base">
-                  <a href="#">ABOUT US</a>
-                  <a href="#">CONTACT US</a>
+                  <a href="about">ABOUT US</a>
+                  <a href="contactus">CONTACT US</a>
                 </div>
               </nav>
 
