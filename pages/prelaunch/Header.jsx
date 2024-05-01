@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../public/images/logo1.png";
 import newLogo from "../../public/img/marketbox.png";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 const Header = () => {
@@ -12,7 +11,7 @@ const Header = () => {
   return (
     <div className="font-poppins text-[#FAFAFA]">
       <header className="h-auto md:h-screen w-full bg-[url('../public/images/headerbg.png')] bg-contain md:bg-cover md:bg-center">
-        <div className="h-auto md:h-screen w-full bg-[#070207] bg-opacity-60">
+        <div className="min-h-64 md:h-screen w-full bg-[#070207] bg-opacity-60">
           <nav className="flex flex-row justify-between p-2 md:p-10 w-full h-auto">
             <div className="p-2 md:p-5">
               <Link href={"/prelaunch"}>
@@ -20,8 +19,6 @@ const Header = () => {
               </Link>
             </div>
             <div className="flex p-2 md:p-5 gap-5 text-xs md:text-base">
-              <a href="prelaunch/about">ABOUT US</a>
-              <a href="prelaunch/contactus">CONTACT US</a>
               <Link href="/prelaunch/about">ABOUT US</Link>
               <Link href="/prelaunch/contact-us">CONTACT US</Link>
             </div>
@@ -41,19 +38,6 @@ const Header = () => {
 
             <button className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg">
               <Link href={"auth/login"}>Log-In</Link>
-            </button>
-            <button
-              onClick={() => router.push("/auth/register")}
-              className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg"
-            >
-              Pre-Register
-            </button>
-
-            <button
-              onClick={() => router.push("/auth/login")}
-              className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg"
-            >
-              Log-In
             </button>
           </div>
         </div>

@@ -108,7 +108,7 @@ const landingpage = () => {
           <div className="bg-[url('../public/images/mailbg.png')] bg-contain md:bg-cover md:bg-center">
             <div className="py-3 md:py-10">
               <div className="flex flex-col w-full h-auto px-2">
-                <p className="py-3 md:px-40 text-wrap text-center text-lg md:text-xl">
+                <p className="p-3 md:px-40 text-wrap text-center text-lg md:text-xl">
                   There is a marketplace in a Box for you. A box of happiness is
                   asking to live in your pockets. Happiness has never been this
                   close!
@@ -155,7 +155,7 @@ const landingpage = () => {
               A TIP INTO WHAT WE OFFER
             </p>
           </div>
-          <div className="p-5 cursor-pointer">
+          <div className="md:p-5 py-5 px-2.5 cursor-pointer">
             <Image src={Offer} width={1100} height={700} />
           </div>
         </div>

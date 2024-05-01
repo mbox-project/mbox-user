@@ -29,8 +29,6 @@ const ContactUs = () => {
                   </Link>
                 </div>
                 <div className="flex p-2 md:p-5 gap-5 text-xs md:text-base">
-                  <a href="about">ABOUT US</a>
-                  <a href="contactus">CONTACT US</a>
                   <Link href="/prelaunch/about">ABOUT US</Link>
                   <Link href="">CONTACT US</Link>
                 </div>
@@ -56,7 +54,7 @@ const ContactUs = () => {
       </section>
 
       <section>
-        <div className="flex flex-col text-[#444444] font-poppins px-10 py-5 md:py-16">
+        <div className="flex flex-col text-[#444444] font-poppins px-5 py-5 md:py-16">
           <div className="flex flex-col py-10">
             <h2 className=" text-3xl font-semibold py-5">Reach out to us</h2>
             <p className="text-lg">

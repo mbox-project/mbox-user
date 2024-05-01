@@ -7,7 +7,6 @@ import dividerimg from "../../../public/images/dividerimg.png";
 import MainFooter from "../../../components/MainFooter";
 import OurTeam from "../../../components/OurTeam";
 import OurProducts from "../../../components/OurProducts";
-import Link from "next/link";
 
 const AboutUs = () => {
   return (
@@ -18,13 +17,11 @@ const AboutUs = () => {
             <div className="h-auto md:h-screen w-full bg-[#070207] bg-opacity-60">
               <nav className="flex flex-row justify-between p-2 md:p-10 w-full h-auto">
                 <div className="p-2 md:p-5">
-                  <Link href={"./"}>
+                  <Link href="/">
                     <Image src={Logo} alt="logo" width={140} height={20} />
                   </Link>
                 </div>
                 <div className="flex p-2 md:p-5 gap-5 text-xs md:text-base">
-                  <a href="about">ABOUT US</a>
-                  <a href="contactus">CONTACT US</a>
                   <Link href="">ABOUT US</Link>
                   <Link href="/prelaunch/contact-us">CONTACT US</Link>
                 </div>
