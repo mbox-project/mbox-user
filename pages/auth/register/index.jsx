@@ -55,18 +55,9 @@ const Register = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[45%_55%]">
-      <div className="hidden w-full h-screen max-h-screen lg:flex relative">
-        {/* bg-[#EF5612] */}
-        <img
-          // src="../../../public/images/authbg.png"
-          src="https://ucarecdn.com/a4cc7371-5eb0-453e-a38a-cc7831b320e7/registerbg.png"
-          // src="https://ucarecdn.com/8573206f-6b15-4017-bd67-214cb316e3fa/authpattern.png"
-          // height={1200}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      </div>
+      <div className="hidden md:block bg-[url('../public/images/preregisterbg.png')] bg-center bg-no-repeat bg-cover h-full max-h-screen w-full"></div>
       {isLoading && <Spinner />}
-      <div className="bg-grayColor w-full px-4 lg:px-0 h-full lg:max-h-screen lg:overflow-y-scroll">
+      <div className="bg-grayColor w-full px-4 lg:px-8 h-full lg:max-h-screen lg:overflow-y-scroll">
         <div className="w-full max-w-screen-sm lg:max-w-screen-md mx-auto h-full">
           <div className="w-full h-full flex flex-col py-8">
             <div className="text-center">
