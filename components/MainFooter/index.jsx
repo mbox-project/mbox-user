@@ -50,7 +50,8 @@ const MainFooter = () => {
               </nav>
             </div>
 
-            <div className="col-span-2 sm:col-span-1">
+            <div className="col-span-1">
+              {/* col-span-2 sm: */}
               <p className="font-bold"> Social Media</p>
 
               <nav className="flex flex-col my-4 space-y-2">
@@ -82,7 +83,8 @@ const MainFooter = () => {
               </nav>
             </div>
 
-            <div className="col-span-2 sm:col-span-1">
+            <div className="col-span-1">
+              {/* col-span-2 sm: */}
               <p className="font-bold"> Contact Us</p>
 
               <nav className="flex flex-col my-4 space-y-2">
