@@ -33,11 +33,11 @@ const Header = () => {
           </div>
           <div className="flex justify-center text-sm md:text-base font-semibold gap-5 py-3 md:pt-28">
             <button className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg">
-              <Link href={"prelaunch/preregister"}>Pre-Register</Link>
+              <Link href={"/prelaunch/preregister"}>Pre-Register</Link>
             </button>
 
             <button className="w-32 h-auto p-1 md:p-3 bg-[#EF5612] rounded-lg">
-              <Link href={"auth/login"}>Log-In</Link>
+              <Link href={"/auth/login"}>Log-In</Link>
             </button>
           </div>
         </div>

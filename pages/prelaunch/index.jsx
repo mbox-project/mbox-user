@@ -11,7 +11,7 @@ import Growth from "../../public/images/growth.png";
 import Team from "../../public/images/team.png";
 import MainFooter from "../../components/MainFooter";
 
-const landingpage = () => {
+const LandingPage = () => {
   return (
     <main className=" text-gray-700 font-poppins">
       <Header />
@@ -185,4 +185,4 @@ const landingpage = () => {
     </main>
   );
 };
-export default landingpage;
+export default LandingPage;
