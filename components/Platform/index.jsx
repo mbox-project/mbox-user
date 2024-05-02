@@ -25,7 +25,7 @@ const Platform = () => {
               be done with ease
             </p>
             <Button className="w-full !h-12 px-5 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case lg:rounded-md lg:h-16 poppins lg:mt-24 text-sm  lg:text-lg font-bold tracking-wide  text-white sm:ml-4 md:ml-1 md:mt-10 sm:flex-shrink-0  lg:font-weight sm:w-auto mt-6 bg-[#EF5612] lg:ml-1">
-              <Link href="/auth/register"> Sign up Now</Link>
+              <Link href="/prelaunch/preregister"> Sign up Now</Link>
             </Button>
           </div>
         </div>

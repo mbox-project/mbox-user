@@ -81,7 +81,7 @@ const Register = () => {
               <input
                 type="text"
                 {...initiate("fullname")}
-                placeholder="enter your full name e.g Taylor Mason"
+                placeholder="Enter your full name e.g Taylor Mason"
                 className=" w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required
               />
@@ -141,7 +141,7 @@ const Register = () => {
               />
               <select
                 {...initiate("gender")}
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                className="w-full p-1 text-[#9A9A9A]  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required
               >
                 <option value="" disable selected>
@@ -163,7 +163,7 @@ const Register = () => {
               />
               <select
                 {...initiate("account")}
-                className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
+                className="w-full p-1 text-[#9A9A9A]  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                 required
               >
                 <option value="" disable selected>
@@ -206,7 +206,7 @@ const Register = () => {
                   <input
                     type={showPassword ? "text" : "password"}
                     {...initiate("password")}
-                    placeHolder="enter your password"
+                    placeHolder="Enter your password"
                     className="w-full p-1  md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                     required
                   />
@@ -229,7 +229,7 @@ const Register = () => {
                 </p>
               </div>
             </div>
-            
+
             <div className="mb-1">
               <Label
                 className="w-full text-base text-[#9A9A9A]"

@@ -35,7 +35,7 @@ const OurProducts = () => {
               </p>
               <div className="flex flex-col justify-end h-full">
                 <Button className="w-full lg:w-max !h-12 px-4 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case lg:rounded-md text-sm  lg:text-lg tracking-wide  text-white sm:flex-shrink-0 sm:w-auto bg-[#EF5612] ">
-                  <Link href="/auth/register"> Sign up Now</Link>
+                  <Link href="/prelaunch/preregister"> Sign up Now</Link>
                 </Button>
               </div>
             </div>

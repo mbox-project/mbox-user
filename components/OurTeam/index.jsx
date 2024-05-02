@@ -2,8 +2,11 @@ import React from "react";
 import Image from "next/image";
 
 import ourteamimg from "../../public/images/ourteamimg.png";
+import { useRouter } from "next/router";
 
 const OurTeam = () => {
+  const router = useRouter();
+
   return (
     <section>
       <div>
@@ -30,7 +33,10 @@ const OurTeam = () => {
                 every step of the way
               </p>
               <div className=" flex pt-10">
-                <button className="h-12 px-5 text-white rounded-md bg-[#EF5612]">
+                <button
+                  onClick={() => router.push("/prelaunch/contact-us")}
+                  className="h-12 px-5 text-white rounded-md bg-[#EF5612]"
+                >
                   Contact us
                 </button>
               </div>
