@@ -207,7 +207,6 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
 };
 export const BankInformation = ({ data, setData, showModal }) => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.auth.isLoading);
   const [bankName, setBankName] = useState("");
  
 

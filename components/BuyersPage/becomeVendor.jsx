@@ -96,7 +96,7 @@ const BecomeVendor = ({ data, setData }) => {
         ),
         children: (
           <>
-            <BankInformation data={data} setData={setData} showModal={showModal} />
+            <BankInformation data={data} setData={setData} showModal={showModal}  setActiveKey={setActiveKey} />
 
           </>
 
