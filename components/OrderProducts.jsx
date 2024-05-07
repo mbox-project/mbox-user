@@ -4,7 +4,8 @@ import shirt from "../public/img/shirt.png";
 import PropTypes from "prop-types";
 
 const OrderProducts = ({ product }) => {
-  const { products, buyer} = product;
+  const { products, buyer, storeName} = product;
+  const totalPoduct = products?.$values?.length 
   const pImage = products?.$values?.[0]?.productImage?.imageUrl
   function formatMoney(amount, locale = 'en-NG', currency = 'NGN') {
     const formatter = new Intl.NumberFormat(locale, {
@@ -24,25 +25,24 @@ const OrderProducts = ({ product }) => {
             )
             :
             (
-              <span></span>
+              <Image src={shirt} width={100} height={100} alt="product" />
             )
           }
         </div>
         <div className="flex flex-col space-y-4">
           <h2 className="text-gray-900 font-bold">{products?.$values?.[0]?.productDescription}</h2>
-          <h3 className="text-sm">{'type'}</h3>
+          <h3 className="text-sm">{storeName}</h3>
           <h2 className="text-md  text-gray-500">Product ID: {products?.$values?.[0]?.tag}</h2>
-          <h2 className="text-md  text-gray-500">{buyer}</h2>
+          <h2 className="text-md  text-gray-500">Buyer: {buyer}</h2>
         </div>
         <div className="flex flex-col space-y-4">
           <h2 className="text-gray-900 font-bold">{formatMoney(products?.$values?.[0]?.price)}</h2>
-
-          <h2>
-            <span className="text-md  text-gray-500">Color:</span>
-            <span className="font-bold"> {'color'}</span>
-          </h2>
           <h2 className="text-md  text-gray-500">
             QTY: <span className="text-red-500">{products?.$values?.[0]?.quantity}</span>
+          </h2>
+          <h2>
+            <span className="text-md  text-gray-500">Total Products: </span>
+            <span className="font-bold">{totalPoduct}</span>
           </h2>
         </div>
         <button

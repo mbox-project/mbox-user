@@ -23,22 +23,22 @@ const ProductDes = ({ data }) => {
           </thead>
           <tbody>
             {data?.invoiceProducts?.$values.map((e, i) => (
-              <tr key={i} className="py-8 text-center">
+              <tr key={i} className="py-8 text-center ">
                 <td className="py-[2rem] bg-slate-50">{i + 1}</td>
                 <td className="py-[2rem]">{e?.productDescription}</td>
                 <td className="py-[2rem] bg-slate-50">{formatMoney(e?.price)}</td>
                 <td className="py-[2rem]">{e?.quantity}</td>
-                <td className="py-[2rem] bg-slate-50">{e?.price * e?.quantity}</td>
+                <td className="py-[2rem] bg-slate-50">{formatMoney(e?.price * e?.quantity)}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div className="flex items-center justify-end p-[1rem]">
+        <div className="flex items-center justify-end p-[1rem] mt-5">
           <div className="grid grid-cols-2 justify-items-end gap-2">
             <span>Sub Total</span>
-            <span className="text-right w-[50%]">{formatMoney(data?.subTotal)}</span>
+            <span className="text-right">{formatMoney(data?.subTotal)}</span>
             <span>Escrow fee(5%)</span>
-            <span className="text-right w-[50%]">{formatMoney(data?.escFee)}</span>
+            <span className="text-right ">{formatMoney(data?.escFee)}</span>
           </div>
         </div>
         <div className="bg-brightRed w-full px-[1rem] py-[0.5rem] text-white text-[1.2rem] font-[600]">

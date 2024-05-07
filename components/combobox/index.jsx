@@ -21,7 +21,7 @@ export default function SearchSelect({ selected, setSelected, data }) {
         <div className="relative w-full cursor-default overflow-hidden rounded-[5px] text-left shadow-md focus:outline-none focus-visible:ring-2 focusvisible:ring-white focusvisible:ring-opacity-75 focusvisible:ring-offset-2 focusvisible:ring-offset-teal-300 sm:text-sm">
           <Combobox.Input
             className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  text-[#000] mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
-            displayValue={(selected) => selected.name}
+            displayValue={selected}
             placeholder="Select Bank Name"
             onChange={(event) => setQuery(event.target.value)}
           />
