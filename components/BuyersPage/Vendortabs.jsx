@@ -212,14 +212,21 @@ export const BankInformation = ({ data, setData, showModal }) => {
  
 
   const handleChange = (e) => {
-    setData((prev) => {
-      const update = {
-        ...prev,
-        [e.target.name]: e.target.value,
-      };
-      return { ...update, bankName: bankName.name };
-    });
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+     
+    }));
     console.log(data);
+  };
+
+   // Function to handle SearchSelect change
+   const handleSearchSelectChange = (selectedBank) => {
+    setBankName(selectedBank);
+    setData((prev) => ({
+      ...prev,
+      bankName: selectedBank.name, // Assuming 'name' is the property containing the bank name
+    }));
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
@@ -265,7 +272,7 @@ export const BankInformation = ({ data, setData, showModal }) => {
               <SearchSelect
                 data={banks}
                 selected={data?.bankName || bankName}
-                setSelected={setBankName}
+                setSelected={handleSearchSelectChange} 
               />
             </div>
             {/* <div className="mb-2">
@@ -290,6 +297,7 @@ export const BankInformation = ({ data, setData, showModal }) => {
                 title="Account Name"
               />
               <input
+              name="accountName"
                 type="text"
                 id="acctname"
                 //name="accountName"
