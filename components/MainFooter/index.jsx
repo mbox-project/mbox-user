@@ -23,6 +23,7 @@ const MainFooter = () => {
           <div className="w-full md:w-3/12">
             {/* <Image src={logo3} width={120} height={56} /> */}
             <Image src={newLogo} width={200} height={50} />
+
             <p className="py-2">
               Empowering businesses, simplifying transactions with maximum
               security.{" "}
@@ -34,22 +35,23 @@ const MainFooter = () => {
               <p className="font-bold text-lg"> Our Support </p>
 
               <nav className="flex flex-col my-4 space-y-2">
-                <Link className="inline-block" href="about">
+                <Link className="inline-block" href="/prelaunch/about">
                   About
                 </Link>
-                <Link className="inline-block" href="terms-of-use">
+                <Link className="inline-block" href="/terms-of-use">
                   Terms of use
                 </Link>
-                <Link className="inline-block" href="privacy-policy">
+                <Link className="inline-block" href="/privacy-policy">
                   Privacy policy
                 </Link>
-                <Link className="inline-block" href="faqs">
+                <Link className="inline-block" href="/faqs">
                   FAQs
                 </Link>
               </nav>
             </div>
 
-            <div className="col-span-2 sm:col-span-1">
+            <div className="col-span-1">
+              {/* col-span-2 sm: */}
               <p className="font-bold"> Social Media</p>
 
               <nav className="flex flex-col my-4 space-y-2">
@@ -81,7 +83,8 @@ const MainFooter = () => {
               </nav>
             </div>
 
-            <div className="col-span-2 sm:col-span-1">
+            <div className="col-span-1">
+              {/* col-span-2 sm: */}
               <p className="font-bold"> Contact Us</p>
 
               <nav className="flex flex-col my-4 space-y-2">

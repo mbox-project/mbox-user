@@ -23,18 +23,19 @@ const OurProducts = () => {
               </div>
 
               <p className="flex text-sm lg:text-lg  lg:max-w-2xl justify-center w-full lg:block lg:leading-7  leading-relaxed">
-                How African businesses attain growth and brand exposure cost
-                efficiently is as important as bringing their businesses online.
-                To us, we are convinced that it’s not only the digital identity
-                that matters; we want to protect you, make you smile and help
-                you grow.
+                Ensuring that African SMEs achieve growth and brand exposure
+                cost-effectively is just as crucial as establishing their online
+                presence. For us, we firmly believe that it's not only about the
+                digital identity; we are committed to safeguarding you, making
+                entrepreneurship more fulfilling, and fostering your growth.
               </p>
               <p className="lg:leading-7 text-sm lg:text-lg">
-                This we will continue to do even at our very best!{" "}
+                This commitment remains steadfast, even as we strive to
+                deliver our very best!
               </p>
               <div className="flex flex-col justify-end h-full">
-                <Button className="w-full lg:w-max px-12 py-4 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case lg:rounded-md text-sm  lg:text-lg font-bold tracking-wide  text-white sm:flex-shrink-0 sm:w-auto bg-orange-600 ">
-                  <Link href="/auth/register"> Register Now</Link>
+                <Button className="w-full lg:w-max !h-12 px-4 hover:-translate-y-1 hover:scale-110  duration-300 uppercase lg:normal-case lg:rounded-md text-sm  lg:text-lg tracking-wide  text-white sm:flex-shrink-0 sm:w-auto bg-[#EF5612] ">
+                  <Link href="/prelaunch/preregister"> Sign up Now</Link>
                 </Button>
               </div>
             </div>

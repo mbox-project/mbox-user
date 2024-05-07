@@ -2,8 +2,11 @@ import React from "react";
 import Image from "next/image";
 
 import ourteamimg from "../../public/images/ourteamimg.png";
+import { useRouter } from "next/router";
 
 const OurTeam = () => {
+  const router = useRouter();
+
   return (
     <section>
       <div>
@@ -14,26 +17,32 @@ const OurTeam = () => {
                 OUR <span className="text-orange-600 pl-2 lg:pl-0"> TEAM</span>
               </h2>
               <div className="lg:hidden">
-                <Image src={ourteamimg} />
+                <Image src={ourteamimg} height={660} width={600} />
               </div>
               <p className="flex justify-between md:justify-center poppins  font-medium md:block pt-4 lg:pt-8 lg:leading-7  md:leading-9 md:text-xl lg:text-lg">
-                I am happy to introduce to you what Mbox looks like internally.
-                The team is committed to upholding the culture that defines us
-                as a customer obsessed company with absolute resilience and
-                agility. The zeal to transform E-commerce with our users in mind
-                makes us better day by day.
+                It is one thing to recognize a problem, another to create a
+                solution, but a significant accomplishment to develop a solution
+                that can positively impact lives. Our skilled team has not only
+                identified a problem but also crafted and implemented a solution
+                that will empower businesses, improve lives, and expand economic
+                opportunities through the utilization of the internet.
               </p>
               <p className="lg:pt-10 pt-4 poppins md:pt-5  md:leading-9 md:text-xl  leading-7 lg:text-lg ">
-                The zeal to transform E-commerce with our users in mind makes us
-                better day by day.
+                We are excited to commence on a small scale with the ambition to
+                grow, continually enhancing the product with our users in mind
+                every step of the way
               </p>
-              <p className=" lg:pt-10 pt-4 md:pt-6  md:leading-9 md:text-xl             lg:text-2xl font-semibold">
-                Ojokuye Wahab Adewale
-              </p>
-              <p className=" pt-2 text-orange-600 ">Co-founder/CEO, MBOX </p>
+              <div className=" flex pt-10">
+                <button
+                  onClick={() => router.push("/prelaunch/contact-us")}
+                  className="h-12 px-5 text-white rounded-md bg-[#EF5612]"
+                >
+                  Contact us
+                </button>
+              </div>
             </div>
             <div className=" hidden lg:flex">
-              <Image src={ourteamimg} />
+              <Image src={ourteamimg} height={660} width={600} />
             </div>
           </div>
         </div>
