@@ -227,15 +227,21 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
   const loading = useSelector((state) => state.auth.isLoading);
   const [bankName, setBankName] = useState({});
   const handleChange = (e) => {
-    setData((prev) => {
-      const update = {
-        ...prev,
-        [e.target.name]: e.target.value,
-        bankName: bankName?.name
-      };
-      return { ...update,  };
-    });
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+     
+    }));
     console.log(data);
+  };
+
+   // Function to handle SearchSelect change
+   const handleSearchSelectChange = (selectedBank) => {
+    setBankName(selectedBank);
+    setData((prev) => ({
+      ...prev,
+      bankName: selectedBank.name, // Assuming 'name' is the property containing the bank name
+    }));
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
@@ -280,7 +286,7 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
               <SearchSelect
                 data={banks}
                 selected={data?.bankName || bankName}
-                setSelected={setBankName}
+                setSelected={handleSearchSelectChange} // Pass the handleSearchSelectChange function
               />
             </div>
             {/* <div className="mb-2">

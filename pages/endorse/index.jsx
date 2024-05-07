@@ -13,6 +13,7 @@ const endorse = () => {
   const [endorse, setEndorse] = useState();
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(3);
+  
 
   const [endorseData, setData] = useState({
     storeName: "",
@@ -36,7 +37,7 @@ const endorse = () => {
       setEndorse(res.data?.items?.$values || []);
     })
     .catch((error) => console.log(error));;
-  }, [dispatch, pageNumber, pageSize, setEndorse]);
+  }, [dispatch, pageNumber, pageSize]);
 
 
   const handleEndorseForm = async (e) => {
@@ -57,6 +58,7 @@ const endorse = () => {
       const result = await response.text();
       if(result === 'true'){
         toastify.alertSuccess("Endorsement successful");
+        getEndorsements({ pageNumber, pageSize })
       }else{
         toastify.alertSuccess(result);
       }

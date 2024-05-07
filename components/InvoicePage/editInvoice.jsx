@@ -9,16 +9,48 @@ import Label from "../Label";
 import Button from "../Button";
 import { FiMinusCircle } from "react-icons/fi";
 import { MdOutlineAddCircleOutline } from "react-icons/md"
-const invoiceInput = () => {
+import { getInvoice } from "../../store/invoice/invoiceSlice";
+const InvoiceEdit = () => {
   // Add rememberMe property to it later.
+  const [data, setData] = useState(null);
   const dispatch = useDispatch();
+  const router = useRouter();
+  const { invoiceId } = router.query;
   const user = useSelector((state) => state.auth.user);
   //const fullname = useSelector((state) => state.user.fullname);
-  const router = useRouter();
+  
+
+  useEffect(() => {
+    if (invoiceId) {
+      dispatch(getInvoice(invoiceId))
+        .unwrap()
+        .then((action) => {
+          setData(action);
+          console.log(action);
+  
+          // Assuming action contains the invoice data with products array
+          if (action && action.data.invoiceProducts.$values) {
+            const mappedProducts = action.data.invoiceProducts.$values.map((product) => ({
+              productId: product.productId,
+              price: product.price,
+              quantity: product.quantity,
+              productTag: product.productTag,
+              productDescription:  product.productDescription
+            }));
+            setProductsList(mappedProducts);
+          }
+        })
+        .catch((error) => console.log(error));
+    }
+
+    console.log(invoiceId)
+  }, [invoiceId, dispatch]);
   const product = {
     productId: "GC-00002-69321",
+    productTag: "",
     price: "",
     quantity: "",
+    productDescription: ""
   };
   const [productsList, setProductsList] = useState([product]);
   const [invoiceData, setInvoiceData] = useState({
@@ -88,7 +120,7 @@ const invoiceInput = () => {
           <div className="border rounded-md shadow-lg w-full md:w-[60%] mx-auto relative">
             <div className="bg-brightRed sticky top-0">
               <p className="py-4 px-2 md:px-10 text-white text-xl text-center">
-                Generate an Invoice
+                Edit Invoice
               </p>
               <div className="bg-lightPink ">
                 <p className="py-3 text-center font-poppins text-sm">
@@ -127,7 +159,7 @@ const invoiceInput = () => {
                     type="text"
                     placeHolder="GC-10234"
                     className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                    value={e.tag}
+                    value={e.productTag}
                     onChange={(cur) => onProductChangeInput(cur, i)}
                     required
                   />
@@ -241,7 +273,7 @@ const invoiceInput = () => {
               className="w-[90%] mx-auto my-4 rounded-md shadow-lg bg-brightRed py-2 text-white flex justify-center text-base poppins"
               onClick={onSubmitHandler}
             >
-              Generate Invoice
+              Edit Invoice
             </Button>
           </div>
         </div>
@@ -249,4 +281,4 @@ const invoiceInput = () => {
     </>
   );
 };
-export default invoiceInput;
+export default InvoiceEdit;

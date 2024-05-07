@@ -35,7 +35,7 @@ const Index = () => {
   return (
     <Layout>
       <section className="card rectCard flex justify-between items-center text-lg border-b-2 mt-8 md:flex-row ">
-        <h4 className="text-2xl font-medium mt-5">Orders</h4>
+        <h4 className="text-2xl font-medium mt-5">Invoices</h4>
         <form>
           <select
             id="sort"
