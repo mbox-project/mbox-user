@@ -1,8 +1,14 @@
 import React from "react";
 import LandingPage from "./prelaunch/index";
+import InstallButton from "../components/PromptInstall/InstallButton";
 
 const index = () => {
-  return <LandingPage />;
+  return (
+    <>
+      <LandingPage />
+      <InstallButton />
+    </>
+  );
 };
 
 export default index;
