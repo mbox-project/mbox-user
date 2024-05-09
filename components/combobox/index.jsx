@@ -9,11 +9,11 @@ export default function SearchSelect({ selected, setSelected, data }) {
     query === ""
       ? data
       : data.filter((person) =>
-          person.name
-            .toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""))
-        );
+        person.name
+          .toLowerCase()
+          .replace(/\s+/g, "")
+          .includes(query.toLowerCase().replace(/\s+/g, ""))
+      );
 
   return (
     <Combobox value={selected} onChange={setSelected}>
@@ -29,13 +29,7 @@ export default function SearchSelect({ selected, setSelected, data }) {
             <FiChevronDown />
           </Combobox.Button>
         </div>
-        <Transition
-          as={Fragment}
-          leave="transition ease-in duration-100"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-          afterLeave={() => setQuery("")}
-        >
+       
           <Combobox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
             {filteredPeople.length === 0 && query !== "" ? (
               <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
@@ -45,36 +39,27 @@ export default function SearchSelect({ selected, setSelected, data }) {
               filteredPeople.map((person, i) => (
                 <Combobox.Option
                   key={i}
-                  className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? "text-blue-400" : "text-gray-900"
+                  className={(props) =>
+                   `relative cursor-default select-none py-2 pl-10 pr-4 ${props.active ? "text-blue-400" : "text-gray-900"
                     }`
                   }
                   value={person}
                 >
-                  {({ selected, active }) => (
-                    <>
+                  {(props) => (
+                    <div className="flex items-center">
                       <span
-                        className={`block truncate ${
-                          selected ? "font-medium" : "font-normal"
-                        }`}
+                        className={`block truncate ${props.selected ? "font-medium" : "font-normal"
+                          }`}
                       >
                         {person?.name}
                       </span>
-                      {selected ? (
-                        <span
-                          className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                            active ? "text-white" : "text-blueTheme"
-                          }`}
-                        ></span>
-                      ) : null}
-                    </>
+                    </div>
                   )}
                 </Combobox.Option>
               ))
             )}
           </Combobox.Options>
-        </Transition>
+       
       </div>
     </Combobox>
   );

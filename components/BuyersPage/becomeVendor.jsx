@@ -91,7 +91,7 @@ const BecomeVendor = ({ data, setData }) => {
         key: "3",
         label: (
           <div className="text-gray-500" onClick={() => setActiveKey("3")}>
-            Bank Information
+            Bank Information 
           </div>
         ),
         children: (
@@ -103,7 +103,7 @@ const BecomeVendor = ({ data, setData }) => {
         ),
       },
     ];
-  }, [data]);
+  }, [data, setData, showModal]);
   return (
     <>
       <Tabs
