@@ -222,9 +222,9 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
     </form>
   );
 };
-export const BankInformation = ({ data, setData, setActiveKey }) => {
+export const BankInformation = ({ data, setData }) => {
   const dispatch = useDispatch();
-  const [bankName, setBankName] = useState({});
+  const [bankName, setBankName] = useState("");
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
@@ -234,13 +234,14 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
     console.log(data);
   };
 
-   // Function to handle SearchSelect change
-   const handleSearchSelectChange = (selectedBank) => {
+  // Function to handle SearchSelect change
+  const handleSearchSelectChange = (selectedBank) => {
     setBankName(selectedBank);
     setData((prev) => ({
       ...prev,
       bankName: selectedBank.name, // Assuming 'name' is the property containing the bank name
     }));
+    console.log(bankName);
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
@@ -269,7 +270,7 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
               <input
                 name="accountNumber"
                 type="number"
-                placeHolder="1357 0245 6456 9981"
+                placeholder="1357 0245 6456 9981"
                 className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
                 onChange={handleChange}
                 required
@@ -316,6 +317,7 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
                 onChange={handleChange}
                 className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
                 placeholder="Taylor Mason"
+                value={data?.accountName}
               />
             </div>
             {/* <div className="mb-2">

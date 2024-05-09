@@ -16,6 +16,9 @@ const index = () => {
     userId: user?.userId,
     fullname: user?.fullname,
     email: user?.email,
+    accountNumber: user?.accountNumber,
+    bankName: user?.bankName,
+    accountName: user?.accountName,
   });
   const [vendorData, setVendorData] = useState({
     userId: user?.userId,

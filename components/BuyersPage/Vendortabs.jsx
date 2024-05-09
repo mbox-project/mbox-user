@@ -255,13 +255,14 @@ export const BankInformation = ({ data, setData, showModal }) => {
               <input
                 name="accountNumber"
                 type="number"
-                placeHolder="1357 0245 6456 9981"
+                placeholder="1357 0245 6456 9981"
                 className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
                 onChange={handleChange}
                 required
                 value={data?.accountNumber}
               />
             </div>
+            
             <div className="px-12 pt-3">
               <Label
                 className="text-[#C1C1C1]  text-xs"
@@ -274,24 +275,10 @@ export const BankInformation = ({ data, setData, showModal }) => {
                 setSelected={handleSearchSelectChange} 
               />
             </div>
-            {/* <div className="mb-2">
-              <label
-                htmlFor="bankname"
-                className="block mb-2 text-md text-gray-500"
-              >
-                Bank Name
-              </label>
-              <input
-                type="text"
-                id="bankename"
-                className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
-                placeholder="MBOX Bank"
-              />
-            </div> */}
+          
             <div className="mb-2 px-12 pt-3">
               <Label
                 htmlFor="acctname"
-                // className="block mb-2 text-md text-gray-500"
                 className="text-[#C1C1C1]  text-xs"
                 title="Account Name"
               />
@@ -299,27 +286,12 @@ export const BankInformation = ({ data, setData, showModal }) => {
               name="accountName"
                 type="text"
                 id="acctname"
-                //name="accountName"
                 value={data?.accountName}
                 onChange={handleChange}
                 className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
                 placeholder="Taylor Mason"
               />
             </div>
-            {/* <div className="mb-2">
-              <label
-                htmlFor="acctno"
-                className="block mb-2 text-md text-gray-500"
-              >
-                Account Number
-              </label>
-              <input
-                type="text"
-                id="acctno"
-                className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-                placeholder="0036789412"
-              />
-            </div> */}
             <div className="mb-6 mx-auto text-center">
               <p>
                 Please ensure the{" "}
