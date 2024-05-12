@@ -7,6 +7,7 @@ import { toastify } from "../../helpers";
 import Input from "../Input";
 import Label from "../Label";
 import Button from "../Button";
+
 import { FiMinusCircle } from "react-icons/fi";
 import { MdOutlineAddCircleOutline } from "react-icons/md"
 const invoiceInput = () => {
@@ -16,7 +17,6 @@ const invoiceInput = () => {
   //const fullname = useSelector((state) => state.user.fullname);
   const router = useRouter();
   const product = {
-    productId: "GC-00002-69321",
     price: "",
     quantity: "",
   };
@@ -25,6 +25,7 @@ const invoiceInput = () => {
    // tag: "",
     products: productsList,
     buyer: "",
+    status: true
   });
   const [subtotal, setSubtotal] = useState(0);
 
@@ -57,6 +58,7 @@ const invoiceInput = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+
     try {
       const data = {
         ...invoiceData,
@@ -79,6 +81,7 @@ const invoiceInput = () => {
     } catch (error) {
       console.log(error);
     }
+
   };
   return (
     <>
@@ -241,7 +244,7 @@ const invoiceInput = () => {
               className="w-[90%] mx-auto my-4 rounded-md shadow-lg bg-brightRed py-2 text-white flex justify-center text-base poppins"
               onClick={onSubmitHandler}
             >
-              Generate Invoice
+               Generate Invoice
             </Button>
           </div>
         </div>

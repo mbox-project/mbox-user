@@ -22,23 +22,26 @@ const index = () => {
   });
   const [vendorData, setVendorData] = useState({
     userId: user?.userId,
-    //fullname: user?.fullname,
-    email: user?.email,
+    accountName: vendorData?.accountName,
+    email: vendorData?.email,
   });
 
   useEffect(() => {
-    dispatch(getVendor())
-    .unwrap()
-    .then((response) => {
-      setVendorData(response?.data)
-      console.log(response)
-    })
-    .catch((error) => {
-      console.log(error)
-      toastify.alertError("Could not get Profile data", 300)
-    });
+    if(user?.role === 'vendor'){
+      dispatch(getVendor())
+      .unwrap()
+      .then((response) => {
+        setVendorData(response?.data)
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+        toastify.alertError("Could not get Profile data", 300)
+      });
+    }
+   
 
-  },[])
+  },[user?.role])
   const role = useSelector(selectRole);
   return (
     <>

@@ -54,7 +54,7 @@ const Flyer = () => {
 
           </h2>
           <div className=" name-parent">
-            <h3 className="name">By {flyer?.fullName}</h3>
+            <h3 className="name">By {flyer?.accountName}</h3>
             <div className=" higlight"></div>
           </div>
           <p className="Mb"> On <Image src={mBox} className=" mbox-img" /></p>

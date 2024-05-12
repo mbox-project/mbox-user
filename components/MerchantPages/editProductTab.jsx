@@ -8,6 +8,7 @@ import {
 import { toastify } from "../../helpers";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { LoadingOutlined } from "@ant-design/icons";
 
 
 export const ProductInformation = ({ setData, data, setActiveKey }) => {
@@ -131,7 +132,7 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
                             type="text"
                             id="tags"
                             name="tags"
-                            value={data.tags}
+                            value={data?.tags?.$values?.join(', ')}
                             onChange={handleTagsChange}
                             className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
                             placeholder="e.g clothes, shoes, belt"
@@ -309,7 +310,8 @@ export const ProductVariation = ({
         });
         console.log(data);
     };
-    const colorsValue = Array.isArray(data.colors) ? data.colors.join(",") : "";
+    const colorsValue = data.colors.$values.join(",");
+    const sizesValue = data.sizes.$values.join(",");
     return (
         <section className="card flex flex-col py-2 space-2 rectCard">
             <div className="flex flex-col">
@@ -351,7 +353,7 @@ export const ProductVariation = ({
                             type="text"
                             id="sizes"
                             name="sizes"
-                            value={data.sizes}
+                            value={sizesValue}
                             onChange={handleChange}
                             className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
                             placeholder="small, medium, large"
@@ -384,7 +386,7 @@ export const ProductVariation = ({
                                 });
                         }}
                     >
-                       { loading === false? "Upload Products" : "Updating product...."}
+                       { loading ? <LoadingOutlined style={{ fontSize: 24 }} spin />  : "Upload Products"}
                     </button>
                 </form>
             </div>

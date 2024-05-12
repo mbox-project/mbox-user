@@ -34,7 +34,7 @@ export const convertToVendor = createAsyncThunk(
 export const getVendor = createAsyncThunk(
   "auth/getVendor",
   async () => {
-    const response = await getApi("Vendor");
+    const response = await getApi(`Vendor`);
     return response.data;
   }
 );

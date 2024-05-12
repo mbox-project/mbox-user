@@ -6,8 +6,18 @@ import { banks } from "../data";
 import { useDispatch, useSelector } from "react-redux";
 import { convertToVendor } from "../../store/auth/vendorService";
 import { toastify } from "../../helpers";
+import { getProductCategories } from "../../store/product/productService";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProductCategories())
+      .unwrap()
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+    console.log("effect");
+  }, []);
   const { categories } = useSelector((state) => state.product);
   const onSelectCategory = (e) => {
     setData((prevData) => ({
@@ -208,6 +218,7 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
 export const BankInformation = ({ data, setData, showModal }) => {
   const dispatch = useDispatch();
   const [bankName, setBankName] = useState("");
+  const [loading, setLoading] = useState(false);
  
 
   const handleChange = (e) => {
@@ -229,16 +240,25 @@ export const BankInformation = ({ data, setData, showModal }) => {
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
+    setLoading(true)
     
     dispatch(convertToVendor(data))
        .unwrap()
-       .then((action) => {
+       .then((res) => {
+        if(res?.responseCode === 500){
+          toastify.alertError("Could not convert to vendor", 300)
+          return;
+        }
         showModal();
+        setLoading(false)
         }
     )
     .catch((error) =>{
+      toastify.alertError("Could not convert to vendor", 300)
        console.log(error)
+       setLoading(false)
       });
+     
   };
   
   return (
@@ -307,7 +327,9 @@ export const BankInformation = ({ data, setData, showModal }) => {
             type="submit"
             className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
           >
-            Become a vendor
+           {
+            loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : ' Become a vendor'
+           }
           </button>
         </div>
       </form>
