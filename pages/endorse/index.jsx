@@ -7,12 +7,15 @@ import { useSelector, useDispatch } from "react-redux";
 import baseURL from "../../config/api";
 import { toastify } from "../../helpers";
 import { getEndorsements } from "../../store/endorseandreport/endorseandreport";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const endorse = () => {
   const dispatch = useDispatch();
   const [endorse, setEndorse] = useState();
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(3);
+  const [loading, setLoading] = useState(false);
+
   
 
   const [endorseData, setData] = useState({
@@ -42,6 +45,7 @@ const endorse = () => {
 
   const handleEndorseForm = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
     const response = await fetch(`${baseURL}Endorsement/endorse`, {
       method: "POST",
@@ -69,6 +73,7 @@ const endorse = () => {
       const errorResult = await response.text();
       toastify.alertError(errorResult);
     }
+    setLoading(false)
   };
 
   return (
@@ -120,7 +125,10 @@ const endorse = () => {
                   type="submit"
                   className=" w-24 my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white left-96 text-base poppins"
                 >
-                  Submit
+                  {
+                    loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Submit"
+                  }
+                  
                 </Button>
               </div>
             </div>

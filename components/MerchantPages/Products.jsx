@@ -60,6 +60,14 @@ const Products = ({ product }) => {
    sessionStorage.setItem("productId", id)
    router.push("products/editProduct")
   };
+  function formatMoney(amount, locale = 'en-NG', currency = 'NGN') {
+    const formatter = new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+    });
+  
+    return formatter.format(amount);
+  }
 
  
   //destructure the products
@@ -74,7 +82,7 @@ const Products = ({ product }) => {
           <Image src={firstImage} alt="product" width={130} height={150} />
         </div>
         <h4 className="text-md font-bold">{name}</h4>
-        <h5 className="text-lg text-brightRed"> ${price}</h5>
+        <h5 className="text-lg text-brightRed"> {formatMoney(price)}</h5>
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-2 flex justify-around items-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[#EF5612]">
        <div className=" p-2 rounded-full bg-white" >

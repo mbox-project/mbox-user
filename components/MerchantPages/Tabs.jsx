@@ -10,6 +10,7 @@ import { updateVendor } from "../../store/auth/vendorService";
 import UploadProfileImages from "../antd/uploadProfile";
 import { getProductCategories } from "../../store/product/productService";
 import { toastify } from "../../helpers";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   const dispatch = useDispatch();
@@ -22,16 +23,23 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   }, []);
   const { categories } = useSelector((state) => state.product);
   const [res, setRes] = useState();
+  useEffect(() => {
+    // Update imageUrl in data when res changes
+    setData((prevData) => ({
+      ...prevData,
+      imageUrl: res?.imageUrl
+    }));
+  }, [res, setData]);
   const onSelectCategory = (e) => {
     setData((prevData) => {
      const proUpdate = {
       ...prevData,
       categoryId: e.target.value,
-      imageUrl: res?.imageUrl
      }
      return {...proUpdate}
     });
   };
+
   return (
     <form>
       <section
@@ -39,7 +47,7 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
         style={{ "border-radius": "0px" }}
       >
         <div className="flex justify-between p-3">
-          <h4 className="text-gray-500">Profile Picture</h4>
+          <h4 className="text-gray-500">Store Image</h4>
           <div className="flex space-x-2">
             <span className="rounded-full p-1 bg-blue-100">
               <BiEditAlt className="text-blue-400" />
@@ -60,7 +68,7 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               id="name"
               className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"
-              value={data?.fullName}
+              value={data?.accountName}
               required
             />
           </div>
@@ -87,7 +95,7 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
             <select
                   name="category"
                   id="category"
-                  value={data?.catId}
+                  value={data?.categoryId}
                   onChange={onSelectCategory}
                   placeholder="select category"
                   className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
@@ -225,6 +233,7 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
 export const BankInformation = ({ data, setData }) => {
   const dispatch = useDispatch();
   const [bankName, setBankName] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
@@ -245,13 +254,19 @@ export const BankInformation = ({ data, setData }) => {
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
+    setLoading(true)
     dispatch(updateVendor(data))
     .unwrap()
       .then((action) => {
         toastify.alertSuccess("Updated profile successfully ");
         console.log(action);
+        setLoading(false)
       })
-      .catch((error) => toastify.alertError(error, 3000));
+      .catch((error) => {
+        toastify.alertError(error, 3000)
+         setLoading(false)});
+
+      
   };
   return (
     <>
@@ -349,7 +364,10 @@ export const BankInformation = ({ data, setData }) => {
             type="submit"
             className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
           >
-            Save
+            {
+              loading ?  <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Save'
+            }
+            
           </button>
         </div>
       </form>
