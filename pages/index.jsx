@@ -1,12 +1,28 @@
 import React from "react";
 import LandingPage from "./prelaunch/index";
 import InstallButton from "../components/PromptInstall/InstallButton";
+import { PwaPrompt } from "react-ios-pwa-prompt-ts";
 
 const index = () => {
   return (
     <>
       <LandingPage />
       <InstallButton />
+      {/* <PwaPrompt
+        copyAddHomeButtonLabel="2) Press 'Add to Home Screen'."
+        copyBody="This website has app functionality. Add it to your home screen to use it in fullscreen and while offline."
+        copyClosePrompt="Cancel"
+        copyShareButtonLabel="1) Press the 'Share' button on the menu bar below."
+        copyTitle="Add to Home Screen"
+        delay={1000}
+        onClose={function Qa() {}}
+        permanentlyHideOnDismiss={false}
+        promptLocalStorageKey="iosPwaPrompt"
+        promptOnVisit={1}
+        timesToShow={3}
+        transitionDuration={400}
+        useragent="Mozilla/5.0 (iPhone; CPU iPhone OS 17_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Mobile/15E148 Safari/604.1"
+      /> */}
     </>
   );
 };

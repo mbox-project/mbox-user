@@ -33,6 +33,7 @@
     "react-hook-form": "^7.43.9",
     "react-horizontal-scrolling-menu": "^3.2.0",
     "react-icons": "^4.4.0",
+    "react-ios-pwa-prompt-ts": "^1.2.2",
     "react-pro-sidebar": "^1.0.0",
     "react-redux": "^8.0.2",
     "react-responsive-carousel": "^3.2.23",
