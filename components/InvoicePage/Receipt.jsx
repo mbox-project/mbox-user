@@ -40,10 +40,8 @@ const Receipt = ({ data }) => {
         <div className="pl-7 mt-3">
           <p>Invoice to:</p>
               <div>
-                <p className="font-bold pt-1">{data?.buyer}</p>
-                <p className="pt-1">{data.Location}</p>
-                <p className="pt-1">{data.City}</p>
-                <p className="pt-1">{data.Telephone}</p>
+                <p className="font-bold pt-1">{data?.buyerAddress}</p>
+               
               </div>  
         </div>
         <div className="pr-4 mt-2">
@@ -60,7 +58,7 @@ const Receipt = ({ data }) => {
                 </div>
                 <div className="flex mt-2">
                   <p className="font-bold">Issued by:</p>
-                  <p className="pl-2"> {data?.issuer}</p>
+                  <p className="pl-2"> {data?.storeName}</p>
                 </div>
               </div>
            

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { generateinvoice, reset } from "../../store/invoice/invoiceSlice";
+import { generateinvoice, reset, updateInvoice } from "../../store/invoice/invoiceSlice";
 import Spinner from "../../components/Spinner";
 import { toastify } from "../../helpers";
 import Input from "../Input";
@@ -11,14 +11,15 @@ import { FiMinusCircle } from "react-icons/fi";
 import { MdOutlineAddCircleOutline } from "react-icons/md"
 import { getInvoice } from "../../store/invoice/invoiceSlice";
 const InvoiceEdit = () => {
-  // Add rememberMe property to it later.
   const [data, setData] = useState(null);
+  const [subTotal, setSubtotal] = useState(0);
+  const [buyer, setBuyer] = useState("");
+  const [productsList, setProductsList] = useState([]);
   const dispatch = useDispatch();
   const router = useRouter();
   const { invoiceId } = router.query;
   const user = useSelector((state) => state.auth.user);
-  //const fullname = useSelector((state) => state.user.fullname);
-  
+
 
   useEffect(() => {
     if (invoiceId) {
@@ -26,62 +27,40 @@ const InvoiceEdit = () => {
         .unwrap()
         .then((action) => {
           setData(action);
-          console.log(action);
-  
-          // Assuming action contains the invoice data with products array
           if (action && action.data.invoiceProducts.$values) {
             const mappedProducts = action.data.invoiceProducts.$values.map((product) => ({
               productId: product.productId,
               price: product.price,
               quantity: product.quantity,
               productTag: product.productTag,
-              productDescription:  product.productDescription
+              productDescription: product.productDescription
             }));
             setProductsList(mappedProducts);
+            setSubtotal(action.data.subTotal);
+            setBuyer(action.data.buyerAddress);
           }
         })
         .catch((error) => console.log(error));
     }
-
-    console.log(invoiceId)
   }, [invoiceId, dispatch]);
-  const product = {
-    productId: "GC-00002-69321",
-    productTag: "",
-    price: "",
-    quantity: "",
-    productDescription: ""
-  };
-  const [productsList, setProductsList] = useState([product]);
-  const [invoiceData, setInvoiceData] = useState({
-   // tag: "",
-    products: productsList,
-    buyer: "",
-  });
-  const [subtotal, setSubtotal] = useState(0);
 
   const onChangeInput = (e) => {
-    setInvoiceData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
+    setBuyer(e.target.value);
   };
 
   const onProductChangeInput = (e, index) => {
-    setProductsList((init) => {
-      const target = init[index];
-      const newTarget = { ...target, [e.target.name]: e.target.value };
-      init[index] = newTarget;
-      const result = [...init];
-      if (e.target.name === "quantity" || "price") {
-        const total = result.reduce(
-          (accum, curr) => accum + curr.quantity * curr.price,
-          0
-        );
-        setSubtotal(total);
-      }
+    const { name, value } = e.target;
+    setProductsList((prevProducts) => {
+      const updatedProducts = [...prevProducts];
+      updatedProducts[index][name] = value;
 
-      return result;
+      const total = updatedProducts.reduce(
+        (accum, curr) => accum + curr.quantity * curr.price,
+        0
+      );
+      setSubtotal(total);
+
+      return updatedProducts;
     });
   };
 
@@ -90,18 +69,22 @@ const InvoiceEdit = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      const data = {
-        ...invoiceData,
-        //issuer: fullname,
-        date: new Date().toISOString(),
+      const updatedInvoice = {
+        buyer: buyer,
         products: productsList,
-        escFee: (subtotal / 100) * 5,
-        total: subtotal + (subtotal / 100) * 5,
-        subtotal,
+        escFee: (subTotal / 100) * 5,
+        total: subTotal + (subTotal * 0.05),
+        subTotal,
         issuer: user?.username,
+        status: true,
+        date: new Date().toISOString(),
       };
-      dispatch(generateinvoice(data))
-        .unwrap()
+      dispatch(
+        updateInvoice({
+          id: invoiceId,
+          updateData: updatedInvoice
+        })
+      ).unwrap()
         .then((action) => {
           toastify.alertSuccess(action?.message, 3000, () =>
             router.push(`invoice/${action?.data}`)
@@ -141,7 +124,7 @@ const InvoiceEdit = () => {
                 type="text"
                 placeHolder="test@email.com"
                 className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                value={invoiceData?.buyer}
+                value={buyer}
                 onChange={onChangeInput}
                 required
               />
@@ -263,7 +246,7 @@ const InvoiceEdit = () => {
                 type="text"
                 placeHolder="GC-10234"
                 className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                value={subtotal}
+                value={subTotal}
                 onChange={onChangeInput}
                 required
                 disabled={true}
