@@ -21,7 +21,7 @@ const endorse = () => {
   const [endorseData, setData] = useState({
     storeName: "",
     comment: "",
-    endorse: 1
+    endorse: 3
   });
 
   const onChangeInput = (e) => {
@@ -62,18 +62,26 @@ const endorse = () => {
       const result = await response.text();
       if(result === 'true'){
         toastify.alertSuccess("Endorsement successful");
-        getEndorsements({ pageNumber, pageSize })
-      }else{
-        toastify.alertSuccess(result);
+        // Update endorsements after successful endorsement
+        dispatch(getEndorsements({ pageNumber, pageSize })).unwrap()
+          .then((res) => {
+            console.log(res);
+            setEndorse(res.data?.items?.$values || []);
+            setLoading(false)
+          })
+          .catch((error) => console.log(error));
+      } else {
+        toastify.alertError(result.message);
+        setLoading(false) 
       }
-
       //window.reload();
       
     } else {
       const errorResult = await response.text();
       toastify.alertError(errorResult);
+      setLoading(false)
     }
-    setLoading(false)
+   
   };
 
   return (

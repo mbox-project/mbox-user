@@ -1,4 +1,4 @@
-import { getApi, postApi } from "../../config/api";
+import { getApi, postApi, putApi } from "../../config/api";
 // import { API_URL } from "../../config";
 
 //Generate Invoice
@@ -23,9 +23,18 @@ const getInvoice = async (id) => {
     console.log(error);
   }
 };
+const updateInvoice = async ({id, updateData}) => {
+  try {
+    const response = await putApi(`Invoice/updateInvoice/${id}`, updateData);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 const invoiceService = {
   invoice,
   getInvoice,
-  getAllInvoice
+  getAllInvoice,
+  updateInvoice
 };
 export default invoiceService;

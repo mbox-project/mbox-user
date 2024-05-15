@@ -49,6 +49,15 @@ export const patchApi = (url, body) => {
     },
   });
 };
+export const putApi = (url, body) => {
+  return api.put(url, body, {
+    headers: {
+      Authorization: `Bearer ${
+        typeof window !== undefined ? sessionStorage.getItem("token") : null
+      }`,
+    },
+  });
+};
 export const deleteApi = (url, body) => {
   return api.delete(url, body, {
     headers: {

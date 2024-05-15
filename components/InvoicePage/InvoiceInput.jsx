@@ -68,7 +68,7 @@ const invoiceInput = () => {
         escFee: (subtotal / 100) * 5,
         total: subtotal + (subtotal / 100) * 5,
         subtotal,
-        issuer: user?.username,
+        issuer: user?.userId,
       };
       dispatch(generateinvoice(data))
         .unwrap()
