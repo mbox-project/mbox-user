@@ -21,7 +21,7 @@ const endorse = () => {
   const [endorseData, setData] = useState({
     storeName: "",
     comment: "",
-    endorse: 3
+    endorse: 1
   });
 
   const onChangeInput = (e) => {

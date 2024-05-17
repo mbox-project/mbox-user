@@ -10,11 +10,13 @@ import Button from "../Button";
 import { FiMinusCircle } from "react-icons/fi";
 import { MdOutlineAddCircleOutline } from "react-icons/md"
 import { getInvoice } from "../../store/invoice/invoiceSlice";
+import { LoadingOutlined } from "@ant-design/icons";
 const InvoiceEdit = () => {
   const [data, setData] = useState(null);
   const [subTotal, setSubtotal] = useState(0);
   const [buyer, setBuyer] = useState("");
   const [productsList, setProductsList] = useState([]);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
   const { invoiceId } = router.query;
@@ -32,7 +34,7 @@ const InvoiceEdit = () => {
               productId: product.productId,
               price: product.price,
               quantity: product.quantity,
-              productTag: product.productTag,
+              tag: product.productTag,
               productDescription: product.productDescription
             }));
             setProductsList(mappedProducts);
@@ -64,10 +66,11 @@ const InvoiceEdit = () => {
     });
   };
 
-  const { isLoading } = useSelector((state) => state.invoice);
+
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const updatedInvoice = {
         buyer: buyer,
@@ -80,24 +83,24 @@ const InvoiceEdit = () => {
         date: new Date().toISOString(),
       };
       dispatch(
-        updateInvoice({
-          id: invoiceId,
-          updateData: updatedInvoice
-        })
+        updateInvoice({ id: invoiceId, updateData: updatedInvoice })
       ).unwrap()
         .then((action) => {
           toastify.alertSuccess(action?.message, 3000, () =>
-            router.push(`invoice/${action?.data}`)
+            router.push(`/invoice/${action?.data}`)
           );
+          setLoading(false)
         })
-        .catch((error) => toastify.alertError(error, 3000));
+        .catch((error) => {
+          toastify.alertError(error, 3000)
+          setLoading(false)
+        });
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <>
-      {isLoading && <Spinner />}
       <div className="font-poppins w-full">
         <div className="pt-5">
           <div className="border rounded-md shadow-lg w-full md:w-[60%] mx-auto relative">
@@ -142,7 +145,7 @@ const InvoiceEdit = () => {
                     type="text"
                     placeHolder="GC-10234"
                     className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                    value={e.productTag}
+                    value={e.tag}
                     onChange={(cur) => onProductChangeInput(cur, i)}
                     required
                   />
@@ -224,12 +227,7 @@ const InvoiceEdit = () => {
             <div className="cursor-pointer">
               <p
                 className="flex items-center gap-1 justify-end text-xs pt-2 pr-[4rem]"
-                onClick={() => {
-                  setProductsList((init) => {
-                    const final = [...init, product];
-                    return final;
-                  });
-                }}
+
               >
                 <span>Add more product</span>
                 <MdOutlineAddCircleOutline className="text-brightRed text-[1rem]" />
@@ -256,7 +254,10 @@ const InvoiceEdit = () => {
               className="w-[90%] mx-auto my-4 rounded-md shadow-lg bg-brightRed py-2 text-white flex justify-center text-base poppins"
               onClick={onSubmitHandler}
             >
-              Edit Invoice
+              {
+                loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Edit Invoice"
+              }
+
             </Button>
           </div>
         </div>
