@@ -24,6 +24,7 @@ const Flyer = () => {
   let rest = name?.[1]
 
 
+  
   useEffect(() => {
     dispatch(getVendor())
       .unwrap()

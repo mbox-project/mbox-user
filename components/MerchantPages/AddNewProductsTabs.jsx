@@ -7,6 +7,7 @@ import {
 } from "../../store/product/productService";
 import { toastify } from "../../helpers";
 import { useDispatch, useSelector } from "react-redux";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export const ProductInformation = ({ setData, data, setActiveKey }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
       .catch((error) => console.log(error));
     console.log("effect");
   }, []);
-  const {categories} = useSelector((state) => state.product);
+  const { categories } = useSelector((state) => state.product);
   const [category, setCategory] = useState("");
   const onSelectCategory = (e) => {
     setCategory(e.target.value);
@@ -295,6 +296,7 @@ export const ProductVariation = ({
   setActiveKey,
   handleProdVisiblity,
 }) => {
+  const [loading, setLoading] = useState(false)
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setData((prev) => {
@@ -357,25 +359,34 @@ export const ProductVariation = ({
             className="p-3 border border-brightRed text-center text-brightRed rounded-md w-full"
             // onClick={handleProdVisiblity}
             onClick={() => {
-                // Check if all fields are filled
-    if (!data.name || !data.description || data.quantity === 0 || data.price === 0 || data.discount === 0 || !data.categoryId || data.images.length === 0 || data.tags.length === 0 || data.colors.length === 0 || data.sizes.length === 0) {
-      // Display a toast notification indicating that all fields are required
-      toastify.alertWarning("All fields are required", 3000);
-      return; // Exit function if any field is empty
-  }
+              setLoading(true)
+              // Check if all fields are filled
+              if (!data.name || !data.description || data.quantity === 0 || data.price === 0 || data.discount === 0 || !data.categoryId || data.images.length === 0 || data.tags.length === 0 || data.colors.length === 0 || data.sizes.length === 0) {
+                // Display a toast notification indicating that all fields are required
+                toastify.alertWarning("All fields are required", 3000);
+                return; // Exit function if any field is empty
+              }
               dispatch(uploadProduct(data))
                 .unwrap()
-                .then((res) =>
+                .then((res) => {
                   toastify.alertSuccess(
                     "product uploaded successfully",
                     3000,
                     handleProdVisiblity()
                   )
+                  setLoading(false)
+                }
                 )
-                .catch((error) => toastify.alertError(error, 3000));
+                .catch((error) => {
+                  toastify.alertError(error, 3000)
+                  setLoading(false)
+                });
             }}
           >
-            Upload Products
+            {
+              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Upload Products"
+            }
+
           </button>
         </form>
       </div>

@@ -49,11 +49,6 @@ const ProductDes = ({ data }) => {
         </div>
       </div>
       <div className="pt-6 px-6 font-poppins">
-        <p className="text-brightRed text-base text-bold">
-          {" "}
-          Terms & Conditions
-        </p>
-        <p className="text-xs w-64  pt-3 leading-5">We Strongly Advise</p>
         <p className="py-6 text-extrabold">THANK YOU FOR TRUSTING US!</p>
       </div>
     </>

@@ -27,7 +27,7 @@ const Receipt = ({ data }) => {
            
              />
             </p>
-            <p>Mbox Best Digital paltform there is!</p>
+           
           </div>
         </div>
         <div className="">

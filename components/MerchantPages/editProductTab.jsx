@@ -136,7 +136,7 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
                             onChange={handleTagsChange}
                             className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
                             placeholder="e.g clothes, shoes, belt"
-                           
+
                         />
                     </div>
                     <div className="mb-2 relative">
@@ -297,29 +297,45 @@ export const ProductVariation = ({
     setData,
     setActiveKey,
 }) => {
-    const router = useRouter()
-   const [loading, setLoading] = useState(false)
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
+    const [colorsValue, setColorsValue] = useState(data.colors?.$values?.join(",") || "");
+    const [sizesValue, setSizesValue] = useState(data.sizes?.$values?.join(",") || "");
+
     const handleChange = (e) => {
-        setData((prev) => {
-            const update = {
-                ...prev,
-                [e.target.name]: e.target.value.split(","),
-            };
-            return { ...update };
-        });
-        console.log(data);
+        const { name, value } = e.target;
+        if (name === "colors") {
+            setColorsValue(value);
+        } else if (name === "sizes") {
+            setSizesValue(value);
+        }
+        const newValue = value.split(",");
+        setData((prev) => ({
+            ...prev,
+            [name]: { $id: prev[name].$id, $values: newValue },
+        }));
     };
-    const colorsValue = data.colors.$values.join(",");
-    const sizesValue = data.sizes.$values.join(",");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+            await dispatch(editProduct(data)).unwrap();
+            toastify.alertSuccess("Product updated successfully", 3000, () => {
+                setLoading(false);
+                router.push("/products");
+            });
+        } catch (error) {
+            toastify.alertError(error.message, 3000);
+            setLoading(false);
+        }
+    };
+
     return (
         <section className="card flex flex-col py-2 space-2 rectCard">
             <div className="flex flex-col">
-                <form
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                    }}
-                >
+                <form onSubmit={handleSubmit}>
                     <div className="mb-2">
                         <label
                             htmlFor="colors"
@@ -328,9 +344,9 @@ export const ProductVariation = ({
                             Available Colors <span className="text-brightRed">*</span>
                         </label>
                         <p className="text-brightRed text-xs mb-2">
-                            (type all available colors seperated by ",")
+                            (type all available colors separated by ",")
                         </p>
-                        
+
                         <input
                             type="text"
                             id="colors"
@@ -339,15 +355,14 @@ export const ProductVariation = ({
                             onChange={handleChange}
                             className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
                             placeholder="Select Colors"
-                           
                         />
                     </div>
                     <div className="mb-2">
                         <label htmlFor="sizes" className="block mb-2 text-md text-gray-500">
-                            Available Sizes 
+                            Available Sizes
                         </label>
                         <p className="text-brightRed text-xs mb-2">
-                            (type all available sizes seperated by ",")
+                            (type all available sizes separated by ",")
                         </p>
                         <input
                             type="text"
@@ -357,36 +372,13 @@ export const ProductVariation = ({
                             onChange={handleChange}
                             className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
                             placeholder="small, medium, large"
-                           
                         />
                     </div>
                     <button
                         className="p-3 border border-brightRed text-center text-brightRed rounded-md w-full"
-                        // onClick={handleProdVisiblity}
-                        onClick={() => {
-                            // Check if all fields are filled
-                            setLoading(true)
-                            dispatch(editProduct(data))
-                                .unwrap()
-                                .then((res) =>
-                                    toastify.alertSuccess(
-                                        "product updated successfully",
-                                        3000,
-                                        () => {
-                                            // Close the modal after a successful deletion
-                                            setLoading(false),
-                                            router.push("/products")
-                                          }
-                                    ),
-                                   
-                                )
-                                .catch((error) => {
-                                    toastify.alertError(error, 3000),
-                                    setLoading(false)
-                                });
-                        }}
+                        type="submit"
                     >
-                       { loading ? <LoadingOutlined style={{ fontSize: 24 }} spin />  : "Upload Products"}
+                        {loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Upload Products"}
                     </button>
                 </form>
             </div>
