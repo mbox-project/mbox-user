@@ -14,37 +14,46 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getProductCategories())
       .unwrap()
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
     console.log("effect");
-  }, []);
+  }, [dispatch]);
+
   const { categories } = useSelector((state) => state.product);
   const [res, setRes] = useState();
+
   useEffect(() => {
-    // Update imageUrl in data when res changes
     setData((prevData) => ({
       ...prevData,
-      profilePicture: res?.imageUrl
+      image: res?.imageUrl
     }));
   }, [res, setData]);
+  console.log(res?.imageUrl)
+
   const onSelectCategory = (e) => {
-    setData((prevData) => {
-     const proUpdate = {
+    setData((prevData) => ({
       ...prevData,
       categoryId: e.target.value,
-     }
-     return {...proUpdate}
-    });
+    }));
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
   };
 
   return (
     <form>
       <section
         className="card flex flex-col py-2 space-2"
-        style={{ "border-radius": "0px" }}
+        style={{ borderRadius: "0px" }}
       >
         <div className="flex justify-between p-3">
           <h4 className="text-gray-500">Store Image</h4>
@@ -57,18 +66,19 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
             </span>
           </div>
         </div>
-        <UploadProfileImages setData={setRes}/>
+        <UploadProfileImages setData={setRes} />
         <div className="flex flex-col">
-        <div className="mb-2 mt-4">
+          <div className="mb-2 mt-4">
             <label htmlFor="name" className="block mb-2 text-md text-gray-500">
               Full Name
             </label>
             <input
-              type="name"
+              type="text"
               id="name"
               className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"
-              value={data?.accountName}
+              value={data?.accountName || ""}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -81,7 +91,8 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               id="email"
               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"
-              value={data?.email}
+              value={data?.email || ""}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -93,30 +104,29 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               Category
             </label>
             <select
-                  name="category"
-                  id="category"
-                  value={data?.categoryId}
-                  onChange={onSelectCategory}
-                  placeholder="select category"
-                  className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-                >
-                  <option value="" disabled selected>
-                    Select a category
-                  </option>
-                  {categories.map((e, i) => (
-                    <option key={i} value={e.id}>
-                      {e.name}
-                    </option>
-                  ))}
-                </select>
+              name="category"
+              id="category"
+              value={data?.categoryId || ""}
+              onChange={onSelectCategory}
+              className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
+            >
+              <option value="" disabled>
+                Select a category
+              </option>
+              {categories.map((e, i) => (
+                <option key={i} value={e.id}>
+                  {e.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </section>
-      <div className="flex justify-end mt-5 ">
+      <div className="flex justify-end mt-5">
         <button
           onClick={(e) => {
             e.preventDefault();
-              setActiveKey("2");         
+            setActiveKey("2");
           }}
           className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
         >
@@ -254,6 +264,7 @@ export const BankInformation = ({ data, setData }) => {
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
+    console.log(data)
     setLoading(true)
     dispatch(updateVendor(data))
     .unwrap()
