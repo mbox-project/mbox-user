@@ -10,7 +10,13 @@ import Button from "../Button";
 
 import { FiMinusCircle } from "react-icons/fi";
 import { MdOutlineAddCircleOutline } from "react-icons/md"
+import { getVendorProducts } from "../../store/product/productService";
+import { Select } from "antd";
 const invoiceInput = () => {
+  const [pageNumber, setPageNumber] = useState(1);
+  const [loading, setLoading] = useState(true); // State to track loading state
+  const [pageSize, setPageSize] = useState(10);
+  const [products, setProducts] = useState([]);
   // Add rememberMe property to it later.
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
@@ -22,12 +28,25 @@ const invoiceInput = () => {
   };
   const [productsList, setProductsList] = useState([product]);
   const [invoiceData, setInvoiceData] = useState({
-   // tag: "",
+    // tag: "",
     products: productsList,
     buyer: "",
     status: true
   });
   const [subtotal, setSubtotal] = useState(0);
+
+  useEffect(() => {
+    dispatch(getVendorProducts({ pageNumber, pageSize }))
+      .unwrap()
+      .then((res) => {
+        setProducts(res.data?.items?.$values || []);
+        setLoading(false); 
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  }, [dispatch, pageNumber, pageSize]);
 
   const onChangeInput = (e) => {
     setInvoiceData((prevState) => ({
@@ -36,15 +55,15 @@ const invoiceInput = () => {
     }));
   };
 
-  const onProductChangeInput = (e, index) => {
+  const onProductChangeInput = (value, name, index) => {
     setProductsList((init) => {
       const target = init[index];
-      const newTarget = { ...target, [e.target.name]: e.target.value };
+      const newTarget = { ...target, [name]: value };
       init[index] = newTarget;
       const result = [...init];
-      if (e.target.name === "quantity" || "price") {
+      if (name === "quantity" || name === "price") {
         const total = result.reduce(
-          (accum, curr) => accum + curr.quantity * curr.price,
+          (accum, curr) => accum + (parseFloat(curr.quantity) || 0) * (parseFloat(curr.price) || 0),
           0
         );
         setSubtotal(total);
@@ -53,7 +72,6 @@ const invoiceInput = () => {
       return result;
     });
   };
-
   const { isLoading } = useSelector((state) => state.invoice);
 
   const onSubmitHandler = async (e) => {
@@ -125,13 +143,17 @@ const invoiceInput = () => {
                     htmlFor="text"
                     title="Product Tag"
                   />
-                  <Input
+                  <Select
                     name="tag"
                     type="text"
                     placeHolder="GC-10234"
-                    className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                    value={e.tag}
-                    onChange={(cur) => onProductChangeInput(cur, i)}
+                    className="w-full h-[100%] p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
+                    //value={e.tag}
+                    onChange={(value) => onProductChangeInput(value, "tag", i)}
+                    options={products?.map((e) => ({
+                      value: e?.productTag,
+                      label: e?.name,
+                    }))}
                     required
                   />
                 </div>
@@ -147,7 +169,7 @@ const invoiceInput = () => {
                     placeHolder="Air Force II, Skando Limited Edition"
                     className="w-full p-1 md:p-2 lg:py-10  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
                     value={e.productDescription}
-                    onChange={(cur) => onProductChangeInput(cur, i)}
+                    onChange={(cur) => onProductChangeInput(cur.target.value, "productDescription", i)}
                     required
                   />
                 </div>
@@ -163,7 +185,7 @@ const invoiceInput = () => {
                     placeHolder="Unit Price"
                     className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
                     value={e.price}
-                    onChange={(cur) => onProductChangeInput(cur, i)}
+                    onChange={(cur) => onProductChangeInput(cur.target.value, "price", i)}
                     required
                   />
                 </div>
@@ -179,7 +201,7 @@ const invoiceInput = () => {
                     placeHolder="Quantity"
                     className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm font-poppins mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
                     value={e.quantity}
-                    onChange={(cur) => onProductChangeInput(cur, i)}
+                    onChange={(cur) => onProductChangeInput(cur.target.value, "quantity", i)}
                     required
                   />
                 </div>
@@ -244,7 +266,7 @@ const invoiceInput = () => {
               className="w-[90%] mx-auto my-4 rounded-md shadow-lg bg-brightRed py-2 text-white flex justify-center text-base poppins"
               onClick={onSubmitHandler}
             >
-               Generate Invoice
+              Generate Invoice
             </Button>
           </div>
         </div>

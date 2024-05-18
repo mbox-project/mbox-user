@@ -27,7 +27,7 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
     // Update imageUrl in data when res changes
     setData((prevData) => ({
       ...prevData,
-      imageUrl: res?.imageUrl
+      profilePicture: res?.imageUrl
     }));
   }, [res, setData]);
   const onSelectCategory = (e) => {

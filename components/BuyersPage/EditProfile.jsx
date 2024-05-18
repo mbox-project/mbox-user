@@ -14,7 +14,7 @@ const EditProfile = ({ data, setData }) => {
       {
         key: "1",
         label: `Personal Details`,
-        children: <PersonalDetails data={data} setActiveKey={setActiveKey} />,
+        children: <PersonalDetails data={data} setData={setData} setActiveKey={setActiveKey} />,
       },
       {
         key: "2",
