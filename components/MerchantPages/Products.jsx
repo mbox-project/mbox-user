@@ -28,7 +28,7 @@ const Products = ({ product }) => {
 
   const handleDeleteProduct = (productId) => {
     setLoadinge(true);
-    dispatch(deleteProduct(productId))
+    dispatch(deleteProduct(productId)).unwrap()
       .then((res) => {
         toastify.alertSuccess(
           "Product deleted successfully",

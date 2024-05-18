@@ -134,22 +134,7 @@ const InvoiceEdit = () => {
             </div>
             {productsList.map((e, i) => (
               <div key={i}>
-                <div className="w-[90%] pt-2 mx-auto">
-                  <Label
-                    className="text-lightAsh text-sm"
-                    htmlFor="text"
-                    title="Product Tag"
-                  />
-                  <Input
-                    name="tag"
-                    type="text"
-                    placeHolder="GC-10234"
-                    className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                    value={e.tag}
-                    onChange={(cur) => onProductChangeInput(cur, i)}
-                    required
-                  />
-                </div>
+                
                 <div className="w-[90%] pt-2 mx-auto">
                   <Label
                     className="text-lightAsh text-sm"

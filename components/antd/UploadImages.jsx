@@ -66,7 +66,7 @@ const UploadImages = ({ setData }) => {
       <p className="ant-upload-text">
         Click or drag file to this area to upload
       </p>
-      <p className="text-brightRed text-xs mb-2">(Upload 4 images)</p>
+      <p className="text-brightRed text-xs mb-2">(Upload up to 4 images)</p>
     </Dragger>
   );
 };

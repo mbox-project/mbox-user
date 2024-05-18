@@ -142,7 +142,7 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
               htmlFor="discount"
               className="block mb-2 text-md text-gray-500"
             >
-              Discount <span className="text-brightRed">*</span>
+              Discount <span className="text-brightRed">* (leave at 0 if no discount )</span>
             </label>
             <input
               type="number"
@@ -359,13 +359,14 @@ export const ProductVariation = ({
             className="p-3 border border-brightRed text-center text-brightRed rounded-md w-full"
             // onClick={handleProdVisiblity}
             onClick={() => {
-              setLoading(true)
+             
               // Check if all fields are filled
               if (!data.name || !data.description || data.quantity === 0 || data.price === 0 || data.discount === 0 || !data.categoryId || data.images.length === 0 || data.tags.length === 0 || data.colors.length === 0 || data.sizes.length === 0) {
                 // Display a toast notification indicating that all fields are required
                 toastify.alertWarning("All fields are required", 3000);
                 return; // Exit function if any field is empty
               }
+              setLoading(true)
               dispatch(uploadProduct(data))
                 .unwrap()
                 .then((res) => {
