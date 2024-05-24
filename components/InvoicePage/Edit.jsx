@@ -1,20 +1,34 @@
 import React from "react";
+import { RWebShare } from "react-web-share";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
+import { FaRegCopy } from "react-icons/fa6";
+import { toastify } from "../../helpers";
+import { copyToClipboard } from "../../Utils/copyToClipboard";
 
-const Edit = ({data}) => {
+const Edit = ({ data }) => {
   const router = useRouter();
-  const passId= ()=>{
+  const passId = () => {
     router.push(`/editInvoice/${data}`)
   }
+
+  const handleCopy = async () => {
+    await copyToClipboard(`https://mbox-user-zeta.vercel.app/invoice/${data}`);
+    toastify.alertSuccess("Invoice link copied", 300)
+  };
+  
   return (
-    <div className="flex   justify-end py10 pr20 ">
-      <button className="poppins flex  px-10 py-2 border-2 ml-5 rounded-sm border-lightGray" onClick={passId}>
-        <AiOutlineEdit className="pt-1" /> Edit
+    <div className="flex gap-5   justify-end py10 pr20 ">
+
+      <button className="poppins transition duration-500 flex items-center p-3 gap-2 rounded-lg border hover:bg-brightPurple hover:text-white text-[#491546] border-brightPurple" onClick={passId}>
+        <AiOutlineEdit className="" /> Edit
       </button>
-      <button className="poppins px-10  flex py-2 border-2 ml-5  bg-brightPurple text-white rounded-sm border-lightGray">
-        {" "}
-        <AiOutlineEdit className="pt-1" />
+
+      <button
+        className="poppins transition duration-500 border flex items-center p-3 gap-2 bg-brightPurple text-white rounded-lg hover:bg-white hover:text-[#491546] hover:border-brightPurple"
+        onClick={handleCopy}
+      >
+        <FaRegCopy className="" />
         Send Invoice
       </button>
     </div>

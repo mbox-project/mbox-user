@@ -115,7 +115,7 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
               className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
             >
               <option value="">select category</option>
-              {categories.map((e, i) => (
+              {categories?.map((e, i) => (
                 <option key={i} value={e.id}>
                   {e.name}
                 </option>

@@ -30,7 +30,7 @@ const index = () => {
       });
     dispatch(getTransactions())
       .unwrap()
-      .then((actions) => {})
+      .then((actions) => { })
       .catch((error) => console.log(error));
   }, []);
   return (
@@ -208,8 +208,8 @@ const index = () => {
           </div>
         );
       })}
-       <FundWallet openFund={openFund} setOpenFund={setOpenFund} /> 
-      <Withdraw open={open} setOpen={setOpen} />  
+      <FundWallet openFund={openFund} setOpenFund={setOpenFund} />
+      <Withdraw open={open} setOpen={setOpen} />
     </Layout>
   );
 };
