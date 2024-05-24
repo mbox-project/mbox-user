@@ -40,13 +40,14 @@ const Receipt = ({ data }) => {
         <div className="pl-7 mt-3">
           <p>Invoice to:</p>
               <div>
+                <p className="font-bold pt-1">{data?.buyerName}</p>
                 <p className="font-bold pt-1">{data?.buyerAddress}</p>
                
               </div>  
         </div>
         <div className="pr-4 mt-2">
               <div>
-                <div className="flex">
+                <div className="flex items-center">
                   <p className="font-bold"> Invoice Tag :</p>
                   <p className="pl-2 pt-1">{data?.tag}</p>
                 </div>
