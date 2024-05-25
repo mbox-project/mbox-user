@@ -12,7 +12,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 const VendorReport = () => {
     const dispatch = useDispatch();
-    const [endorse, setEndorse] = useState();
+    const [report, setReport] = useState();
     const [pageNumber, setPageNumber] = useState(1);
     const [pageSize, setPageSize] = useState(3);
     const [loading, setLoading] = useState(false);
@@ -57,7 +57,7 @@ const VendorReport = () => {
             .then((res) => {
                 console.log(res);
                 console.log(res.data?.$values);
-                setEndorse(res.data?.$values || []);
+                setReport(res.data?.$values || []);
             })
             .catch((error) => console.log(error));
     }, [dispatch, pageNumber, pageSize]);
@@ -75,6 +75,21 @@ const VendorReport = () => {
         setLoading(false)
        ))
     };
+
+    function formatDateTime(isoString) {
+        const date = new Date(isoString);
+      
+        const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = date.toLocaleDateString(undefined, optionsDate);
+      
+        const optionsTime = { hour: '2-digit', minute: '2-digit', hour12: true };
+        let formattedTime = date.toLocaleTimeString(undefined, optionsTime);
+      
+        // Remove the space between time and AM/PM
+        formattedTime = formattedTime.replace(' ', '');
+      
+        return `${formattedDate}, ${formattedTime}`;
+      }
 
 
     return (
@@ -152,7 +167,7 @@ const VendorReport = () => {
                 <div className="bg-white">
                     <section className="card !shadow-none rectCard flex justify-between items-center text-[#F90808] text-lg border-b-2 mt-8">
                         <div className="mt-5">
-                            <h4 className="text-xl font-medium">Reported Businesses</h4>
+                            <h4 className="text-xl font-medium">Reported Buyers</h4>
                         </div>
                         <form>
                             <select
@@ -170,16 +185,16 @@ const VendorReport = () => {
 
                     <section className="flex flex-col px-5 py-5 space-y-5">
                         <div className="flex justify-between py-2 text-[#9A9A9A] border-b-2">
-                            <div>Store Name</div>
+                            <div>Buyer Name</div>
                             <div>Date & Time</div>
                             <div>Comments</div>
                         </div>
 
-                        {endorse?.map((endorsement, index) => (
+                        {report?.map((reports, index) => (
                             <div key={index} className="flex justify-between text-sm">
-                                <div>{endorsement?.storeName}</div>
-                                <div>{endorsement?.dateTime}</div>
-                                <div>{endorsement?.comment}</div>
+                                <div>{reports?.fullname}</div>
+                                <div>{formatDateTime(reports?.dateCreated)}</div>
+                                <div>{reports?.comment}</div>
                             </div>
                         ))}
                     </section>

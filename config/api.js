@@ -17,16 +17,21 @@ api.interceptors.response.use(undefined, function (error) {
       return error.response.data?.message?.toString();
     },
   });
+  console.error('Interceptor error:', error);
   return Promise.reject(error);
 });
+
 
 export const getApi = (url) => {
   return api.get(url, {
     headers: {
       Authorization: `Bearer ${
-        typeof window !== undefined ? sessionStorage.getItem("token") : null
+        typeof window !== 'undefined' ? sessionStorage.getItem("token") : null
       }`,
     },
+  }).catch(error => {
+    console.error('Error in getApi:', error);
+    throw error;
   });
 };
 
