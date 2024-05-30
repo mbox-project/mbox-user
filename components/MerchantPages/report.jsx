@@ -9,6 +9,8 @@ import { toastify } from "../../helpers";
 import { getReports } from "../../store/endorseandreport/endorseandreport";
 import { getReport, getVendor, reportBuyer } from "../../store/auth/vendorService";
 import { LoadingOutlined } from "@ant-design/icons";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 const VendorReport = () => {
     const dispatch = useDispatch();
@@ -22,6 +24,7 @@ const VendorReport = () => {
         fullname: "",
         comment: "",
         storeName: '',
+        buyerNumber: "",
         reportBusiness: false
     });
 
@@ -55,8 +58,6 @@ const VendorReport = () => {
     useEffect(() => {
         dispatch(getReport()).unwrap()
             .then((res) => {
-                console.log(res);
-                console.log(res.data?.$values);
                 setReport(res.data?.$values || []);
             })
             .catch((error) => console.log(error));
@@ -65,31 +66,36 @@ const VendorReport = () => {
     const handleEndorseForm = async (e) => {
         e.preventDefault();
         setLoading(true);
-       dispatch(reportBuyer(reportData)).unwrap()
-       .then(()=> (
-        toastify.alertSuccess("report success"),
-        setLoading(false)
+        dispatch(reportBuyer(reportData)).unwrap()
+            .then(() => (
+                dispatch(getReport()).unwrap()
+                .then((res) => {
+                    setReport(res.data?.$values || []);
+                })
+                .catch((error) => console.log(error)),
+                toastify.alertSuccess("report success"),
+                setLoading(false)
 
-       )).catch((err)=> (
-        toastify.alertError(err),
-        setLoading(false)
-       ))
+            )).catch((err) => (
+                toastify.alertError(err),
+                setLoading(false)
+            ))
     };
 
     function formatDateTime(isoString) {
         const date = new Date(isoString);
-      
+
         const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
         const formattedDate = date.toLocaleDateString(undefined, optionsDate);
-      
+
         const optionsTime = { hour: '2-digit', minute: '2-digit', hour12: true };
         let formattedTime = date.toLocaleTimeString(undefined, optionsTime);
-      
+
         // Remove the space between time and AM/PM
         formattedTime = formattedTime.replace(' ', '');
-      
+
         return `${formattedDate}, ${formattedTime}`;
-      }
+    }
 
 
     return (
@@ -127,14 +133,23 @@ const VendorReport = () => {
                                         htmlFor="buyerNumber"
                                         title="Buyer's Phone number"
                                     />
-                                    <Input
-                                        name="buyerNumber"
-                                        type="number"
-                                        placeHolder="0812345"
-                                        className="w-full p-1 md:p-2 lg:py-2 focus:outline-none pr-12 text-lg lg:text-sm font-poppins mt-2 border-[#9F9F9F] border-1 md:border-2 md:rounded-md shadow-sm rounded-none"
-                                        onChange={onChangeInput}
+                                    <PhoneInput
+                                        country={'ng'}
+                                        onlyCountries={['ng']}
+                                        containerClass="!w-full !h-full "
+                                        inputClass="phone-input-input !w-full !border-2 !border-[#9F9F9F] !md:rounded-md !h-[43px]"
+                                        className=" "
+                                        value={reportData.buyerNumber}
+                                        onChange={(value)=>
+                                            setData((prevState) => ({
+                                                ...prevState,
+                                                buyerNumber: value,
+                                            }))
+                                        }
+
                                         required
                                     />
+
                                 </div>
                                 <div className="px-4 pt-3">
                                     <Label

@@ -31,6 +31,7 @@ const FundWallet = ({ openFund, setOpenFund }) => {
       dispatch(paystackFundWallet({ ...fundWalletData, email }))
         .unwrap()
         .then((action) => {
+          //console.log(action?.data)
           window.location.href = action?.data;
         })
         .catch((error) => {

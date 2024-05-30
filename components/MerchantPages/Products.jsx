@@ -88,9 +88,7 @@ const Products = ({ product }) => {
        <div className=" p-2 rounded-full bg-white" >
        <FiEdit2 className="text-[#EF5612] cursor-pointer hover:text-blue-700" onClick={handlePassProductId}/>
        </div>
-       <div className=" p-2 rounded-full bg-white" >
-       <TbShare3 className="text-[#EF5612] cursor-pointer hover:text-blue-700" />
-       </div>
+      
       <div className=" p-2 rounded-full bg-white"   onClick={() => showModal(id)}>
       <LuTrash className="text-[#EF5612] cursor-pointer hover:text-red-700 border-black" />
       </div>

@@ -11,10 +11,12 @@ import UploadProfileImages from "../antd/uploadProfile";
 import { getProductCategories } from "../../store/product/productService";
 import { toastify } from "../../helpers";
 import { LoadingOutlined } from "@ant-design/icons";
-
+import { Upload } from "antd";
+import UpdateProfileImages, { props } from "../../Utils/uploadImage";
+import Image from "next/image";
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(getProductCategories())
       .unwrap()
@@ -57,16 +59,21 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
       >
         <div className="flex justify-between p-3">
           <h4 className="text-gray-500">Store Image</h4>
-          <div className="flex space-x-2">
-            <span className="rounded-full p-1 bg-blue-100">
-              <BiEditAlt className="text-blue-400" />
-            </span>
-            <span className="rounded-full p-1 bg-red-50">
-              <BiTrashAlt className="text-brightRed" />
-            </span>
-          </div>
+          <UpdateProfileImages setData={setRes} />
+          
         </div>
-        <UploadProfileImages setData={setRes} />
+        <div className="p-5 flex justify-center items-center h-48 mt-5 mb-3 bg-gray-200 w-48 profilePics">
+          {data?.image ? (
+            <Image
+              src={data?.image}
+              alt="Profile Image" // Adding alt attribute
+              height={300}
+              width={300}
+            />
+          ) : (
+            <BsFillCameraFill size={60} className="text-white" />
+          )}
+        </div>
         <div className="flex flex-col">
           <div className="mb-2 mt-4">
             <label htmlFor="name" className="block mb-2 text-md text-gray-500">
@@ -248,7 +255,7 @@ export const BankInformation = ({ data, setData }) => {
     setData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-     
+
     }));
     console.log(data);
   };
@@ -267,17 +274,18 @@ export const BankInformation = ({ data, setData }) => {
     console.log(data)
     setLoading(true)
     dispatch(updateVendor(data))
-    .unwrap()
+      .unwrap()
       .then((action) => {
         toastify.alertSuccess("Updated profile successfully ");
-        console.log(action);
+        dispatch(getVendor())
         setLoading(false)
       })
       .catch((error) => {
         toastify.alertError(error, 3000)
-         setLoading(false)});
+        setLoading(false)
+      });
 
-      
+
   };
   return (
     <>
@@ -315,20 +323,7 @@ export const BankInformation = ({ data, setData }) => {
                 setSelected={handleSearchSelectChange} // Pass the handleSearchSelectChange function
               />
             </div>
-            {/* <div className="mb-2">
-              <label
-                htmlFor="bankname"
-                className="block mb-2 text-md text-gray-500"
-              >
-                Bank Name
-              </label>
-              <input
-                type="text"
-                id="bankename"
-                className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
-                placeholder="MBOX Bank"
-              />
-            </div> */}
+         
             <div className="mb-2 px-12 pt-3">
               <Label
                 htmlFor="acctname"
@@ -346,20 +341,7 @@ export const BankInformation = ({ data, setData }) => {
                 value={data?.accountName}
               />
             </div>
-            {/* <div className="mb-2">
-              <label
-                htmlFor="acctno"
-                className="block mb-2 text-md text-gray-500"
-              >
-                Account Number
-              </label>
-              <input
-                type="text"
-                id="acctno"
-                className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-                placeholder="0036789412"
-              />
-            </div> */}
+          
             <div className="mb-6 mx-auto text-center">
               <p>
                 Please ensure the{" "}
@@ -376,9 +358,9 @@ export const BankInformation = ({ data, setData }) => {
             className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
           >
             {
-              loading ?  <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Save'
+              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Save'
             }
-            
+
           </button>
         </div>
       </form>

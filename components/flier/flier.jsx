@@ -64,8 +64,8 @@ const Flyer = () => {
             <Image src={tri} className=" tri-image" />
             <div className="white-circle">
               <div className=" inner-circle">
-                {flyer?.imageUrl ? (
-                  <Image src={flyer.imageUrl} alt="flyerimage"
+                {flyer?.image ? (
+                  <Image src={flyer.image} alt="flyerimage"
                     className=''
                     layout='fill'
                   />
