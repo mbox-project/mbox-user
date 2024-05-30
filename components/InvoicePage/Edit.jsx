@@ -6,14 +6,14 @@ import { FaRegCopy } from "react-icons/fa6";
 import { toastify } from "../../helpers";
 import { copyToClipboard } from "../../Utils/copyToClipboard";
 
-const Edit = ({ data }) => {
+const Edit = ({ data, tag }) => {
   const router = useRouter();
   const passId = () => {
     router.push(`/editInvoice/${data}`)
   }
 
   const handleCopy = async () => {
-    await copyToClipboard(`https://mbox-user-zeta.vercel.app/invoice/${data}`);
+    await copyToClipboard(`${tag}`);
     toastify.alertSuccess("Invoice link copied", 300)
   };
   
@@ -29,7 +29,7 @@ const Edit = ({ data }) => {
         onClick={handleCopy}
       >
         <FaRegCopy className="" />
-        Send Invoice
+        Copy Tag
       </button>
     </div>
   );

@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
 import { BiWallet } from "react-icons/bi";
+import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
+import { VscLaw } from "react-icons/vsc";
 import profile from "../../public/img/profile.svg";
 import purchase from "../../public/img/purchase.svg";
 import report from "../../public/img/report.svg";
@@ -35,8 +37,8 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
             )}
             {role === "vendor" && (
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-                <BsCartDash size={20} />
-                <Link href="/orders/"> Orders </Link>
+                <LiaFileInvoiceDollarSolid size={20} />
+                <Link href="/orders/"> Invoices </Link>
               </li>
             )}
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
@@ -44,7 +46,7 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
               <Link href="/wallet/"> My Wallet </Link>
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-              <Image src={profile} width={20} height={20} alt="profile" />
+              <VscLaw size={20}/>
               <Link href="dispute"> Disputes </Link>
             </li>
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">

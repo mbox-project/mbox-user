@@ -33,14 +33,9 @@ const BuyerReport = () => {
   };
 
   
-  
-
   useEffect(() => {
     dispatch(getReport()).unwrap()
       .then((res) => {
-        console.log(res);
-
-        console.log(res.data?.$values);
         setReport(res.data?.$values || []);
       })
       .catch((error) => console.log(error));
@@ -51,6 +46,11 @@ const BuyerReport = () => {
     setLoading(true);
     dispatch(reportVendor(reportData)).unwrap()
     .then(()=> (
+      dispatch(getReport()).unwrap()
+      .then((res) => {
+        setReport(res.data?.$values || []);
+      })
+      .catch((error) => console.log(error)),
       toastify.alertSuccess("report success"),
       setLoading(false)
      )).catch((err)=> (

@@ -63,7 +63,7 @@ const invoiceID = () => {
                 Pay now
               </Button>
             ) : (
-              <Edit data={data?.data?.id}/>
+              <Edit data={data?.data?.id} tag={data?.data?.tag}/>
             )}
           </div>
           {data && <Receipt data={data?.data} />}
