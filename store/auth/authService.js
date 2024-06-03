@@ -18,7 +18,7 @@ const login = async (loginData) => {
 };
 
 const getUser = async () => {
-  const response = await getApi("user");
+  const response = await getApi("User");
   return response.data;
 };
 

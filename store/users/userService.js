@@ -15,5 +15,19 @@ export const reportVendor = createAsyncThunk(
     return response.data;
   }
 );
+export const getUserProfile = createAsyncThunk(
+  "user/userProfile",
+  async() => {
+    const response = await getApi("User");
+    return response.data;
+  }
+);
+export const UpdateUserProfile = createAsyncThunk(
+  "user/updateProfile",
+  async(body) => {
+    const response = await patchApi("User/update", body);
+    return response.data;
+  }
+);
 
 
