@@ -24,7 +24,7 @@ const EditProfile = ({ data, setData }) => {
       {
         key: "2",
         label: (
-          <div className="text-gray-500" onClick={() => setActiveKey("3")}>
+          <div className="text-gray-500" onClick={() => setActiveKey("2")}>
             Bank Information
           </div>
         ),
