@@ -8,23 +8,27 @@ import EditProfile from "../../components/BuyersPage/EditProfile";
 import VendorEditProfile from "../../components/MerchantPages/VendorEditProfile";
 import { getVendor } from "../../store/auth/vendorService";
 import { toastify } from "../../helpers";
+import { getUserProfile } from "../../store/users/userService";
 
 const index = () => {
   const dispatch = useDispatch();
   const { isLoading, user } = useSelector((state) => state.auth);
   const [data, setData] = useState({
     userId: user?.userId,
-    fullname: user?.fullname,
-    email: user?.email,
-    accountNumber: user?.accountNumber,
-    bankName: user?.bankName,
-    accountName: user?.accountName,
+    fullname: "",
+    email: "",
+    accountNumber: "",
+    bankName: "",
+    accountName: "",
+    gender: "",
+    profilePicture:"",
   });
   const [vendorData, setVendorData] = useState({
     userId: user?.userId,
     accountName: vendorData?.accountName,
     email: vendorData?.email,
   });
+  
 
   useEffect(() => {
     if(user?.role === 'vendor'){
@@ -38,15 +42,26 @@ const index = () => {
         console.log(error)
         toastify.alertError("Could not get Profile data", 300)
       });
+    }else{
+      dispatch(getUserProfile())
+      .unwrap()
+      .then((response) => {
+        setData(response?.data)
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+        toastify.alertError("Could not get Profile data", 300)
+      });
     }
    
 
-  },[user?.role])
+  },[user, dispatch])
   const role = useSelector(selectRole);
   return (
     <>
       <Layout>
-        <h2 className="card text-2xl border-b-2 mt-8 rectCard">
+        <h2 className="text-2xl border p-3 mt-8 rectCard !bg-transparent ">
           Edit Personal Information
         </h2>
         {role === "vendor" ? (

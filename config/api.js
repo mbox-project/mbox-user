@@ -22,17 +22,17 @@ api.interceptors.response.use(undefined, function (error) {
 });
 
 
-export const getApi = (url) => {
-  return api.get(url, {
-    headers: {
-      Authorization: `Bearer ${
-        typeof window !== 'undefined' ? sessionStorage.getItem("token") : null
-      }`,
-    },
-  }).catch(error => {
+export const getApi = async (url) => {
+  try {
+    return await api.get(url, {
+      headers: {
+        Authorization: `Bearer ${typeof window !== 'undefined' ? sessionStorage.getItem("token") : null}`,
+      },
+    });
+  } catch (error) {
     console.error('Error in getApi:', error);
     throw error;
-  });
+  }
 };
 
 export const postApi = (url, body) => {

@@ -28,11 +28,11 @@ const Index = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="flex">
+        <div className="flex h-svh md:h-full items-center">
           <div className="hidden md:w-1/2 md:block">
             <Image src={loginbg} height={830} className="object-cover " />
           </div>
-          <div className="w-1/2 flex-col text-center space-y-2 mt-72">
+          <div className="md:w-1/2 px-5 flex-col items-center md:px-0 justify-center  text-center space-y-2">
             <div className="flex justify-center">
               <svg
                 width="89"
@@ -50,7 +50,7 @@ const Index = () => {
             <h2 className="text-3xl font-bold">Email Verified Successfully</h2>
             <p className="text-sm">You have Successfully verified your email</p>
             <button
-              className="bg-brightRed text-center text-white p-3 rounded-lg w-96"
+              className="bg-brightRed text-center text-white p-3 rounded-lg w-full md:w-96"
               onClick={() => router.push("/auth/login")}
             >
               Proceed To Login

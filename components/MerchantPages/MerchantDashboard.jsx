@@ -60,7 +60,7 @@ const MerchantDashboard = () => {
     <>
   { showFlyer ?
   (  <>
-      <section className="grid grid-cols-2 gap-[0.5rem] py-[0.5rem]">
+      <section className=" flex flex-col md:grid md:grid-cols-2 gap-[0.5rem] py-[0.5rem]">
         <div className="flex flex-col space-y-2 bg-white rounded-lg px-10 py-2 items-center justify-between mt10 shadow-sm  hover:shadow-md">
           <Image
             src={lady}
