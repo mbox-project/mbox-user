@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //const baseURL = "http://52.2.104.53/api/";
-export const baseURL = "https://backend.marketbox.ng/api/";
+export const baseURL = "https://marketbox-api.onrender.com/api/";
 
 const api = axios.create({
   baseURL,
