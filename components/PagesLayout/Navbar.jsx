@@ -94,8 +94,8 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
               ) : (
                 <button
                   onClick={() => setOpen(true)}
-                  className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
-                                 border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
+                  className=" p-2 text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
+                                 border-solid border-2 border-red-500 flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
                 >
                   <span>Pay Invoice</span>
                   <Image src={arrow} width={10} height={10} alt="arrow" />

@@ -50,7 +50,7 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
                   <option value="" disabled selected>
                     Select a category
                   </option>
-                  {categories.map((e, i) => (
+                  {categories?.map((e, i) => (
                     <option key={i} value={e.id}>
                       {e.name}
                     </option>
