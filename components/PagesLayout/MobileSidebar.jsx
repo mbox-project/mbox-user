@@ -19,7 +19,7 @@ const MobileSidebar = ({ showSideBar }) => {
     <>
       {/* Mobile Menu sidebar */}
       {showSideBar && (
-        <aside className="w-1/2 bg-white z-30 flex flex-col absolute top-0 left-0 shadow-md h-full md:hidden">
+        <aside className="w-1/2 bg-white z-30 flex flex-col fixed top-[55px] left-0 shadow-md h-svh md:hidden">
           <h6 className="py-4 font-bold text-lg pl-5 text-white bg-brightRed">
             My Account
           </h6>
@@ -34,17 +34,25 @@ const MobileSidebar = ({ showSideBar }) => {
                 <Link href="/wallet"> My Wallet </Link>
               </li>
               {role === "vendor" && (
-              <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-                <BsCartDash size={20} />
-                <Link href="/products/"> Products </Link>
-              </li>
-            )}
-            {role === "vendor" && (
-              <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-                <LiaFileInvoiceDollarSolid size={20} />
-                <Link href="/orders/"> Invoices </Link>
-              </li>
-            )}
+                <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                  <BsCartDash size={20} />
+                  <Link href="/products/"> Products </Link>
+                </li>
+              )}
+              {role === "vendor" && (
+                <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                  <LiaFileInvoiceDollarSolid size={20} />
+                  <Link href="/orders/"> Invoices </Link>
+                </li>
+              )}
+              {role === "vendor" && (
+                <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                  <LiaFileInvoiceDollarSolid size={20} />
+
+                  <Link href="/generateinvoice"> Generate Invoice </Link>
+                </li>
+              )}
+
               <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={saved} width={20} height={20} alt="profile" />
                 <Link href="#"> Saved Items </Link>
