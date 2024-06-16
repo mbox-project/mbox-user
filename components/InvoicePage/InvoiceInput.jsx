@@ -151,7 +151,7 @@ const invoiceInput = () => {
                     //value={e.tag}
                     onChange={(value) => onProductChangeInput(value, "tag", i)}
                     options={products?.map((e) => ({
-                      value: e?.productTag,
+                      value: e?.tag,
                       label: e?.name,
                     }))}
                     required

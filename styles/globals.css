@@ -86,3 +86,26 @@ input[type="number"]::-webkit-outer-spin-button {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.Rate_comment  svg {
+  stroke: black ;
+  stroke-width: 10; 
+  height: 4rem !important;
+  width: 4rem !important;
+}
+.commentModal > div > div:nth-child(2) {
+background-color: #FAFAFA !important;
+}
+
+.disputeModal > div > div:nth-child(2) > div:nth-child(2) {
+color: red !important;
+border-bottom: 3px solid rgba(154, 154, 154, 0.2);
+}
+.disputeModal > div > div:nth-child(2) > div:nth-child(2) > div {
+color: red !important;
+
+}
+.disputeModal > div > div:nth-child(2) > :nth-child(1) {
+color: red !important;
+
+}

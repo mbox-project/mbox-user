@@ -11,9 +11,11 @@ const DisputePage = ({ product }) => {
   const firstImage = product.product?.otherDetails?.imageUrl;
   const dealId = product.id;
 
+
   const dispatch = useDispatch();
-  
+
   const handleApproveDeal = () => {
+    
     dispatch(approveDeal(dealId))
       .unwrap()
       .then((res) => {
@@ -23,7 +25,7 @@ const DisputePage = ({ product }) => {
       .catch((error) => {
         toastify.alertError(error.message, 3000)
         console.log(error);
-        
+
       });
   };
 
@@ -33,24 +35,29 @@ const DisputePage = ({ product }) => {
         <div className="flex flex-col justify-around  md:flex md:flex-row hover:-translate-y-1 hover:scale-10  duration-200 ">
           <div className="flex justify-center items-center">
             {/* <Image src={shirt} width={100} height={100} alt="product" /> */}
-            <Image src={firstImage} alt="product" width={100}
-            height={100}/> 
+            {firstImage && (
+              <Image src={firstImage} alt="product" width={100}
+                height={100} />
+            )
+
+            }
+
           </div>
           <div className="flex flex-col space-y-4">
             <h2 className="text-gray-900 font-bold">{name}</h2>
             <h3 className="text-sm">{type}</h3>
-            <h2 className="text-md  text-gray-500">Product ID:{product.product?.productTag}</h2>
+            <h2 className="text-md  text-gray-500">Product Tag:{product?.product?.productTag}</h2>
             <h2 className="text-md  text-gray-500">{owner}</h2>
           </div>
           <div className="flex flex-col space-y-4">
-            <h2 className="text-gray-900 font-bold">${product.product?.price}</h2>
+            <h2 className="text-gray-900 font-bold">${product?.product?.price}</h2>
             {/* <h3 className="text-md  text-gray-500">Size:{size}</h3> */}
             <h2>
               <span className="text-md  text-gray-500">Color:</span>
-              <span className="font-bold"> {product.product?.otherDetails?.color}</span>
+              <span className="font-bold"> {product?.product?.otherDetails?.color}</span>
             </h2>
             <h2 className="text-md  text-gray-500">
-              QTY: <span className="text-red-500">{product.product?.quantity}</span>
+              QTY: <span className="text-red-500">{product?.product?.quantity}</span>
             </h2>
           </div>
 

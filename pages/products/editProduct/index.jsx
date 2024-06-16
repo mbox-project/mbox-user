@@ -45,7 +45,6 @@ const Index = () => {
       .unwrap()
       .then((res) => {
         setData(res.data || []);
-       
         setLoading(false); 
       })
       .catch((error) => {
@@ -64,12 +63,10 @@ const Index = () => {
   return (
     <>
     <Layout>
-         
             <EditProduct
               data={data}
               setData={setData}
             />
-       
       </Layout>
     </>
   );

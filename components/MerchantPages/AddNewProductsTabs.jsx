@@ -191,7 +191,7 @@ export const ProductPicture = ({ setData, setActiveKey }) => {
         onClick={() => {
           if (setRes.length > 0) {
             setData((prev) => {
-              return { ...prev, images: [...res] };
+              return { ...prev, galleryImages: [...res] };
             });
             setActiveKey("3");
           }
@@ -361,7 +361,7 @@ export const ProductVariation = ({
             onClick={() => {
              
               // Check if all fields are filled
-              if (!data.name || !data.description || data.quantity === 0 || data.price === 0 || data.discount === 0 || !data.categoryId || data.images.length === 0 || data.tags.length === 0 || data.colors.length === 0 || data.sizes.length === 0) {
+              if (!data.name || !data.description || data.quantity === 0 || data.price === 0 || data.discount === 0 || !data.categoryId || data.galleryImages.length === 0 || data.tags.length === 0 || data.colors.length === 0 || data.sizes.length === 0) {
                 // Display a toast notification indicating that all fields are required
                 toastify.alertWarning("All fields are required", 3000);
                 return; // Exit function if any field is empty
@@ -376,6 +376,7 @@ export const ProductVariation = ({
                     handleProdVisiblity()
                   )
                   setLoading(false)
+                  console.log(data)
                 }
                 )
                 .catch((error) => {
