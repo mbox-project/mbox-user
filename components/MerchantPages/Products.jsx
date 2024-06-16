@@ -78,9 +78,15 @@ const Products = ({ product }) => {
     <>
     <div className="relative group rounded-2xl overflow-hidden shadow-md ">
       <div className="card rectCard flex flex-col items-center justify-center space-y-5  duration-200 relative">
-        <div className="prodImg">
-          <Image src={firstImage} alt="product" width={130} height={110} />
-        </div>
+      <div className="prodImg">
+            {firstImage ? (
+              <Image src={firstImage} alt="product" width={130} height={110} />
+            ) : (
+              <div style={{ width: 130, height: 110, backgroundColor: '#f0f0f0' }}>
+                {/* Placeholder for missing image */}
+              </div>
+            )}
+          </div>
         <h4 className="text-md font-bold">{name}</h4>
         <h5 className="text-lg text-brightRed"> {formatMoney(price)}</h5>
       </div>

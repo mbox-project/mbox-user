@@ -191,7 +191,7 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
               type="text"
               id="storeAbbrevation"
               name="storeAbbrevation"
-              value={data?.storeAbbrevation}
+              value={data?.storeAbbreviation}
               onChange={handleChange}
               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"

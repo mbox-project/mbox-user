@@ -326,6 +326,7 @@ export const ProductVariation = ({
                 setLoading(false);
                 router.push("/products");
             });
+            console.log(data)
         } catch (error) {
             toastify.alertError(error.message, 3000);
             setLoading(false);

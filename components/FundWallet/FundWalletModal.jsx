@@ -11,28 +11,29 @@ import { paystackFundWallet } from "../../store/fundwallet/walletService";
 
 const FundWallet = ({ openFund, setOpenFund }) => {
   // Add rememberMe property to it later..
+  const { isLoading } = useSelector((state) => state.wallet);
+  const { email } = useSelector((state) => state.auth.user);
   const [fundWalletData, setFundWalletData] = useState({
-    amount: "",
+    amount: 0,
   });
   const dispatch = useDispatch();
   const onChangeInput = (e) => {
     setFundWalletData({ ...fundWalletData, [e.target.name]: e.target.value });
   };
 
-  const { isLoading } = useSelector((state) => state.wallet);
-  const { email } = useSelector((state) => state.auth.user);
+  
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (fundWalletData.amount === "") {
       toastify.alertWarning("Enter a valid amount", 3000);
     } else {
-      console.log(fundWalletData);
+      console.log({ ...fundWalletData, email });
       dispatch(paystackFundWallet({ ...fundWalletData, email }))
         .unwrap()
         .then((action) => {
           //console.log(action?.data)
-          window.location.href = action?.data;
+         // window.location.href = action?.data;
         })
         .catch((error) => {
           console.log(error);

@@ -2,23 +2,34 @@ import React, { useState, useEffect } from "react";
 import Layout from "../../components/PagesLayout/Layout";
 import { orderProducts } from "../../components/data";
 import DisputePage from "../../components/DisputePage";
-import { useDispatch } from "react-redux";
-import { getAllDeals } from "../../store/deals/dealService";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllDeals, getVendorAllDeals } from "../../store/deals/dealService";
 
 const index = () => {
   const dispatch = useDispatch();
   const [deals, setDeals] = useState();
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(3);
-  const dealStatus = 3;
+  const dealStatus = 2;
+  const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
-    dispatch(getAllDeals({ dealStatus, pageNumber, pageSize })).unwrap()
-    .then((res) => {
-      console.log(res.data?.items?.$values);
-      setDeals(res.data?.items?.$values || []);
-    })
-    .catch((error) => console.log(error));;
+    if(user?.role === "user"){
+      dispatch(getAllDeals({ dealStatus, pageNumber, pageSize })).unwrap()
+      .then((res) => {
+        console.log(res?.data?.items?.$values);
+        setDeals(res?.data?.items?.$values || []);
+      })
+      .catch((error) => console.log(error));
+    }else {
+      dispatch(getVendorAllDeals({ dealStatus, pageNumber, pageSize })).unwrap()
+      .then((res) => {
+        console.log(res?.data?.items?.$values);
+        setDeals(res?.data?.items?.$values || []);
+      })
+      .catch((error) => console.log(error));;
+    }
+  
   }, [dispatch, pageNumber, pageSize]);
 
   const handleNextPage = () => {

@@ -34,7 +34,7 @@ const Receipt = ({ data }) => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col md:block justify-between font-poppins mb-5">
+      <div className="flex flex-col md:flex-row justify-between font-poppins mb-5">
         <div className=" pl-2 md:pl-7 mt-3">
           <p>Invoice to:</p>
               <div>
