@@ -17,6 +17,14 @@ export const getVendorAllDeals = createAsyncThunk(
     return response.data;
   }
 );
+export const getSingleDeal = createAsyncThunk(
+  "Deal/single",
+  async (dealId) => {
+    //console.log(data.pageNumber, data.pageSize, 7777)
+    const response = await getApi(`Deal/${dealId}`);
+    return response.data;
+  }
+);
 
 export const approveDeal = createAsyncThunk(
   "Deal/approve",

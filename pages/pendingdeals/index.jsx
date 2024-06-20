@@ -10,7 +10,7 @@ const index = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(3);
   const [pendingDeals, setPendingDeals] = useState([])
-  const counter = orderProducts.length;
+  const counter = pendingDeals?.length;
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   

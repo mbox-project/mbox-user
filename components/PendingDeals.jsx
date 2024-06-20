@@ -44,7 +44,7 @@ const PendingDeals = ({ product }) => {
         <div className="flex flex-col space-y-4">
           <h2 className="text-gray-900 font-bold">{product?.product?.description}</h2>
           <h3 className="text-sm">{"type"}</h3>
-          <h2 className="text-md  text-gray-500">Product Tag: {product?.product?.productTag}</h2>
+          <h2 className="text-md  text-gray-500">Invoice Tag: {product?.invoiceTag}</h2>
           <h2 className="text-md  text-gray-500">{"owner"}</h2>
         </div>
         <div className="flex flex-col space-y-4">
