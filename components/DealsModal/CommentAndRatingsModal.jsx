@@ -38,7 +38,7 @@ const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, inv
     .then(()=> {
       toastify.alertSuccess("Rating successful", 300);
       setLoading(false);
-      setOpen(false);
+      //setOpen(false);
       setCommentOpen(false)
        // Reset state
        setReviewRating();

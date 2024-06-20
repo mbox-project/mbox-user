@@ -29,7 +29,7 @@ const ApproveDealModal = ({ open, setOpen, buyer, seller, invoiceId, dealId }) =
       .catch(() => {
         toastify.alertError("Approval failed", 3000);
         setLoading(false);
-        setCommentOpen(true);
+        
       });
   };
 

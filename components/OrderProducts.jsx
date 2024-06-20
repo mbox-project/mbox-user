@@ -11,7 +11,7 @@ import { toastify } from "../helpers";
 const OrderProducts = ({ product }) => {
   const { products, buyerName, storeName, id, tag } = product;
   const totalPoduct = products?.$values?.length
-  const pImage = products?.$values?.[0]?.productImage?.imageUrl
+  const pImage = products?.$values?.[0]?.images?.$values?.[0]?.imageUrl
   const router = useRouter();
   function formatMoney(amount, locale = 'en-NG', currency = 'NGN') {
     const formatter = new Intl.NumberFormat(locale, {
