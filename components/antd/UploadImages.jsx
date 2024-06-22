@@ -9,38 +9,8 @@ const UploadImages = ({ setData }) => {
   const props = {
     name: "file",
     multiple: true,
-    DocumentType: "",
     maxCount: 4,
-    action: "/api/uploads",
-    onChange(info) {
-      const { status, response } = info.file;
-      console.log(info);
-      if (status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
-      if (status === "done") {
-        message.success(`${info.file.name} file uploaded successfully.`);
-        setData((prev) => [...prev, response]);
-        console.log(response);
-      } else if (status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-    onDrop(e) {
-      console.log("Dropped files", e.dataTransfer.files);
-    },
-    onRemove(info) {
-      const public_id = info.response?.publicId;
-      axios
-        .patch("/api/delete", { id: public_id })
-        .then(() => {
-          console.log("removed", info);
-          return true;
-        })
-        .catch(() => {
-          return false;
-        });
-    },
+    action: "https://marketbox-api.onrender.com/api/Product/upload-gallery-images",
     beforeUpload(file, fileList) {
       const isJpgOrPng =
         file.type === "image/jpeg" ||
@@ -57,6 +27,27 @@ const UploadImages = ({ setData }) => {
       }
       return isJpgOrPng && isLt5M;
     },
+    onChange(info) {
+      const { status, response } = info.file;
+      console.log(info);
+      if (status !== "uploading") {
+        console.log(info.file, info.fileList);
+      }
+      if (status === "done") {
+        message.success(`${info.file.name} file uploaded successfully.`);
+        // Extract image URLs from the response
+        const imageUrls = response.data.$values.map(image => image.imageUrl);
+       // Update the state with new image URLs
+       setData((prev) => [...prev, ...imageUrls]);
+        console.log(imageUrls);
+      } else if (status === "error") {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+    onDrop(e) {
+      console.log("Dropped files", e.dataTransfer.files);
+    },
+   
   };
   return (
     <Dragger {...props}>
@@ -72,3 +63,18 @@ const UploadImages = ({ setData }) => {
 };
 
 export default UploadImages;
+
+ /** 
+  onRemove(info) {
+    const public_id = info.response?.publicId;
+    axios
+      .patch("/api/delete", { id: public_id })
+      .then(() => {
+        console.log("removed", info);
+        return true;
+      })
+      .catch(() => {
+        return false;
+      });
+  },
+  */

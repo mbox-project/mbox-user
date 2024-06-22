@@ -22,7 +22,6 @@ const Products = ({ product }) => {
   const showModal = (id) => {
     setProductIdToDelete(id);
     setIsModalOpen(true);
-    console.log(id)
   };
  
 
