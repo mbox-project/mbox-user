@@ -9,6 +9,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import ApproveDealModal from "./DealsModal/ApproveDealModal";
 import DisputeDealModal from "./DealsModal/disputeModal";
 import CancelDealModal from "./DealsModal/cancelDeal";
+import { formatMoney } from "../helpers/NairaFormat";
 
 const PendingDeals = ({ product }) => {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const PendingDeals = ({ product }) => {
           <h2 className="text-md  text-gray-500">{"owner"}</h2>
         </div>
         <div className="flex flex-col space-y-4">
-          <h2 className="text-gray-900 font-bold">${product?.product?.price}</h2>
+          <h2 className="text-gray-900 font-bold">{formatMoney(product?.product?.price)}</h2>
           <h3 className="text-md  text-gray-500">Size: {"size"}</h3>
           <h2>
             <span className="text-md  text-gray-500">Color:</span>

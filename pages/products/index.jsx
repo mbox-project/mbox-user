@@ -31,7 +31,6 @@ const Index = () => {
     price: 0,
     discount: 0,
     categoryId: "",
-    images: [],
     tags: [],
     colors: [],
     sizes: [],
@@ -70,7 +69,6 @@ const Index = () => {
 
   const handleProdVisiblity = () => {
     setShowAddProduct(!showAddProduct);
-    console.log("clicked", showAddProduct);
   };
 
   const renderProducts = () => {
