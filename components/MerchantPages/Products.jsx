@@ -28,7 +28,7 @@ const Products = ({ product }) => {
 
   const handleDeleteProduct = (productId) => {
     setLoadinge(true);
-    dispatch(deleteProduct(productId))
+    dispatch(deleteProduct(productId)).unwrap()
       .then((res) => {
         toastify.alertSuccess(
           "Product deleted successfully",
@@ -60,6 +60,14 @@ const Products = ({ product }) => {
    sessionStorage.setItem("productId", id)
    router.push("products/editProduct")
   };
+  function formatMoney(amount, locale = 'en-NG', currency = 'NGN') {
+    const formatter = new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+    });
+  
+    return formatter.format(amount);
+  }
 
  
   //destructure the products
@@ -70,19 +78,23 @@ const Products = ({ product }) => {
     <>
     <div className="relative group rounded-2xl overflow-hidden shadow-md ">
       <div className="card rectCard flex flex-col items-center justify-center space-y-5  duration-200 relative">
-        <div className="prodImg">
-          <Image src={firstImage} alt="product" width={130} height={150} />
-        </div>
+      <div className="prodImg">
+            {firstImage ? (
+              <Image src={firstImage} alt="product" width={130} height={110} />
+            ) : (
+              <div style={{ width: 130, height: 110, backgroundColor: '#f0f0f0' }}>
+                {/* Placeholder for missing image */}
+              </div>
+            )}
+          </div>
         <h4 className="text-md font-bold">{name}</h4>
-        <h5 className="text-lg text-brightRed"> ${price}</h5>
+        <h5 className="text-lg text-brightRed"> {formatMoney(price)}</h5>
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-2 flex justify-around items-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[#EF5612]">
        <div className=" p-2 rounded-full bg-white" >
        <FiEdit2 className="text-[#EF5612] cursor-pointer hover:text-blue-700" onClick={handlePassProductId}/>
        </div>
-       <div className=" p-2 rounded-full bg-white" >
-       <TbShare3 className="text-[#EF5612] cursor-pointer hover:text-blue-700" />
-       </div>
+      
       <div className=" p-2 rounded-full bg-white"   onClick={() => showModal(id)}>
       <LuTrash className="text-[#EF5612] cursor-pointer hover:text-red-700 border-black" />
       </div>

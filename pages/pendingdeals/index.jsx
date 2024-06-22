@@ -1,19 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/PagesLayout/Layout";
 import { orderProducts } from "../../components/data";
 import PendingDeals from "../../components/PendingDeals";
 import Pagenation from "../../components/Pagenation";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllDeals, getVendorAllDeals } from "../../store/deals/dealService";
 
 const index = () => {
-  const counter = orderProducts.length;
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(3);
+  const [pendingDeals, setPendingDeals] = useState([])
+  const counter = pendingDeals?.length;
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if (user?.role === "user") {
+      dispatch(getAllDeals({ dealStatus: 0, pageNumber, pageSize }))
+        .unwrap()
+        .then((response) => (
+          console.log(response),
+          setPendingDeals(response?.data?.items?.$values)
+        ))
+        .catch((error) => console.log(error));
+      console.log("effect");
+    } else {
+      dispatch(getVendorAllDeals({ dealStatus: 0, pageNumber, pageSize }))
+        .unwrap()
+        .then((response) => (
+          console.log(response),
+          setPendingDeals(response?.data?.items?.$values)
+        ))
+        .catch((error) => console.log(error));
+      console.log("effect");
+    }
+
+  }, [pageNumber, pageSize]);
+
+
   return (
     <Layout>
-      <section className="card rectCard flex justify-between items-center text-lg border-b-2 mt-8 md:flex-row ">
+      <section className="card rectCard flex justify-between items-center text-lg border-b-2 mt-8 md:flex-row !bg-[#FAFAFA] !shadow-none ">
         <h4 className="text-2xl font-medium mt-5">Pending Deals ({counter})</h4>
         <form>
           <select
             id="sort"
-            className="bg-gray-50 border text-gray-500 text-sm rounded-md p-2.5 px-6 mt-5"
+            className=" border text-gray-500 text-sm rounded-md p-2.5 px-6 mt-5"
           >
             <option disabled selected>
               Sort By
@@ -24,8 +56,8 @@ const index = () => {
         </form>
       </section>
       {/* Saved Content  */}
-      <section className="card rectCard flex flex-col space-y-5">
-        {orderProducts.map((prod) => {
+      <section className="card rectCard flex flex-col  space-y-5 !bg-[#FAFAFA]">
+        {pendingDeals?.map((prod) => {
           return <PendingDeals product={prod} key={prod.id} />;
         })}
       </section>

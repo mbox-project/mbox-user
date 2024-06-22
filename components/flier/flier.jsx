@@ -24,6 +24,7 @@ const Flyer = () => {
   let rest = name?.[1]
 
 
+  
   useEffect(() => {
     dispatch(getVendor())
       .unwrap()
@@ -54,7 +55,7 @@ const Flyer = () => {
 
           </h2>
           <div className=" name-parent">
-            <h3 className="name">By {flyer?.fullName}</h3>
+            <h3 className="name">By {flyer?.accountName}</h3>
             <div className=" higlight"></div>
           </div>
           <p className="Mb"> On <Image src={mBox} className=" mbox-img" /></p>
@@ -63,8 +64,8 @@ const Flyer = () => {
             <Image src={tri} className=" tri-image" />
             <div className="white-circle">
               <div className=" inner-circle">
-                {flyer?.imageUrl ? (
-                  <Image src={flyer.imageUrl} alt="flyerimage"
+                {flyer?.image ? (
+                  <Image src={flyer.image} alt="flyerimage"
                     className=''
                     layout='fill'
                   />

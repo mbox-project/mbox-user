@@ -1,50 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Layout from "../../components/PagesLayout/Layout";
 import Pagenation from "../../components/Pagenation";
 import shorts from "../../public/img/shorts.png";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllDeals, getVendorAllDeals } from "../../store/deals/dealService";
+import DetailsModal from "../../components/DealsModal/detailsModal";
 
-const data = [
-  {
-    id: 1,
-    image: shorts,
-    name: "Ashewo Shorts Vintage edition",
-    date: "09.01.2022",
-    price: "4,850",
-  },
-  {
-    id: 2,
-    image: shorts,
-    name: "Ashewo Shorts Vintage edition",
-    date: "09.01.2022",
-    price: "4,850",
-  },
-  {
-    id: 3,
-    image: shorts,
-    name: "Ashewo Shorts Vintage edition",
-    date: "09.01.2022",
-    price: "4,850",
-  },
-  {
-    id: 4,
-    image: shorts,
-    name: "Ashewo Shorts Vintage edition",
-    date: "09.01.2022",
-    price: "4,850",
-  },
-  {
-    id: 5,
-    image: shorts,
-    name: "Ashewo Shorts Vintage edition",
-    date: "09.01.2022",
-    price: "4,850",
-  },
-];
 
 const index = () => {
-  const counter = data.length;
+  //const counter = data.length;
+  const [modal, setModal] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [successfulDeals, setSucessfulDeals] = useState([])
+  const [selectedDealId, setSelectedDealId] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedName, setSelectedName] = useState(null);
+  const counter = successfulDeals?.length;
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
 
+  const detail = ({dealId, image, name}) => {
+    setSelectedDealId(dealId);
+    setSelectedImage(image);
+    setSelectedName(name);
+
+    setModal(true);
+  };
+
+  useEffect(() => {
+    if (user?.role === "user") {
+      dispatch(getAllDeals({ dealStatus: 1, pageNumber, pageSize }))
+        .unwrap()
+        .then((response) => (
+          console.log(response),
+          setSucessfulDeals(response?.data?.items?.$values)
+        ))
+        .catch((error) => console.log(error));
+      console.log("effect");
+    } else {
+      dispatch(getVendorAllDeals({ dealStatus: 1, pageNumber, pageSize }))
+        .unwrap()
+        .then((response) => (
+          console.log(response),
+          setSucessfulDeals(response?.data?.items?.$values)
+        ))
+        .catch((error) => console.log(error));
+      console.log("effect");
+    }
+
+  }, [pageNumber, pageSize]);
+
+
+  function formatMoney(amount, locale = 'en-NG', currency = 'NGN') {
+    const formatter = new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+    });
+
+    return formatter.format(amount);
+  }
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0'); // Ensure two digits
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-indexed
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  };
   return (
     <Layout>
       <section className="card rectCard flex justify-between items-center text-lg border-b-2 mt-8 md:flex-row ">
@@ -68,36 +92,53 @@ const index = () => {
       <section className="card rectCard overflow-x-auto">
         <table className="w-full">
           <tbody className="">
-            {data.map((prod) => (
+            {successfulDeals?.map((prod) => (
               <tr key={prod.id}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
-                    <div className="shadow-md p-3 md:max-w-[70px] md:max-h-[65px]  bg-[#FAFAFA] rounded-md">
-                      <Image
-                        src={prod.image}
-                        width={40}
-                        height={40}
-                        alt="product"
-                        className="w-full md:w-auto"
-                      />
+                    <div className="shadow-md p-1  md:max-w-[70px] md:max-h-[65px]  bg-[#FAFAFA] rounded-md">
+                      {
+                        prod.product.otherDetails.imageUrl && (
+                          <Image
+                            src={prod.product.otherDetails.imageUrl}
+                            width={40}
+                            height={40}
+                            alt="product"
+                            className="w-full md:w-auto"
+                          />
+                        )
+                      }
+
                     </div>
                     <div className="ml-6">
-                      <div className="text-[#444444]">{prod.name}</div>
+                      <div className="text-[#444444]">{prod.product.description}</div>
                     </div>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-[#444444]">{prod.date}</div>
+                  <div className="text-[#444444]">{formatDate(prod.date)}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-[#444444] font-semibold">
-                    +${prod.price}
+                    {
+                      user?.role === "user" ?
+                        (<span>-{formatMoney(prod.total)}</span>)
+                        :
+                        (<span>+{formatMoney(prod.subTotal)}</span>)
+                    }
+
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right font-medium">
                   <button
                     type="button"
                     className="bg-[#26A17B] font-medium shadow-md shadow-[#26A17B12] py-[10px] px-[20px] text-[#FAFAFA] h-max rounded-[10px]"
+                    onClick={() =>
+                       detail({
+                        dealId:prod.id,
+                        image:prod.product.otherDetails.imageUrl,
+                        name:prod.product.description
+                      })}
                   >
                     Details
                   </button>
@@ -108,6 +149,14 @@ const index = () => {
         </table>
       </section>
       <Pagenation />
+      <DetailsModal
+        open={modal}
+        setOpen={setModal}
+        dealId={selectedDealId}
+        image={selectedImage}
+        name={selectedName}
+
+      />
     </Layout>
   );
 };

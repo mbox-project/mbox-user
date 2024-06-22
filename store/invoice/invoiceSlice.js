@@ -29,6 +29,23 @@ export const generateinvoice = createAsyncThunk(
     }
   }
 );
+export const updateInvoice = createAsyncThunk(
+  "updateInvoice",
+  async ({id, updateData}, thunkAPI) => {
+    try {
+      return await invoiceService.updateInvoice({id, updateData});
+    } catch (error) {
+      // console.log("Errors", error.response);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const getInvoice = createAsyncThunk(
   "getinvoice",
@@ -78,6 +95,20 @@ export const invoiceSlice = createSlice({
       state.invoiceLog = action.payload.data;
     });
     builder.addCase(generateinvoice.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.message = action.payload;
+    });
+    builder.addCase(updateInvoice.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateInvoice.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      // state.message = action.payload.message;
+      state.invoiceLog = action.payload.data;
+    });
+    builder.addCase(updateInvoice.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.message = action.payload;

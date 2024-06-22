@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
+import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
 import profile from "../../public/img/profile.svg";
 import purchase from "../../public/img/purchase.svg";
 import report from "../../public/img/report.svg";
@@ -9,13 +10,16 @@ import saved from "../../public/img/saved.svg";
 import wallet from "../../public/img/wallet.svg";
 import thumb from "../../public/img/thumb.svg";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { selectRole } from "../../store/selectors/selectors";
 
 const MobileSidebar = ({ showSideBar }) => {
+  const role = useSelector(selectRole);
   return (
     <>
       {/* Mobile Menu sidebar */}
       {showSideBar && (
-        <aside className="w-1/2 bg-white z-30 flex flex-col absolute top-0 left-0 shadow-md h-full md:hidden">
+        <aside className="w-1/2 bg-white z-30 flex flex-col fixed top-[55px] left-0 shadow-md h-svh md:hidden">
           <h6 className="py-4 font-bold text-lg pl-5 text-white bg-brightRed">
             My Account
           </h6>
@@ -29,10 +33,26 @@ const MobileSidebar = ({ showSideBar }) => {
                 <Image src={wallet} width={20} height={20} alt="profile" />
                 <Link href="/wallet"> My Wallet </Link>
               </li>
-              <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-                <BsCartDash size={20} />
-                <Link href="#"> Orders </Link>
-              </li>
+              {role === "vendor" && (
+                <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                  <BsCartDash size={20} />
+                  <Link href="/products/"> Products </Link>
+                </li>
+              )}
+              {role === "vendor" && (
+                <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                  <LiaFileInvoiceDollarSolid size={20} />
+                  <Link href="/orders/"> Invoices </Link>
+                </li>
+              )}
+              {role === "vendor" && (
+                <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                  <LiaFileInvoiceDollarSolid size={20} />
+
+                  <Link href="/generateinvoice"> Generate Invoice </Link>
+                </li>
+              )}
+
               <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={saved} width={20} height={20} alt="profile" />
                 <Link href="#"> Saved Items </Link>

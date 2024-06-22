@@ -10,57 +10,82 @@ import { updateVendor } from "../../store/auth/vendorService";
 import UploadProfileImages from "../antd/uploadProfile";
 import { getProductCategories } from "../../store/product/productService";
 import { toastify } from "../../helpers";
-
+import { LoadingOutlined } from "@ant-design/icons";
+import { Upload } from "antd";
+import UpdateProfileImages, { props } from "../../Utils/uploadImage";
+import Image from "next/image";
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getProductCategories())
       .unwrap()
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
     console.log("effect");
-  }, []);
+  }, [dispatch]);
+
   const { categories } = useSelector((state) => state.product);
   const [res, setRes] = useState();
+
+  useEffect(() => {
+    setData((prevData) => ({
+      ...prevData,
+      image: res?.imageUrl
+    }));
+  }, [res, setData]);
+  console.log(res?.imageUrl)
+
   const onSelectCategory = (e) => {
-    setData((prevData) => {
-     const proUpdate = {
+    setData((prevData) => ({
       ...prevData,
       categoryId: e.target.value,
-      imageUrl: res?.imageUrl
-     }
-     return {...proUpdate}
-    });
+    }));
   };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
   return (
     <form>
       <section
         className="card flex flex-col py-2 space-2"
-        style={{ "border-radius": "0px" }}
+        style={{ borderRadius: "0px" }}
       >
         <div className="flex justify-between p-3">
-          <h4 className="text-gray-500">Profile Picture</h4>
-          <div className="flex space-x-2">
-            <span className="rounded-full p-1 bg-blue-100">
-              <BiEditAlt className="text-blue-400" />
-            </span>
-            <span className="rounded-full p-1 bg-red-50">
-              <BiTrashAlt className="text-brightRed" />
-            </span>
-          </div>
+          <h4 className="text-gray-500">Store Image</h4>
+          <UpdateProfileImages setData={setRes} />
+          
         </div>
-        <UploadProfileImages setData={setRes}/>
+        <div className="p-5 flex justify-center items-center h-48 mt-5 mb-3 bg-gray-200 w-48 profilePics">
+          {data?.image ? (
+            <Image
+              src={data?.image}
+              alt="Profile Image" // Adding alt attribute
+              height={300}
+              width={300}
+            />
+          ) : (
+            <BsFillCameraFill size={60} className="text-white" />
+          )}
+        </div>
         <div className="flex flex-col">
-        <div className="mb-2 mt-4">
+          <div className="mb-2 mt-4">
             <label htmlFor="name" className="block mb-2 text-md text-gray-500">
               Full Name
             </label>
             <input
-              type="name"
+              type="text"
               id="name"
               className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"
-              value={data?.fullName}
+              value={data?.accountName || ""}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -73,7 +98,8 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               id="email"
               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"
-              value={data?.email}
+              value={data?.email || ""}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -85,30 +111,29 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               Category
             </label>
             <select
-                  name="category"
-                  id="category"
-                  value={data?.catId}
-                  onChange={onSelectCategory}
-                  placeholder="select category"
-                  className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-                >
-                  <option value="" disabled selected>
-                    Select a category
-                  </option>
-                  {categories.map((e, i) => (
-                    <option key={i} value={e.id}>
-                      {e.name}
-                    </option>
-                  ))}
-                </select>
+              name="category"
+              id="category"
+              value={data?.categoryId || ""}
+              onChange={onSelectCategory}
+              className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
+            >
+              <option value="" disabled>
+                Select a category
+              </option>
+              {categories.map((e, i) => (
+                <option key={i} value={e.id}>
+                  {e.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </section>
-      <div className="flex justify-end mt-5 ">
+      <div className="flex justify-end mt-5">
         <button
           onClick={(e) => {
             e.preventDefault();
-              setActiveKey("2");         
+            setActiveKey("2");
           }}
           className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
         >
@@ -166,7 +191,7 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
               type="text"
               id="storeAbbrevation"
               name="storeAbbrevation"
-              value={data?.storeAbbrevation}
+              value={data?.storeAbbreviation}
               onChange={handleChange}
               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"
@@ -222,30 +247,45 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
     </form>
   );
 };
-export const BankInformation = ({ data, setData, setActiveKey }) => {
+export const BankInformation = ({ data, setData }) => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.auth.isLoading);
-  const [bankName, setBankName] = useState({});
+  const [bankName, setBankName] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleChange = (e) => {
-    setData((prev) => {
-      const update = {
-        ...prev,
-        [e.target.name]: e.target.value,
-        bankName: bankName?.name
-      };
-      return { ...update,  };
-    });
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+
+    }));
     console.log(data);
+  };
+
+  // Function to handle SearchSelect change
+  const handleSearchSelectChange = (selectedBank) => {
+    setBankName(selectedBank);
+    setData((prev) => ({
+      ...prev,
+      bankName: selectedBank.name, // Assuming 'name' is the property containing the bank name
+    }));
+    console.log(bankName);
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
+    console.log(data)
+    setLoading(true)
     dispatch(updateVendor(data))
-    .unwrap()
+      .unwrap()
       .then((action) => {
         toastify.alertSuccess("Updated profile successfully ");
-        console.log(action);
+        dispatch(getVendor())
+        setLoading(false)
       })
-      .catch((error) => toastify.alertError(error, 3000));
+      .catch((error) => {
+        toastify.alertError(error, 3000)
+        setLoading(false)
+      });
+
+
   };
   return (
     <>
@@ -264,7 +304,7 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
               <input
                 name="accountNumber"
                 type="number"
-                placeHolder="1357 0245 6456 9981"
+                placeholder="1357 0245 6456 9981"
                 className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
                 onChange={handleChange}
                 required
@@ -280,23 +320,10 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
               <SearchSelect
                 data={banks}
                 selected={data?.bankName || bankName}
-                setSelected={setBankName}
+                setSelected={handleSearchSelectChange} // Pass the handleSearchSelectChange function
               />
             </div>
-            {/* <div className="mb-2">
-              <label
-                htmlFor="bankname"
-                className="block mb-2 text-md text-gray-500"
-              >
-                Bank Name
-              </label>
-              <input
-                type="text"
-                id="bankename"
-                className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
-                placeholder="MBOX Bank"
-              />
-            </div> */}
+         
             <div className="mb-2 px-12 pt-3">
               <Label
                 htmlFor="acctname"
@@ -311,22 +338,10 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
                 onChange={handleChange}
                 className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
                 placeholder="Taylor Mason"
+                value={data?.accountName}
               />
             </div>
-            {/* <div className="mb-2">
-              <label
-                htmlFor="acctno"
-                className="block mb-2 text-md text-gray-500"
-              >
-                Account Number
-              </label>
-              <input
-                type="text"
-                id="acctno"
-                className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-                placeholder="0036789412"
-              />
-            </div> */}
+          
             <div className="mb-6 mx-auto text-center">
               <p>
                 Please ensure the{" "}
@@ -342,7 +357,10 @@ export const BankInformation = ({ data, setData, setActiveKey }) => {
             type="submit"
             className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
           >
-            Save
+            {
+              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Save'
+            }
+
           </button>
         </div>
       </form>

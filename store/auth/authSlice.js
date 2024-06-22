@@ -23,6 +23,7 @@ const initialState = {
 //vendor service
 const createVendor = vendorService.createVendor;
 const registerVendor = vendorService.registerVendor;
+const reportBuyer = vendorService.reportBuyer
 
 //register user
 export const register = createAsyncThunk(
@@ -145,6 +146,16 @@ export const authSlice = createSlice({
       })
       .addCase(createVendor.rejected, (state, action) => {
         state.isLoading = false;
+      })
+      .addCase(reportBuyer.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(reportBuyer.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(reportBuyer.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
       })
       .addCase(registerVendor.pending, (state) => {
         state.isLoading = true;

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //const baseURL = "http://52.2.104.53/api/";
-const baseURL = " http://ec2-52-2-104-53.compute-1.amazonaws.com/api/";
+export const baseURL = "https://marketbox-api.onrender.com/api/";
 
 const api = axios.create({
   baseURL,
@@ -17,17 +17,22 @@ api.interceptors.response.use(undefined, function (error) {
       return error.response.data?.message?.toString();
     },
   });
+  console.error('Interceptor error:', error);
   return Promise.reject(error);
 });
 
-export const getApi = (url) => {
-  return api.get(url, {
-    headers: {
-      Authorization: `Bearer ${
-        typeof window !== undefined ? sessionStorage.getItem("token") : null
-      }`,
-    },
-  });
+
+export const getApi = async (url) => {
+  try {
+    return await api.get(url, {
+      headers: {
+        Authorization: `Bearer ${typeof window !== 'undefined' ? sessionStorage.getItem("token") : null}`,
+      },
+    });
+  } catch (error) {
+    console.error('Error in getApi:', error);
+    throw error;
+  }
 };
 
 export const postApi = (url, body) => {
@@ -42,6 +47,15 @@ export const postApi = (url, body) => {
 
 export const patchApi = (url, body) => {
   return api.patch(url, body, {
+    headers: {
+      Authorization: `Bearer ${
+        typeof window !== undefined ? sessionStorage.getItem("token") : null
+      }`,
+    },
+  });
+};
+export const putApi = (url, body) => {
+  return api.put(url, body, {
     headers: {
       Authorization: `Bearer ${
         typeof window !== undefined ? sessionStorage.getItem("token") : null

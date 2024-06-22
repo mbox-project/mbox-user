@@ -1,115 +1,112 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { generateinvoice, reset } from "../../store/invoice/invoiceSlice";
+import { generateinvoice, reset, updateInvoice } from "../../store/invoice/invoiceSlice";
 import Spinner from "../../components/Spinner";
 import { toastify } from "../../helpers";
 import Input from "../Input";
 import Label from "../Label";
 import Button from "../Button";
-
 import { FiMinusCircle } from "react-icons/fi";
 import { MdOutlineAddCircleOutline } from "react-icons/md"
-import { getVendorProducts } from "../../store/product/productService";
-import { Select } from "antd";
-const invoiceInput = () => {
-  const [pageNumber, setPageNumber] = useState(1);
-  const [loading, setLoading] = useState(true); // State to track loading state
-  const [pageSize, setPageSize] = useState(10);
-  const [products, setProducts] = useState([]);
-  // Add rememberMe property to it later.
+import { getInvoice } from "../../store/invoice/invoiceSlice";
+import { LoadingOutlined } from "@ant-design/icons";
+const InvoiceEdit = () => {
+  const [data, setData] = useState(null);
+  const [subTotal, setSubtotal] = useState(0);
+  const [buyer, setBuyer] = useState("");
+  const [productsList, setProductsList] = useState([]);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
-  //const fullname = useSelector((state) => state.user.fullname);
   const router = useRouter();
-  const product = {
-    price: "",
-    quantity: "",
-  };
-  const [productsList, setProductsList] = useState([product]);
-  const [invoiceData, setInvoiceData] = useState({
-    // tag: "",
-    products: productsList,
-    buyer: "",
-    status: true
-  });
-  const [subtotal, setSubtotal] = useState(0);
+  const { invoiceId } = router.query;
+  const user = useSelector((state) => state.auth.user);
+
 
   useEffect(() => {
-    dispatch(getVendorProducts({ pageNumber, pageSize }))
-      .unwrap()
-      .then((res) => {
-        setProducts(res.data?.items?.$values || []);
-        setLoading(false); 
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
-  }, [dispatch, pageNumber, pageSize]);
+    if (invoiceId) {
+      dispatch(getInvoice(invoiceId))
+        .unwrap()
+        .then((action) => {
+          setData(action);
+          if (action && action.data.invoiceProducts.$values) {
+            const mappedProducts = action.data.invoiceProducts.$values.map((product) => ({
+              productId: product.productId,
+              price: product.price,
+              quantity: product.quantity,
+              tag: product.productTag,
+              productDescription: product.productDescription
+            }));
+            setProductsList(mappedProducts);
+            setSubtotal(action.data.subTotal);
+            setBuyer(action.data.buyerAddress);
+          }
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [invoiceId, dispatch]);
 
   const onChangeInput = (e) => {
-    setInvoiceData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
+    setBuyer(e.target.value);
   };
 
-  const onProductChangeInput = (value, name, index) => {
-    setProductsList((init) => {
-      const target = init[index];
-      const newTarget = { ...target, [name]: value };
-      init[index] = newTarget;
-      const result = [...init];
-      if (name === "quantity" || name === "price") {
-        const total = result.reduce(
-          (accum, curr) => accum + (parseFloat(curr.quantity) || 0) * (parseFloat(curr.price) || 0),
-          0
-        );
-        setSubtotal(total);
-      }
+  const onProductChangeInput = (e, index) => {
+    const { name, value } = e.target;
+    setProductsList((prevProducts) => {
+      const updatedProducts = [...prevProducts];
+      updatedProducts[index][name] = value;
 
-      return result;
+      const total = updatedProducts.reduce(
+        (accum, curr) => accum + curr.quantity * curr.price,
+        0
+      );
+      setSubtotal(total);
+
+      return updatedProducts;
     });
   };
-  const { isLoading } = useSelector((state) => state.invoice);
+
+
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     try {
-      const data = {
-        ...invoiceData,
-        //issuer: fullname,
-        date: new Date().toISOString(),
+      const updatedInvoice = {
+        buyer: buyer,
         products: productsList,
-        escFee: (subtotal / 100) * 5,
-        total: subtotal + (subtotal / 100) * 5,
-        subtotal,
-        issuer: user?.userId,
+        escFee: (subTotal / 100) * 5,
+        total: subTotal + (subTotal * 0.05),
+        subTotal,
+        issuer: user?.username,
+        status: true,
+        date: new Date().toISOString(),
       };
-      dispatch(generateinvoice(data))
-        .unwrap()
+      dispatch(
+        updateInvoice({ id: invoiceId, updateData: updatedInvoice })
+      ).unwrap()
         .then((action) => {
           toastify.alertSuccess(action?.message, 3000, () =>
-            router.push(`invoice/${action?.data}`)
+            router.push(`/invoice/${action?.data}`)
           );
+          setLoading(false)
         })
-        .catch((error) => toastify.alertError(error, 3000));
+        .catch((error) => {
+          toastify.alertError(error, 3000)
+          setLoading(false)
+        });
     } catch (error) {
       console.log(error);
     }
-
   };
   return (
     <>
-      {isLoading && <Spinner />}
       <div className="font-poppins w-full">
         <div className="pt-5">
           <div className="border rounded-md shadow-lg w-full md:w-[60%] mx-auto relative">
             <div className="bg-brightRed sticky top-0">
               <p className="py-4 px-2 md:px-10 text-white text-xl text-center">
-                Generate an Invoice
+                Edit Invoice
               </p>
               <div className="bg-lightPink ">
                 <p className="py-3 text-center font-poppins text-sm">
@@ -130,33 +127,14 @@ const invoiceInput = () => {
                 type="text"
                 placeHolder="test@email.com"
                 className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                value={invoiceData?.buyer}
+                value={buyer}
                 onChange={onChangeInput}
                 required
               />
             </div>
             {productsList.map((e, i) => (
               <div key={i}>
-                <div className="w-[90%] pt-2 mx-auto">
-                  <Label
-                    className="text-lightAsh text-sm"
-                    htmlFor="text"
-                    title="Product Tag"
-                  />
-                  <Select
-                    name="tag"
-                    type="text"
-                    placeHolder="GC-10234"
-                    className="w-full h-[100%] p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                    //value={e.tag}
-                    onChange={(value) => onProductChangeInput(value, "tag", i)}
-                    options={products?.map((e) => ({
-                      value: e?.tag,
-                      label: e?.name,
-                    }))}
-                    required
-                  />
-                </div>
+                
                 <div className="w-[90%] pt-2 mx-auto">
                   <Label
                     className="text-lightAsh text-sm"
@@ -169,7 +147,7 @@ const invoiceInput = () => {
                     placeHolder="Air Force II, Skando Limited Edition"
                     className="w-full p-1 md:p-2 lg:py-10  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
                     value={e.productDescription}
-                    onChange={(cur) => onProductChangeInput(cur.target.value, "productDescription", i)}
+                    onChange={(cur) => onProductChangeInput(cur, i)}
                     required
                   />
                 </div>
@@ -185,7 +163,7 @@ const invoiceInput = () => {
                     placeHolder="Unit Price"
                     className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
                     value={e.price}
-                    onChange={(cur) => onProductChangeInput(cur.target.value, "price", i)}
+                    onChange={(cur) => onProductChangeInput(cur, i)}
                     required
                   />
                 </div>
@@ -201,7 +179,7 @@ const invoiceInput = () => {
                     placeHolder="Quantity"
                     className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm font-poppins mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
                     value={e.quantity}
-                    onChange={(cur) => onProductChangeInput(cur.target.value, "quantity", i)}
+                    onChange={(cur) => onProductChangeInput(cur, i)}
                     required
                   />
                 </div>
@@ -234,12 +212,7 @@ const invoiceInput = () => {
             <div className="cursor-pointer">
               <p
                 className="flex items-center gap-1 justify-end text-xs pt-2 pr-[4rem]"
-                onClick={() => {
-                  setProductsList((init) => {
-                    const final = [...init, product];
-                    return final;
-                  });
-                }}
+
               >
                 <span>Add more product</span>
                 <MdOutlineAddCircleOutline className="text-brightRed text-[1rem]" />
@@ -256,7 +229,7 @@ const invoiceInput = () => {
                 type="text"
                 placeHolder="GC-10234"
                 className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#444444] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
-                value={subtotal}
+                value={subTotal}
                 onChange={onChangeInput}
                 required
                 disabled={true}
@@ -266,7 +239,10 @@ const invoiceInput = () => {
               className="w-[90%] mx-auto my-4 rounded-md shadow-lg bg-brightRed py-2 text-white flex justify-center text-base poppins"
               onClick={onSubmitHandler}
             >
-              Generate Invoice
+              {
+                loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Edit Invoice"
+              }
+
             </Button>
           </div>
         </div>
@@ -274,4 +250,4 @@ const invoiceInput = () => {
     </>
   );
 };
-export default invoiceInput;
+export default InvoiceEdit;

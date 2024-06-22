@@ -6,8 +6,18 @@ import { banks } from "../data";
 import { useDispatch, useSelector } from "react-redux";
 import { convertToVendor } from "../../store/auth/vendorService";
 import { toastify } from "../../helpers";
+import { getProductCategories } from "../../store/product/productService";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProductCategories())
+      .unwrap()
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+    console.log("effect");
+  }, []);
   const { categories } = useSelector((state) => state.product);
   const onSelectCategory = (e) => {
     setData((prevData) => ({
@@ -40,7 +50,7 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
                   <option value="" disabled selected>
                     Select a category
                   </option>
-                  {categories.map((e, i) => (
+                  {categories?.map((e, i) => (
                     <option key={i} value={e.id}>
                       {e.name}
                     </option>
@@ -207,32 +217,48 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
 };
 export const BankInformation = ({ data, setData, showModal }) => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.auth.isLoading);
   const [bankName, setBankName] = useState("");
+  const [loading, setLoading] = useState(false);
  
 
   const handleChange = (e) => {
-    setData((prev) => {
-      const update = {
-        ...prev,
-        [e.target.name]: e.target.value,
-      };
-      return { ...update, bankName: bankName.name };
-    });
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+     
+    }));
     console.log(data);
+  };
+
+   // Function to handle SearchSelect change
+   const handleSearchSelectChange = (selectedBank) => {
+    setBankName(selectedBank);
+    setData((prev) => ({
+      ...prev,
+      bankName: selectedBank.name, // Assuming 'name' is the property containing the bank name
+    }));
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
+    setLoading(true)
     
     dispatch(convertToVendor(data))
        .unwrap()
-       .then((action) => {
+       .then((res) => {
+        if(res?.responseCode === 500){
+          toastify.alertError("Could not convert to vendor", 300)
+          return;
+        }
         showModal();
+        setLoading(false)
         }
     )
     .catch((error) =>{
+      toastify.alertError("Could not convert to vendor", 300)
        console.log(error)
+       setLoading(false)
       });
+     
   };
   
   return (
@@ -249,13 +275,14 @@ export const BankInformation = ({ data, setData, showModal }) => {
               <input
                 name="accountNumber"
                 type="number"
-                placeHolder="1357 0245 6456 9981"
+                placeholder="1357 0245 6456 9981"
                 className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-xs  font-poppins  mt-1 border-[#9F9F9F] border-1 bg-white md:border-2  md:rounded-md shadow-sm rounded-none"
                 onChange={handleChange}
                 required
                 value={data?.accountNumber}
               />
             </div>
+            
             <div className="px-12 pt-3">
               <Label
                 className="text-[#C1C1C1]  text-xs"
@@ -265,54 +292,26 @@ export const BankInformation = ({ data, setData, showModal }) => {
               <SearchSelect
                 data={banks}
                 selected={data?.bankName || bankName}
-                setSelected={setBankName}
+                setSelected={handleSearchSelectChange} 
               />
             </div>
-            {/* <div className="mb-2">
-              <label
-                htmlFor="bankname"
-                className="block mb-2 text-md text-gray-500"
-              >
-                Bank Name
-              </label>
-              <input
-                type="text"
-                id="bankename"
-                className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
-                placeholder="MBOX Bank"
-              />
-            </div> */}
+          
             <div className="mb-2 px-12 pt-3">
               <Label
                 htmlFor="acctname"
-                // className="block mb-2 text-md text-gray-500"
                 className="text-[#C1C1C1]  text-xs"
                 title="Account Name"
               />
               <input
+              name="accountName"
                 type="text"
                 id="acctname"
-                //name="accountName"
                 value={data?.accountName}
                 onChange={handleChange}
                 className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
                 placeholder="Taylor Mason"
               />
             </div>
-            {/* <div className="mb-2">
-              <label
-                htmlFor="acctno"
-                className="block mb-2 text-md text-gray-500"
-              >
-                Account Number
-              </label>
-              <input
-                type="text"
-                id="acctno"
-                className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
-                placeholder="0036789412"
-              />
-            </div> */}
             <div className="mb-6 mx-auto text-center">
               <p>
                 Please ensure the{" "}
@@ -328,7 +327,9 @@ export const BankInformation = ({ data, setData, showModal }) => {
             type="submit"
             className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
           >
-            Become a vendor
+           {
+            loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : ' Become a vendor'
+           }
           </button>
         </div>
       </form>

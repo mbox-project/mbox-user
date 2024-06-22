@@ -9,6 +9,7 @@ import { toPng } from 'html-to-image';
 import { toastify } from '../../helpers';
 import Flyer from '../flier/flier';
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { copyToClipboard } from '../../Utils/copyToClipboard';
 
 const MerchantDashboard = () => {
   const [showFlyer, setShowFlyer] = useState(true);
@@ -50,11 +51,16 @@ const MerchantDashboard = () => {
     setImageGenerated(false)
   };
 
+  const handleCopy = async () => {
+    await copyToClipboard(`http://localhost:3000/endorse${tag}`);
+    toastify.alertSuccess("Invoice link copied", 300)
+  };
+
   return (
     <>
   { showFlyer ?
   (  <>
-      <section className="grid grid-cols-2 gap-[0.5rem] py-[0.5rem]">
+      <section className=" flex flex-col md:grid md:grid-cols-2 gap-[0.5rem] py-[0.5rem]">
         <div className="flex flex-col space-y-2 bg-white rounded-lg px-10 py-2 items-center justify-between mt10 shadow-sm  hover:shadow-md">
           <Image
             src={lady}
@@ -158,6 +164,9 @@ const MerchantDashboard = () => {
           </button>
           <button disabled={!imageGenerated} onClick={downloadFlyer} className={`rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB] ${!imageGenerated && 'opacity-50 cursor-not-allowed'}`}>
             Download Flier{" "}
+          </button>
+          <button  onClick={handleCopy} className={`rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB] ${!imageGenerated && 'opacity-50 cursor-not-allowed'}`}>
+            Copy Endorsement Link{" "}
           </button>
      </div>
       <Flyer />

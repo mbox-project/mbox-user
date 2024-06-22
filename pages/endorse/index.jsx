@@ -7,12 +7,16 @@ import { useSelector, useDispatch } from "react-redux";
 import baseURL from "../../config/api";
 import { toastify } from "../../helpers";
 import { getEndorsements } from "../../store/endorseandreport/endorseandreport";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const endorse = () => {
   const dispatch = useDispatch();
   const [endorse, setEndorse] = useState();
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(3);
+  const [loading, setLoading] = useState(false);
+
+  
 
   const [endorseData, setData] = useState({
     storeName: "",
@@ -36,11 +40,12 @@ const endorse = () => {
       setEndorse(res.data?.items?.$values || []);
     })
     .catch((error) => console.log(error));;
-  }, [dispatch, pageNumber, pageSize, setEndorse]);
+  }, [dispatch, pageNumber, pageSize]);
 
 
   const handleEndorseForm = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
     const response = await fetch(`${baseURL}Endorsement/endorse`, {
       method: "POST",
@@ -57,16 +62,26 @@ const endorse = () => {
       const result = await response.text();
       if(result === 'true'){
         toastify.alertSuccess("Endorsement successful");
-      }else{
-        toastify.alertSuccess(result);
+        // Update endorsements after successful endorsement
+        dispatch(getEndorsements({ pageNumber, pageSize })).unwrap()
+          .then((res) => {
+            console.log(res);
+            setEndorse(res.data?.items?.$values || []);
+            setLoading(false)
+          })
+          .catch((error) => console.log(error));
+      } else {
+        toastify.alertError(result.message);
+        setLoading(false) 
       }
-
       //window.reload();
       
     } else {
       const errorResult = await response.text();
       toastify.alertError(errorResult);
+      setLoading(false)
     }
+   
   };
 
   return (
@@ -118,7 +133,10 @@ const endorse = () => {
                   type="submit"
                   className=" w-24 my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white left-96 text-base poppins"
                 >
-                  Submit
+                  {
+                    loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Submit"
+                  }
+                  
                 </Button>
               </div>
             </div>

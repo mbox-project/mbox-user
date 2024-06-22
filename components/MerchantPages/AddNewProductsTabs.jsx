@@ -7,6 +7,7 @@ import {
 } from "../../store/product/productService";
 import { toastify } from "../../helpers";
 import { useDispatch, useSelector } from "react-redux";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export const ProductInformation = ({ setData, data, setActiveKey }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
       .catch((error) => console.log(error));
     console.log("effect");
   }, []);
-  const {categories} = useSelector((state) => state.product);
+  const { categories } = useSelector((state) => state.product);
   const [category, setCategory] = useState("");
   const onSelectCategory = (e) => {
     setCategory(e.target.value);
@@ -114,7 +115,7 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
               className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
             >
               <option value="">select category</option>
-              {categories.map((e, i) => (
+              {categories?.map((e, i) => (
                 <option key={i} value={e.id}>
                   {e.name}
                 </option>
@@ -141,7 +142,7 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
               htmlFor="discount"
               className="block mb-2 text-md text-gray-500"
             >
-              Discount <span className="text-brightRed">*</span>
+              Discount <span className="text-brightRed">* (leave at 0 if no discount )</span>
             </label>
             <input
               type="number"
@@ -190,7 +191,7 @@ export const ProductPicture = ({ setData, setActiveKey }) => {
         onClick={() => {
           if (setRes.length > 0) {
             setData((prev) => {
-              return { ...prev, images: [...res] };
+              return { ...prev, galleryImages: [...res] };
             });
             setActiveKey("3");
           }
@@ -295,6 +296,7 @@ export const ProductVariation = ({
   setActiveKey,
   handleProdVisiblity,
 }) => {
+  const [loading, setLoading] = useState(false)
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setData((prev) => {
@@ -357,25 +359,36 @@ export const ProductVariation = ({
             className="p-3 border border-brightRed text-center text-brightRed rounded-md w-full"
             // onClick={handleProdVisiblity}
             onClick={() => {
-                // Check if all fields are filled
-    if (!data.name || !data.description || data.quantity === 0 || data.price === 0 || data.discount === 0 || !data.categoryId || data.images.length === 0 || data.tags.length === 0 || data.colors.length === 0 || data.sizes.length === 0) {
-      // Display a toast notification indicating that all fields are required
-      toastify.alertWarning("All fields are required", 3000);
-      return; // Exit function if any field is empty
-  }
+             
+              // Check if all fields are filled
+              if (!data.name || !data.description || data.quantity === 0 || data.price === 0 || data.discount === 0 || !data.categoryId || data.galleryImages.length === 0 || data.tags.length === 0 || data.colors.length === 0 || data.sizes.length === 0) {
+                // Display a toast notification indicating that all fields are required
+                toastify.alertWarning("All fields are required", 3000);
+                return; // Exit function if any field is empty
+              }
+              setLoading(true)
               dispatch(uploadProduct(data))
                 .unwrap()
-                .then((res) =>
+                .then((res) => {
                   toastify.alertSuccess(
                     "product uploaded successfully",
                     3000,
                     handleProdVisiblity()
                   )
+                  setLoading(false)
+                  console.log(data)
+                }
                 )
-                .catch((error) => toastify.alertError(error, 3000));
+                .catch((error) => {
+                  toastify.alertError(error, 3000)
+                  setLoading(false)
+                });
             }}
           >
-            Upload Products
+            {
+              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Upload Products"
+            }
+
           </button>
         </form>
       </div>

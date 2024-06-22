@@ -9,40 +9,99 @@ import { toastify } from "../../helpers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.css";
+import { Rate } from 'antd';
+import { ratingDeals } from "../../store/deals/dealService";
+import { LoadingOutlined } from "@ant-design/icons";
 
 
-const CommentAndRatingModal = ({ openComment, setCommentOpen }) => {
-    const [rating, setRating] = useState(0);
+const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, invoiceId , setOpen}) => {
+  const [loading, setLoading] = useState(false);
+  const [reviewRating, setReviewRating] = useState();
+  const [comment, setComment] = useState("");
+  const [data, setData] = useState({
+   
+      invoiceId: invoiceId,
+      buyer: buyer,
+      seller: seller,
+      rating: reviewRating,
+      comment: comment
+  });
 
-    const handleStarClick = (starIndex) => {
-      setRating(starIndex + 1);
-    };
+ 
 
   const dispatch = useDispatch();
 
+  const rate = () =>{
+    setLoading(true);
+    dispatch(ratingDeals(data))
+    .unwrap()
+    .then(()=> {
+      toastify.alertSuccess("Rating successful", 300);
+      setLoading(false);
+      //setOpen(false);
+      setCommentOpen(false)
+       // Reset state
+       setReviewRating();
+       setComment("");
+       setData({
+         invoiceId: invoiceId,
+         buyer: buyer,
+         seller: seller,
+         rating: undefined,
+         comment: ""
+       });
+     
+    })
+    .catch(()=> {
+      toastify.alertError("Rating Failed", 300);
+      setLoading(false);
+      setOpen(false);
+      setCommentOpen(false);
+       // Reset state
+       setReviewRating();
+       setComment("");
+       setData({
+         invoiceId: invoiceId,
+         buyer: buyer,
+         seller: seller,
+         rating: undefined,
+         comment: ""
+       });
+      
+    })
+  }
+
+  useEffect(() => {
+    setData((prevData) => ({
+      ...prevData,
+      rating: reviewRating,
+      comment: comment
+    }));
+  }, [reviewRating, comment]);
+
   return (
-    <Modal open={openComment} onCancel={() => setCommentOpen(false)} footer={null}>
-      <div className="">
-        <div className="bg-lightPink text-center">
+    <Modal open={openComment} onCancel={() => setCommentOpen(false) } footer={null} maskClosable={false} wrapClassName="commentModal">
+      <div className=" bg-[#FAFAFA]">
+        <div className="text-center">
           {/* <h3 className="mb-5 text-lg font-bold text-green-600 dark:text-gray-400">
             Are you sure you're satisfied with this product?
           </h3> */}
-          <h2 className="mb-5 text-lg font-bold text-green-600 dark:text-gray-400">
+          <h2 className="mb-5 text-sm font-medium text-left dark:text-gray-400">
             Drop a comment and rate this store
           </h2>
         </div>
-        <div className="bg-white text-center border-red">
-            <textarea></textarea>
+        <div className=" bg-transparent text-center border-red">
+            <textarea
+            placeholder="Type your ccomment here..."
+             className=" resize-none border border-black rounded-lg h-[150px] w-[90%] p-2 bg-transparent"
+             value={comment} // Bind textarea value to state
+             onChange={(e) => setComment(e.target.value)}
+             >
+
+            </textarea>
         </div>
         <div className="flex justify-center items-center space-x-2 mt-5">
-          {[...Array(5)].map((_, index) => (
-            <FontAwesomeIcon
-              key={index}
-              icon={faStar}
-              className={`text-${index < rating ? "yellow" : "gray"}-500 cursor-pointer`}
-              onClick={() => handleStarClick(index)}
-            />
-          ))}
+         <Rate className=" Rate_comment " style={{ }} value={reviewRating} onChange={setReviewRating}/>
         </div>
         <div className="flex justify-end space-x-2 mt-5">
             <button
@@ -56,9 +115,13 @@ const CommentAndRatingModal = ({ openComment, setCommentOpen }) => {
             <button
                 data-modal-toggle="popup-modal"
                 type="button"
-                className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                className="text-white bg-[#26A17B] hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                onClick={rate}
             >
-                Yes, I am
+                {
+              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Submit'
+            }
+                
             </button>
         </div>
       </div>

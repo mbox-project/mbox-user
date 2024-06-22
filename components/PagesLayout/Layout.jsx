@@ -39,7 +39,7 @@ const Layout = ({ children }) => {
       <div className="flex font-sans relative bg-[#F7F7F7]">
         {/* SideBar Menu */}
         <Sidebar showSideBar={showSideBar} isMerchant={isMerchant} />
-        <main className="px-4 container mb-10 md:px-5">
+        <main className="px-4 container mb-10 md:pl-7 md:pr-10">
           {children}
           {/* <Footer /> */}
         </main>

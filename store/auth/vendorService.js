@@ -34,16 +34,40 @@ export const convertToVendor = createAsyncThunk(
 export const getVendor = createAsyncThunk(
   "auth/getVendor",
   async () => {
-    const response = await getApi("Vendor");
+    const response = await getApi(`Vendor`);
     return response.data;
   }
 );
+export const reportBuyer = createAsyncThunk(
+  "auth/reportBuyer",
+  async (body, thunkAPI) => {
+    try {
+      const response = await postApi(`Report/buyer`, body);
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
+export const getReport = createAsyncThunk(
+  "auth/getReport",
+  async () => {
+    const response = await getApi(`Report`);
+    return response.data;
+  }
+);
 const vendorService = {
   createVendor,
   registerVendor,
   updateVendor,
-  getVendor
+  getVendor,
+  reportBuyer,
+  getReport
 };
 
 export default vendorService;

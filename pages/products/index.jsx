@@ -130,7 +130,7 @@ const Index = () => {
       <Layout>
         {showAddProduct ? (
           <>
-            <div className="grid grid-cols-[60%_40%] gap-[0.5rem] py-[1rem]">
+            <div className=" flex flex-col md:grid md:grid-cols-[60%_40%] gap-[0.5rem] py-[1rem]">
               <span className="bg-white rounded-[8px] border-[2px] border-solid border-[#E5E7EB] flex flex-col gap-[1%] items-center justify-center p-[4%]">
                 <UploadIcon />
                 <span className="flex gap-[5px] items-center justify-center">

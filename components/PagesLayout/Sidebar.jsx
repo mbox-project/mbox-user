@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
 import { BiWallet } from "react-icons/bi";
+import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
+import { VscLaw } from "react-icons/vsc";
 import profile from "../../public/img/profile.svg";
 import purchase from "../../public/img/purchase.svg";
 import report from "../../public/img/report.svg";
@@ -17,8 +19,8 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
   const role = useSelector(selectRole);
   return (
     <>
-      <aside className="hidden w-80 bg-white-700 mt10 flex-col justify-between shadow-md md:block">
-        <h6 className="py-4 font-bold text-lg pl-5 text-white bg-brightRed">
+      <aside className="hidden bg-white w-80 bg-white-700 mt-8 flex-col justify-between shadow-md md:block rounded-r-2xl overflow-hidden">
+        <h6 className=" mt-5 py-3 font-bold text-lg pl-5 text-white bg-brightRed">
           My Account
         </h6>
         <div className="pl-5">
@@ -35,8 +37,8 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
             )}
             {role === "vendor" && (
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-                <BsCartDash size={20} />
-                <Link href="/orders/"> Orders </Link>
+                <LiaFileInvoiceDollarSolid size={20} />
+                <Link href="/orders/"> Invoices </Link>
               </li>
             )}
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
@@ -44,7 +46,7 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
               <Link href="/wallet/"> My Wallet </Link>
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-              <Image src={profile} width={20} height={20} alt="profile" />
+              <VscLaw size={20}/>
               <Link href="dispute"> Disputes </Link>
             </li>
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
@@ -66,9 +68,16 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
               <Image src={thumb} width={20} height={20} alt="profile" />
               <Link href="/endorse"> Endorsed Business </Link>
             </li>
-            <li className="flex items-center  text-sm space-x-4 cursor-pointer hover:text-gray-600">
+            <li className="flex items-center  text-sm space-x-4 cursor-pointer text-[#F90808] hover:text-gray-600">
               <Image src={report} width={20} height={20} alt="profile" />
-              <Link href="/report"> Report a Vendor </Link>
+              {
+                role === "vendor" ? (
+                  <Link href="/report"> Report a Buyer </Link>
+                ) : (
+                  <Link href="/report"> Report a Vendor </Link>
+                )
+              }
+            
             </li>
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={saved} width={20} height={20} alt="profile" />
