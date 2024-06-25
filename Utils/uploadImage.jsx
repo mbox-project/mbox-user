@@ -7,11 +7,11 @@ const { Dragger } = Upload;
 
 const UpdateProfileImages = ({ setData }) => {
     const props = {
-        name: "file",
+        name: "images",
         multiple: false,
         DocumentType: "",
         maxCount: 1,
-        action: "/api/uploads",
+        action: "https://marketbox-api.onrender.com/api/Product/upload-gallery-images",
         onChange(info) {
             const { status, response } = info.file;
             console.log(info);
@@ -20,26 +20,14 @@ const UpdateProfileImages = ({ setData }) => {
             }
             if (status === "done") {
                 message.success(`${info.file.name} file uploaded successfully.`);
-                setData(response);
-                console.log(response);
+                setData(response.data.$values?.[0].imageUrl);
+                console.log(response.data.$values?.[0].imageUrl);
             } else if (status === "error") {
                 message.error(`${info.file.name} file upload failed.`);
             }
         },
         onDrop(e) {
             console.log("Dropped files", e.dataTransfer.files);
-        },
-        onRemove(info) {
-            const public_id = info.response?.publicId;
-            axios
-                .patch("/api/delete", { id: public_id })
-                .then(() => {
-                    console.log("removed", info);
-                    return true;
-                })
-                .catch(() => {
-                    return false;
-                });
         },
         beforeUpload(file, fileList) {
             const isJpgOrPng =

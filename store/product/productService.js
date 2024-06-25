@@ -42,6 +42,13 @@ export const uploadProduct = createAsyncThunk(
     return response.data;
   }
 );
+export const uploadProductImage = createAsyncThunk(
+  "products/image",
+  async (body) => {
+    const response = await postApi("Product/upload-gallery-images", body);
+    return response.data;
+  }
+);
 export const editProduct = createAsyncThunk(
   "products/edit",
   async (body) => {
