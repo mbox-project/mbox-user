@@ -7,9 +7,10 @@ const { Dragger } = Upload;
 
 const UploadImages = ({ setData }) => {
   const props = {
-    name: "file",
+    name: "images",
     multiple: true,
     maxCount: 4,
+    method: "post",
     action: "https://marketbox-api.onrender.com/api/Product/upload-gallery-images",
     beforeUpload(file, fileList) {
       const isJpgOrPng =
@@ -29,26 +30,38 @@ const UploadImages = ({ setData }) => {
     },
     onChange(info) {
       const { status, response } = info.file;
-      console.log(info);
+      console.log("File info:", info);
+
       if (status !== "uploading") {
-        console.log(info.file, info.fileList);
+        console.log("File:", info.file, "File list:", info.fileList);
       }
+
       if (status === "done") {
         message.success(`${info.file.name} file uploaded successfully.`);
-        // Extract image URLs from the response
-        const imageUrls = response.data.$values.map(image => image.imageUrl);
-       // Update the state with new image URLs
-       setData((prev) => [...prev, ...imageUrls]);
-        console.log(imageUrls);
+
+        // Check response structure
+        if (response && response.data && response.data.$values) {
+          const imageDetails = response.data.$values.map(image => ({
+            id: image.publicId,
+            imageUrl: image.imageUrl,
+            imageTag: image.tag,
+            isThumbnail: image.isThumbnail
+          }));
+          console.log("Extracted image details:", imageDetails);
+          // Update the state with new image details
+          setData((prev) => [...prev, ...imageDetails]);
+        } else {
+          console.error("Unexpected response structure:", response);
+        }
       } else if (status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
     },
     onDrop(e) {
       console.log("Dropped files", e.dataTransfer.files);
-    },
-   
+    }
   };
+
   return (
     <Dragger {...props}>
       <p className="ant-upload-drag-icon">

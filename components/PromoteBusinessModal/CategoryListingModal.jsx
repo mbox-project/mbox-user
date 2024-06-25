@@ -1,12 +1,77 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal, DatePicker, Space } from "antd";
-
+import moment from "moment";
 import Input from "../Input";
 import Label from "../Label";
-import { useRouter } from "next/router";
+import { toastify } from "../../helpers";
+import { LoadingOutlined } from "@ant-design/icons";
+import { categoryRequest } from "../../store/PromoteStore/promoteStoreService";
 
 const CategoryListingModal = ({ open, setOpen }) => {
+
+  const vendorId = useSelector((state) => state.auth.user.userId)
+  const [loading, setLoading] = useState(false)
+  const [request, setRequest] = useState({
+
+    vendorId: vendorId,
+    duration: 0,
+    startDate: {
+      year: 0,
+      month: 0,
+      day: 0,
+      dayOfWeek: 0
+    },
+    endDate: {
+      year: 0,
+      month: 0,
+      day: 0,
+      dayOfWeek: 0
+    },
+    totalPrice: 0,
+    discountPercent: 0
+
+  })
+
+  const dispatch = useDispatch()
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setRequest({
+      ...request,
+      [name]: value,
+    });
+  };
+
+  const handleDateChange = (name) => (date, dateString) => {
+    const momentDate = moment(dateString);
+    setRequest({
+      ...request,
+      [name]: {
+        year: momentDate.year(),
+        month: momentDate.month() + 1, // months are 0-indexed
+        day: momentDate.date(),
+        dayOfWeek: momentDate.day(),
+      },
+    });
+  };
+
+
+  const postBannerRequest = () => {
+    setLoading(true)
+    dispatch(categoryRequest(request))
+      .unwrap()
+      .then(() => {
+        toastify.alertSuccess("Banner request succesful")
+        setLoading(false)
+      }).catch(() => {
+        toastify.alertError("Banner request failed")
+        setLoading(false)
+      })
+    // console.log(request)
+  }
+
+
   return (
     <Modal
       open={open}
@@ -35,9 +100,10 @@ const CategoryListingModal = ({ open, setOpen }) => {
               title="Number of days"
             />
             <Input
-              name="days"
+              name="duration"
               type="number"
               placeHolder="4"
+              onChange={handleInputChange}
               className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#9F9F9F] bg-[#FAFAFA] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
               required
             />
@@ -49,7 +115,8 @@ const CategoryListingModal = ({ open, setOpen }) => {
               title="Starts on:"
             />
             <DatePicker
-              name="starts"
+              name="startDate"
+              onChange={handleDateChange("startDate")}
               required
               className="block !py-2 mt-2 !bg-transparent !border-1 border-[#9F9F9F] text-brightRed hover:border-brightRed focus:border-brightRed"
             />
@@ -61,7 +128,8 @@ const CategoryListingModal = ({ open, setOpen }) => {
               title="Ends on:"
             />
             <DatePicker
-              name="ends"
+              name="endDate"
+              onChange={handleDateChange("endDate")}
               required
               className="block !py-2 mt-2 !bg-transparent !border-1 border-[#9F9F9F] text-brightRed hover:border-brightRed focus:border-brightRed"
             />
@@ -73,9 +141,10 @@ const CategoryListingModal = ({ open, setOpen }) => {
               title="Total price:"
             />
             <Input
-              name="price"
+              name="totalPrice"
               type="text"
-              placeHolder="$1"
+              placeHolder="N1"
+              onChange={handleInputChange}
               className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#9F9F9F] border-1 bg-[#FAFAFA] md:border-2  md:rounded-md shadow-sm rounded-none"
               required
             />
@@ -117,9 +186,13 @@ const CategoryListingModal = ({ open, setOpen }) => {
 
           <button
             className="w-full my-4 rounded-md shadow-lg bg-brightRed py-[0.5rem] text-white text-base poppins"
-            type="submit"
+            onClick={postBannerRequest}
+
           >
-            Submit
+            {
+              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Submit"
+            }
+
           </button>
         </div>
       </div>

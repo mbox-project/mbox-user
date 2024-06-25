@@ -31,10 +31,10 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   useEffect(() => {
     setData((prevData) => ({
       ...prevData,
-      image: res?.imageUrl
+      image: res
     }));
   }, [res, setData]);
-  console.log(res?.imageUrl)
+  console.log(res)
 
   const onSelectCategory = (e) => {
     setData((prevData) => ({
