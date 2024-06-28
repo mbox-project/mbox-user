@@ -57,26 +57,38 @@ const MainFooter = () => {
               <nav className="flex flex-col my-4 space-y-2">
                 <div className="flex gap-2 items-center">
                   <FaTiktok className="w-5 h-5" />
-                  <Link className="inline-block" href="">
+                  <Link
+                    className="inline-block"
+                    href="https://www.tiktok.com/@marketbox_ng?_t=8nVCuPSyIX0&_r=1"
+                    target="_blank"
+                  >
                     TikTok
                   </Link>
                 </div>
                 <div className="flex gap-2 items-center">
                   <FaFacebookSquare className="w-5 h-5" />
-                  <Link className="inline-block" href="">
+                  <Link className="inline-block" href="" target="_blank">
                     Facebook
                   </Link>
                 </div>
                 <div className="flex gap-2 items-center">
                   <FaInstagramSquare className="w-5 h-5" />
-                  <Link className="inline-block" href="">
+                  <Link
+                    className="inline-block"
+                    href="https://www.instagram.com/marketboxng?igsh=MXh1cmF5Njd2NnVkdw%3D%3D&utm_source=qr"
+                    target="_blank"
+                  >
                     Instagram
                   </Link>
                 </div>
                 <div className="flex gap-2 items-center">
                   {/* <FaXTwitter className="w-5 h-5" /> */}
                   <FaSquareXTwitter className="w-5 h-5" />
-                  <Link className="inline-block" href="">
+                  <Link
+                    className="inline-block"
+                    href="https://x.com/marketbox_ng?s=21&t=EnFc5W_6ynAToRaPg4J2hA"
+                    target="_blank"
+                  >
                     X (Twitter)
                   </Link>
                 </div>
@@ -90,7 +102,7 @@ const MainFooter = () => {
               <nav className="flex flex-col my-4 space-y-2">
                 <div className="flex gap-2 items-center">
                   <FaWhatsappSquare className="w-5 h-5" />
-                  <Link className="inline-block" href="">
+                  <Link className="inline-block" href="" target="_blank">
                     WhatsApp
                   </Link>
                 </div>

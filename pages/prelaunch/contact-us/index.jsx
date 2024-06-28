@@ -160,9 +160,8 @@ const ContactUs = () => {
                     Be the first to get updates on our products, packages and
                     other exciting information. Likes and follow us on facebook
                     via{" "}
-                    <a className="text-[#EF5612]">
-                      {" "}
-                      https://www.facebook.com/marketbox.ng{" "}
+                    <a href="" target="_blank" className="text-[#EF5612]">
+                      https://www.facebook.com/
                     </a>
                   </p>
                 </div>
@@ -178,10 +177,13 @@ const ContactUs = () => {
                 <div className="p-1 overflow-auto">
                   <p className="text-sm md:text-lg">
                     Join the Mbox conversations, business pointers and
-                    suggestions. Follow and engage Mbox on Twitter via
-                    <a className="text-[#EF5612]">
-                      {" "}
-                      https://www.twitter.com/marketbox.ng{" "}
+                    suggestions. Follow and engage Mbox on Twitter via {""}
+                    <a
+                      href="https://x.com/marketbox_ng?s=21&t=EnFc5W_6ynAToRaPg4J2hA                      "
+                      target="_blank"
+                      className="text-[#EF5612]"
+                    >
+                      https://x.com/marketbox_ng
                     </a>
                   </p>
                 </div>
@@ -198,7 +200,7 @@ const ContactUs = () => {
                   <p className="text-sm md:text-lg">
                     To catch up with exciting banner, ads, promotions, and other
                     graphics contents, follow and stick to Mbox on Instagram via
-                    <a className="text-[#EF5612]">
+                    <a href="" target="_blank" className="text-[#EF5612]">
                       {" "}
                       https://www.linkedin.com/marketbox.ng
                     </a>
