@@ -10,7 +10,7 @@ const GettingStarted = () => {
     <div className="w-full text-[#444444]">
       <div className="px-2">
         <h3 className="py-2 text-sm text-[#EF5612]">
-          GETTING STARTED WITH MBOX
+          GETTING STARTED WITH Marketbox
         </h3>
         <div className="block md:flex justify-between">
           <div className="w-full md:w-6/12 py-3">

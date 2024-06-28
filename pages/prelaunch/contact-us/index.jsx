@@ -58,8 +58,8 @@ const ContactUs = () => {
           <div className="flex flex-col py-10">
             <h2 className=" text-3xl font-semibold py-5">Reach out to us</h2>
             <p className="text-lg">
-              Got any question to ask Mbox? Have a suggestion or support or Just
-              want to say HI? Get through to us using the form below.
+              Got any question to ask Marketbox? Have a suggestion or support or
+              Just want to say HI? Get through to us using the form below.
             </p>
           </div>
 
@@ -176,8 +176,8 @@ const ContactUs = () => {
                 </div>
                 <div className="p-1 overflow-auto">
                   <p className="text-sm md:text-lg">
-                    Join the Mbox conversations, business pointers and
-                    suggestions. Follow and engage Mbox on Twitter via {""}
+                    Join the Marketbox conversations, business pointers and
+                    suggestions. Follow and engage Marketbox on Twitter via {""}
                     <a
                       href="https://x.com/marketbox_ng?s=21&t=EnFc5W_6ynAToRaPg4J2hA                      "
                       target="_blank"
@@ -199,7 +199,8 @@ const ContactUs = () => {
                 <div className="p-1 overflow-auto">
                   <p className="text-sm md:text-lg">
                     To catch up with exciting banner, ads, promotions, and other
-                    graphics contents, follow and stick to Mbox on Instagram via
+                    graphics contents, follow and stick to Marketbox on
+                    Instagram via
                     <a href="" target="_blank" className="text-[#EF5612]">
                       {" "}
                       https://www.linkedin.com/marketbox.ng
@@ -228,8 +229,8 @@ const ContactUs = () => {
               </div>
               <div className="p-1 overflow-auto">
                 <p className="text-sm md:text-lg">
-                  For questions, enquiry and directions about Mbox, reach out to
-                  our customer care representative on WhatsApp via
+                  For questions, enquiry and directions about Marketbox, reach
+                  out to our customer care representative on WhatsApp via
                   <a className="text-[#EF5612]">
                     {" "}
                     https://wa.me/2348145678709{" "}

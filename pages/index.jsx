@@ -193,7 +193,7 @@ export default index;
 //                 </h1>
 //                 <p className="text-[12px] md:text-[18px] text-[#444444] py-2">
 //                   Express your support for friends business by endorsing their
-//                   business on <span className="text-[#EF5612]">Mbox </span> .
+//                   business on <span className="text-[#EF5612]">Marketbox </span> .
 //                 </p>
 //                 <p className="text-[14px] md:text-[20px]">
 //                   WE RISE BY LIFTING OTHERS !!!

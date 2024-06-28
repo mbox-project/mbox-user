@@ -30,14 +30,14 @@ const index = () => {
       });
     dispatch(getTransactions())
       .unwrap()
-      .then((actions) => { })
+      .then((actions) => {})
       .catch((error) => console.log(error));
   }, []);
   return (
     <Layout>
       {/* wallet Balance */}
       <section className="card rectCard flex justify-between flex-col text-lg border-b-2 mt-8 md:flex-row ">
-        <h4>MBOX Wallet Balance </h4>
+        <h4>Marketbox Wallet Balance </h4>
         <h2 className="text-blue-700 text-2xl">NGN {wallet?.balance}</h2>
       </section>
       {/* Transaction Card Summary */}
