@@ -102,7 +102,11 @@ const MainFooter = () => {
               <nav className="flex flex-col my-4 space-y-2">
                 <div className="flex gap-2 items-center">
                   <FaWhatsappSquare className="w-5 h-5" />
-                  <Link className="inline-block" href="" target="_blank">
+                  <Link
+                    className="inline-block"
+                    href="https://wa.link/pteovt"
+                    target="_blank"
+                  >
                     WhatsApp
                   </Link>
                 </div>
@@ -119,9 +123,9 @@ const MainFooter = () => {
                   <FaPhoneSquare className="w-5 h-5" />
                   <Link
                     className="inline-block underline"
-                    href="tel:+2348134567876"
+                    href="tel:+2347051784675"
                   >
-                    (+234) 813 4567 876
+                    (+234) 705 178 4675
                   </Link>
                 </div>
               </nav>
