@@ -14,6 +14,7 @@ import authbg from "../../../public/images/authbg.png";
 import registerbg from "../../../public/images/registerbg.png";
 import { toastify } from "../../../helpers";
 import Spinner from "../../../components/Spinner";
+import { message } from "antd";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const Register = () => {
         );
       })
       .catch((error) => {
-        toastify.alertError(error, 3000);
+        message.error(error.toString(), 3);
       });
   };
 
