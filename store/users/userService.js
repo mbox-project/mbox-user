@@ -22,6 +22,13 @@ export const getUserProfile = createAsyncThunk(
     return response.data;
   }
 );
+export const getUserById = createAsyncThunk(
+  "user/userById",
+  async(id) => {
+    const response = await getApi(`User/getUser/${id}`);
+    return response.data;
+  }
+);
 export const UpdateUserProfile = createAsyncThunk(
   "user/updateProfile",
   async(body) => {

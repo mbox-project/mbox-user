@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
 import { BiWallet } from "react-icons/bi";
 import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
+import { PiMegaphone } from "react-icons/pi";
 import { VscLaw } from "react-icons/vsc";
 import profile from "../../public/img/profile.svg";
 import purchase from "../../public/img/purchase.svg";
@@ -80,7 +81,7 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
             
             </li>
             <li className="flex items-center  text-sm space-x-4 cursor-pointer hover:text-gray-600">
-              {/**<Image src={report} width={20} height={20} alt="profile" /> */}
+              <PiMegaphone size={20} />
               {
                 role === "vendor" && (
                   <Link href="/promotebusiness"> Promote Business </Link>

@@ -17,7 +17,7 @@ import React, { useMemo, useState } from "react";
 const onChange = (key) => {
   console.log(key);
 };
-const AddNewProduct = ({ data, setData, handleProdVisiblity }) => {
+const AddNewProduct = ({ data, setData, handleProdVisiblity,fetchVendorProducts }) => {
   const [activeKey, setActiveKey] = useState("1");
   const items = useMemo(() => {
     return [
@@ -64,6 +64,7 @@ const AddNewProduct = ({ data, setData, handleProdVisiblity }) => {
             setData={setData}
             setActiveKey={setActiveKey}
             handleProdVisiblity={handleProdVisiblity}
+            fetchVendorProducts={fetchVendorProducts}
           />
         ),
       },

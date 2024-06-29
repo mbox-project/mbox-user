@@ -75,14 +75,15 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
             <div className="flex items-center justify-between gap-[0.8rem] space-x6">
               {role === "vendor" ? (
                 <div className="flex gap-[0.5rem]">
+                  <Link href="/promotebusiness" >
                   <button
-                    onClick={() => setOpenPromoteStore(true)}
                     className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center
                                  border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white"
                   >
                     <span>Promote Store</span>
                     <Image src={arrow} width={10} height={10} alt="arrow" />
                   </button>
+                  </Link>
 
                   <Link href="/generateinvoice">
                     <button className="hidden text-sm  text-brightRed bg-white rounded-lg gap-2 items-center border-solid border-2 border-red-500 md:flex md:px-6 md:p-2 hover:bg-brightRed hover:text-white">
