@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, DatePicker, Space } from "antd";
 import moment from "moment";
@@ -7,70 +7,59 @@ import Label from "../Label";
 import { toastify } from "../../helpers";
 import { LoadingOutlined } from "@ant-design/icons";
 import { categoryRequest } from "../../store/PromoteStore/promoteStoreService";
+import { getUserById, getUserProfile } from "../../store/users/userService";
 
 const CategoryListingModal = ({ open, setOpen }) => {
-
-  const vendorId = useSelector((state) => state.auth.user.userId)
-  const [loading, setLoading] = useState(false)
+  const vendorId = useSelector((state) => state.auth.user.userId);
+  const [loading, setLoading] = useState(false);
   const [request, setRequest] = useState({
-
     vendorId: vendorId,
     duration: 0,
-    startDate: {
-      year: 0,
-      month: 0,
-      day: 0,
-      dayOfWeek: 0
-    },
-    endDate: {
-      year: 0,
-      month: 0,
-      day: 0,
-      dayOfWeek: 0
-    },
+    startDate: "",
+    endDate: "",
     totalPrice: 0,
-    discountPercent: 0
+    discountPercent: 0,
+  });
 
-  })
+ 
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setRequest({
       ...request,
-      [name]: value,
+      [name]:
+        name === "duration" ||
+        name === "totalPrice" ||
+        name === "discountPercent"
+          ? parseFloat(value)
+          : value,
     });
   };
 
   const handleDateChange = (name) => (date, dateString) => {
-    const momentDate = moment(dateString);
     setRequest({
       ...request,
-      [name]: {
-        year: momentDate.year(),
-        month: momentDate.month() + 1, // months are 0-indexed
-        day: momentDate.date(),
-        dayOfWeek: momentDate.day(),
-      },
+      [name]: moment(date).toISOString(),
     });
   };
 
-
   const postBannerRequest = () => {
-    setLoading(true)
+    setLoading(true);
     dispatch(categoryRequest(request))
       .unwrap()
       .then(() => {
-        toastify.alertSuccess("Banner request succesful")
-        setLoading(false)
-      }).catch(() => {
-        toastify.alertError("Banner request failed")
-        setLoading(false)
+        toastify.alertSuccess("Banner request succesful");
+        setLoading(false);
+        setOpen(false)
       })
-    // console.log(request)
-  }
-
+      .catch(() => {
+        toastify.alertError("Banner request failed");
+        setLoading(false);
+        setOpen(false)
+      });
+  };
 
   return (
     <Modal
@@ -187,12 +176,12 @@ const CategoryListingModal = ({ open, setOpen }) => {
           <button
             className="w-full my-4 rounded-md shadow-lg bg-brightRed py-[0.5rem] text-white text-base poppins"
             onClick={postBannerRequest}
-
           >
-            {
-              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Submit"
-            }
-
+            {loading ? (
+              <LoadingOutlined style={{ fontSize: 24 }} spin />
+            ) : (
+              "Submit"
+            )}
           </button>
         </div>
       </div>

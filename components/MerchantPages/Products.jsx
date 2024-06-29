@@ -68,9 +68,7 @@ const Products = ({ product }) => {
     return formatter.format(amount);
   }
 
- 
-  //destructure the products
-  console.log(product, product.galleryImages.$values[0]?.imageUrl);
+
   const { name, price, id } = product;
   const firstImage = product.galleryImages.$values[0]?.imageUrl;
   return (

@@ -43,18 +43,23 @@ const Index = () => {
 
 
   useEffect(() => {
+    fetchVendorProducts()
+  }, [dispatch, pageNumber, pageSize]);
+
+  const fetchVendorProducts = () => {
+    setLoading(true);
     dispatch(getVendorProducts({ pageNumber, pageSize }))
       .unwrap()
       .then((res) => {
         setProducts(res.data?.items?.$values || []);
         setTotalProducts(res.data?.totalCount || 0);
-        setLoading(false); 
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
         setLoading(false);
       });
-  }, [dispatch, pageNumber, pageSize]);
+  };
 
 
   const handleNextPage = () => {
@@ -90,16 +95,7 @@ const Index = () => {
     ));
   };
 
-  // const renderPaginationButtons = () => {
-  //   return (
-  //     <div>
-  //       <button onClick={handlePrevPage} disabled={pageNumber === 1}>
-  //         Previous
-  //       </button>
-  //       <button onClick={handleNextPage}>Next</button>
-  //     </div>
-  //   );
-  // };
+  
   const renderPaginationButtons = () => {
     return (
       <div className="flex justify-center items-center mt-8 space-x-4">
@@ -219,6 +215,7 @@ const Index = () => {
               data={data}
               setData={setData}
               handleProdVisiblity={handleProdVisiblity}
+              fetchVendorProducts={fetchVendorProducts}
             />
           </>
         )}

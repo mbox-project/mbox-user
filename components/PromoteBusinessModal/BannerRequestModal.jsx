@@ -14,50 +14,29 @@ const BannerRequestModal = ({ open, setOpen }) => {
   const vendorId = useSelector((state) => state.auth.user.userId)
   const [loading, setLoading] = useState(false)
   const [request, setRequest] = useState({
-
     vendorId: vendorId,
     duration: 0,
-    startDate: {
-      year: 0,
-      month: 0,
-      day: 0,
-      dayOfWeek: 0
-    },
-    endDate: {
-      year: 0,
-      month: 0,
-      day: 0,
-      dayOfWeek: 0
-    },
+    startDate: "",
+    endDate: "",
     totalPrice: 0,
     discountPercent: 0
-
-  })
-
+  });
   const dispatch = useDispatch()
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setRequest({
       ...request,
-      [name]: value,
+      [name]: name === "duration" || name === "totalPrice" || name === "discountPercent" ? parseFloat(value) : value,
     });
   };
 
   const handleDateChange = (name) => (date, dateString) => {
-    const momentDate = moment(dateString);
     setRequest({
       ...request,
-      [name]: {
-        year: momentDate.year(),
-        month: momentDate.month() + 1, // months are 0-indexed
-        day: momentDate.date(),
-        dayOfWeek: momentDate.day(),
-      },
+      [name]: moment(date).toISOString(),
     });
   };
-
-
   const postBannerRequest = () => {
     setLoading(true)
     dispatch(bannerRequest(request))
@@ -65,11 +44,12 @@ const BannerRequestModal = ({ open, setOpen }) => {
       .then(() => {
         toastify.alertSuccess("Banner request succesful")
         setLoading(false)
+        setOpen(false)
       }).catch(() => {
         toastify.alertError("Banner request failed")
         setLoading(false)
+        setOpen(false)
       })
-    // console.log(request)
   }
 
   return (
