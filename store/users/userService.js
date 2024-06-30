@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getApi,
   postApi,
-  deleteApi,
   patchApi
 } from "../../config/api";
 
@@ -26,6 +25,20 @@ export const getUserById = createAsyncThunk(
   "user/userById",
   async(id) => {
     const response = await getApi(`User/getUser/${id}`);
+    return response.data;
+  }
+);
+export const getVendorDashboard = createAsyncThunk(
+  "user/vendorDashboard",
+  async() => {
+    const response = await getApi(`DashBoard/vendor`);
+    return response.data;
+  }
+);
+export const getUserDashboard = createAsyncThunk(
+  "user/userDashboard",
+  async() => {
+    const response = await getApi(`DashBoard/buyer`);
     return response.data;
   }
 );
