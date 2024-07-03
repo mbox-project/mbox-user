@@ -14,6 +14,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Upload } from "antd";
 import UpdateProfileImages, { props } from "../../Utils/uploadImage";
 import Image from "next/image";
+
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   const dispatch = useDispatch();
 
@@ -31,10 +32,10 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   useEffect(() => {
     setData((prevData) => ({
       ...prevData,
-      image: res?.imageUrl
+      image: res?.imageUrl,
     }));
   }, [res, setData]);
-  console.log(res?.imageUrl)
+  console.log(res?.imageUrl);
 
   const onSelectCategory = (e) => {
     setData((prevData) => ({
@@ -58,9 +59,8 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
         style={{ borderRadius: "0px" }}
       >
         <div className="flex justify-between p-3">
-          <h4 className="text-gray-500">Store Image</h4>
+          <h4 className="text-gray-500">Profile Image</h4>
           <UpdateProfileImages setData={setRes} />
-          
         </div>
         <div className="p-5 flex justify-center items-center h-48 mt-5 mb-3 bg-gray-200 w-48 profilePics">
           {data?.image ? (
@@ -247,6 +247,7 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
     </form>
   );
 };
+
 export const BankInformation = ({ data, setData }) => {
   const dispatch = useDispatch();
   const [bankName, setBankName] = useState("");
@@ -255,7 +256,6 @@ export const BankInformation = ({ data, setData }) => {
     setData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-
     }));
     console.log(data);
   };
@@ -271,21 +271,19 @@ export const BankInformation = ({ data, setData }) => {
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
-    console.log(data)
-    setLoading(true)
+    console.log(data);
+    setLoading(true);
     dispatch(updateVendor(data))
       .unwrap()
       .then((action) => {
         toastify.alertSuccess("Updated profile successfully ");
-        dispatch(getVendor())
-        setLoading(false)
+        dispatch(getVendor());
+        setLoading(false);
       })
       .catch((error) => {
-        toastify.alertError(error, 3000)
-        setLoading(false)
+        toastify.alertError(error, 3000);
+        setLoading(false);
       });
-
-
   };
   return (
     <>
@@ -323,7 +321,7 @@ export const BankInformation = ({ data, setData }) => {
                 setSelected={handleSearchSelectChange} // Pass the handleSearchSelectChange function
               />
             </div>
-         
+
             <div className="mb-2 px-12 pt-3">
               <Label
                 htmlFor="acctname"
@@ -341,7 +339,7 @@ export const BankInformation = ({ data, setData }) => {
                 value={data?.accountName}
               />
             </div>
-          
+
             <div className="mb-6 mx-auto text-center">
               <p>
                 Please ensure the{" "}
@@ -357,10 +355,11 @@ export const BankInformation = ({ data, setData }) => {
             type="submit"
             className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
           >
-            {
-              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Save'
-            }
-
+            {loading ? (
+              <LoadingOutlined style={{ fontSize: 24 }} spin />
+            ) : (
+              "Save"
+            )}
           </button>
         </div>
       </form>
