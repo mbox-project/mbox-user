@@ -15,6 +15,7 @@ import registerbg from "../../../public/images/registerbg.png";
 import { toastify } from "../../../helpers";
 import Spinner from "../../../components/Spinner";
 import { message } from "antd";
+import TermsAndConditionsModal from "../../../components/TermsAndConditionsModal";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -237,13 +238,9 @@ const Register = () => {
               </button>
 
               <div className="flex justify-center mb-3">
-                <span className="text-gray-600 poppins text-sm mt-2 lg:mt-1">
+                <span className="text-gray-600 poppins text-sm mt-2 lg:mt-1 flex gap-1">
                   By Sign Up, you’ve already agreed to our{" "}
-                  <Link href="/">
-                    <a className="text-orange-600 font-bold">
-                      Terms & Conditions
-                    </a>
-                  </Link>
+                  <TermsAndConditionsModal />
                 </span>
               </div>
               <div className="flex items-center gap-1 pb-8">
