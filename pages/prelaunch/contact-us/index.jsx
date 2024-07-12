@@ -70,7 +70,12 @@ const ContactUs = () => {
               </div>
 
               <div className="w-full md:w-7/12 h-auto">
-                <form className="grid content-between h-full">
+                <form
+                  action="https://formsubmit.co/Marketboxng27@gmail.com"
+                  method="POST"
+                  // onSubmit={(e) => e.preventDefault()}
+                  className="grid content-between h-full"
+                >
                   <div className="pb-2">
                     <Label
                       className="w-full pb-1 text-base text-[#9A9A9A]"
@@ -79,6 +84,7 @@ const ContactUs = () => {
                     />
                     <input
                       type="text"
+                      name="Full Name"
                       placeholder="e.g Taylor Mason"
                       className="!w-full p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                       required
@@ -93,6 +99,7 @@ const ContactUs = () => {
                     />
                     <input
                       type="email"
+                      name="Email"
                       placeholder="e.g taylormason@gmail.com"
                       className="!w-full p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                       required
@@ -107,6 +114,7 @@ const ContactUs = () => {
                     />
                     <input
                       type="number"
+                      name="Phone number"
                       placeholder="(+234) 81 5657 8901"
                       className="!w-full p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                       required
@@ -122,20 +130,24 @@ const ContactUs = () => {
 
                     <textarea
                       type="text"
+                      name="Message"
                       placeholder="Type your message here..."
                       className="!w-full h-44 p-1 md:p-2 lg:py-2.5  focus:outline-none text-lg lg:text-sm  mt-2 border-[#444444] border-b-2  bg-grayColor border-t-0  border-x-0 md:border-2  md:rounded-lg shadow-sm rounded-none"
                       required
                     />
                   </div>
+
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      className="h-12 w-auto px-8 rounded-md text-white bg-[#EF5612]"
+                    >
+                      Submit
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>
-          </div>
-
-          <div className="flex justify-end">
-            <button className="h-12 w-auto px-5 rounded-md text-white bg-[#EF5612]">
-              Submit
-            </button>
           </div>
         </div>
       </section>
@@ -231,9 +243,9 @@ const ContactUs = () => {
                 <p className="text-sm md:text-lg">
                   For questions, enquiry and directions about Marketbox, reach
                   out to our customer care representative on WhatsApp via
-                  <a className="text-[#EF5612]">
+                  <a href="https://wa.link/pteovt" className="text-[#EF5612]">
                     {" "}
-                    https://wa.me/2348145678709{" "}
+                    https://wa.link/pteovt
                   </a>
                 </p>
               </div>
