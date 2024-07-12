@@ -114,9 +114,9 @@ const MainFooter = () => {
                   <FaMailBulk className="w-5 h-5" />
                   <Link
                     className="inline-block underline"
-                    href="mailto:info@mbox.ng"
+                    href="mailto:Marketboxng27@gmail.com"
                   >
-                    info@mbox.ng
+                    Marketboxng27@gmail.com
                   </Link>
                 </div>
                 <div className="flex gap-2 items-center">
