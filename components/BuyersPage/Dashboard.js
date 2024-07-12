@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import banner from "../../public/img/banner.svg";
+import banner from "../../public/img/banner.png";
 import lady from "../../public/img/lady.svg";
 import edit from "../../public/img/edit.svg";
 import caret from "../../public/img/caret.svg";
@@ -11,7 +11,7 @@ const Dashboard = () => {
   const user = useSelector((state) => state.auth.user);
   const userName = user.fullname?.split(" ")[0];
   return (
-    <>
+    <section className="flex flex-col gap-12">
       {/* first section --Welcome buyer */}
       <section className="flex flex-col-reverse bg-white rounded-lg px-10 py-2 items-center justify-between mt-10 shadow-sm  hover:shadow-md md:flex-row">
         <div className="flex flex-col space-y-2">
@@ -27,102 +27,100 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {/* Second Section--banner */}
-      <section className="mt-4 text-center">
-        <Image
-          src={banner}
-          className="rounded-md object-cover"
-          height={280}
-          alt="Banner"
-        />
-      </section>
-
-      {/* Third Section--products*/}
-      <section className="card mb-10">
-        <div className="mt-4 flex flex-col md:flex-row md:space-x-4">
-          <div className="md:basis-1/2">
-            <h2 className="text-left font-bold">Merchant Overview</h2>
-            <div className="flex flex-col ">
-              <div className="p-6 bg-white shadow-md">
-                <h6 className="font-bold text-green-300">
+      {/* Second Section--products*/}
+      <section className="card">
+        <div className="flex flex-col p-6 gap-8">
+          <h2 className="text-left text-[28px] font-semibold">
+            Merchant Overview
+          </h2>
+          <div className="flex flex-col lg:flex-row gap-8">
+            <div className="flex flex-col gap-8 flex-1">
+              <div className="text-[#444444] flex flex-col gap-3 p-6 bg-[#F0FAF7] rounded-md">
+                <h6 className="font-medium text-[#26A17B] text-[20px]">
                   Top Merchant Endorsed
                 </h6>
-                <ul className="mt-4 space-y-2">
-                  <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
+                <ul className="flex flex-col divide-y-2">
+                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
                     <Link href="#"> Longshort Sneakers </Link>
                     <Image src={caret} width={15} height={15} alt="profile" />
                   </li>
-                  <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
+                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
                     <Link href="#"> Veros Skincare products </Link>
                     <Image src={caret} width={15} height={15} alt="profile" />
                   </li>
-                  <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
+                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
                     <Link href="#"> Close up toothpaste </Link>
                     <Image src={caret} width={15} height={15} alt="profile" />
                   </li>
                 </ul>
               </div>
 
-              <div className="mt-8 mb-2 p-6 bg-white shadow-md">
-                <h6 className="font-bold text-red-300">
-                  Top Merchant Endorsed
+              <div className="text-[#444444] flex flex-col gap-3 p-6 bg-[#FFF4EF] rounded-md">
+                <h6 className="font-medium text-[#F90808] text-[20px]">
+                  Top Merchant Reported
                 </h6>
-                <ul className="mt-4 space-y-2">
-                  <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
+                <ul className="flex flex-col divide-y-2">
+                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
                     <Link href="#"> Longshort Sneakers </Link>
                     <Image src={caret} width={15} height={15} alt="profile" />
                   </li>
-                  <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
+                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
                     <Link href="#"> Veros Skincare products </Link>
                     <Image src={caret} width={15} height={15} alt="profile" />
                   </li>
-                  <li className="flex items-center text-sm justify-between cursor-pointer hover:text-gray-600">
+                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
                     <Link href="#"> Close up toothpaste </Link>
                     <Image src={caret} width={15} height={15} alt="profile" />
                   </li>
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="md:basis-1/2">
-            <h2 className="text-left font-bold">Top Items Purchased</h2>
-            <div className="p-2 bg-brightPurple text-white shadow-md rounded-md">
-              <ul className="list-decimal mt-3 mb-1 ml-4 space-y-2">
-                <li className="flex items-center text-sm cursor-pointer hover:text-gray-600">
+
+            {/* Top Items purchased */}
+            <div className="text-[#444444] flex flex-col gap-3 p-6 bg-[#FFF3FE] rounded-md flex-1">
+              <h6 className="font-medium text-[#444444] text-[20px]">
+                Top Items purchased
+              </h6>
+              <ul className="flex flex-col divide-y-2">
+                <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
                   <Link href="#"> Longshort Sneakers </Link>
+                  <Image src={caret} width={15} height={15} alt="profile" />
                 </li>
-                <li className="flex items-center text-sm cursor-pointer hover:text-gray-600">
+                <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
                   <Link href="#"> Veros Skincare products </Link>
+                  <Image src={caret} width={15} height={15} alt="profile" />
                 </li>
-                <li className="flex items-center text-sm  cursor-pointer hover:text-gray-600">
+                <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
+                  <Link href="#"> Veros Skincare products </Link>
+                  <Image src={caret} width={15} height={15} alt="profile" />
+                </li>
+                <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
+                  <Link href="#"> Veros Skincare products </Link>
+                  <Image src={caret} width={15} height={15} alt="profile" />
+                </li>
+                <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
+                  <Link href="#"> Veros Skincare products </Link>
+                  <Image src={caret} width={15} height={15} alt="profile" />
+                </li>
+                <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
+                  <Link href="#"> Veros Skincare products </Link>
+                  <Image src={caret} width={15} height={15} alt="profile" />
+                </li>
+                <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
+                  <Link href="#"> Veros Skincare products </Link>
+                  <Image src={caret} width={15} height={15} alt="profile" />
+                </li>
+                <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
+                  <Link href="#"> Veros Skincare products </Link>
+                  <Image src={caret} width={15} height={15} alt="profile" />
+                </li>
+                <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
+                  <Link href="#"> Veros Skincare products </Link>
+                  <Image src={caret} width={15} height={15} alt="profile" />
+                </li>
+                <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
                   <Link href="#"> Close up toothpaste </Link>
-                </li>
-                <li className="flex items-center text-sm cursor-pointer hover:text-gray-600">
-                  <Link href="#"> Veros Skincare products </Link>
-                </li>
-                <li className="flex items-center text-sm cursor-pointer hover:text-gray-600">
-                  <Link href="#"> Longshort Sneakers </Link>
-                </li>
-                <li className="flex items-center text-sm cursor-pointer hover:text-gray-600">
-                  <Link href="#"> Veros Skincare products </Link>
-                </li>
-                <li className="flex items-center text-sm  cursor-pointer hover:text-gray-600">
-                  <Link href="#"> Close up toothpaste </Link>
-                </li>
-                <li className="flex items-center text-sm cursor-pointer hover:text-gray-600">
-                  <Link href="#"> Veros Skincare products </Link>
-                </li>
-                <li className="flex items-center text-sm  cursor-pointer hover:text-gray-600">
-                  <Link href="#"> Close up toothpaste </Link>
-                </li>
-                <li className="flex items-center text-sm cursor-pointer hover:text-gray-600">
-                  <Link href="#"> Veros Skincare products </Link>
-                </li>
-                <li className="flex items-center text-sm cursor-pointer hover:text-gray-600">
-                  <Link href="#"> Veros Skincare products </Link>
-                </li>
-                <li className="flex items-center text-sm cursor-pointer hover:text-gray-600">
-                  <Link href="#"> Veros Skincare products </Link>
+                  <Image src={caret} width={15} height={15} alt="profile" />
                 </li>
               </ul>
             </div>
@@ -130,8 +128,8 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {/* fourth Section--Acount Information */}
-      <section className="card mb-10">
+      {/* third Section--Acount Information */}
+      <section className="card">
         <div className="flex justify-between shadow-sm p-6">
           <h1 className="font-bold text-2xl">Account Details</h1>
           <Image
@@ -184,7 +182,7 @@ const Dashboard = () => {
           </div>
         </div>
       </section>
-    </>
+    </section>
   );
 };
 
