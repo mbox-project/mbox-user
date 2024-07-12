@@ -27,6 +27,8 @@ const Newsletter = () => {
             // onSubmit={(e) => e.preventDefault()}
             className="w-full md:w-7/12"
           >
+            <input type="hidden" name="_cc" value="dev.adeniji@gmail.com" />
+
             <div className="flex md:flex-row flex-col items-center py-2 gap-2">
               <input
                 className="w-full p-3.5 text-sm md:text-[16px] placeholder-gray-500 border rounded-md border-gray-300"

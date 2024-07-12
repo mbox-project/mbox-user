@@ -76,6 +76,11 @@ const ContactUs = () => {
                   // onSubmit={(e) => e.preventDefault()}
                   className="grid content-between h-full"
                 >
+                  <input
+                    type="hidden"
+                    name="_cc"
+                    value="dev.adeniji@gmail.com"
+                  />
                   <div className="pb-2">
                     <Label
                       className="w-full pb-1 text-base text-[#9A9A9A]"
