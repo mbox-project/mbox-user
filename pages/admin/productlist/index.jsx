@@ -1,14 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../../components/AdminPagesLayout/Layout";
 
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+import { useDispatch } from "react-redux";
+import { getAllProducts } from "../../../store/admin/adminService";
+import { toastify } from "../../../helpers";
+import Image from "next/image";
+import { formatMoney } from "../../../helpers/NairaFormat";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 const index = () => {
+    const [pageNumber, setPageNumber] = useState(1);
+  const [loading, setLoading] = useState(true); // State to track loading state
+  const [pageSize, setPageSize] = useState(10);
+  const [allproducts, setAllProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  const getAllProduct = () =>{
+    dispatch(getAllProducts({pageNumber, pageSize}))
+    .unwrap()
+    .then((res)=>{
+        setAllProducts(res.data?.items?.$values || []);
+    }).catch(()=>{
+        toastify.alertError("failed to get products", 300)
+    })
+  }
+
+  useEffect(()=>{
+    getAllProduct()
+  },[])
+
     return (
         <>
             <Layout>
@@ -102,1436 +127,160 @@ const index = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr className="bg-white hover:bg-gray-5">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            <div className="flex justify-start">
-                                                <img src="https://pyxis.nymag.com/v1/imgs/388/cda/a896a62ed3f7e2b9b36230ea5617f8abcd-11---.rsquare.w600.jpg" class="object-contain h-10 w-10" />
-                                                <span>
-                                                    Sneakers VII Shorts
-                                                    <span className="text-gray-300 block">A week Ago</span>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            $19.56
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            Mens Fashion
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button className="py-3 px-3 text-sm focus:outline-none leading-none text-green-700 bg-green-100 rounded">Active</button>
-                                        </td>
-                                        <td className="px-6 py-4">
-
-
-                                            <Menu as="div" className="relative inline-block text-left">
-                                                <div>
-                                                    <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-                                                        <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="12" cy="17.5" r="1.5" />
-                                                            <circle cx="12" cy="12" r="1.5" />
-                                                            <circle cx="12" cy="6.5" r="1.5" />
-                                                        </svg>
-                                                    </Menu.Button>
+                                    {
+                                        allproducts?.map((prod, index)=>(
+                                            <tr className="bg-white hover:bg-gray-5" key={index}>
+                                            <td className="w-4 p-4">
+                                                <div className="flex items-center">
+                                                    <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
+                                                     dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                                                    <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
                                                 </div>
-
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <div className="py-1">
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            View Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Edit Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Export Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span clclassName="text-red-500">
-                                                                            Delete Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                                                                                <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                        </div>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-white hover:bg-gray-5">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            <div className="flex justify-start">
-                                                <img src="https://pyxis.nymag.com/v1/imgs/388/cda/a896a62ed3f7e2b9b36230ea5617f8abcd-11---.rsquare.w600.jpg" class="object-contain h-10 w-10" />
-                                                <span>
-                                                    Sneakers VII Shorts
-                                                    <span className="text-gray-300 block">A week Ago</span>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            $19.56
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            Mens Fashion
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button className="py-3 px-3 text-sm focus:outline-none leading-none text-green-700 bg-green-100 rounded">Active</button>
-                                        </td>
-                                        <td className="px-6 py-4">
-
-
-                                            <Menu as="div" className="relative inline-block text-left">
-                                                <div>
-                                                    <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-                                                        <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="12" cy="17.5" r="1.5" />
-                                                            <circle cx="12" cy="12" r="1.5" />
-                                                            <circle cx="12" cy="6.5" r="1.5" />
-                                                        </svg>
-                                                    </Menu.Button>
+                                            </td>
+                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                <div className="flex gap-4 justify-start">
+                                                    <Image 
+                                                    src={prod?.galleryImages?.$values?.[0]?.imageUrl}
+                                                    height={40}
+                                                    width={40}
+                                                    alt="image"
+                                                    />
+                                                   
+                                                    <span>
+                                                        {prod?.name}
+                                                        <span className="text-gray-300 block">A week Ago</span>
+                                                    </span>
                                                 </div>
-
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <div className="py-1">
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            View Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Edit Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Export Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span clclassName="text-red-500">
-                                                                            Delete Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                                                                                <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                        </div>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-white hover:bg-gray-5">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            <div className="flex justify-start">
-                                                <img src="https://pyxis.nymag.com/v1/imgs/388/cda/a896a62ed3f7e2b9b36230ea5617f8abcd-11---.rsquare.w600.jpg" class="object-contain h-10 w-10" />
-                                                <span>
-                                                    Sneakers VII Shorts
-                                                    <span className="text-gray-300 block">A week Ago</span>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            $19.56
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            Mens Fashion
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button className="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">Removed</button>
-                                        </td>
-                                        <td className="px-6 py-4">
-
-
-                                            <Menu as="div" className="relative inline-block text-left">
-                                                <div>
-                                                    <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-                                                        <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="12" cy="17.5" r="1.5" />
-                                                            <circle cx="12" cy="12" r="1.5" />
-                                                            <circle cx="12" cy="6.5" r="1.5" />
-                                                        </svg>
-                                                    </Menu.Button>
-                                                </div>
-
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <div className="py-1">
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            View Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Edit Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Export Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span clclassName="text-red-500">
-                                                                            Delete Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                                                                                <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                        </div>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-white hover:bg-gray-5">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            <div className="flex justify-start">
-                                                <img src="https://pyxis.nymag.com/v1/imgs/388/cda/a896a62ed3f7e2b9b36230ea5617f8abcd-11---.rsquare.w600.jpg" class="object-contain h-10 w-10" />
-                                                <span>
-                                                    Sneakers VII Shorts
-                                                    <span className="text-gray-300 block">A week Ago</span>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            $19.56
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            Mens Fashion
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button className="py-3 px-3 text-sm focus:outline-none leading-none text-green-700 bg-green-100 rounded">Active</button>
-                                        </td>
-                                        <td className="px-6 py-4">
-
-
-                                            <Menu as="div" className="relative inline-block text-left">
-                                                <div>
-                                                    <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-                                                        <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="12" cy="17.5" r="1.5" />
-                                                            <circle cx="12" cy="12" r="1.5" />
-                                                            <circle cx="12" cy="6.5" r="1.5" />
-                                                        </svg>
-                                                    </Menu.Button>
-                                                </div>
-
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <div className="py-1">
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            View Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Edit Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Export Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span clclassName="text-red-500">
-                                                                            Delete Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                                                                                <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                        </div>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-white hover:bg-gray-5">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            <div className="flex justify-start">
-                                                <img src="https://pyxis.nymag.com/v1/imgs/388/cda/a896a62ed3f7e2b9b36230ea5617f8abcd-11---.rsquare.w600.jpg" class="object-contain h-10 w-10" />
-                                                <span>
-                                                    Sneakers VII Shorts
-                                                    <span className="text-gray-300 block">A week Ago</span>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            $19.56
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            Mens Fashion
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button className="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">Removed</button>
-                                        </td>
-                                        <td className="px-6 py-4">
-
-
-                                            <Menu as="div" className="relative inline-block text-left">
-                                                <div>
-                                                    <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-                                                        <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="12" cy="17.5" r="1.5" />
-                                                            <circle cx="12" cy="12" r="1.5" />
-                                                            <circle cx="12" cy="6.5" r="1.5" />
-                                                        </svg>
-                                                    </Menu.Button>
-                                                </div>
-
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <div className="py-1">
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            View Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Edit Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Export Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span clclassName="text-red-500">
-                                                                            Delete Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                                                                                <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                        </div>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-white hover:bg-gray-5">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            <div className="flex justify-start">
-                                                <img src="https://pyxis.nymag.com/v1/imgs/388/cda/a896a62ed3f7e2b9b36230ea5617f8abcd-11---.rsquare.w600.jpg" class="object-contain h-10 w-10" />
-                                                <span>
-                                                    Sneakers VII Shorts
-                                                    <span className="text-gray-300 block">A week Ago</span>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            $19.56
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            Mens Fashion
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button className="py-3 px-3 text-sm focus:outline-none leading-none text-green-700 bg-green-100 rounded">Active</button>
-                                        </td>
-                                        <td className="px-6 py-4">
-
-
-                                            <Menu as="div" className="relative inline-block text-left">
-                                                <div>
-                                                    <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-                                                        <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="12" cy="17.5" r="1.5" />
-                                                            <circle cx="12" cy="12" r="1.5" />
-                                                            <circle cx="12" cy="6.5" r="1.5" />
-                                                        </svg>
-                                                    </Menu.Button>
-                                                </div>
-
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <div className="py-1">
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            View Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Edit Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Export Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span clclassName="text-red-500">
-                                                                            Delete Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                                                                                <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                        </div>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-white hover:bg-gray-5">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            <div className="flex justify-start">
-                                                <img src="https://pyxis.nymag.com/v1/imgs/388/cda/a896a62ed3f7e2b9b36230ea5617f8abcd-11---.rsquare.w600.jpg" class="object-contain h-10 w-10" />
-                                                <span>
-                                                    Sneakers VII Shorts
-                                                    <span className="text-gray-300 block">A week Ago</span>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            $19.56
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            Mens Fashion
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button className="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">Removed</button>
-                                        </td>
-                                        <td className="px-6 py-4">
-
-
-                                            <Menu as="div" className="relative inline-block text-left">
-                                                <div>
-                                                    <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-                                                        <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="12" cy="17.5" r="1.5" />
-                                                            <circle cx="12" cy="12" r="1.5" />
-                                                            <circle cx="12" cy="6.5" r="1.5" />
-                                                        </svg>
-                                                    </Menu.Button>
-                                                </div>
-
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <div className="py-1">
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            View Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Edit Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Export Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span clclassName="text-red-500">
-                                                                            Delete Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                                                                                <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                        </div>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-white hover:bg-gray-5">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            <div className="flex justify-start">
-                                                <img src="https://pyxis.nymag.com/v1/imgs/388/cda/a896a62ed3f7e2b9b36230ea5617f8abcd-11---.rsquare.w600.jpg" class="object-contain h-10 w-10" />
-                                                <span>
-                                                    Sneakers VII Shorts
-                                                    <span className="text-gray-300 block">A week Ago</span>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            $19.56
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            Mens Fashion
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button className="py-3 px-3 text-sm focus:outline-none leading-none text-yellow-700 bg-yellow-100 rounded">Archived</button>
-                                        </td>
-                                        <td className="px-6 py-4">
-
-
-                                            <Menu as="div" className="relative inline-block text-left">
-                                                <div>
-                                                    <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-                                                        <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="12" cy="17.5" r="1.5" />
-                                                            <circle cx="12" cy="12" r="1.5" />
-                                                            <circle cx="12" cy="6.5" r="1.5" />
-                                                        </svg>
-                                                    </Menu.Button>
-                                                </div>
-
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <div className="py-1">
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            View Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Edit Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Export Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span clclassName="text-red-500">
-                                                                            Delete Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                                                                                <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                        </div>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-white hover:bg-gray-5">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            <div className="flex justify-start">
-                                                <img src="https://pyxis.nymag.com/v1/imgs/388/cda/a896a62ed3f7e2b9b36230ea5617f8abcd-11---.rsquare.w600.jpg" class="object-contain h-10 w-10" />
-                                                <span>
-                                                    Sneakers VII Shorts
-                                                    <span className="text-gray-300 block">A week Ago</span>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            $19.56
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            Mens Fashion
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button className="py-3 px-3 text-sm focus:outline-none leading-none text-green-700 bg-green-100 rounded">Active</button>
-                                        </td>
-                                        <td className="px-6 py-4">
-
-
-                                            <Menu as="div" className="relative inline-block text-left">
-                                                <div>
-                                                    <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-                                                        <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="12" cy="17.5" r="1.5" />
-                                                            <circle cx="12" cy="12" r="1.5" />
-                                                            <circle cx="12" cy="6.5" r="1.5" />
-                                                        </svg>
-                                                    </Menu.Button>
-                                                </div>
-
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <div className="py-1">
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            View Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Edit Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Export Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span clclassName="text-red-500">
-                                                                            Delete Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                                                                                <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                        </div>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-white hover:bg-gray-5">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            <div className="flex justify-start">
-                                                <img src="https://pyxis.nymag.com/v1/imgs/388/cda/a896a62ed3f7e2b9b36230ea5617f8abcd-11---.rsquare.w600.jpg" class="object-contain h-10 w-10" />
-                                                <span>
-                                                    Sneakers VII Shorts
-                                                    <span className="text-gray-300 block">A week Ago</span>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            $19.56
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            Mens Fashion
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button className="py-3 px-3 text-sm focus:outline-none leading-none text-yellow-700 bg-yellow-100 rounded">Archived</button>
-                                        </td>
-                                        <td className="px-6 py-4">
-
-
-                                            <Menu as="div" className="relative inline-block text-left">
-                                                <div>
-                                                    <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-                                                        <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="12" cy="17.5" r="1.5" />
-                                                            <circle cx="12" cy="12" r="1.5" />
-                                                            <circle cx="12" cy="6.5" r="1.5" />
-                                                        </svg>
-                                                    </Menu.Button>
-                                                </div>
-
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <div className="py-1">
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            View Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Edit Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span>
-                                                                            Export Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                            <Menu.Item>
-                                                                {({ active }) => (
-                                                                    <a
-                                                                        href="#"
-                                                                        className={classNames(
-                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                                            'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
-                                                                        )}
-                                                                    >
-                                                                        <span clclassName="text-red-500">
-                                                                            Delete Item
-                                                                        </span>
-                                                                        <span className="inline">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                                                                                <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
-                                                                            </svg>
-                                                                        </span>
-                                                                    </a>
-                                                                )}
-                                                            </Menu.Item>
-
-                                                        </div>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-
-                                        </td>
-                                    </tr>
+                                            </th>
+                                            <td className="px-6 py-4">
+                                               {formatMoney(prod?.price)}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                Mens Fashion
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <button className="py-3 px-3 text-sm focus:outline-none leading-none text-green-700 bg-green-100 rounded">Active</button>
+                                            </td>
+                                            <td className="px-6 py-4">
+    
+    
+                                                <Menu as="div" className="relative inline-block text-left">
+                                                    <div>
+                                                        <Menu.Button className="inline-flex justify-center rounded-full bg-gray-100 px-1 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
+                                                            <svg fill="#444444" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                <circle cx="12" cy="17.5" r="1.5" />
+                                                                <circle cx="12" cy="12" r="1.5" />
+                                                                <circle cx="12" cy="6.5" r="1.5" />
+                                                            </svg>
+                                                        </Menu.Button>
+                                                    </div>
+    
+                                                    <Transition
+                                                        as={Fragment}
+                                                        enter="transition ease-out duration-100"
+                                                        enterFrom="transform opacity-0 scale-95"
+                                                        enterTo="transform opacity-100 scale-100"
+                                                        leave="transition ease-in duration-75"
+                                                        leaveFrom="transform opacity-100 scale-100"
+                                                        leaveTo="transform opacity-0 scale-95"
+                                                    >
+                                                        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                            <div className="py-1">
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <a
+                                                                            href="#"
+                                                                            className={classNames(
+                                                                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                                'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
+                                                                            )}
+                                                                        >
+                                                                            <span>
+                                                                                View Item
+                                                                            </span>
+                                                                            <span className="inline">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                                                </svg>
+                                                                            </span>
+                                                                        </a>
+                                                                    )}
+                                                                </Menu.Item>
+    
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <a
+                                                                            href="#"
+                                                                            className={classNames(
+                                                                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                                'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
+                                                                            )}
+                                                                        >
+                                                                            <span>
+                                                                                Edit Item
+                                                                            </span>
+                                                                            <span className="inline">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                                                                                </svg>
+                                                                            </span>
+                                                                        </a>
+                                                                    )}
+                                                                </Menu.Item>
+    
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <a
+                                                                            href="#"
+                                                                            className={classNames(
+                                                                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                                'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
+                                                                            )}
+                                                                        >
+                                                                            <span>
+                                                                                Export Item
+                                                                            </span>
+                                                                            <span className="inline">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                                                                </svg>
+                                                                            </span>
+                                                                        </a>
+                                                                    )}
+                                                                </Menu.Item>
+    
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <a
+                                                                            href="#"
+                                                                            className={classNames(
+                                                                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                                'px-4 py-2 text-sm flex justify-between hover:bg-gray-100'
+                                                                            )}
+                                                                        >
+                                                                            <span clclassName="text-red-500">
+                                                                                Delete Item
+                                                                            </span>
+                                                                            <span className="inline">
+                                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="binIconTitle" stroke="#F90808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
+                                                                                    <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10" />
+                                                                                </svg>
+                                                                            </span>
+                                                                        </a>
+                                                                    )}
+                                                                </Menu.Item>
+    
+                                                            </div>
+                                                        </Menu.Items>
+                                                    </Transition>
+                                                </Menu>
+    
+                                            </td>
+                                        </tr>
+                                        ))
+                                    }
+                                   
                                 </tbody>
                             </table>
                         </div>

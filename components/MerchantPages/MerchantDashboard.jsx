@@ -120,7 +120,7 @@ const MerchantDashboard = () => {
                   <div className="space-y-3">
                     <div className="p-3 bg-purple-900 rounded-lg text-center">
                       <h3 className="text-2xl">14,766</h3>
-                      <h4>Usd</h4>
+                      <h4>Naira</h4>
                     </div>
                     <div className="text-center text-lg">
                       <p>This week</p>
@@ -130,7 +130,7 @@ const MerchantDashboard = () => {
                   <div className="space-y-3">
                     <div className="p-3 bg-purple-900 rounded-lg text-center">
                       <h3 className="text-2xl">15,766</h3>
-                      <h4>Usd</h4>
+                      <h4>Naira</h4>
                     </div>
                     <div className="text-center text-lg">
                       <p>last week</p>
@@ -148,7 +148,7 @@ const MerchantDashboard = () => {
                   <div className="space-y-3">
                     <div className="p-3 bg-gray-100 rounded-lg text-center">
                       <h3 className="text-2xl">14,766</h3>
-                      <h4>Usd</h4>
+                      <h4>Naira</h4>
                     </div>
                     <div className="text-center text-lg">
                       <p>This Month</p>
@@ -158,7 +158,7 @@ const MerchantDashboard = () => {
                   <div className="space-y-3">
                     <div className="p-3 bg-gray-100 rounded-lg text-center">
                       <h3 className="text-2xl">45,766</h3>
-                      <h4>Usd</h4>
+                      <h4>Naira</h4>
                     </div>
                     <div className="text-center text-lg">
                       <p>last Month</p>
