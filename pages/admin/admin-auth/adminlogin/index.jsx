@@ -1,11 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Loginbg from "../../../../public/images/loginbg.png";
 import Button from "../../../../components/Button";
 import Input from "../../../../components/Input";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { toastify } from "../../../../helpers";
+import { adminLogin } from "../../../../store/auth/authSlice";
+import { useRouter } from "next/router";
+import Spinner from "../../../../components/Spinner";
 
 const AdminLogin = () => {
+
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+  const dispatch = useDispatch();
+  const { push } = useRouter();
+  const { isLoading, isError, isSuccess, user, message } = useSelector(
+    (state) => state.auth
+  );
+  const { email, password } = loginData;
+  const onChangeInput = (e) => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  };
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    // simple validation
+    console.log(loginData);
+    if (loginData.email == "" || loginData.password == "") {
+      toastify.alertWarning("Email or password cannot be empty", 3000);
+    } else {
+      dispatch(adminLogin(loginData))
+        .unwrap()
+        .then((action) => {
+          console.log(action);
+          console.log("running");
+          sessionStorage.setItem("token", action.data.token);
+          push("/admin/admindashboard");
+        })
+        .catch((error) => {
+          console.log(error);
+          toastify.alertError(error, 3000);
+        });
+    }
+  };
   return (
     <div className="flex w-full h-screen">
       <div className="hidden w-1/2 backlogin lg:block">
@@ -18,6 +58,7 @@ const AdminLogin = () => {
           />
         </div>
       </div>
+      {isLoading && <Spinner />}
       <div className="w-full lg:w-1/2 px-4  bg-grayColor">
         <div>
           <div className="text-center firstdiv">
@@ -32,37 +73,40 @@ const AdminLogin = () => {
           <form className=" my-6  px-0 lg:px-10">
             <div className="p-1">
               <Input
-                name="name"
-                type="text"
-                /* value={name} */
-                placeHolder="Name"
+                name="email"
+                type="email"
+                 value={email} 
+                placeHolder="Email"
                 className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border  md:rounded-md shadow-sm rounded-none"
-                onChange={""}
+                onChange={onChangeInput}
                 required
               />
             </div>
             <div className="p-1">
               <Input
-                name="Username"
-                type="text"
-                /* value={username} */
-                placeHolder="Username"
+                name="password"
+                type="password"
+                 value={password} 
+                placeHolder="password"
                 className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border  md:rounded-md shadow-sm rounded-none"
-                onChange={""}
+                onChange={onChangeInput}
                 required
               />
             </div>
+            {/** 
             <div className="p-1">
               <Input
                 name="Dept."
                 type="text"
                 /* value={dept} */
-                placeHolder="Dept."
-                className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border  md:rounded-md shadow-sm rounded-none"
-                onChange={""}
-                required
-              />
-            </div>
+                //placeHolder="Dept."
+                //className="w-full p-1 md:p-2 lg:py-2.5  focus:outline-none pr-12 text-lg lg:text-sm bg-grayColor font-poppins  mt-2 border-[#444444] border-b-2  border-t-0  border-x-0 md:border  md:rounded-md shadow-sm rounded-none"
+                //onChange={""}
+                //required
+              ///>
+            //</div>
+            }
+             {/*** 
             <div className="p-1">
               <div className="relative">
                 <Input
@@ -98,6 +142,7 @@ const AdminLogin = () => {
                 </span>
               </div>
             </div>
+            */}
             <div className="p-1 flex justify-between text-gray-400">
               <div>
                 <Input
@@ -120,7 +165,7 @@ const AdminLogin = () => {
             </div>
             <Button
               className="w-full bg-[#491546] h-12 poppins rounded-md text-white text-lg  lg:text-2xl mt-5 font-medium"
-              onClick={""}
+              onClick={onSubmitHandler}
             >
               Login
             </Button>

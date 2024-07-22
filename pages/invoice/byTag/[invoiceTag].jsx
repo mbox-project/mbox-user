@@ -48,7 +48,7 @@ const invoiceID = () => {
             {user?.role === "user" ? (
               <Button
                 onClick={() => {
-                  dispatch(payInvoice(invoiceID))
+                  dispatch(payInvoice(invoiceTag))
                     .unwrap()
                     .then((res) => {
                       toastify.alertSuccess(res?.message || "success", 3000);

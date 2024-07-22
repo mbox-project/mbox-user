@@ -20,4 +20,11 @@ export const categoryRequest = createAsyncThunk(
     return response.data;
   }
 );
+export const getPromotions = createAsyncThunk(
+  "promoteStore/getPromotions",
+  async () => {
+    const response = await getApi("PromoteStore/promotions");
+    return response.data;
+  }
+);
 

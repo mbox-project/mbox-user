@@ -12,20 +12,31 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Upload } from "antd";
 import UpdateProfileImages, { props } from "../../Utils/uploadImage";
 import Image from "next/image";
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
-import { getUserProfile, UpdateUserProfile } from "../../store/users/userService";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import {
+  getUserProfile,
+  ResetUserPassword,
+  UpdateUserProfile,
+} from "../../store/users/userService";
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
- 
+  const dispatch = useDispatch();
+  const [pass, setPass] = useState({
+    oldPassowrd: "",
+    newPassowrd: "",
+    confirmPassword: "",
+  });
+  const [passLoad, setPassLoad] = useState(false)
+
   const [res, setRes] = useState("");
 
   useEffect(() => {
     setData((prevData) => ({
       ...prevData,
-      profilePicture: res?.imageUrl
+      profilePicture: res?.imageUrl,
     }));
   }, [res, setData]);
-  console.log(res?.imageUrl)
+  console.log(res?.imageUrl);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -33,6 +44,28 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
       ...prevData,
       [id]: value,
     }));
+  };
+
+  const handlePasswordChange = (e) => {
+    const { id, value } = e.target;
+    setPass((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const changePassword = () => {
+    setPassLoad(true)
+    dispatch(ResetUserPassword(pass))
+      .unwrap()
+      .then(() => {
+        toastify.alertSuccess("Password changed");
+        setPassLoad(false)
+      })
+      .catch(() => {
+        toastify.alertError("password change failed");
+        setPassLoad(false)
+      });
   };
 
   return (
@@ -44,7 +77,6 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
         <div className="flex justify-between p-3">
           <h4 className="text-gray-500">Store Image</h4>
           <UpdateProfileImages setData={setRes} />
-
         </div>
         <div className="p-5 flex justify-center items-center h-48 mt-5 mb-3 bg-gray-200 w-48 profilePics">
           {data?.profilePicture ? (
@@ -94,8 +126,8 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               title="WhatsApp no"
             />
             <PhoneInput
-              country={'ng'}
-              onlyCountries={['ng']}
+              country={"ng"}
+              onlyCountries={["ng"]}
               containerClass="!w-full !h-full "
               inputClass="phone-input-input !w-full !border-2 !border-[#9F9F9F] !md:rounded-md !h-[43px]"
               className=" "
@@ -106,19 +138,19 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
                   phoneNumber: value,
                 }))
               }
-
               required
             />
-
           </div>
           <div className="mb-2">
             <label htmlFor="email" className="block mb-2 text-md text-gray-500">
               Sex
             </label>
-            <select id="gender"
-             value={data.gender}
+            <select
+              id="gender"
+              value={data.gender}
               onChange={handleInputChange}
-               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5 hover:cursor-pointer">
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5 hover:cursor-pointer"
+            >
               <option value="">Select an option</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
@@ -138,6 +170,67 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               required
             />
           </div>
+          {/************PASSWORD CHANGE********/}
+          <div className="mb-2">
+            <label
+              htmlFor="oldPassowrd"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Old Password
+            </label>
+            <input
+              type="text"
+              id="oldPassowrd"
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="Old Password"
+              value={pass.oldPassowrd}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <div className="mb-2">
+            <label
+              htmlFor="newPassowrd"
+              className="block mb-2 text-md text-gray-500"
+            >
+              New Password
+            </label>
+            <input
+              type="text"
+              id="newPassowrd"
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="Old Password"
+              value={pass.newPassowrd}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <div className="mb-2">
+            <label
+              htmlFor="confirmPassword"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="text"
+              id="confirmPassword"
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="New Password"
+              value={pass.confirmPassword}
+              onChange={handlePasswordChange}
+              required
+            />
+            <div className=" w-full flex justify-end p-3">
+              <span
+                className=" font-medium text-sm underline text-red-500 cursor-pointer"
+                onClick={changePassword}
+              >
+                Change Password
+              </span>
+              <LoadingOutlined style={{ fontSize: 20 }} spin className={`${passLoad ? "" : " hidden"}`}/>
+            </div>
+          </div>
         </div>
       </section>
       <div className="flex justify-end mt-5">
@@ -155,7 +248,6 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   );
 };
 
-
 export const BankInformation = ({ data, setData }) => {
   const dispatch = useDispatch();
   const [bankName, setBankName] = useState("");
@@ -164,7 +256,6 @@ export const BankInformation = ({ data, setData }) => {
     setData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-
     }));
     console.log(data);
   };
@@ -180,22 +271,21 @@ export const BankInformation = ({ data, setData }) => {
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
-    console.log(data)
-    setLoading(true)
+    console.log(data);
+    setLoading(true);
     dispatch(UpdateUserProfile(data))
       .unwrap()
       .then((action) => {
-        toastify.alertSuccess("Updated profile successfully ");
-        dispatch(getUserProfile())
-        setLoading(false)
+        toastify.alertSuccess("Updated profile successfully");
+        dispatch(getUserProfile());
+        setLoading(false);
       })
       .catch((error) => {
-        toastify.alertError(error, 3000)
-        setLoading(false)
+        toastify.alertError(error, 3000);
+        setLoading(false);
       });
-
-
   };
+
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e, data)} className="">
@@ -266,10 +356,11 @@ export const BankInformation = ({ data, setData }) => {
             type="submit"
             className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
           >
-            {
-              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Save'
-            }
-
+            {loading ? (
+              <LoadingOutlined style={{ fontSize: 24 }} spin />
+            ) : (
+              "Save"
+            )}
           </button>
         </div>
       </form>

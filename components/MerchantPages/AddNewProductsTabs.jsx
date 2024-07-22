@@ -11,15 +11,19 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 export const ProductInformation = ({ setData, data, setActiveKey }) => {
   const dispatch = useDispatch();
+  const [category, setCategory] = useState("");
+  const [allCategory, setAllCategory] = useState([]);
   useEffect(() => {
     dispatch(getProductCategories())
       .unwrap()
-      .then((response) => console.log(response))
+      .then((response) => {
+        const subCategories = response.data.$values.flatMap(item => item.subCategories.$values);
+        setAllCategory(subCategories)
+      })
       .catch((error) => console.log(error));
     console.log("effect");
-  }, []);
-  const { categories } = useSelector((state) => state.product);
-  const [category, setCategory] = useState("");
+  }, [dispatch]);
+ 
   const onSelectCategory = (e) => {
     setCategory(e.target.value);
     setData((init) => ({ ...init, categoryId: e.target.value }));
@@ -111,12 +115,12 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
               id="category"
               value={category}
               onChange={onSelectCategory}
-              placeholder="select category"
+              placeholder="select sub-category"
               className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
             >
-              <option value="">select category</option>
-              {categories?.map((e, i) => (
-                <option key={i} value={e.id}>
+              <option value="">select sub-category</option>
+              {allCategory?.map((e, i) => (
+                <option key={i} value={e.categoryId}>
                   {e.name}
                 </option>
               ))}

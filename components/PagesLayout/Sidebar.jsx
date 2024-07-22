@@ -47,7 +47,7 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
               <Link href="/wallet/"> My Wallet </Link>
             </li>
             <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-              <VscLaw size={20}/>
+              <VscLaw size={20} />
               <Link href="dispute"> Disputes </Link>
             </li>
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
@@ -71,24 +71,19 @@ const Sidebar = ({ showSideBar, isMerchant }) => {
             </li>
             <li className="flex items-center  text-sm space-x-4 cursor-pointer text-[#F90808] hover:text-gray-600">
               <Image src={report} width={20} height={20} alt="profile" />
-              {
-                role === "vendor" ? (
-                  <Link href="/report"> Report a Buyer </Link>
-                ) : (
-                  <Link href="/report"> Report a Vendor </Link>
-                )
-              }
-            
+              {role === "vendor" ? (
+                <Link href="/report"> Report a Buyer </Link>
+              ) : (
+                <Link href="/report"> Report a Vendor </Link>
+              )}
             </li>
-            <li className="flex items-center  text-sm space-x-4 cursor-pointer hover:text-gray-600">
-              <PiMegaphone size={20} />
-              {
-                role === "vendor" && (
-                  <Link href="/promotebusiness"> Promote Business </Link>
-                ) 
-              }
-            
-            </li>
+            {role === "vendor" && (
+              <li className="flex items-center  text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                <PiMegaphone size={20} />
+
+                <Link href="/promotebusiness"> Promote Business </Link>
+              </li>
+            )}
             <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
               <Image src={saved} width={20} height={20} alt="profile" />
               <Link href="/saveditems/"> Saved Items </Link>

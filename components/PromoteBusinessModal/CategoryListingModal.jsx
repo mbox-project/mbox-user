@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, DatePicker, Space } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import Input from "../Input";
 import Label from "../Label";
 import { toastify } from "../../helpers";
@@ -12,6 +12,7 @@ import { getUserById, getUserProfile } from "../../store/users/userService";
 const CategoryListingModal = ({ open, setOpen }) => {
   const vendorId = useSelector((state) => state.auth.user.userId);
   const [loading, setLoading] = useState(false);
+  const [validationError, setValidationError] = useState(false);
   const [request, setRequest] = useState({
     vendorId: vendorId,
     duration: 0,
@@ -20,47 +21,54 @@ const CategoryListingModal = ({ open, setOpen }) => {
     totalPrice: 0,
     discountPercent: 0,
   });
-
- 
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Check validation when startDate, endDate, or duration changes
+    if (request.startDate && request.endDate && request.duration) {
+      const start = dayjs(request.startDate);
+      const end = dayjs(request.endDate);
+      const calculatedDuration = end.diff(start, "day") + 1; // Adding 1 day to inclusive count
+
+      if (calculatedDuration !== request.duration) {
+        console.log(calculatedDuration)
+        setValidationError(true);
+      } else {
+        setValidationError(false);
+      }
+    }
+  }, [request.startDate, request.endDate, request.duration]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setRequest({
       ...request,
-      [name]:
-        name === "duration" ||
-        name === "totalPrice" ||
-        name === "discountPercent"
-          ? parseFloat(value)
-          : value,
+      [name]: name === "duration" || name === "totalPrice" || name === "discountPercent" ? parseFloat(value) : value,
     });
   };
 
-  const handleDateChange = (name) => (date, dateString) => {
+  const handleDateChange = (name) => (date) => {
     setRequest({
       ...request,
-      [name]: moment(date).toISOString(),
+      [name]: date ? dayjs(date).toISOString() : "",
     });
   };
-
   const postBannerRequest = () => {
-    setLoading(true);
-    dispatch(categoryRequest(request))
-      .unwrap()
-      .then(() => {
-        toastify.alertSuccess("Banner request succesful");
-        setLoading(false);
-        setOpen(false)
-      })
-      .catch(() => {
-        toastify.alertError("Banner request failed");
-        setLoading(false);
-        setOpen(false)
-      });
-  };
-
+    if (!validationError) {
+      setLoading(true)
+      dispatch(categoryRequest(request))
+        .unwrap()
+        .then(() => {
+          toastify.alertSuccess("Banner request successful")
+          setLoading(false)
+          setOpen(false)
+        }).catch(() => {
+          toastify.alertError("Banner request failed")
+          setLoading(false)
+          setOpen(false)
+        });
+    }
+  }
   return (
     <Modal
       open={open}
@@ -88,14 +96,15 @@ const CategoryListingModal = ({ open, setOpen }) => {
               htmlFor="days"
               title="Number of days"
             />
-            <Input
+           <Input
               name="duration"
               type="number"
               placeHolder="4"
               onChange={handleInputChange}
-              className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#9F9F9F] bg-[#FAFAFA] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
+              className={`w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#9F9F9F] bg-[#FAFAFA] border-1  md:border-2  md:rounded-md shadow-sm rounded-none ${validationError ? " border-red-500" : ""}`}
               required
             />
+           <span className={`${validationError ? " text-red-600 visible" : " hidden"} text-xsf font-medium`}>duration don't match date length</span>
           </div>
           <div className=" px-4 pt-2">
             <Label

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "../../components/PagesLayout/Layout";
@@ -7,6 +7,8 @@ import shorts from "../../public/img/shorts.png";
 import BannerRequestModal from "../../components/PromoteBusinessModal/BannerRequestModal";
 import CategoryListingModal from "../../components/PromoteBusinessModal/CategoryListingModal";
 import { BiChevronDown } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { getPromotions } from "../../store/PromoteStore/promoteStoreService";
 
 const data = [
   {
@@ -45,6 +47,19 @@ const promoteBusiness = () => {
   const [isBannerModalOpen, setIsBannerModalOpen] = useState(false);
   const [isCategoryListingModalOpen, setIsCategoryListingModalOpen] =
     useState(false);
+    const [promoteData, setPromoteData] = useState();
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+      dispatch(getPromotions())
+      .then((res)=>{
+        setPromoteData(res?.data?.$values)
+      })
+      .catch(()=>{
+
+      })
+     
+    }, [dispatch]);
 
   return (
     <Layout>

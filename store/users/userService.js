@@ -50,4 +50,10 @@ export const UpdateUserProfile = createAsyncThunk(
   }
 );
 
-
+export const ResetUserPassword = createAsyncThunk(
+  "user/resetUserPassword",
+  async(body) => {
+    const response = await postApi("User/ResetOldPassword", body);
+    return response.data;
+  }
+);
