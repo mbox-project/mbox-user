@@ -141,7 +141,7 @@ const Dashboard = () => {
           />
         </div>
 
-        <div className="ml-5 flex flex-col space-y-8 mt-5 md:flex-row md:space-y-0">
+        <div className="p-6 flex flex-col gap-y-8 lg:flex-row">
           <div className="md:basis-1/2">
             <h1 className="font-bold text-lg">Personal Information</h1>
             <ul className="mt-4 space-y-4">
@@ -154,7 +154,7 @@ const Dashboard = () => {
                 <span>{user?.email}</span>
               </li>
               <li className="flex items-center text-sm space-x-12 hover:text-gray-600">
-                <h2 className="font-bold text-md">Whatsap No: </h2>
+                <h2 className="font-bold text-md">WhatsApp No: </h2>
                 <span>{user?.phoneNumber}</span>
               </li>
               <li className="flex items-center text-sm space-x-20 hover:text-gray-600">
@@ -163,7 +163,8 @@ const Dashboard = () => {
               </li>
             </ul>
           </div>
-          <div className="md:basic-1/2">
+
+          <div className="md:basis-1/2">
             <h1 className="font-bold text-lg">Bank Information</h1>
             <ul className="mt-4 space-y-4">
               <li className="flex items-center space-x-32 text-sm hover:text-gray-600">
