@@ -11,6 +11,7 @@ import { toastify } from "../../helpers";
 import Flyer from "../flier/flier";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { copyToClipboard } from "../../Utils/copyToClipboard";
+import { message } from "antd";
 
 const MerchantDashboard = () => {
   const [showFlyer, setShowFlyer] = useState(true);
@@ -27,7 +28,7 @@ const MerchantDashboard = () => {
       .then(function (dataUrl) {
         setFlyerImage(dataUrl);
         setImageGenerated(true);
-        toastify.alertSuccess("successfully generated flyer");
+        message.success("Successfully generated flyer");
         setLoading(false);
       })
       .catch(function (error) {
@@ -53,7 +54,7 @@ const MerchantDashboard = () => {
 
   const handleCopy = async () => {
     await copyToClipboard(`http://localhost:3000/endorse${tag}`);
-    toastify.alertSuccess("Invoice link copied", 300);
+    message.success("Invoice link copied", 300);
   };
 
   return (
@@ -97,7 +98,7 @@ const MerchantDashboard = () => {
 
           <section className="card rectCard mt-5">
             <h2 className="text-2xl mt-4">Revenue Comparisons</h2>
-            <div className="grid grid-cols-1  md:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1  md:grid-cols-2 gap-10 mt-4">
               <div className="p-4 rounded-3xl bg-brightPurple flex flex-col text-white">
                 <h3 className="mb-2 text-gray-500 text-xl">
                   Weekly Revenue Generated
