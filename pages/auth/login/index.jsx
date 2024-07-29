@@ -11,9 +11,10 @@ import { useRouter } from "next/router";
 import { login } from "../../../store/auth/authSlice";
 import Spinner from "../../../components/Spinner";
 import { toastify } from "../../../helpers";
+import { message } from "antd";
+import TermsAndConditionsModal from "../../../components/TermsAndConditionsModal";
 
 const Login = () => {
-  // Add rememberMe property to it later..
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -23,35 +24,31 @@ const Login = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
 
-  const { isLoading, isError, isSuccess, user, message } = useSelector(
+  const { isLoading, isError, isSuccess, user } = useSelector(
     (state) => state.auth
   );
-  // destructure the loginData object
+
   const { email, password, rememberMe } = loginData;
+
   const onChangeInput = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  //check for error messages   typeof window !== "undefined" ?
-
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    // simple validation
-    console.log(loginData);
-    if (loginData.email == "" || loginData.password == "") {
-      toastify.alertWarning("Email or password cannot be empty", 3000);
+    if (loginData.email === "" || loginData.password === "") {
+      message.warning("Email or password cannot be empty", 3);
     } else {
       dispatch(login(loginData))
         .unwrap()
         .then((action) => {
           console.log(action);
-          console.log("running");
           sessionStorage.setItem("token", action.data.token);
           push("/account");
         })
         .catch((error) => {
           console.log(error);
-          toastify.alertError(error, 3000);
+          message.error(error.toString(), 3);
         });
     }
   };
@@ -150,14 +147,10 @@ const Login = () => {
               Login
             </Button>
             <div className="flex pt-4 lg:pt-0 items-center gap-1 justify-center">
-              <span className="text-gray-600 flex poppins  justify-center text-sm lg:leading-0  lg:text-xs pt-1 lg:pt-0">
+              <span className="text-gray-600 flex poppins  justify-center text-sm lg:leading-0  pt-1 lg:pt-0">
                 By Login, you’ve already agreed to our{" "}
               </span>
-              <Link href="/">
-                <a className="text-orange-600 poppins pt-1 flex text-sm lg:text-xs justify-center  md:pt-3 lg:pt-0 font-bold">
-                  Terms & Condition
-                </a>
-              </Link>
+              <TermsAndConditionsModal />
             </div>
             <div className="flex items-center gap-1 pt-5 lg:pt-0">
               <p className=" text-gray-600 text-md lg:text-base">New User?</p>

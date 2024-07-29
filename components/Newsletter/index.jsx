@@ -21,12 +21,20 @@ const Newsletter = () => {
         </div>
 
         <div className="flex justify-center w-full">
-          <form className="w-full md:w-7/12">
+          <form
+            action="https://formsubmit.co/Marketboxng27@gmail.com"
+            method="POST"
+            // onSubmit={(e) => e.preventDefault()}
+            className="w-full md:w-7/12"
+          >
+            <input type="hidden" name="_cc" value="dev.adeniji@gmail.com" />
+
             <div className="flex md:flex-row flex-col items-center py-2 gap-2">
               <input
                 className="w-full p-3.5 text-sm md:text-[16px] placeholder-gray-500 border rounded-md border-gray-300"
                 type="email"
                 id="email"
+                name="email"
                 placeholder="Type your email address here..."
                 required
               />

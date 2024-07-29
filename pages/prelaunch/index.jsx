@@ -47,7 +47,7 @@ const LandingPage = () => {
           <div className="flex justify-around w-full text-white bg-[#034694]">
             <div className="flex flex-col p-5 gap-5">
               <p className="text-base md:text-xl md:p-2">
-                It's time to grow your business beyound WhatsApp, Twitter,
+                It's time to grow your business beyond WhatsApp, Twitter,
                 Facebook and Instagram.
               </p>
               <h3 className="text-xl md:text-2xl font-medium md:p-2">

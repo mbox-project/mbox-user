@@ -43,7 +43,7 @@ const GenerateInvoice = () => {
 
               <p className="mt-3 md:mt-6 md:pl-10 lg:mt-3 text-center md:text-justify  poppins lg:max-w-xs  leading-loose text-gray-400 text-base  md:text-xl">
                 Express your support for friends business by endorsing their
-                business on Mbox. We rise by lifting others.
+                business on Marketbox. We rise by lifting others.
               </p>
 
               <Button className=" w-full h-12 px-6 py-3 lg:px-8 lg:cursor-pointer  uppercase lg:normal-case hover:-translate-y-1 hover:scale-110 duration-300 lg:rounded-md  lg:mt-6 text-sm  md:text-lg lg:text-xl font-bold tracking-wide  md:ml-10 text-orange-600  md:mt-7 sm:flex-shrink-0 sm:w-auto mt-6 bg-lightPink border-2 border-orange-600  lg:ml-10">

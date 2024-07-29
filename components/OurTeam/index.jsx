@@ -19,7 +19,7 @@ const OurTeam = () => {
               <div className="lg:hidden">
                 <Image src={ourteamimg} height={660} width={600} />
               </div>
-              <p className="flex justify-between md:justify-center poppins  font-medium md:block pt-4 lg:pt-8 lg:leading-7  md:leading-9 md:text-xl lg:text-lg">
+              <p className="flex justify-between md:justify-center poppins md:block pt-4 lg:pt-8 lg:leading-7  md:leading-9 md:text-xl lg:text-lg">
                 It is one thing to recognize a problem, another to create a
                 solution, but a significant accomplishment to develop a solution
                 that can positively impact lives. Our skilled team has not only

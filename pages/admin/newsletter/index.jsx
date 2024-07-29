@@ -158,7 +158,7 @@ const index = () => {
                                 <tbody>
                                     <tr className="bg-white hover:bg-gray-5">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            Mbox-user Newsletter
+                                            Marketbox-user Newsletter
                                         </th>
                                         <td className="px-6 py-4">
                                             09.01.2022,  06:34AM
@@ -169,7 +169,7 @@ const index = () => {
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-5">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            Mbox-user Newsletter
+                                            Marketbox-user Newsletter
                                         </th>
                                         <td className="px-6 py-4">
                                             09.01.2022,  06:34AM
@@ -180,7 +180,7 @@ const index = () => {
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-5">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            Mbox-user Newsletter
+                                            Marketbox-user Newsletter
                                         </th>
                                         <td className="px-6 py-4">
                                             09.01.2022,  06:34AM
@@ -191,7 +191,7 @@ const index = () => {
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-5">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            Mbox-user Newsletter
+                                            Marketbox-user Newsletter
                                         </th>
                                         <td className="px-6 py-4">
                                             09.01.2022,  06:34AM
@@ -202,7 +202,7 @@ const index = () => {
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-5">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            Mbox-user Newsletter
+                                            Marketbox-user Newsletter
                                         </th>
                                         <td className="px-6 py-4">
                                             09.01.2022,  06:34AM
@@ -213,7 +213,7 @@ const index = () => {
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-5">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            Mbox-user Newsletter
+                                            Marketbox-user Newsletter
                                         </th>
                                         <td className="px-6 py-4">
                                             09.01.2022,  06:34AM
@@ -224,7 +224,7 @@ const index = () => {
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-5">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            Mbox-user Newsletter
+                                            Marketbox-user Newsletter
                                         </th>
                                         <td className="px-6 py-4">
                                             09.01.2022,  06:34AM

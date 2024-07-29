@@ -92,7 +92,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -124,7 +124,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -156,7 +156,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -188,7 +188,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -220,7 +220,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -252,7 +252,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -284,7 +284,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -316,7 +316,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -348,7 +348,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -380,7 +380,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -412,7 +412,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -444,7 +444,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -476,7 +476,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -508,7 +508,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM
@@ -540,7 +540,7 @@ const index = () => {
                                         $4,850.00
                                         </td>
                                         <td className="px-6 py-4">
-                                        MBOX Invoice
+                                        Marketbox Invoice
                                         </td>
                                         <td className="px-6 py-4">
                                         09.01.2022,  06:34AM

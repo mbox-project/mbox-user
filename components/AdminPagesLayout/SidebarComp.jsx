@@ -39,7 +39,7 @@ const SidebarComp = (/* { showSideBar, isMerchant } */) => {
         }}
       >
         <div className="flex justify-between p-5">
-          <h1 className=" text-4xl font-bold text-orange-600">Mbox</h1>
+          <h1 className=" text-4xl font-bold text-orange-600">Marketbox</h1>
           <ImCircleLeft size={20} />
         </div>
         <Menu>
