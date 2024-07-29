@@ -12,20 +12,23 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Upload } from "antd";
 import UpdateProfileImages, { props } from "../../Utils/uploadImage";
 import Image from "next/image";
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
-import { getUserProfile, UpdateUserProfile } from "../../store/users/userService";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import {
+  getUserProfile,
+  UpdateUserProfile,
+} from "../../store/users/userService";
+
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
- 
   const [res, setRes] = useState("");
 
   useEffect(() => {
     setData((prevData) => ({
       ...prevData,
-      profilePicture: res?.imageUrl
+      profilePicture: res?.imageUrl,
     }));
   }, [res, setData]);
-  console.log(res?.imageUrl)
+  console.log(res?.imageUrl);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -42,9 +45,8 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
         style={{ borderRadius: "0px" }}
       >
         <div className="flex justify-between p-3">
-          <h4 className="text-gray-500">Store Image</h4>
+          <h4 className="text-gray-500">Profile Image</h4>
           <UpdateProfileImages setData={setRes} />
-
         </div>
         <div className="p-5 flex justify-center items-center h-48 mt-5 mb-3 bg-gray-200 w-48 profilePics">
           {data?.profilePicture ? (
@@ -94,8 +96,8 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               title="WhatsApp no"
             />
             <PhoneInput
-              country={'ng'}
-              onlyCountries={['ng']}
+              country={"ng"}
+              onlyCountries={["ng"]}
               containerClass="!w-full !h-full "
               inputClass="phone-input-input !w-full !border-2 !border-[#9F9F9F] !md:rounded-md !h-[43px]"
               className=" "
@@ -106,19 +108,19 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
                   phoneNumber: value,
                 }))
               }
-
               required
             />
-
           </div>
           <div className="mb-2">
             <label htmlFor="email" className="block mb-2 text-md text-gray-500">
               Sex
             </label>
-            <select id="gender"
-             value={data.gender}
+            <select
+              id="gender"
+              value={data.gender}
               onChange={handleInputChange}
-               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5 hover:cursor-pointer">
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5 hover:cursor-pointer"
+            >
               <option value="">Select an option</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
@@ -155,7 +157,6 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   );
 };
 
-
 export const BankInformation = ({ data, setData }) => {
   const dispatch = useDispatch();
   const [bankName, setBankName] = useState("");
@@ -164,7 +165,6 @@ export const BankInformation = ({ data, setData }) => {
     setData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-
     }));
     console.log(data);
   };
@@ -180,22 +180,21 @@ export const BankInformation = ({ data, setData }) => {
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
-    console.log(data)
-    setLoading(true)
+    console.log(data);
+    setLoading(true);
     dispatch(UpdateUserProfile(data))
       .unwrap()
       .then((action) => {
         toastify.alertSuccess("Updated profile successfully ");
-        dispatch(getUserProfile())
-        setLoading(false)
+        dispatch(getUserProfile());
+        setLoading(false);
       })
       .catch((error) => {
-        toastify.alertError(error, 3000)
-        setLoading(false)
+        toastify.alertError(error, 3000);
+        setLoading(false);
       });
-
-
   };
+
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e, data)} className="">
@@ -266,10 +265,11 @@ export const BankInformation = ({ data, setData }) => {
             type="submit"
             className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
           >
-            {
-              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Save'
-            }
-
+            {loading ? (
+              <LoadingOutlined style={{ fontSize: 24 }} spin />
+            ) : (
+              "Save"
+            )}
           </button>
         </div>
       </form>
