@@ -17,7 +17,7 @@ const index = () => {
   };
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    push(`/invoice/${invoiceTag}`);
+    push(`/invoice/byTag/${invoiceTag}`);
   };
   const GetInfo = async (id) => {
     await dispatch(getInvoice(id))

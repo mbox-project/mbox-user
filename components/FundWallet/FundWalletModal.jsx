@@ -33,7 +33,7 @@ const FundWallet = ({ openFund, setOpenFund }) => {
         .unwrap()
         .then((action) => {
           //console.log(action?.data)
-         // window.location.href = action?.data;
+          window.location.href = action?.data;
         })
         .catch((error) => {
           console.log(error);

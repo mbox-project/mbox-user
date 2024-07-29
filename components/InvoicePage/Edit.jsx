@@ -14,7 +14,7 @@ const Edit = ({ data, tag }) => {
 
   const handleCopy = async () => {
     await copyToClipboard(`${tag}`);
-    toastify.alertSuccess("Invoice link copied", 300)
+    toastify.alertSuccess("Invoice Tag copied", 300)
   };
   
   return (

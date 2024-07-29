@@ -26,7 +26,7 @@ export const getTransactions = createAsyncThunk(
 export const getTransactionDetails = createAsyncThunk(
   "getTransactionDetails/wallet",
   async (id) => {
-    const response = await getApi(`wallet/transactions/${id}`);
+    const response = await getApi(`Wallet/transactions/${id}`);
     return response.data;
   }
 );
@@ -62,7 +62,7 @@ export const payInvoice = createAsyncThunk(
   "payInvoice/wallet",
   async (invoiceId) => {
     const response = await postApi(
-      `wallet/payforinvoice?invoiceId=${invoiceId}`,
+      `wallet/payforinvoice?invoiceTag=${invoiceId}`,
       {}
     );
     return response.data;

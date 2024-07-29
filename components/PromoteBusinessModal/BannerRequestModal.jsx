@@ -1,12 +1,75 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal, DatePicker } from "antd";
+import dayjs from "dayjs";
 
 import Input from "../Input";
 import Label from "../Label";
 import { useRouter } from "next/router";
+import { bannerRequest } from "../../store/PromoteStore/promoteStoreService";
+import { toastify } from "../../helpers";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const BannerRequestModal = ({ open, setOpen }) => {
+  const vendorId = useSelector((state) => state.auth.user.userId)
+  const [loading, setLoading] = useState(false)
+  const [request, setRequest] = useState({
+    vendorId: vendorId,
+    duration: 0,
+    startDate: "",
+    endDate: "",
+    totalPrice: 0,
+    discountPercent: 0
+  });
+  const [validationError, setValidationError] = useState(false);
+  useEffect(() => {
+    // Check validation when startDate, endDate, or duration changes
+    if (request.startDate && request.endDate && request.duration) {
+      const start = dayjs(request.startDate);
+      const end = dayjs(request.endDate);
+      const calculatedDuration = end.diff(start, "day") + 1; // Adding 1 day to inclusive count
+
+      if (calculatedDuration !== request.duration) {
+        console.log(calculatedDuration)
+        setValidationError(true);
+      } else {
+        setValidationError(false);
+      }
+    }
+  }, [request.startDate, request.endDate, request.duration]);
+  const dispatch = useDispatch()
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setRequest({
+      ...request,
+      [name]: name === "duration" || name === "totalPrice" || name === "discountPercent" ? parseFloat(value) : value,
+    });
+  };
+
+  const handleDateChange = (name) => (date) => {
+    setRequest({
+      ...request,
+      [name]: date ? dayjs(date).toISOString() : "",
+    });
+  };
+  const postBannerRequest = () => {
+    if (!validationError) {
+      setLoading(true)
+      dispatch(bannerRequest(request))
+        .unwrap()
+        .then(() => {
+          toastify.alertSuccess("Banner request successful")
+          setLoading(false)
+          setOpen(false)
+        }).catch(() => {
+          toastify.alertError("Banner request failed")
+          setLoading(false)
+          setOpen(false)
+        });
+    }
+  }
+
   return (
     <Modal
       open={open}
@@ -35,12 +98,14 @@ const BannerRequestModal = ({ open, setOpen }) => {
               title="Number of days"
             />
             <Input
-              name="days"
+              name="duration"
               type="number"
               placeHolder="4"
-              className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#9F9F9F] bg-[#FAFAFA] border-1  md:border-2  md:rounded-md shadow-sm rounded-none"
+              onChange={handleInputChange}
+              className={`w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#9F9F9F] bg-[#FAFAFA] border-1  md:border-2  md:rounded-md shadow-sm rounded-none ${validationError ? " border-red-500" : ""}`}
               required
             />
+            <span className={`${validationError ? " text-red-600 visible" : " hidden"} text-xsf font-medium`}>duration don't match date length</span>
           </div>
           <div className=" px-4 pt-2">
             <Label
@@ -49,7 +114,8 @@ const BannerRequestModal = ({ open, setOpen }) => {
               title="Starts on:"
             />
             <DatePicker
-              name="starts"
+              name="startDate"
+              onChange={handleDateChange("startDate")}
               required
               className="block !py-2 mt-2 !bg-transparent !border-1 border-[#9F9F9F] text-brightRed hover:border-brightRed focus:border-brightRed"
             />
@@ -61,7 +127,8 @@ const BannerRequestModal = ({ open, setOpen }) => {
               title="Ends on:"
             />
             <DatePicker
-              name="ends"
+              name="endDate"
+              onChange={handleDateChange("endDate")}
               required
               className="block !py-2 mt-2 !bg-transparent !border-1 border-[#9F9F9F] text-brightRed hover:border-brightRed focus:border-brightRed"
             />
@@ -73,9 +140,10 @@ const BannerRequestModal = ({ open, setOpen }) => {
               title="Total price:"
             />
             <Input
-              name="price"
+              name="totalPrice"
               type="text"
-              placeHolder="$1,000"
+              placeHolder="N1,000"
+              onChange={handleInputChange}
               className="w-full p-1 md:p-2 lg:py-2  focus:outline-none pr-12 text-lg lg:text-sm  font-poppins  mt-2 border-[#9F9F9F] border-1 bg-[#FAFAFA] md:border-2  md:rounded-md shadow-sm rounded-none"
               required
             />
@@ -118,9 +186,12 @@ const BannerRequestModal = ({ open, setOpen }) => {
           <div className="px-4">
             <button
               className="w-full my-4 rounded-md shadow-lg bg-brightRed py-[0.5rem] text-white text-base poppins"
-              type="submit"
+              onClick={postBannerRequest}
             >
-              Submit
+              {
+                loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Submit"
+              }
+
             </button>
           </div>
         </div>

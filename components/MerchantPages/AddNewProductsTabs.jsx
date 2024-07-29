@@ -11,15 +11,19 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 export const ProductInformation = ({ setData, data, setActiveKey }) => {
   const dispatch = useDispatch();
+  const [category, setCategory] = useState("");
+  const [allCategory, setAllCategory] = useState([]);
   useEffect(() => {
     dispatch(getProductCategories())
       .unwrap()
-      .then((response) => console.log(response))
+      .then((response) => {
+        const subCategories = response.data.$values.flatMap(item => item.subCategories.$values);
+        setAllCategory(subCategories)
+      })
       .catch((error) => console.log(error));
     console.log("effect");
-  }, []);
-  const { categories } = useSelector((state) => state.product);
-  const [category, setCategory] = useState("");
+  }, [dispatch]);
+ 
   const onSelectCategory = (e) => {
     setCategory(e.target.value);
     setData((init) => ({ ...init, categoryId: e.target.value }));
@@ -111,12 +115,12 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
               id="category"
               value={category}
               onChange={onSelectCategory}
-              placeholder="select category"
+              placeholder="select sub-category"
               className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
             >
-              <option value="">select category</option>
-              {categories?.map((e, i) => (
-                <option key={i} value={e.id}>
+              <option value="">select sub-category</option>
+              {allCategory?.map((e, i) => (
+                <option key={i} value={e.categoryId}>
                   {e.name}
                 </option>
               ))}
@@ -142,13 +146,16 @@ export const ProductInformation = ({ setData, data, setActiveKey }) => {
               htmlFor="discount"
               className="block mb-2 text-md text-gray-500"
             >
-              Discount <span className="text-brightRed">* (leave at 0 if no discount )</span>
+              Discount{" "}
+              <span className="text-brightRed">
+                * (leave at 0 if no discount )
+              </span>
             </label>
             <input
               type="number"
               id="discount"
               name="discount"
-              value={data.discount}
+              value={data.discount || 0}
               onChange={handleChange}
               className="bg-gray-50 border text-gray-500 text-sm rounded-md block w-full p-2.5"
               placeholder="Enter product discount in percentage"
@@ -293,10 +300,10 @@ export const ProductPrice = ({ data, setData, setActiveKey }) => {
 export const ProductVariation = ({
   data,
   setData,
-  setActiveKey,
+  fetchVendorProducts,
   handleProdVisiblity,
 }) => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setData((prev) => {
@@ -308,6 +315,54 @@ export const ProductVariation = ({
     });
     console.log(data);
   };
+  const initialData = {
+    name: "",
+    description: "",
+    quantity: 0,
+    price: 0,
+    discount: 0,
+    categoryId: null,
+    galleryImages: [],
+    tags: [],
+    colors: [],
+    sizes: [],
+  };
+
+  const handleUploadClick = () => {
+    // Check if all fields are filled
+    if (
+      !data.name ||
+      !data.description ||
+      data.quantity === 0 ||
+      data.price === 0 ||
+      data.discount === -1 ||
+      !data.categoryId ||
+      data.galleryImages.length === 0 ||
+      data.tags.length === 0 ||
+      data.colors.length === 0 ||
+      data.sizes.length === 0
+    ) {
+      // Display a toast notification indicating that all fields are required
+      toastify.alertWarning("All fields are required", 3000);
+      return; // Exit function if any field is empty
+    }
+
+    setLoading(true);
+    dispatch(uploadProduct(data))
+      .unwrap()
+      .then((res) => {
+        toastify.alertSuccess("Product uploaded successfully", 3000);
+        fetchVendorProducts();
+        handleProdVisiblity();
+        setLoading(false);
+        setData(initialData); // Reset data to initial values
+      })
+      .catch((error) => {
+        toastify.alertError(error, 3000);
+        setLoading(false);
+      });
+  };
+
   return (
     <section className="card flex flex-col py-2 space-2 rectCard">
       <div className="flex flex-col">
@@ -324,7 +379,7 @@ export const ProductVariation = ({
               Available Colors <span className="text-brightRed">*</span>
             </label>
             <p className="text-brightRed text-xs mb-2">
-              (type all available colors seperated by ",")
+              (type all available colors seperated by ,)
             </p>
             <input
               type="text"
@@ -342,7 +397,7 @@ export const ProductVariation = ({
               Available Sizes <span className="text-brightRed">*</span>
             </label>
             <p className="text-brightRed text-xs mb-2">
-              (type all available sizes seperated by ",")
+              (type all available sizes seperated by ,)
             </p>
             <input
               type="text"
@@ -358,37 +413,13 @@ export const ProductVariation = ({
           <button
             className="p-3 border border-brightRed text-center text-brightRed rounded-md w-full"
             // onClick={handleProdVisiblity}
-            onClick={() => {
-             
-              // Check if all fields are filled
-              if (!data.name || !data.description || data.quantity === 0 || data.price === 0 || data.discount === 0 || !data.categoryId || data.galleryImages.length === 0 || data.tags.length === 0 || data.colors.length === 0 || data.sizes.length === 0) {
-                // Display a toast notification indicating that all fields are required
-                toastify.alertWarning("All fields are required", 3000);
-                return; // Exit function if any field is empty
-              }
-              setLoading(true)
-              dispatch(uploadProduct(data))
-                .unwrap()
-                .then((res) => {
-                  toastify.alertSuccess(
-                    "product uploaded successfully",
-                    3000,
-                    handleProdVisiblity()
-                  )
-                  setLoading(false)
-                  console.log(data)
-                }
-                )
-                .catch((error) => {
-                  toastify.alertError(error, 3000)
-                  setLoading(false)
-                });
-            }}
+            onClick={handleUploadClick}
           >
-            {
-              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Upload Products"
-            }
-
+            {loading ? (
+              <LoadingOutlined style={{ fontSize: 24 }} spin />
+            ) : (
+              "Upload Products"
+            )}
           </button>
         </form>
       </div>

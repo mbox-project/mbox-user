@@ -15,7 +15,7 @@ const PayInvoiceModal = ({ open, setOpen }) => {
   };
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    push(`/invoice/${invoiceTag}`);
+    push(`/invoice/byTag/${invoiceTag}`);
   };
 
   return (

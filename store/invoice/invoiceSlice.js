@@ -50,19 +50,13 @@ export const updateInvoice = createAsyncThunk(
 export const getInvoice = createAsyncThunk(
   "getinvoice",
   async (id, thunkAPI) => {
-    // try {
-    //   return await invoiceService.getInvoice(id);
-    // } catch (error) {
-    //   // console.log("Errors", error.response);
-    //   const message =
-    //     (error.response &&
-    //       error.response.data &&
-    //       error.response.data.message) ||
-    //     error.message ||
-    //     error.toString();
-    //   return thunkAPI.rejectWithValue(message);
-    // }
     return await invoiceService.getInvoice(id);
+  }
+);
+export const getInvoiceByTag = createAsyncThunk(
+  "getinvoice",
+  async (id) => {
+    return await invoiceService.getInvoiceByTag(id);
   }
 );
 export const getAllInvoice = createAsyncThunk(

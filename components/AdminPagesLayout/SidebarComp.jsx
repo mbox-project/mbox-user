@@ -24,6 +24,7 @@ import { BsMegaphone } from "react-icons/bs";
 import { MdEditNote } from "react-icons/md";
 import { FiPhone } from "react-icons/fi";
 import { AiOutlineUserAdd } from "react-icons/ai";
+import Link from "next/link";
 
 //const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } = useProSidebar();
 
@@ -44,9 +45,15 @@ const SidebarComp = (/* { showSideBar, isMerchant } */) => {
         <Menu>
           <MenuItem icon={<TbLayoutGrid />}> Dashboard</MenuItem>
           <SubMenu label="Products" icon={<BiBox />}>
+          <Link href="/admin/addproduct">
             <MenuItem> Add a new Products </MenuItem>
+            </Link>
+            <Link href="/admin/productlist">
             <MenuItem> Product list </MenuItem>
+            </Link>
+            <Link href="/admin/category">
             <MenuItem> Categories </MenuItem>
+            </Link>
             <MenuItem> Edit a Product </MenuItem>
             <MenuItem> Remove a Product </MenuItem>
             <MenuItem> Brands </MenuItem>

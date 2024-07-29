@@ -9,17 +9,26 @@ import { useDispatch, useSelector } from "react-redux";
 import UploadProfileImages from "../antd/uploadProfile";
 import { toastify } from "../../helpers";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Upload } from "antd";
+import { Upload, message } from "antd";
 import UpdateProfileImages, { props } from "../../Utils/uploadImage";
 import Image from "next/image";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import {
   getUserProfile,
+  ResetUserPassword,
   UpdateUserProfile,
 } from "../../store/users/userService";
 
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
+  const dispatch = useDispatch();
+  const [pass, setPass] = useState({
+    oldPassowrd: "",
+    newPassowrd: "",
+    confirmPassword: "",
+  });
+  const [passLoad, setPassLoad] = useState(false);
+
   const [res, setRes] = useState("");
 
   useEffect(() => {
@@ -36,6 +45,28 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
       ...prevData,
       [id]: value,
     }));
+  };
+
+  const handlePasswordChange = (e) => {
+    const { id, value } = e.target;
+    setPass((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const changePassword = () => {
+    setPassLoad(true);
+    dispatch(ResetUserPassword(pass))
+      .unwrap()
+      .then(() => {
+        message.success("Password changed");
+        setPassLoad(false);
+      })
+      .catch(() => {
+        message.error("password change failed");
+        setPassLoad(false);
+      });
   };
 
   return (
@@ -140,6 +171,71 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               required
             />
           </div>
+          {/************PASSWORD CHANGE********/}
+          <div className="mb-2">
+            <label
+              htmlFor="oldPassowrd"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Old Password
+            </label>
+            <input
+              type="text"
+              id="oldPassowrd"
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="Old Password"
+              value={pass.oldPassowrd}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <div className="mb-2">
+            <label
+              htmlFor="newPassowrd"
+              className="block mb-2 text-md text-gray-500"
+            >
+              New Password
+            </label>
+            <input
+              type="text"
+              id="newPassowrd"
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="Old Password"
+              value={pass.newPassowrd}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <div className="mb-2">
+            <label
+              htmlFor="confirmPassword"
+              className="block mb-2 text-md text-gray-500"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="text"
+              id="confirmPassword"
+              className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
+              placeholder="New Password"
+              value={pass.confirmPassword}
+              onChange={handlePasswordChange}
+              required
+            />
+            <div className=" w-full flex justify-end p-3">
+              <span
+                className=" font-medium text-sm underline text-red-500 cursor-pointer"
+                onClick={changePassword}
+              >
+                Change Password
+              </span>
+              <LoadingOutlined
+                style={{ fontSize: 20 }}
+                spin
+                className={`${passLoad ? "" : " hidden"}`}
+              />
+            </div>
+          </div>
         </div>
       </section>
       <div className="flex justify-end mt-5">
@@ -185,7 +281,7 @@ export const BankInformation = ({ data, setData }) => {
     dispatch(UpdateUserProfile(data))
       .unwrap()
       .then((action) => {
-        toastify.alertSuccess("Updated profile successfully ");
+        toastify.alertSuccess("Updated profile successfully");
         dispatch(getUserProfile());
         setLoading(false);
       })

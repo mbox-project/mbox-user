@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import lady from "../../public/img/lady.svg";
 import emoji from "../../public/img/smiling-emoji.jpeg";
 import JpegIcon from "../assets/JpegIcon";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 //import htmlToImage from 'html-to-image';
 import { toPng } from "html-to-image";
@@ -12,12 +12,20 @@ import Flyer from "../flier/flier";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { copyToClipboard } from "../../Utils/copyToClipboard";
 import { message } from "antd";
+import { getVendorDashboard } from "../../store/users/userService";
 
 const MerchantDashboard = () => {
+  const dispatch = useDispatch();
   const [showFlyer, setShowFlyer] = useState(true);
   const [flyerImage, setFlyerImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [imageGenerated, setImageGenerated] = useState(false);
+  const [vendoranalytics, setVendorAnalytics] = useState({
+    thisWeek: {},
+    thisMonth: {},
+    lastWeek: {},
+    lastMonth: {},
+  });
   const username = useSelector((state) => state.auth.user.username)?.split(
     " "
   )[0];
@@ -56,6 +64,15 @@ const MerchantDashboard = () => {
     await copyToClipboard(`http://localhost:3000/endorse${tag}`);
     message.success("Invoice link copied", 300);
   };
+
+  useEffect(() => {
+    dispatch(getVendorDashboard())
+      .unwrap()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch();
+  }, [dispatch]);
 
   return (
     <>
@@ -107,7 +124,7 @@ const MerchantDashboard = () => {
                   <div className="space-y-3">
                     <div className="p-3 bg-purple-900 rounded-lg text-center">
                       <h3 className="text-2xl">14,766</h3>
-                      <h4>Usd</h4>
+                      <h4>Naira</h4>
                     </div>
                     <div className="text-center text-lg">
                       <p>This week</p>
@@ -117,7 +134,7 @@ const MerchantDashboard = () => {
                   <div className="space-y-3">
                     <div className="p-3 bg-purple-900 rounded-lg text-center">
                       <h3 className="text-2xl">15,766</h3>
-                      <h4>Usd</h4>
+                      <h4>Naira</h4>
                     </div>
                     <div className="text-center text-lg">
                       <p>last week</p>
@@ -135,7 +152,7 @@ const MerchantDashboard = () => {
                   <div className="space-y-3">
                     <div className="p-3 bg-gray-100 rounded-lg text-center">
                       <h3 className="text-2xl">14,766</h3>
-                      <h4>Usd</h4>
+                      <h4>Naira</h4>
                     </div>
                     <div className="text-center text-lg">
                       <p>This Month</p>
@@ -145,7 +162,7 @@ const MerchantDashboard = () => {
                   <div className="space-y-3">
                     <div className="p-3 bg-gray-100 rounded-lg text-center">
                       <h3 className="text-2xl">45,766</h3>
-                      <h4>Usd</h4>
+                      <h4>Naira</h4>
                     </div>
                     <div className="text-center text-lg">
                       <p>last Month</p>

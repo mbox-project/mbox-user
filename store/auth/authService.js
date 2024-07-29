@@ -16,6 +16,13 @@ const login = async (loginData) => {
   }
   return response.data;
 };
+const adminLogin = async (loginData) => {
+  const response = await postApi("admin/login", loginData);
+  if (response.data) {
+    // localStorage.setItem("user", JSON.stringify(response.data));
+  }
+  return response.data;
+};
 
 const getUser = async () => {
   const response = await getApi("User");
@@ -46,5 +53,6 @@ const authService = {
   verifyEmail,
   resetPassword,
   forgotPassword,
+  adminLogin,
 };
 export default authService;

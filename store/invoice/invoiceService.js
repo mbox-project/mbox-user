@@ -23,6 +23,14 @@ const getInvoice = async (id) => {
     console.log(error);
   }
 };
+const getInvoiceByTag = async (id) => {
+  try {
+    const response = await getApi(`Invoice/getInvoiceByTag/?invoicetag=${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 const updateInvoice = async ({id, updateData}) => {
   try {
     const response = await putApi(`Invoice/updateInvoice/${id}`, updateData);
@@ -35,6 +43,7 @@ const invoiceService = {
   invoice,
   getInvoice,
   getAllInvoice,
-  updateInvoice
+  updateInvoice,
+  getInvoiceByTag
 };
 export default invoiceService;

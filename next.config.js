@@ -15,6 +15,9 @@ module.exports = withPWA({
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["res.cloudinary.com"],
+    domains: [
+      "res.cloudinary.com",
+      "marketbox-api.onrender.com"
+    ],
   },
 });
