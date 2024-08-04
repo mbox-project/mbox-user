@@ -10,9 +10,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { login } from "../../../store/auth/authSlice";
 import Spinner from "../../../components/Spinner";
-import { toastify } from "../../../helpers";
-import { message } from "antd";
 import TermsAndConditionsModal from "../../../components/TermsAndConditionsModal";
+
+import CustomAlertModal from "../../../Utils/CustomAlertModal";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -37,7 +37,7 @@ const Login = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (loginData.email === "" || loginData.password === "") {
-      message.warning("Email or password cannot be empty", 3);
+      CustomAlertModal.show("warning", "Email or password cannot be empty");
     } else {
       dispatch(login(loginData))
         .unwrap()
@@ -48,7 +48,7 @@ const Login = () => {
         })
         .catch((error) => {
           console.log(error);
-          message.error(error.toString(), 3);
+          CustomAlertModal.show("error", "Login Failed", error.toString());
         });
     }
   };
@@ -163,6 +163,8 @@ const Login = () => {
           </form>
         </div>
       </div>
+
+      <CustomAlertModal />
     </div>
   );
 };
