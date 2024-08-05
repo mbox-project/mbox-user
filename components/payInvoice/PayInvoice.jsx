@@ -61,7 +61,7 @@ const PayInvoiceModal = ({ open, setOpen }) => {
                 value={true}
                 onChange={(e) => setOption(e.target.value)}
               />
-              <label>MBOX Wallet</label>
+              <label>Marketbox Wallet</label>
             </div>
             <button
               className="w-full my-4 rounded-md shadow-lg bg-brightRed py-[0.5rem] text-white text-base poppins"

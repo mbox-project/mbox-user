@@ -120,7 +120,7 @@ const invoiceInformation = () => {
           <input type="checkbox" />
         </div>
         <div>
-          <p className="px-2 text-xs poppins pt-1 ">MBOX-3500</p>
+          <p className="px-2 text-xs poppins pt-1 ">Marketbox-3500</p>
         </div>
       </div>
       <Button

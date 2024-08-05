@@ -16,7 +16,7 @@ const TeamMate = () => {
           <div className="flex flex-col gap-2">
             <Image src={teammateimg1} />
             <p className=" lg:text-2xl font-semibold md:text-left text-sm text-lightGray ">
-              Asiwaju MBOX
+              Asiwaju Marketbox
             </p>
             <div className="text-orange-600 text-sm">
               <p>Co-founder / CTO</p>
@@ -26,7 +26,7 @@ const TeamMate = () => {
           <div className="flex flex-col gap-2">
             <Image src={teammateimg2} />
             <p className="text-sm lg:text-2xl font-semibold text-lightGray">
-              Kehinde MBOX
+              Kehinde Marketbox
             </p>
             <div className="text-orange-600 text-sm">
               <p>Product Designer</p>
@@ -35,7 +35,7 @@ const TeamMate = () => {
           <div className="flex flex-col gap-2">
             <Image src={teammateimg3} />
             <p className=" text-sm lg:text-2xl font-semibold text-lightGray">
-              Ayobami MBOX
+              Ayobami Marketbox
             </p>
             <div className="text-orange-600 text-sm">
               <p>Backend Dev.</p>
@@ -44,7 +44,7 @@ const TeamMate = () => {
           <div className="flex flex-col gap-2">
             <Image src={teammateimg4} />
             <p className=" text-sm lg:text-2xl font-semibold text-lightGray">
-              Sophie MBOX
+              Sophie Marketbox
             </p>
             <div className="text-orange-600 text-sm">
               <p>Frontend Dev.</p>
@@ -53,7 +53,7 @@ const TeamMate = () => {
           <div className="flex flex-col gap-2">
             <Image src={teammateimg5} />
             <p className=" text-sm lg:text-2xl font-semibold text-lightGray">
-              Oluwatobi MBOX
+              Oluwatobi Marketbox
             </p>
             <div className="text-orange-600 text-sm">
               <p>Backend Dev.</p>
@@ -62,7 +62,7 @@ const TeamMate = () => {
           <div className="flex flex-col gap-2">
             <Image src={teammateimg6} />
             <p className=" text-sm lg:text-2xl font-semibold text-lightGray">
-              Ibukun MBOX
+              Ibukun Marketbox
             </p>
             <div className="text-orange-600 text-sm">
               <p>Product Manager</p>

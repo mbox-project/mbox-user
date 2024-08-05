@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import lady from "../../public/img/lady.svg";
+import emoji from "../../public/img/smiling-emoji.jpeg";
 import JpegIcon from "../assets/JpegIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -10,6 +11,7 @@ import { toastify } from "../../helpers";
 import Flyer from "../flier/flier";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { copyToClipboard } from "../../Utils/copyToClipboard";
+import { message } from "antd";
 import { getVendorDashboard } from "../../store/users/userService";
 
 const MerchantDashboard = () => {
@@ -34,7 +36,7 @@ const MerchantDashboard = () => {
       .then(function (dataUrl) {
         setFlyerImage(dataUrl);
         setImageGenerated(true);
-        toastify.alertSuccess("successfully generated flyer");
+        message.success("Successfully generated flyer");
         setLoading(false);
       })
       .catch(function (error) {
@@ -60,7 +62,7 @@ const MerchantDashboard = () => {
 
   const handleCopy = async () => {
     await copyToClipboard(`http://localhost:3000/endorse${tag}`);
-    toastify.alertSuccess("Invoice link copied", 300);
+    message.success("Invoice link copied", 300);
   };
 
   useEffect(() => {
@@ -76,11 +78,13 @@ const MerchantDashboard = () => {
     <>
       {showFlyer ? (
         <>
-          <section className=" flex flex-col md:grid md:grid-cols-2 gap-[0.5rem] py-[0.5rem]">
-            <div className="flex flex-col space-y-2 bg-white rounded-lg px-10 py-2 items-center justify-between mt10 shadow-sm  hover:shadow-md">
+          <section className=" flex flex-col md:grid md:grid-cols-2 gap-[0.5rem] pt-8 pb-6">
+            <div className="flex flex-col space-y-2 bg-white rounded-lg px-10 py-4 items-center justify-between mt10 shadow-sm  hover:shadow-md">
               <Image
-                src={lady}
-                className="w-[48px] h-[48px] rounded-full border-solid border-2 border-black-600"
+                src={emoji}
+                width={60}
+                height={60}
+                // className="w-[48px] h-[48px] rounded-full border-solid border-2 border-black"
                 alt="profile-pics"
               />
               <h2 className="text-[20px] font-[600]">Hello, {username}</h2>
@@ -111,7 +115,7 @@ const MerchantDashboard = () => {
 
           <section className="card rectCard mt-5">
             <h2 className="text-2xl mt-4">Revenue Comparisons</h2>
-            <div className="grid grid-cols-1  md:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1  md:grid-cols-2 gap-10 mt-4">
               <div className="p-4 rounded-3xl bg-brightPurple flex flex-col text-white">
                 <h3 className="mb-2 text-gray-500 text-xl">
                   Weekly Revenue Generated

@@ -24,7 +24,7 @@ const customsup = () => {
           <Image src={Wave} width={50} height={50} alt="Wave" />
         </h1>
         <p className="text-2xl pb-16">
-          We are here to help you buy and sell your products here on Mbox.
+          We are here to help you buy and sell your products here on Marketbox.
           <br /> Ask us if you have any problem. <br /> Or visit our Help Center
           at the bottom of this this website for more information.
         </p>

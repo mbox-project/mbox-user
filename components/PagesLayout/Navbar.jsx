@@ -71,7 +71,9 @@ const Navbar = ({ showbar, showSideBar, handleLogout, isMerchant }) => {
                 />
               </Link>
             </div>
-            <Search />
+            {/* removed search */}
+            {/* <Search /> */}
+
             <div className="flex items-center justify-between gap-[0.8rem] space-x6">
               {role === "vendor" ? (
                 <div className="flex gap-[0.5rem]">

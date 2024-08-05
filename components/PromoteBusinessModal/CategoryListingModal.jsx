@@ -155,7 +155,7 @@ const CategoryListingModal = ({ open, setOpen }) => {
             <div className="flex items-center">
               <input type="checkbox" />
               <p className="px-5 text-xs poppins pt-1 text-semibold">
-                MBOX-Wallet -$3,050
+              Marketbox-Wallet -$3,050
               </p>
             </div>
             <div className="flex justify-between">
