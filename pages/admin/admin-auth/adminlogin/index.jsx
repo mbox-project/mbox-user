@@ -63,7 +63,7 @@ const AdminLogin = () => {
         <div>
           <div className="text-center firstdiv">
             <h1 className="text-lg md:text-3xl font-bold mt-20 lg:mt-28 font-poppins text-[#491546]">
-              Log in to MBOX
+              Log in to Marketbox
             </h1>
             <p className=" hidden md:flex justify-center md:text-sm pt-2 font-poppins text-gray-400">
               Please enter your details appropriately

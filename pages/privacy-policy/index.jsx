@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
           {/* Privacy Policy */}
         </h1>
         {/* <p className="flex justify-center pt-2  text-grayColor poppins text-base tracking-wide md:pt-4">
-          Learn more about our platform Mbox
+          Learn more about our platform Marketbox
         </p> */}
       </section>
 
@@ -298,7 +298,7 @@ const PrivacyPolicy = () => {
 
             <li className="font-semibold pt-2">Our details</li>
             <p className="">
-              8.1 &nbsp; This website is owned and operated by Mbox Nigeria
+              8.1 &nbsp; This website is owned and operated by Marketbox Nigeria
               Limited.
             </p>
             <p>8.2 &nbsp; We are registered in [Nigeria]. </p>
@@ -330,9 +330,9 @@ const PrivacyPolicy = () => {
               </li>
               <li className="">
                 (d) &nbsp; By email, using{" "}
-                <a href="mailto:info@mbox.ng" className=" hover:underline">
+                <a href="mailto:info@Marketbox.ng" className=" hover:underline">
                   {/*  */}
-                  info@mbox.ng
+                  info@Marketbox.ng
                 </a>
               </li>
             </ol>

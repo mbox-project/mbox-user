@@ -10,8 +10,14 @@ import CommentAndRatingModal from "./CommentAndRatingsModal";
 import { LoadingOutlined } from "@ant-design/icons";
 import { approveDeal } from "../../store/deals/dealService";
 
-
-const ApproveDealModal = ({ open, setOpen, buyer, seller, invoiceId, dealId }) => {
+const ApproveDealModal = ({
+  open,
+  setOpen,
+  buyer,
+  seller,
+  invoiceId,
+  dealId,
+}) => {
   const [loading, setLoading] = useState(false);
   const [openComment, setCommentOpen] = useState(false);
 
@@ -29,12 +35,11 @@ const ApproveDealModal = ({ open, setOpen, buyer, seller, invoiceId, dealId }) =
       .catch(() => {
         toastify.alertError("Approval failed", 3000);
         setLoading(false);
-        
       });
   };
 
   return (
-    <Modal open={open} onCancel={() => setOpen(false)} footer={null} >
+    <Modal open={open} onCancel={() => setOpen(false)} footer={null}>
       <div className="">
         <div className=" text-center">
           <h3 className="mb-5 text-lg font-bold text-[#26A17B] dark:text-gray-400">
@@ -42,9 +47,28 @@ const ApproveDealModal = ({ open, setOpen, buyer, seller, invoiceId, dealId }) =
           </h3>
         </div>
         <div className="bg-white text-center">
-          <p>
-            Please understand that clicking “Yes, I am”, means you’re satisfied</p>
-          <p>with the product, Hence money would be released to the vendor </p>
+          {buyer && (
+            <>
+              <p>
+                Please understand that clicking “Yes, I am” means you’re
+                satisfied
+              </p>
+              <p>
+                with the product. Hence, money would be released to the vendor.
+              </p>
+            </>
+          )}
+          {seller && (
+            <>
+              <p>
+                Please understand that “Yes, I am” means we will return the
+                buyer’s money.
+              </p>
+              <p>
+                Be sure your goods are in your custody before deal cancellation.
+              </p>
+            </>
+          )}
         </div>
         <div className="flex justify-end space-x-2 mt-5">
           <button
@@ -62,10 +86,11 @@ const ApproveDealModal = ({ open, setOpen, buyer, seller, invoiceId, dealId }) =
             //onClick={() => {; }}
             className="text-white bg-[#26A17B] hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
           >
-            {
-              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Yes, I am'
-            }
-
+            {loading ? (
+              <LoadingOutlined style={{ fontSize: 24 }} spin />
+            ) : (
+              "Yes, I am"
+            )}
           </button>
         </div>
 

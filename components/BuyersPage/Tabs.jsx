@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UploadProfileImages from "../antd/uploadProfile";
 import { toastify } from "../../helpers";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Upload } from "antd";
+import { Upload, message } from "antd";
 import UpdateProfileImages, { props } from "../../Utils/uploadImage";
 import Image from "next/image";
 import PhoneInput from "react-phone-input-2";
@@ -19,6 +19,7 @@ import {
   ResetUserPassword,
   UpdateUserProfile,
 } from "../../store/users/userService";
+
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   const dispatch = useDispatch();
   const [pass, setPass] = useState({
@@ -26,7 +27,7 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
     newPassowrd: "",
     confirmPassword: "",
   });
-  const [passLoad, setPassLoad] = useState(false)
+  const [passLoad, setPassLoad] = useState(false);
 
   const [res, setRes] = useState("");
 
@@ -55,16 +56,16 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   };
 
   const changePassword = () => {
-    setPassLoad(true)
+    setPassLoad(true);
     dispatch(ResetUserPassword(pass))
       .unwrap()
       .then(() => {
-        toastify.alertSuccess("Password changed");
-        setPassLoad(false)
+        message.success("Password changed");
+        setPassLoad(false);
       })
       .catch(() => {
-        toastify.alertError("password change failed");
-        setPassLoad(false)
+        message.error("password change failed");
+        setPassLoad(false);
       });
   };
 
@@ -75,7 +76,7 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
         style={{ borderRadius: "0px" }}
       >
         <div className="flex justify-between p-3">
-          <h4 className="text-gray-500">Store Image</h4>
+          <h4 className="text-gray-500">Profile Image</h4>
           <UpdateProfileImages setData={setRes} />
         </div>
         <div className="p-5 flex justify-center items-center h-48 mt-5 mb-3 bg-gray-200 w-48 profilePics">
@@ -228,7 +229,11 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               >
                 Change Password
               </span>
-              <LoadingOutlined style={{ fontSize: 20 }} spin className={`${passLoad ? "" : " hidden"}`}/>
+              <LoadingOutlined
+                style={{ fontSize: 20 }}
+                spin
+                className={`${passLoad ? "" : " hidden"}`}
+              />
             </div>
           </div>
         </div>

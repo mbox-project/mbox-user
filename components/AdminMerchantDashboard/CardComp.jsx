@@ -18,7 +18,7 @@ const CardData = [
   {
     id: 3,
     topic: "Payout Info.",
-    name: "Bank Name: MBOX Bank",
+    name: "Bank Name: Marketbox Bank",
     email: "Account Name: Taylor Mason",
     number: "Account Number: 2346778345 ",
   },

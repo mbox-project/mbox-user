@@ -18,7 +18,7 @@ const AboutUs = () => {
           About Us
         </h1>
         <p className="flex justify-center pt-2 text-center text-grayColor poppins text-base tracking-wide md:pt-4">
-          Learn more about our platform Mbox
+          Learn more about our platform Marketbox
         </p>
       </section>
       <Platform />
