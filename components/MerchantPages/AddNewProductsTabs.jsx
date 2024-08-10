@@ -8,6 +8,7 @@ import {
 import { toastify } from "../../helpers";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadingOutlined } from "@ant-design/icons";
+import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 export const ProductInformation = ({ setData, data, setActiveKey }) => {
   const dispatch = useDispatch();
@@ -328,6 +329,9 @@ export const ProductVariation = ({
     sizes: [],
   };
 
+  function showProd(){
+    handleProdVisiblity()
+  }
   const handleUploadClick = () => {
     // Check if all fields are filled
     if (
@@ -351,14 +355,15 @@ export const ProductVariation = ({
     dispatch(uploadProduct(data))
       .unwrap()
       .then((res) => {
-        toastify.alertSuccess("Product uploaded successfully", 3000);
+        //toastify.alertSuccess("Product uploaded successfully", 3000);
+        CustomAlertModal.show("success", "Uploaded Successfully","You’ve have successfully uploaded a product", showProd)
         fetchVendorProducts();
-        handleProdVisiblity();
         setLoading(false);
         setData(initialData); // Reset data to initial values
       })
       .catch((error) => {
         toastify.alertError(error, 3000);
+        CustomAlertModal.show("error", "Try Again", error.toString())
         setLoading(false);
       });
   };
@@ -423,6 +428,7 @@ export const ProductVariation = ({
           </button>
         </form>
       </div>
+      <CustomAlertModal />
     </section>
   );
 };

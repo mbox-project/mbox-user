@@ -13,6 +13,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { copyToClipboard } from "../../Utils/copyToClipboard";
 import { message } from "antd";
 import { getVendorDashboard } from "../../store/users/userService";
+import { FaXTwitter } from "react-icons/fa6";
 
 const MerchantDashboard = () => {
   const dispatch = useDispatch();
@@ -88,12 +89,12 @@ const MerchantDashboard = () => {
                 alt="profile-pics"
               />
               <h2 className="text-[20px] font-[600]">Hello, {username}</h2>
-              <span className="text-[14px] font-[400]">Welcome back!</span>
+              <span className="text-[16px] font-[400]">Welcome back!</span>
               <button
                 onClick={() => {
                   push("/products");
                 }}
-                className="text-[16px] font-[500] text-white rounded-[4px] bg-[#EF5612] py-[12px] px-[48px]"
+                className="text-[16px] font-[500] text-white rounded-[4px] bg-[#EF5612] py-[12px] px-[28px] md:px-[48px]"
               >
                 Upload a new product here
               </button>
@@ -106,7 +107,7 @@ const MerchantDashboard = () => {
               </p>
               <button
                 onClick={handleFlyerVisiblity}
-                className="rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB]"
+                className=" mt-5 md:mt-0 rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB]"
               >
                 Get Store Flier{" "}
               </button>
@@ -175,7 +176,7 @@ const MerchantDashboard = () => {
           </section>
         </>
       ) : (
-        <>
+        <div>
           <button
             onClick={handleFlyerVisiblity}
             className=" flex gap-2 items-center text-xl my-5"
@@ -184,7 +185,7 @@ const MerchantDashboard = () => {
             <IoMdArrowRoundBack /> Back
           </button>
 
-          <div className=" flex gap-3 mb-5">
+          <div className=" flex flex-col md:flex-row gap-3 mb-5">
             <button
               onClick={generateFlyer}
               className="rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB]"
@@ -202,7 +203,7 @@ const MerchantDashboard = () => {
             </button>
             <button
               onClick={handleCopy}
-              className={`rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB] ${
+              className={` hidden rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB] ${
                 !imageGenerated && "opacity-50 cursor-not-allowed"
               }`}
             >
@@ -210,7 +211,7 @@ const MerchantDashboard = () => {
             </button>
           </div>
           <Flyer />
-        </>
+        </div>
       )}
     </>
   );

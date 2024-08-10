@@ -8,9 +8,11 @@ import Image from "next/image";
 const CustomAlertModal = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [modalProps, setModalProps] = useState({});
+  const [secondaryAction, setSecondaryAction] = useState(null);
 
-  const show = (type, message, description = "") => {
+  const show = (type, message, description = "", secondaryFunc = null) => {
     setModalProps({ type, message, description });
+    setSecondaryAction(() => secondaryFunc);
     setIsVisible(true);
   };
 
@@ -20,6 +22,14 @@ const CustomAlertModal = () => {
 
   const handleCancel = () => {
     setIsVisible(false);
+  };
+
+  const handleButtonClick = () => {
+    if (secondaryAction) {
+      secondaryAction();
+    } else {
+      handleOk();
+    }
   };
 
   useEffect(() => {
@@ -78,7 +88,7 @@ const CustomAlertModal = () => {
           )}
         </span>
         <button
-          onClick={handleOk}
+          onClick={handleButtonClick}
           type="button"
           className={`rounded-md px-8 py-3 font-semibold text-[31.6px] text-white ${
             modalProps.type === "error" || modalProps.type === "warning"

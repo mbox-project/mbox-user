@@ -155,7 +155,7 @@ const index = () => {
       {/* Transaction Recents History */}
       <section className="card rectCard flex justify-between items-center flex-col text-lg border-b-2 mt-8 md:flex-row ">
         <h4 className="text-2xl font-medium mt-5">Recent Transactions</h4>
-        <form>
+        <form className=" hidden md:block">
           <select
             id="sort"
             className="bg-gray-50 border text-gray-500 text-sm rounded-md p-2.5 px-6 mt-5"
@@ -170,9 +170,10 @@ const index = () => {
       </section>
       {/* History Content*/}
       {transactions.map((e, i) => {
-        const date = new Date(e.createdAt).toDateString();
+        const date = new Date(e.dateCreated).toDateString();
         return (
-          <div className="card rectCard w-full grid grid-cols-[30%_30%_15%_15%] justify-between items-center overflow-x-auto text-sm">
+          <div className="card rectCard w-full grid grid-cols-[35%_25%_15%_15%] justify-between items-center overflow-x-auto text-sm">
+            
             <div className="flex gap-5 justify-start items-center">
               <span className="border-red-400 border h-10 px-4 flex items-center rounded-full">
                 <svg
@@ -193,6 +194,8 @@ const index = () => {
             </div>
             {/* <div>Wed, Feb 01, 2022. 11:50AM</div> */}
             <div>{date}</div>
+
+
             <div>{`₦${e.amount}`}</div>
             <button
               onClick={() => {
