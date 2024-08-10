@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
 import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
+import { PiMegaphone } from "react-icons/pi";
 import profile from "../../public/img/profile.svg";
 import purchase from "../../public/img/purchase.svg";
 import report from "../../public/img/report.svg";
@@ -19,7 +20,7 @@ const MobileSidebar = ({ showSideBar }) => {
     <>
       {/* Mobile Menu sidebar */}
       {showSideBar && (
-        <aside className="w-1/2 bg-white z-30 flex flex-col fixed top-[55px] left-0 shadow-md h-svh md:hidden">
+        <aside className="w-1/2 bg-white z-30 flex flex-col fixed top-[55px] left-0 shadow-md h-svh md:hidden overflow-y-scroll pb-5">
           <h6 className="py-4 font-bold text-lg pl-5 text-white bg-brightRed">
             My Account
           </h6>
@@ -33,6 +34,18 @@ const MobileSidebar = ({ showSideBar }) => {
                 <Image src={wallet} width={20} height={20} alt="profile" />
                 <Link href="/wallet"> My Wallet </Link>
               </li>
+              <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                <Image src={profile} width={20} height={20} alt="profile" />
+                <Link href="#"> Disputes </Link>
+              </li>
+              <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
+                <BsCartDash size={20} />
+                <Link href="/pendingdeals"> Pending Deals </Link>
+              </li>
+              <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
+                <BsCartDash size={20} />
+                <Link href="/successfuldeals"> Successful Deals</Link>
+              </li>
               {role === "vendor" && (
                 <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                   <BsCartDash size={20} />
@@ -45,30 +58,13 @@ const MobileSidebar = ({ showSideBar }) => {
                   <Link href="/orders/"> Invoices </Link>
                 </li>
               )}
-              {role === "vendor" && (
+             {role === "vendor" && (
                 <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                   <LiaFileInvoiceDollarSolid size={20} />
 
                   <Link href="/generateinvoice"> Generate Invoice </Link>
                 </li>
               )}
-
-              <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
-                <Image src={saved} width={20} height={20} alt="profile" />
-                <Link href="#"> Saved Items </Link>
-              </li>
-              <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
-                <Image src={purchase} width={20} height={20} alt="profile" />
-                <Link href="#"> Purchase History </Link>
-              </li>
-              <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
-                <BsCartDash size={20} />
-                <Link href="/pendingdeals"> Pending Deals </Link>
-              </li>
-              <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
-                <BsCartDash size={20} />
-                <Link href="/successfuldeals"> Successful Deals</Link>
-              </li>
             </ul>
           </div>
           <h6 className="mt-8 py-4 font-bold text-lg pl-5 text-white bg-brightRed">
@@ -80,14 +76,26 @@ const MobileSidebar = ({ showSideBar }) => {
                 <Image src={thumb} width={20} height={20} alt="profile" />
                 <Link href="/endorse"> Endorsed Business </Link>
               </li>
-              <li className="flex items-center  text-sm space-x-4 cursor-pointer hover:text-gray-600">
+              <li className="flex items-center text-[#F90808]  text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={report} width={20} height={20} alt="profile" />
+                {role === "vendor" ? (
+                <Link href="/report"> Report a Buyer </Link>
+              ) : (
                 <Link href="/report"> Report a Vendor </Link>
+              )}
               </li>
-              <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-                <Image src={profile} width={20} height={20} alt="profile" />
-                <Link href="#"> Disputes </Link>
+              {role === "vendor" && (
+              <li className="flex items-center  text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                <PiMegaphone size={20} />
+
+                <Link href="/promotebusiness"> Promote Business </Link>
               </li>
+            )}
+              <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
+                <Image src={saved} width={20} height={20} alt="profile" />
+                <Link href="#"> Saved Items </Link>
+              </li>
+             
             </ul>
           </div>
         </aside>

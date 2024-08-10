@@ -16,6 +16,7 @@ import { toastify } from "../../../helpers";
 import Spinner from "../../../components/Spinner";
 import { message } from "antd";
 import TermsAndConditionsModal from "../../../components/TermsAndConditionsModal";
+import CustomAlertModal from "../../../Utils/CustomAlertModal";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,10 @@ const Register = () => {
       .unwrap()
       .then((action) => {
         reset();
+        CustomAlertModal.show(
+          "success",
+          "A verification mail has been sent to your email for account verification"
+        );
         toastify.alertSuccess(
           "A verification mail has been sent to your email for account verification",
           3000,
@@ -51,7 +56,7 @@ const Register = () => {
         );
       })
       .catch((error) => {
-        message.error(error.toString(), 3);
+        CustomAlertModal.show("error", "Registration Failed", error.toString());
       });
   };
 
@@ -257,6 +262,8 @@ const Register = () => {
           </div>
         </div>
       </div>
+
+      <CustomAlertModal />
     </div>
   );
 };

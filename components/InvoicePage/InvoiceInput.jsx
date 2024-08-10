@@ -80,8 +80,8 @@ const InvoiceInput = () => {
         ...invoiceData,
         date: new Date().toISOString(),
         products: productsList,
-        escFee: (subtotal / 100) * 5,
-        total: subtotal + (subtotal / 100) * 5,
+        escFee: subtotal * (2 / 100) ,
+        total: subtotal + subtotal * (2 / 100),
         subtotal,
         issuer: user?.userId,
       };

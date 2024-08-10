@@ -10,7 +10,10 @@ import { Skeleton } from "antd";
 import { toastify } from "../../helpers";
 import { message } from "antd";
 import Link from "next/link";
+import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa6";
+import { IoLogoTiktok } from "react-icons/io5";
+import { FaInstagram } from "react-icons/fa";
 
 //import styles from "./flier.module.css";
 const Flyer = () => {
@@ -35,7 +38,7 @@ const Flyer = () => {
       .catch((error) => {
         console.log(error);
         setLoading(false);
-        message.error("Could not get flyer data", 300);
+        message.error("Could not get flyer data");
       });
   }, []);
 
@@ -81,9 +84,9 @@ const Flyer = () => {
                 )}
               </div>
             </div>
-            <div className=" absolute right-10 top-0">
+            <div className=" absolute right-3 md:right-10 top-0 ">
               <Image src={cross} className="" />
-              <Image src={cross} className=" mb-[-10px]" />
+              <Image src={cross} className=" " />
             </div>
           </div>
           <div className=" descripton-parent flex gap-2">
@@ -105,6 +108,18 @@ const Flyer = () => {
             <FaFacebookF className="social-icon size-4" />
           </Link>
           <p className="social">@mboxexpress</p>
+          <span className=" flex items-center text-[#feb808] gap-2 font-medium text-base">
+            <FaXTwitter className=" p-1 bg-[#feb808] rounded-full" color="#4a1546" size={20} />
+            <p>@Marketbox_ng</p>
+          </span>
+          <span className=" flex items-center text-[#feb808] gap-2 font-medium">
+            <IoLogoTiktok className=" p-1 bg-[#feb808] rounded-full text-[]" color="#4a1546" size={20}/>
+            <p>@Marketbox_ng</p>
+          </span>
+          <span className=" flex items-center text-[#feb808] gap-2 font-medium">
+            <FaInstagram className=" p-1 bg-[#feb808] rounded-full text-[]" color="#4a1546" size={20} />
+            <p>@Marketboxng</p>
+          </span>
         </div>
         <div className="yellow-stripe"></div>
       </div>

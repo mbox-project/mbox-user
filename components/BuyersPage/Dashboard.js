@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import banner from "../../public/img/banner.png";
+import emoji from "../../public/img/smiling-emoji.jpeg"
 import lady from "../../public/img/lady.svg";
 import edit from "../../public/img/edit.svg";
 import caret from "../../public/img/caret.svg";
@@ -20,8 +21,10 @@ const Dashboard = () => {
         </div>
         <div>
           <Image
-            src={lady}
-            className="w-20 rounded-full border-solid border-2 border-black-600"
+            src={emoji}
+            height={100}
+            width={100}
+            className=" rounded-full border-solid border-2 border-black-600"
             alt="profile-pics"
           />
         </div>

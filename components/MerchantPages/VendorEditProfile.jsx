@@ -52,7 +52,7 @@ const VendorEditProfile = ({ data, setData }) => {
         items={items}
         onChange={onChange}
       />
-      <div className="mb-6">
+      <div className="mb-6 hidden">
         <p>
           You have reported 4 buyers so far, would you like to review decisions?
         </p>
