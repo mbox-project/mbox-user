@@ -8,7 +8,8 @@ import Spinner from "../Spinner";
 import { toastify } from "../../helpers";
 import CommentAndRatingModal from "./CommentAndRatingsModal";
 import { LoadingOutlined } from "@ant-design/icons";
-import { approveDeal } from "../../store/deals/dealService";
+import { approveDeal, getAllDeals } from "../../store/deals/dealService";
+import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 const ApproveDealModal = ({
   open,
@@ -23,17 +24,20 @@ const ApproveDealModal = ({
 
   const dispatch = useDispatch();
 
+
+  function modVisibility() {
+     setCommentOpen(true);
+    }
   const approve = () => {
     setLoading(true);
     dispatch(approveDeal({ dealId: dealId }))
       .unwrap()
       .then(() => {
-        toastify.alertSuccess("Order Approved", 3000);
         setLoading(false);
-        setCommentOpen(true);
+        CustomAlertModal.show("success", "Deal Approved","You’ve have successfully approved this deal", modVisibility)
       })
-      .catch(() => {
-        toastify.alertError("Approval failed", 3000);
+      .catch((error) => {
+        CustomAlertModal.show("error", "Approval Failed",error)
         setLoading(false);
       });
   };
@@ -55,17 +59,6 @@ const ApproveDealModal = ({
               </p>
               <p>
                 with the product. Hence, money would be released to the vendor.
-              </p>
-            </>
-          )}
-          {seller && (
-            <>
-              <p>
-                Please understand that “Yes, I am” means we will return the
-                buyer’s money.
-              </p>
-              <p>
-                Be sure your goods are in your custody before deal cancellation.
               </p>
             </>
           )}
@@ -94,6 +87,8 @@ const ApproveDealModal = ({
           </button>
         </div>
 
+        <CustomAlertModal />
+
         <CommentAndRatingModal
           openComment={openComment}
           setCommentOpen={setCommentOpen}
@@ -101,6 +96,7 @@ const ApproveDealModal = ({
           seller={seller}
           invoiceId={invoiceId}
           setOpen={setOpen}
+          closeCustomAlertModal={closeCustomAlertModal}
         />
       </div>
     </Modal>

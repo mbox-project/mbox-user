@@ -7,33 +7,22 @@ import { approveDeal } from "../store/deals/dealService";
 import { toastify } from "../helpers";
 import { LoadingOutlined } from "@ant-design/icons";
 import { formatMoney } from "../helpers/NairaFormat";
+import ApproveDealModal from "./DealsModal/ApproveDealModal";
 
 const DisputePage = ({ product }) => {
   const [loading, setLoading] = useState(false);
   const { name, type, disputes, owner,invoiceTag  } = product;
+  const [modal, setModal] = useState(false);
   const firstImage = product.product?.otherDetails?.imageUrl;
   const dealId = product.id;
 
 
   const dispatch = useDispatch();
+  const approve = () => {
+    setModal(true)
+  }
 
-  const handleApproveDeal = () => {
-    setLoading(true)
-    dispatch(approveDeal({dealId: dealId}))
-      .unwrap()
-      .then((res) => {
-        console.log(res.data?.items?.$values);
-        toastify.alertSuccess("Deal Resolved", 3000);
-        setLoading(false)
-      })
-      .catch((error) => {
-        toastify.alertError(error.name, 3000)
-        console.log(error);
-        setLoading(false)
-
-      });
-  };
-
+ 
   return (
     <>
       <div className="border border-gray-500 rounded-large p-6 shadow-lg  mhover:-translate-y-1 hover:scale-10  duration-200 ">
@@ -70,12 +59,9 @@ const DisputePage = ({ product }) => {
             <button
               type="button"
               className="bg-[#034694] text-white text-center items-center rounded-lg  py-2 px-8 h-10"
-              onClick={handleApproveDeal}
+              onClick={approve}
             >
-               {
-              loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Resolve'
-            }
-              
+               Resolve
             </button>
           </div>
         </div>
@@ -87,6 +73,15 @@ const DisputePage = ({ product }) => {
           </p>
         </div>
       </div>
+
+      <ApproveDealModal
+        open={modal}
+        setOpen={setModal}
+        buyer={product?.buyerId}
+        seller={product?.vendorId}
+        invoiceId={product?.invoiceId}
+        dealId={product?.id}
+      />
     </>
   );
 };

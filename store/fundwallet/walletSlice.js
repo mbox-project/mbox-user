@@ -8,6 +8,7 @@ import {
   withdrawFundPaystack,
   createWallet,
   payInvoice,
+  userGetTransactions,
 } from "./walletService";
 // import { HYDRATE } from "next-redux-wrapper";
 
@@ -126,14 +127,14 @@ export const walletSlice = createSlice({
       .addCase(createWallet.rejected, (state) => {
         state.isLoading = false;
       })
-      .addCase(getTransactions.pending, (state) => {
+      .addCase(userGetTransactions.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getTransactions.fulfilled, (state, action) => {
+      .addCase(userGetTransactions.fulfilled, (state, action) => {
         state.isLoading = false;
         state.transactions = action.payload.data.$values;
       })
-      .addCase(getTransactions.rejected, (state) => {
+      .addCase(userGetTransactions.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(getTransactionDetails.pending, (state) => {
@@ -141,7 +142,7 @@ export const walletSlice = createSlice({
       })
       .addCase(getTransactionDetails.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.transactions = action.payload.data;
+       
       })
       .addCase(getTransactionDetails.rejected, (state) => {
         state.isLoading = false;

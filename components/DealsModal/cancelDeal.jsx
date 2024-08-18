@@ -42,12 +42,13 @@ const CancelDealModal = ({ open, setOpen, dealId }) => {
             <div className="">
                 <div className="text-center">
                     <h2 className="mb-5 text-sm text-gray-400 font-normal text-left dark:text-gray-400">
-                        We are so sorry for your experience, please add comment so that we will be able to assist you better.
+                        Are you sure you want to cancel this deal?.<br/> Please understand that <span className=" text-red-600 text-[15px] font-semibold">Yes , I am</span> means we will return the buyer's money.
+                        Be sure your goods are in your posession before deal cancellation.
                     </h2>
                 </div>
                 <div className=" bg-transparent text-center border-red">
                     <textarea
-                        placeholder="Type your ccomment here..."
+                        placeholder="Type your comment here..."
                         className=" resize-none border border-black rounded-lg h-[150px] w-[90%] p-2 bg-transparent"
                         value={comment} // Bind textarea value to state
                         onChange={(e) => setComment(e.target.value)}
@@ -72,7 +73,7 @@ const CancelDealModal = ({ open, setOpen, dealId }) => {
                         className="text-white bg-[#F90808] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
                     >
                         {
-                            loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Submit'
+                            loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : 'Yes, I am'
                         }
                     </button>
                 </div>

@@ -12,6 +12,7 @@ import { FiMinusCircle } from "react-icons/fi";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { getVendorProducts } from "../../store/product/productService";
 import { Select } from "antd";
+import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 const InvoiceInput = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -72,6 +73,10 @@ const InvoiceInput = () => {
 
   const { isLoading } = useSelector((state) => state.invoice);
 
+  function next(){
+
+  }
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
@@ -88,11 +93,9 @@ const InvoiceInput = () => {
       dispatch(generateinvoice(data))
         .unwrap()
         .then((action) => {
-          toastify.alertSuccess(action?.message, 3000, () =>
-            router.push(`invoice/${action?.data}`)
-          );
+          CustomAlertModal.show("success", "Generated Invoice","You have successfully generated invoice",  () => router.push(`invoice/${action?.data}`))
         })
-        .catch((error) => toastify.alertError(error, 3000));
+        .catch((error) =>  CustomAlertModal.show("error", "Generated Invoice failed",error));
     } catch (error) {
       console.log(error);
     }
@@ -260,6 +263,7 @@ const InvoiceInput = () => {
           </div>
         </div>
       </div>
+      <CustomAlertModal />
     </>
   );
 };
