@@ -10,6 +10,7 @@ import { getReports } from "../../store/endorseandreport/endorseandreport";
 import { getReport, getVendor, reportBuyer } from "../../store/auth/vendorService";
 import { LoadingOutlined } from "@ant-design/icons";
 import { reportVendor } from "../../store/users/userService";
+import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 const BuyerReport = () => {
   const dispatch = useDispatch();
@@ -51,10 +52,10 @@ const BuyerReport = () => {
         setReport(res.data?.$values || []);
       })
       .catch((error) => console.log(error)),
-      toastify.alertSuccess("report success"),
+      CustomAlertModal.show("success", "Report Vendor","You have successfully reported this vendor"),
       setLoading(false)
      )).catch((err)=> (
-      toastify.alertError(err),
+      CustomAlertModal.show("error", "Vendor Report",err),
       setLoading(false)
      ))
   };
@@ -180,6 +181,7 @@ const BuyerReport = () => {
             ))}
           </section>
         </div>
+        <CustomAlertModal />
       </Layout>
     </>
   );
