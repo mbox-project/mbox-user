@@ -9,9 +9,12 @@ import {
   getWallet,
   getTransactionDetails,
   createWallet,
+  userGetTransactions,
 } from "../../store/fundwallet/walletService";
 import FundWallet from "../../components/FundWallet/FundWalletModal";
 import Withdraw from "../../components/Withdraw/WithdrawModal";
+import Credit from "../../components/assets/icon/credit";
+import Debit from "../../components/assets/icon/debit";
 
 const index = () => {
   const [open, setOpen] = useState(false);
@@ -28,7 +31,7 @@ const index = () => {
         if (error?.message === "Wallet does not exist")
           dispatch(createWallet());
       });
-    dispatch(getTransactions())
+    dispatch(userGetTransactions())
       .unwrap()
       .then((actions) => {})
       .catch((error) => console.log(error));
@@ -46,19 +49,7 @@ const index = () => {
           <h4 className="tracking-wide text-sm">Total spent</h4>
           <div className="flex justify-center items-center gap-4">
             <div className="bg-[#F90808] px-4 py-2.5 rounded-2xl">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.502 1.00875C17.0644 0.559535 16.4166 0.392182 15.8126 0.568343L1.72809 4.66409C1.09083 4.84114 0.639145 
-								5.34936 0.51747 5.99499C0.393169 6.65208 0.827347 7.4862 1.39458 7.835L5.79851 10.5417C6.25019 10.8192 6.83318 10.7496 7.20696 10.3726L12.2499 5.29828C12.5038 5.03403 12.9239 5.03403 13.1778 5.29828C13.4316 5.55371 13.4316 5.96769 13.1778 6.23193L8.12608 11.3071C7.75143 11.6832 7.6814 12.269 7.95714 12.7235L10.648 17.1716C10.9631 17.7 11.5058 17.9995 12.1011 17.9995C12.1711 17.9995 12.2499 17.9995 12.3199 17.9907C13.0027 17.9026 13.5454 17.4358 13.7468 16.7752L17.9222 2.7087C18.106 2.10976 17.9397 1.45796 17.502 1.00875Z"
-                  fill="#fff"
-                />
-              </svg>
+             <Debit className=" fill-white"/>
             </div>
             <h5>NGN {wallet?.totalSpent}</h5>
           </div>
@@ -67,18 +58,7 @@ const index = () => {
           <h4 className="tracking-wide text-sm">Total Received</h4>
           <div className="flex justify-center items-center gap-4">
             <div className="bg-[#26A17B] px-4 py-2.5 rounded-2xl">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0.994045 17.4908C1.43172 17.94 2.07949 18.1073 2.68349 17.9312L16.768 13.8354C17.4053 13.6584 17.8569 13.1501 17.9786 12.5045C18.1029 11.8474 17.6687 11.0133 17.1015 10.6645L12.6976 7.95779C12.2459 7.68034 11.6629 7.74992 11.2891 8.12691L6.2462 13.2012C5.99234 13.4655 5.57217 13.4655 5.31832 13.2012C5.06446 12.9458 5.06446 12.5318 5.31832 12.2676L10.37 7.19237C10.7447 6.81627 10.8147 6.23053 10.539 5.77603L7.8481 1.32796C7.53297 0.799475 6.99025 0.5 6.39501 0.5C6.32498 0.5 6.2462 0.500002 6.17617 0.508808C5.49339 0.596889 4.95067 1.06372 4.74933 1.72432L0.573873 15.7908C0.390049 16.3898 0.556366 17.0416 0.994045 17.4908Z"
-                  fill="#fff"
-                />
-              </svg>
+             <Credit className=" fill-white"/>
             </div>
             <h5>NGN {wallet?.totalReceived}</h5>
           </div>
@@ -169,27 +149,26 @@ const index = () => {
         </form>
       </section>
       {/* History Content*/}
-      {transactions.map((e, i) => {
+      <div className=" h-[500px] overflow-y-scroll">
+      {transactions?.map((e, i) => {
         const date = new Date(e.dateCreated).toDateString();
         return (
           <div className="card rectCard w-full grid grid-cols-[35%_25%_15%_15%] justify-between items-center overflow-x-auto text-sm">
             
             <div className="flex gap-5 justify-start items-center">
-              <span className="border-red-400 border h-10 px-4 flex items-center rounded-full">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M17.502 1.00875C17.0644 0.559535 16.4166 0.392182 15.8126 0.568343L1.72809 4.66409C1.09083 4.84114 0.639145 
-								5.34936 0.51747 5.99499C0.393169 6.65208 0.827347 7.4862 1.39458 7.835L5.79851 10.5417C6.25019 10.8192 6.83318 10.7496 7.20696 10.3726L12.2499 5.29828C12.5038 5.03403 12.9239 5.03403 13.1778 5.29828C13.4316 5.55371 13.4316 5.96769 13.1778 6.23193L8.12608 11.3071C7.75143 11.6832 7.6814 12.269 7.95714 12.7235L10.648 17.1716C10.9631 17.7 11.5058 17.9995 12.1011 17.9995C12.1711 17.9995 12.2499 17.9995 12.3199 17.9907C13.0027 17.9026 13.5454 17.4358 13.7468 16.7752L17.9222 2.7087C18.106 2.10976 17.9397 1.45796 17.502 1.00875Z"
-                    fill="#F90808"
-                  />
-                </svg>
-              </span>
+              {
+                e.type === "Debit"? (
+                  <span className="border-red-400 border h-10 px-4 flex items-center rounded-full">
+                  <Debit className="  !fill-red-600" />
+                </span>
+                ) :
+                (
+                  <span className="border-green-400 border h-10 px-4 flex items-center rounded-full">
+                  <Credit className="  !fill-[#26A17B]" />
+                </span>
+                )
+              }
+            
               <span>{e.transactionType}</span>
             </div>
             {/* <div>Wed, Feb 01, 2022. 11:50AM</div> */}
@@ -199,7 +178,7 @@ const index = () => {
             <div>{`₦${e.amount}`}</div>
             <button
               onClick={() => {
-                dispatch(getTransactionDetails(e.transactionReference))
+                dispatch(getTransactionDetails(e.id))
                   .unwrap()
                   .then((action) => console.log(action))
                   .catch((error) => console.log(error));
@@ -211,6 +190,7 @@ const index = () => {
           </div>
         );
       })}
+      </div>
       <FundWallet openFund={openFund} setOpenFund={setOpenFund} />
       <Withdraw open={open} setOpen={setOpen} />
     </Layout>

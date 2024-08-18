@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { bannerRequest } from "../../store/PromoteStore/promoteStoreService";
 import { toastify } from "../../helpers";
 import { LoadingOutlined } from "@ant-design/icons";
+import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 const BannerRequestModal = ({ open, setOpen }) => {
   const vendorId = useSelector((state) => state.auth.user.userId)
@@ -59,7 +60,8 @@ const BannerRequestModal = ({ open, setOpen }) => {
       dispatch(bannerRequest(request))
         .unwrap()
         .then(() => {
-          toastify.alertSuccess("Banner request successful")
+        
+          CustomAlertModal.show("success", "Banner Requested","You have successfully Requested for banner. A customer rep will reach out to you in the next 24hrs")
           setLoading(false)
           setOpen(false)
         }).catch(() => {
@@ -196,6 +198,7 @@ const BannerRequestModal = ({ open, setOpen }) => {
           </div>
         </div>
       </div>
+      <CustomAlertModal />
     </Modal>
   );
 };

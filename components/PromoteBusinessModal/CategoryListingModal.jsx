@@ -8,6 +8,7 @@ import { toastify } from "../../helpers";
 import { LoadingOutlined } from "@ant-design/icons";
 import { categoryRequest } from "../../store/PromoteStore/promoteStoreService";
 import { getUserById, getUserProfile } from "../../store/users/userService";
+import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 const CategoryListingModal = ({ open, setOpen }) => {
   const vendorId = useSelector((state) => state.auth.user.userId);
@@ -59,7 +60,8 @@ const CategoryListingModal = ({ open, setOpen }) => {
       dispatch(categoryRequest(request))
         .unwrap()
         .then(() => {
-          toastify.alertSuccess("Banner request successful")
+         
+          CustomAlertModal.show("success", "Category listing Requested","You have successfully Requested for Category listing")
           setLoading(false)
           setOpen(false)
         }).catch(() => {
@@ -194,6 +196,8 @@ const CategoryListingModal = ({ open, setOpen }) => {
           </button>
         </div>
       </div>
+
+      <CustomAlertModal />
     </Modal>
   );
 };

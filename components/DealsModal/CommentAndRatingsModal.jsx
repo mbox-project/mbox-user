@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Modal } from "antd";
+import { message, Modal } from "antd";
 import Input from "../Input";
 import Label from "../Label";
 import Button from "../Button";
@@ -14,7 +14,7 @@ import { ratingDeals } from "../../store/deals/dealService";
 import { LoadingOutlined } from "@ant-design/icons";
 
 
-const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, invoiceId , setOpen}) => {
+const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, invoiceId , setOpen, closeCustomAlertModal}) => {
   const [loading, setLoading] = useState(false);
   const [reviewRating, setReviewRating] = useState();
   const [comment, setComment] = useState("");
@@ -27,19 +27,31 @@ const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, inv
       comment: comment
   });
 
- 
+
 
   const dispatch = useDispatch();
+
+  const closeAllModals = () => {
+    setCommentOpen(false); // Close the CommentAndRatingModal first
+    setTimeout(() => {
+        closeCustomAlertModal(); // Close the CustomAlertModal after a brief delay
+        setOpen(false); // Close the ApproveDealModal after a brief delay
+    }, 300); // Adjust the delay as needed (300ms should be sufficient)
+    console.log("closing all modals");
+};
+  const closeModal = () => {
+    setCommentOpen(false); // Close the CommentAndRatingModal
+    console.log("closing rate")
+  };
 
   const rate = () =>{
     setLoading(true);
     dispatch(ratingDeals(data))
     .unwrap()
     .then(()=> {
-      toastify.alertSuccess("Rating successful", 300);
+      message.success("Rating successful")
       setLoading(false);
-      //setOpen(false);
-      setCommentOpen(false)
+      closeAllModals()
        // Reset state
        setReviewRating();
        setComment("");
@@ -53,7 +65,7 @@ const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, inv
      
     })
     .catch(()=> {
-      toastify.alertError("Rating Failed", 300);
+      message.error("Rating Failed")
       setLoading(false);
       setOpen(false);
       setCommentOpen(false);
@@ -80,7 +92,7 @@ const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, inv
   }, [reviewRating, comment]);
 
   return (
-    <Modal open={openComment} onCancel={() => setCommentOpen(false) } footer={null} maskClosable={false} wrapClassName="commentModal">
+    <Modal open={openComment} onCancel={closeAllModals} footer={null} maskClosable={false} wrapClassName="commentModal">
       <div className=" bg-[#FAFAFA]">
         <div className="text-center">
           {/* <h3 className="mb-5 text-lg font-bold text-green-600 dark:text-gray-400">
@@ -108,7 +120,7 @@ const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, inv
                 data-modal-toggle="popup-modal"
                 type="button"
                 className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-                onClick={() => setCommentOpen(false)}
+                onClick={closeModal}
             >
                 No, cancel
             </button>

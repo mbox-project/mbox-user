@@ -22,6 +22,13 @@ export const getTransactions = createAsyncThunk(
     return response.data;
   }
 );
+export const userGetTransactions = createAsyncThunk(
+  "User/getTransactions/wallet",
+  async () => {
+    const response = await getApi("wallet/user/transactions");
+    return response.data;
+  }
+);
 
 export const getTransactionDetails = createAsyncThunk(
   "getTransactionDetails/wallet",

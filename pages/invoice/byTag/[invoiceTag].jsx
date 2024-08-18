@@ -12,6 +12,7 @@ import Navbar from "../../../components/PagesLayout/Navbar";
 import { payInvoice } from "../../../store/fundwallet/walletService";
 import Button from "../../../components/Button";
 import { toastify } from "../../../helpers";
+import CustomAlertModal from "../../../Utils/CustomAlertModal";
 
 const invoiceID = () => {
   const router = useRouter();
@@ -51,8 +52,7 @@ const invoiceID = () => {
                   dispatch(payInvoice(invoiceTag))
                     .unwrap()
                     .then((res) => {
-                      toastify.alertSuccess(res?.message || "success", 3000);
-                      router.push("/wallet");
+                      CustomAlertModal.show("success", "Invoice Payment","You have successfully paid for this invoice",()=>router.push("/wallet") )
                     })
                     .catch((error) => {
                       toastify.alertError(
@@ -73,6 +73,7 @@ const invoiceID = () => {
           <MainFooter />
         </div>
       )}
+      <CustomAlertModal />
     </>
   );
 };
