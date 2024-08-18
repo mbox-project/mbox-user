@@ -8,6 +8,7 @@ import baseURL from "../../config/api";
 import { toastify } from "../../helpers";
 import { getEndorsements } from "../../store/endorseandreport/endorseandreport";
 import { LoadingOutlined } from "@ant-design/icons";
+import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 const endorse = () => {
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ const endorse = () => {
       const result = await response.text();
       if(result === 'true'){
         toastify.alertSuccess("Endorsement successful");
+        CustomAlertModal.show("success", "Endorsement","You have successfully endorsed this merchant")
         // Update endorsements after successful endorsement
         dispatch(getEndorsements({ pageNumber, pageSize })).unwrap()
           .then((res) => {
@@ -71,7 +73,8 @@ const endorse = () => {
           })
           .catch((error) => console.log(error));
       } else {
-        toastify.alertError(result.message);
+        //toastify.alertError(result.message);
+        CustomAlertModal.show("error", "Endorsement failed", result.message)
         setLoading(false) 
       }
       //window.reload();
@@ -178,6 +181,7 @@ const endorse = () => {
             ))}
           </section>
         </div>
+        <CustomAlertModal />
       </Layout>
     </>
   );

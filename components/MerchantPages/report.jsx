@@ -11,6 +11,7 @@ import { getReport, getVendor, reportBuyer } from "../../store/auth/vendorServic
 import { LoadingOutlined } from "@ant-design/icons";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 const VendorReport = () => {
     const dispatch = useDispatch();
@@ -73,11 +74,12 @@ const VendorReport = () => {
                     setReport(res.data?.$values || []);
                 })
                 .catch((error) => console.log(error)),
-                toastify.alertSuccess("report success"),
+                CustomAlertModal.show("success", "Report Buyer","You have successfully reported this buyer"),
                 setLoading(false)
 
             )).catch((err) => (
-                toastify.alertError(err),
+              
+                  CustomAlertModal.show("error", "Buyer Report",err),
                 setLoading(false)
             ))
     };
@@ -214,6 +216,7 @@ const VendorReport = () => {
                         ))}
                     </section>
                 </div>
+                <CustomAlertModal />
             </Layout>
         </>
     );
