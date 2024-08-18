@@ -24,10 +24,6 @@ const ApproveDealModal = ({
 
   const dispatch = useDispatch();
 
-  const closeCustomAlertModal = () => {
-    CustomAlertModal.show = () => {}; // A way to "reset" the CustomAlertModal visibility
-    console.log("closing cutom main")
-  };
 
   function modVisibility() {
      setCommentOpen(true);
@@ -91,7 +87,7 @@ const ApproveDealModal = ({
           </button>
         </div>
 
-        <CustomAlertModal closeCustomAlertModal={closeCustomAlertModal}/>
+        <CustomAlertModal />
 
         <CommentAndRatingModal
           openComment={openComment}
