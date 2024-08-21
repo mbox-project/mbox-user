@@ -39,7 +39,7 @@ const VendorEditProfile = ({ data, setData }) => {
             Bank Information
           </div>
         ),
-        children: <BankInformation data={data} setData={setData} />,
+        children: <BankInformation data={data} setData={setData} setActiveKey={setActiveKey} />,
       },
     ];
   }, [data]);

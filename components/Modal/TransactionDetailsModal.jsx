@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Modal } from "antd";
 import Shorts from "/public/img/shorts.png";
 import Image from "next/image";
+import Credit from "../assets/icon/credit";
+import Debit from "../assets/icon/debit";
 
-const TransactionDetailsModal = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
+const TransactionDetailsModal = ({ setIsModalOpen, isModalOpen, data }) => {
+  //const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -16,13 +16,6 @@ const TransactionDetailsModal = () => {
   };
   return (
     <>
-      <button
-        onClick={showModal}
-        className="bg-amber-600 py-3 px-9 text-white font-medium text-lg"
-      >
-        Open Modal
-      </button>
-
       <Modal
         title={<h2 className="text-[28px] font-medium">Transaction Details</h2>}
         open={isModalOpen}
@@ -32,63 +25,130 @@ const TransactionDetailsModal = () => {
         footer={null}
       >
         <hr />
-
-        <div className="!text-[#444444] flex flex-col gap-8 py-4 pb-8">
-          <div className="flex gap-2 lg:gap-8 justify-between items-center">
-            <div className="flex gap-2">
-              <div className="bg-white rounded-[5px] shadow-lg p-4 shadow-[#9A9A9A12] w-[150px] h-[131px] flex items-center justify-center">
-                <Image src={Shorts} alt="item" />
+        {data?.transactionType === "Fund Wallet" ? (
+          <div>
+            <div className=" flex-col md:flex-row justify-between items-center">
+              <div className=" flex items-center gap-6">
+                <div
+                  className={` ${
+                    data?.type === "Credit"
+                      ? "border-[#26A17B4D]"
+                      : "border-[#F90808]"
+                  } border-[5px]  rounded-full h-[100px] w-[100px] flex justify-center items-center`}
+                >
+                  {data?.type === "Credit" ? (
+                    <Credit className="!fill-[#26A17B] h-[50px] w-auto" />
+                  ) : (
+                    <Debit className="!fill-red-600 h-[50px] w-auto" />
+                  )}
+                </div>
+                <div>
+                  <span className=" text-[#9A9A9A] text-sm">
+                    {data?.transactionType}
+                  </span>
+                  <h4 className=" text-[#444444] text-2xl font-semibold">
+                    {"Wallet Credited"}
+                  </h4>
+                  <h4>{new Date(data?.dateCreated).toDateString()} </h4>
+                </div>
               </div>
-              <span className="flex flex-col gap-1 justify-center">
-                <p className="text-sm text-[#9A9A9A]">
-                  Purchased from Giveon’s Crib
-                </p>
-                <p className="text-[22px] font-semibold">Men’s Swim Short</p>
-                <p className="text-base">Today, 09:41 PM</p>
-              </span>
-            </div>
-            <h3 className="text-[36px] text-[#034694] leading-tight font-semibold">
-              $99.99
-            </h3>
-          </div>
 
-          <div className="flex flex-col gap-6">
-            <span className="flex gap-8 justify-between text-xl capitalize">
-              <p className="text-[#9A9A9A]">Quantity</p>
-              <p className="font-medium normal-case">x2</p>
-            </span>
-            <span className="flex gap-8 justify-between text-xl capitalize">
-              <p className="text-[#9A9A9A]">Brand</p>
-              <p className="font-medium">Nike</p>
-            </span>
-            <span className="flex gap-8 justify-between text-xl capitalize">
-              <p className="text-[#9A9A9A]">Color</p>
-              <p className="font-medium">Black</p>
-            </span>
-            <span className="flex gap-8 justify-between text-xl capitalize">
-              <p className="text-[#9A9A9A]">Size</p>
-              <p className="font-medium uppercase">xxl</p>
-            </span>
-          </div>
-
-          <div className="flex gap-12 justify-between">
-            <div className="flex flex-col gap-1">
-              <p className="text-sm text-[#9A9A9A]">Store Address</p>
-              <span className="flex gap-4 items-center">
-                <DotIcon />
-                <p className="text-lg">1901 Cresent GRA, VI, Lagos.</p>
-              </span>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <p className="text-sm text-[#9A9A9A]">Drop off Location</p>
-              <span className="flex gap-4 items-center">
-                <CheckIcon />
-                <p className="text-lg">1801 Cresent GRA, VI, Lagos.</p>
-              </span>
+              <div>
+                <h2 className={`${data?.type === "Credit" ? "text-[#26A17B]" : "text-[#F90808]"} font-bold text-4xl`}>
+                  ₦{data?.amount}
+                </h2>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="!text-[#444444] flex flex-col gap-8 py-4 pb-8">
+            <div className="flex gap-2 lg:gap-8 justify-between items-center">
+              <div className="flex gap-2">
+                {
+                  data?.transactionType === "Fund Category Promotion" || "Fund Banner Promotion" ? 
+                  (
+                    <div
+                    className={` ${
+                      data?.type === "Credit"
+                        ? "border-[#26A17B4D]"
+                        : "border-[#F90808]"
+                    } border-[5px]  rounded-full h-[100px] w-[100px] flex justify-center items-center`}
+                  >
+                    {data?.type === "Credit" ? (
+                      <Credit className="!fill-[#26A17B] h-[50px] w-auto" />
+                    ) : (
+                      <Debit className="!fill-red-600 h-[50px] w-auto" />
+                    )}
+                  </div>
+                  )
+                  :(
+                    <div className=" bg-white rounded-[5px] shadow-lg p-4 shadow-[#9A9A9A12] w-[150px] h-[131px] flex items-center justify-center">
+                    <Image src={Shorts} alt="item" />
+                  </div>
+                  )
+                }
+               
+                <span className="flex flex-col gap-1 justify-center">
+                  <p className="text-sm text-[#9A9A9A]">
+                  {data?.transactionType}
+                  </p>
+                  <p className="text-[22px] font-semibold">
+                    {
+                      data?.transactionType === "Fund Category Promotion" || "Fund Banner Promotion" ?
+                      "Wallet Debited"
+                      :
+                      "Invoice"
+
+                    }
+                    
+                    </p>
+                  <p className="text-base">{new Date(data?.dateCreated).toDateString()}</p>
+                </span>
+              </div>
+              <h3 className="text-[36px] text-[#034694] leading-tight font-semibold">
+              ₦{data?.amount}
+              </h3>
+            </div>
+
+            <div className={` ${data?.transactionType === "Fund Category Promotion" || "Fund Banner Promotion" ? " hidden":"flex flex-col gap-6"}`}>
+              <span className="flex gap-8 justify-between text-xl capitalize">
+                <p className="text-[#9A9A9A]">Quantity</p>
+                <p className="font-medium normal-case">x2</p>
+              </span>
+              <span className="flex gap-8 justify-between text-xl capitalize">
+                <p className="text-[#9A9A9A]">Brand</p>
+                <p className="font-medium">Nike</p>
+              </span>
+              <span className="flex gap-8 justify-between text-xl capitalize">
+                <p className="text-[#9A9A9A]">Color</p>
+                <p className="font-medium">Black</p>
+              </span>
+              <span className="flex gap-8 justify-between text-xl capitalize">
+                <p className="text-[#9A9A9A]">Size</p>
+                <p className="font-medium uppercase">xxl</p>
+              </span>
+            </div>
+
+            <div className={` ${data?.transactionType === "Fund Category Promotion" || "Fund Banner Promotion" ? " hidden":"flex gap-12 justify-between "}`}>
+              <div className="flex flex-col gap-1">
+                <p className="text-sm text-[#9A9A9A]">Store Address</p>
+                <span className="flex gap-4 items-center">
+                  <DotIcon />
+                  <p className="text-lg">1901 Cresent GRA, VI, Lagos.</p>
+                </span>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <p className="text-sm text-[#9A9A9A]">Drop off Location</p>
+                <span className="flex gap-4 items-center">
+                  <CheckIcon />
+                  <p className="text-lg">1801 Cresent GRA, VI, Lagos.</p>
+                </span>
+              </div>
+              </div>
+           
+          </div>
+        )}
       </Modal>
     </>
   );

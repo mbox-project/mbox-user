@@ -6,19 +6,21 @@ import { banks } from "../data";
 import { BsFillCameraFill } from "react-icons/bs";
 import { BiEditAlt, BiTrashAlt } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { updateVendor } from "../../store/auth/vendorService";
+import { getVendor, updateVendor } from "../../store/auth/vendorService";
 import UploadProfileImages from "../antd/uploadProfile";
 import { getProductCategories } from "../../store/product/productService";
 import { toastify } from "../../helpers";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Upload } from "antd";
+import { message, Upload } from "antd";
 import UpdateProfileImages, { props } from "../../Utils/uploadImage";
 import Image from "next/image";
+import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getVendor());
     dispatch(getProductCategories())
       .unwrap()
       .then((response) => console.log(response))
@@ -64,12 +66,14 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
         </div>
         <div className="p-5 flex justify-center items-center h-48 mt-5 mb-3 bg-gray-200 w-48 profilePics">
           {data?.image ? (
+          
             <Image
               src={data?.image}
               alt="Profile Image" // Adding alt attribute
               height={300}
               width={300}
             />
+    
           ) : (
             <BsFillCameraFill size={60} className="text-white" />
           )}
@@ -81,10 +85,10 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
             </label>
             <input
               type="text"
-              id="name"
+              id="accountName"
               className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5"
               placeholder="Taylor Mason"
-              value={data?.accountName || ""}
+              value={data?.accountName}
               onChange={handleInputChange}
               required
             />
@@ -189,8 +193,8 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
             </label>
             <input
               type="text"
-              id="storeAbbrevation"
-              name="storeAbbrevation"
+              id="storeAbbreviation"
+              name="storeAbbreviation"
               value={data?.storeAbbreviation}
               onChange={handleChange}
               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5"
@@ -248,7 +252,7 @@ export const StoreInformation = ({ data, setData, setActiveKey }) => {
   );
 };
 
-export const BankInformation = ({ data, setData }) => {
+export const BankInformation = ({ data, setData, setActiveKey }) => {
   const dispatch = useDispatch();
   const [bankName, setBankName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -271,17 +275,20 @@ export const BankInformation = ({ data, setData }) => {
   };
   const handleSubmit = (e, data) => {
     e.preventDefault();
-    console.log(data);
     setLoading(true);
     dispatch(updateVendor(data))
       .unwrap()
       .then((action) => {
-        toastify.alertSuccess("Updated profile successfully ");
-        dispatch(getVendor());
         setLoading(false);
+        setActiveKey("1")
+        //toastify.alertSuccess("Updated profile successfully ");
+        CustomAlertModal.show("success", "Update profile","You have successfully updated your profile")
+
       })
       .catch((error) => {
-        toastify.alertError(error, 3000);
+        //message.error("Update profile failed")
+        //toastify.alertError(error, 3000);
+        CustomAlertModal.show("error", "Update profile failed", "An unexpected error occurred")
         setLoading(false);
       });
   };
@@ -363,6 +370,7 @@ export const BankInformation = ({ data, setData }) => {
           </button>
         </div>
       </form>
+      <CustomAlertModal />
     </>
   );
 };

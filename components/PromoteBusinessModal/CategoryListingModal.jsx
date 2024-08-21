@@ -11,11 +11,10 @@ import { getUserById, getUserProfile } from "../../store/users/userService";
 import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 const CategoryListingModal = ({ open, setOpen }) => {
-  const vendorId = useSelector((state) => state.auth.user.userId);
+  
   const [loading, setLoading] = useState(false);
   const [validationError, setValidationError] = useState(false);
   const [request, setRequest] = useState({
-    vendorId: vendorId,
     duration: 0,
     startDate: "",
     endDate: "",

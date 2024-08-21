@@ -12,10 +12,9 @@ import { LoadingOutlined } from "@ant-design/icons";
 import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 const BannerRequestModal = ({ open, setOpen }) => {
-  const vendorId = useSelector((state) => state.auth.user.userId)
+  
   const [loading, setLoading] = useState(false)
   const [request, setRequest] = useState({
-    vendorId: vendorId,
     duration: 0,
     startDate: "",
     endDate: "",
