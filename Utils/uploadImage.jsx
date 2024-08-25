@@ -50,8 +50,8 @@ const UpdateProfileImages = ({ setData }) => {
 
         <div className="relative">
             <div className=" absolute right-14 flex gap-5 ">
-                <div className=" mr-5">
-                <Upload {...props} className=" absolute">
+                <div className=" mr-5 ">
+                <Upload {...props} className=" absolute bg-slate-200 max-w-[200px] w-full">
                     <div className="rounded-full flex justify-center items-center h-[30px] w-[30px] p-1 bg-blue-100 hover:cursor-pointer ">
                         <BiEditAlt className="text-blue-400" />
                     </div>
