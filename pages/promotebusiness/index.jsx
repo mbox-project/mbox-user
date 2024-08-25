@@ -26,7 +26,7 @@ const formatDuration = (startAt, endAt) => {
   const endDay = endDate.format("Do");
   const month = startDate.format("MMM");
 
-  const totalDays = endDate.diff(startDate, "day"); // Calculate the total number of days
+  const totalDays = endDate.diff(startDate, "day") + 1; // Include the end date by adding 1
   const weeks = Math.floor(totalDays / 7); // Get the number of full weeks
   const days = totalDays % 7; // Get the remaining days after full weeks
 
@@ -108,6 +108,7 @@ const getPromotion = () =>{
               <BannerRequestModal
                 open={isBannerModalOpen}
                 setOpen={setIsBannerModalOpen}
+                getAllPromotion={getPromotion}
               />
 
               <button
@@ -134,6 +135,7 @@ const getPromotion = () =>{
               <CategoryListingModal
                 open={isCategoryListingModalOpen}
                 setOpen={setIsCategoryListingModalOpen}
+                getAllPromotion={getPromotion}
               />
             </div>
           </div>

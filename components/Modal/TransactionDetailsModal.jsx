@@ -27,7 +27,7 @@ const TransactionDetailsModal = ({ setIsModalOpen, isModalOpen, data }) => {
         <hr />
         {data?.transactionType === "Fund Wallet" ? (
           <div>
-            <div className=" flex-col md:flex-row justify-between items-center">
+            <div className=" flex flex-col md:flex-row justify-between items-center">
               <div className=" flex items-center gap-6">
                 <div
                   className={` ${

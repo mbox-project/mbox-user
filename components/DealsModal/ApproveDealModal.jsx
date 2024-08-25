@@ -96,7 +96,6 @@ const ApproveDealModal = ({
           seller={seller}
           invoiceId={invoiceId}
           setOpen={setOpen}
-          closeCustomAlertModal={closeCustomAlertModal}
         />
       </div>
     </Modal>

@@ -14,7 +14,7 @@ import { ratingDeals } from "../../store/deals/dealService";
 import { LoadingOutlined } from "@ant-design/icons";
 
 
-const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, invoiceId , setOpen, closeCustomAlertModal}) => {
+const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, invoiceId , setOpen}) => {
   const [loading, setLoading] = useState(false);
   const [reviewRating, setReviewRating] = useState();
   const [comment, setComment] = useState("");
@@ -34,7 +34,7 @@ const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, inv
   const closeAllModals = () => {
     setCommentOpen(false); // Close the CommentAndRatingModal first
     setTimeout(() => {
-        closeCustomAlertModal(); // Close the CustomAlertModal after a brief delay
+        //closeCustomAlertModal(); // Close the CustomAlertModal after a brief delay
         setOpen(false); // Close the ApproveDealModal after a brief delay
     }, 300); // Adjust the delay as needed (300ms should be sufficient)
     console.log("closing all modals");

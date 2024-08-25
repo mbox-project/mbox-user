@@ -13,7 +13,7 @@ export const useAuthStatus = (WrappedComponent) => {
 
     useLayoutEffect(() => {
       // if a there isn't a logged in user then redirect them to login
-      if (!user.userId) router.push("/auth/login");
+      if (!user?.userId) router.push("/auth/login");
       else return;
     }, [user]);
 
