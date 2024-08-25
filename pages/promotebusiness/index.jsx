@@ -9,57 +9,58 @@ import CategoryListingModal from "../../components/PromoteBusinessModal/Category
 import { BiChevronDown } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { getPromotions } from "../../store/PromoteStore/promoteStoreService";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat"; // Import the plugin
+import duration from "dayjs/plugin/duration";
+import { Skeleton } from "antd";
 
-const data = [
-  {
-    id: 1,
-    offer: "Banner Request",
-    type: "Store Advert",
-    duration: "11th - 25th Feb ( 2 weeks)",
-  },
-  {
-    id: 2,
-    offer: "Category Listing",
-    type: "Landing Page",
-    duration: "11th - 25th Feb ( 2 weeks)",
-  },
-  {
-    id: 3,
-    offer: "Banner Request",
-    type: "Store Advert",
-    duration: "11th - 25th Feb ( 2 weeks)",
-  },
-  {
-    id: 4,
-    offer: "Category Listing",
-    type: "Landing Page",
-    duration: "11th - 25th Feb ( 2 weeks)",
-  },
-  {
-    id: 5,
-    offer: "Banner Request",
-    type: "Store Advert",
-    duration: "11th - 25th Feb ( 2 weeks)",
-  },
-];
+dayjs.extend(advancedFormat); // Extend dayjs with the advancedFormat plugin
+dayjs.extend(duration);
 
-const promoteBusiness = () => {
+
+const formatDuration = (startAt, endAt) => {
+  const startDate = dayjs(startAt);
+  const endDate = dayjs(endAt);
+  
+  const startDay = startDate.format("Do"); // Correctly formats day with ordinal suffix
+  const endDay = endDate.format("Do");
+  const month = startDate.format("MMM");
+
+  const totalDays = endDate.diff(startDate, "day") + 1; // Include the end date by adding 1
+  const weeks = Math.floor(totalDays / 7); // Get the number of full weeks
+  const days = totalDays % 7; // Get the remaining days after full weeks
+
+  // Form the duration string based on weeks and days
+  const durationString = `${weeks > 0 ? `${weeks} week${weeks > 1 ? "s" : ""}` : ""}${weeks > 0 && days > 0 ? " and " : ""}${days > 0 ? `${days} day${days > 1 ? "s" : ""}` : ""}`;
+
+  return `${startDay} - ${endDay} ${month} (${durationString})`;
+};
+
+const PromoteBusiness = () => {
   const [isBannerModalOpen, setIsBannerModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false)
   const [isCategoryListingModalOpen, setIsCategoryListingModalOpen] =
     useState(false);
-    const [promoteData, setPromoteData] = useState();
+    const [promoteData, setPromoteData] = useState([]);
     const dispatch = useDispatch()
 
-    useEffect(() => {
-      dispatch(getPromotions())
-      .then((res)=>{
-        setPromoteData(res?.data?.$values)
-      })
-      .catch(()=>{
+const getPromotion = () =>{
+  setLoading(true)
+  dispatch(getPromotions()).unwrap()
+  .then((res)=>{
+    setPromoteData(res?.data?.$values)
+    setLoading(false)
+  })
+  .catch(()=>{
+    setLoading(false)
+  })
+}
 
-      })
+    useEffect(() => {
+
+      getPromotion()
      
-    }, [dispatch]);
+    }, []);
 
   return (
     <Layout>
@@ -107,6 +108,7 @@ const promoteBusiness = () => {
               <BannerRequestModal
                 open={isBannerModalOpen}
                 setOpen={setIsBannerModalOpen}
+                getAllPromotion={getPromotion}
               />
 
               <button
@@ -133,6 +135,7 @@ const promoteBusiness = () => {
               <CategoryListingModal
                 open={isCategoryListingModalOpen}
                 setOpen={setIsCategoryListingModalOpen}
+                getAllPromotion={getPromotion}
               />
             </div>
           </div>
@@ -163,27 +166,40 @@ const promoteBusiness = () => {
                 <th className="py-4 px-6 text-start">Type</th>
                 <th className="py-4 px-6 text-start">Duration</th>
               </thead>
-              <tbody className="">
-                {data.map((activity) => (
-                  <tr key={activity.id}>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-[#444444] font-medium">
-                        {activity.offer}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-[#444444] font-medium">
-                        {activity.type}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-[#444444] font-medium">
-                        {activity.duration}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+              {
+                  loading ? (
+                    <Skeleton active/>
+                  ):(
+                    <tbody className="">
+                    {promoteData?.map((activity, index) => (
+                      <tr key={index}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-[#444444] font-medium">
+                            { activity.promoteAdsType === 1 ?
+                             "BannerAds" :"CategoryListing"
+                            }
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-[#444444] font-medium">
+                            {
+                            activity.promoteAdsType === 1 ? 
+                            "Store Advert":
+                             "Landing Page"
+                            }
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-[#444444] font-medium">
+                          {formatDuration(activity.startAt, activity.endAt)}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  
               </tbody>
+                  )}
+              
             </table>
 
             {/* show more */}
@@ -203,4 +219,4 @@ const promoteBusiness = () => {
   );
 };
 
-export default promoteBusiness;
+export default PromoteBusiness;

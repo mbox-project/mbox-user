@@ -15,14 +15,21 @@ import FundWallet from "../../components/FundWallet/FundWalletModal";
 import Withdraw from "../../components/Withdraw/WithdrawModal";
 import Credit from "../../components/assets/icon/credit";
 import Debit from "../../components/assets/icon/debit";
+import TransactionDetailsModal from "../../components/Modal/TransactionDetailsModal";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Button, message } from "antd";
 
 const index = () => {
   const [open, setOpen] = useState(false);
   const [openFund, setOpenFund] = useState(false);
+  const [loading, setLoading] = useState({});
+  const [transactionDetails, setTransactionDetails] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { wallet, transactions } = useSelector((state) => state.wallet);
   const { email } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const router = useRouter();
+
   useLayoutEffect(() => {
     dispatch(getWallet(email))
       .unwrap()
@@ -36,10 +43,25 @@ const index = () => {
       .then((actions) => {})
       .catch((error) => console.log(error));
   }, []);
+
+  const handleButtonClick = (id) => {
+    setLoading((prevState) => ({ ...prevState, [id]: true }));
+    dispatch(getTransactionDetails(id))
+      .unwrap()
+      .then((action) => {
+        setTransactionDetails(action.data);
+        setIsModalOpen(true);
+        setLoading((prevState) => ({ ...prevState, [id]: false }));
+      })
+      .catch((error) => {
+        setLoading((prevState) => ({ ...prevState, [id]: false }));
+        message.error("Error getting transaction details");
+      });
+  };
+
   return (
     <Layout>
-      {/* wallet Balance */}
-      <section className="card rectCard flex justify-between flex-col text-lg border-b-2 mt-8 md:flex-row ">
+          <section className="card rectCard flex justify-between flex-col text-lg border-b-2 mt-8 md:flex-row ">
         <h4>Marketbox Wallet Balance </h4>
         <h2 className="text-blue-700 text-2xl">NGN {wallet?.balance}</h2>
       </section>
@@ -148,51 +170,43 @@ const index = () => {
           </select>
         </form>
       </section>
-      {/* History Content*/}
-      <div className=" h-[500px] overflow-y-scroll">
-      {transactions?.map((e, i) => {
-        const date = new Date(e.dateCreated).toDateString();
-        return (
-          <div className="card rectCard w-full grid grid-cols-[35%_25%_15%_15%] justify-between items-center overflow-x-auto text-sm">
-            
-            <div className="flex gap-5 justify-start items-center">
-              {
-                e.type === "Debit"? (
+      <div className="h-[500px] overflow-y-scroll">
+        {transactions?.map((e, i) => {
+          const date = new Date(e.dateCreated).toDateString();
+          return (
+            <div key={e.id} className="card rectCard w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[35%_25%_15%_15%] justify-between items-center overflow-x-auto text-sm">
+              <div className="flex gap-5 justify-start items-center">
+                {e.type === "Debit" ? (
                   <span className="border-red-400 border h-10 px-4 flex items-center rounded-full">
-                  <Debit className="  !fill-red-600" />
-                </span>
-                ) :
-                (
+                    <Debit className="!fill-red-600" />
+                  </span>
+                ) : (
                   <span className="border-green-400 border h-10 px-4 flex items-center rounded-full">
-                  <Credit className="  !fill-[#26A17B]" />
-                </span>
-                )
-              }
-            
-              <span>{e.transactionType}</span>
+                    <Credit className="!fill-[#26A17B]" />
+                  </span>
+                )}
+                <span>{e.transactionType}</span>
+              </div>
+              <div>{date}</div>
+              <div>{`₦${e.amount}`}</div>
+              <Button
+                loading={loading[e.id]}
+                onClick={() => handleButtonClick(e.id)}
+                className="bg-brightRed h-10 px-4 py-2 flex justify-center items-center text-white rounded-lg hover:!text-whte"
+              >
+                Details
+              </Button>
             </div>
-            {/* <div>Wed, Feb 01, 2022. 11:50AM</div> */}
-            <div>{date}</div>
-
-
-            <div>{`₦${e.amount}`}</div>
-            <button
-              onClick={() => {
-                dispatch(getTransactionDetails(e.id))
-                  .unwrap()
-                  .then((action) => console.log(action))
-                  .catch((error) => console.log(error));
-              }}
-              className="bg-brightRed h-10 px-4 py-2 flex justify-center items-center text-white rounded-lg "
-            >
-              Details
-            </button>
-          </div>
-        );
-      })}
+          );
+        })}
       </div>
       <FundWallet openFund={openFund} setOpenFund={setOpenFund} />
       <Withdraw open={open} setOpen={setOpen} />
+      <TransactionDetailsModal
+        setIsModalOpen={setIsModalOpen}
+        isModalOpen={isModalOpen}
+        data={transactionDetails}
+      />
     </Layout>
   );
 };

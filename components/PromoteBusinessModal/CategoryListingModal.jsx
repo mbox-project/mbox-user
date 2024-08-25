@@ -10,12 +10,11 @@ import { categoryRequest } from "../../store/PromoteStore/promoteStoreService";
 import { getUserById, getUserProfile } from "../../store/users/userService";
 import CustomAlertModal from "../../Utils/CustomAlertModal";
 
-const CategoryListingModal = ({ open, setOpen }) => {
-  const vendorId = useSelector((state) => state.auth.user.userId);
+const CategoryListingModal = ({ open, setOpen,getAllPromotion }) => {
+  
   const [loading, setLoading] = useState(false);
   const [validationError, setValidationError] = useState(false);
   const [request, setRequest] = useState({
-    vendorId: vendorId,
     duration: 0,
     startDate: "",
     endDate: "",
@@ -60,8 +59,8 @@ const CategoryListingModal = ({ open, setOpen }) => {
       dispatch(categoryRequest(request))
         .unwrap()
         .then(() => {
-         
           CustomAlertModal.show("success", "Category listing Requested","You have successfully Requested for Category listing")
+          getAllPromotion()
           setLoading(false)
           setOpen(false)
         }).catch(() => {

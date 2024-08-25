@@ -9,14 +9,14 @@ import {
 export const bannerRequest = createAsyncThunk(
   "promoteStore/banner",
   async (body) => {
-    const response = await postApi("PromoteStore/banner", body);
+    const response = await postApi("Promotestore/banner", body);
     return response.data;
   }
 );
 export const categoryRequest = createAsyncThunk(
   "promoteStore/Category",
   async (body) => {
-    const response = await postApi("PromoteStore/Category", body);
+    const response = await postApi("Promotestore/Category", body);
     return response.data;
   }
 );

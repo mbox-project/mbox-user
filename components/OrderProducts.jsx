@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import { FaRegCopy } from "react-icons/fa6";
 import { copyToClipboard } from "../Utils/copyToClipboard";
-import { toastify } from "../helpers";
+import { message } from "antd";
 
 
 const OrderProducts = ({ product }) => {
@@ -28,14 +28,14 @@ const OrderProducts = ({ product }) => {
 
   const handleCopy = async () => {
     await copyToClipboard(`${tag}`);
-    toastify.alertSuccess("Invoice tag copied", 300);
+    message.success("Invoice tag copied");
   };
 
   return (
     <>
       <div className="flex flex-col border border-gray-500 rounded-large p-6 justify-around shadow-lg md:flex md:flex-row hover:-translate-y-1 hover:scale-10  duration-200 ">
         <div className="flex justify-center items-center">
-          {pImage ?
+          {pImage && pImage !== "string" ?
             (
               <Image src={pImage} width={100} height={100} alt="product" />
             )

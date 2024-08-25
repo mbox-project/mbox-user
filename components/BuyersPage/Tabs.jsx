@@ -34,10 +34,10 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
   useEffect(() => {
     setData((prevData) => ({
       ...prevData,
-      profilePicture: res?.imageUrl,
+      profilePicture: res,
     }));
   }, [res, setData]);
-  console.log(res?.imageUrl);
+  
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;

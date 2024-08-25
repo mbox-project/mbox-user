@@ -11,11 +11,10 @@ import { toastify } from "../../helpers";
 import { LoadingOutlined } from "@ant-design/icons";
 import CustomAlertModal from "../../Utils/CustomAlertModal";
 
-const BannerRequestModal = ({ open, setOpen }) => {
-  const vendorId = useSelector((state) => state.auth.user.userId)
+const BannerRequestModal = ({ open, setOpen, getAllPromotion }) => {
+  
   const [loading, setLoading] = useState(false)
   const [request, setRequest] = useState({
-    vendorId: vendorId,
     duration: 0,
     startDate: "",
     endDate: "",
@@ -60,8 +59,8 @@ const BannerRequestModal = ({ open, setOpen }) => {
       dispatch(bannerRequest(request))
         .unwrap()
         .then(() => {
-        
           CustomAlertModal.show("success", "Banner Requested","You have successfully Requested for banner. A customer rep will reach out to you in the next 24hrs")
+          getAllPromotion()
           setLoading(false)
           setOpen(false)
         }).catch(() => {
