@@ -8,11 +8,12 @@ import profile from "../../public/img/profile.svg";
 import purchase from "../../public/img/purchase.svg";
 import report from "../../public/img/report.svg";
 import saved from "../../public/img/saved.svg";
-import wallet from "../../public/img/wallet.svg";
 import thumb from "../../public/img/thumb.svg";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { selectRole } from "../../store/selectors/selectors";
+import { BiWallet } from "react-icons/bi";
+import { VscLaw } from "react-icons/vsc";
 
 const MobileSidebar = ({ showSideBar }) => {
   const role = useSelector(selectRole);
@@ -31,11 +32,11 @@ const MobileSidebar = ({ showSideBar }) => {
                 <Link href="/editprofile/"> Edit Profile </Link>
               </li>
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-                <Image src={wallet} width={20} height={20} alt="profile" />
+                <BiWallet size={20} />
                 <Link href="/wallet"> My Wallet </Link>
               </li>
               <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
-                <Image src={profile} width={20} height={20} alt="profile" />
+                <VscLaw size={20} />
                 <Link href="#"> Disputes </Link>
               </li>
               <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
@@ -58,7 +59,7 @@ const MobileSidebar = ({ showSideBar }) => {
                   <Link href="/orders/"> Invoices </Link>
                 </li>
               )}
-             {role === "vendor" && (
+              {role === "vendor" && (
                 <li className="flex items-center text-sm space-x-4 cursor-pointer hover:text-gray-600">
                   <LiaFileInvoiceDollarSolid size={20} />
 
@@ -79,23 +80,22 @@ const MobileSidebar = ({ showSideBar }) => {
               <li className="flex items-center text-[#F90808]  text-sm space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={report} width={20} height={20} alt="profile" />
                 {role === "vendor" ? (
-                <Link href="/report"> Report a Buyer </Link>
-              ) : (
-                <Link href="/report"> Report a Vendor </Link>
-              )}
+                  <Link href="/report"> Report a Buyer </Link>
+                ) : (
+                  <Link href="/report"> Report a Vendor </Link>
+                )}
               </li>
               {role === "vendor" && (
-              <li className="flex items-center  text-sm space-x-4 cursor-pointer hover:text-gray-600">
-                <PiMegaphone size={20} />
+                <li className="flex items-center  text-sm space-x-4 cursor-pointer hover:text-gray-600">
+                  <PiMegaphone size={20} />
 
-                <Link href="/promotebusiness"> Promote Business </Link>
-              </li>
-            )}
+                  <Link href="/promotebusiness"> Promote Business </Link>
+                </li>
+              )}
               <li className="flex items-center text-sm  space-x-4 cursor-pointer hover:text-gray-600">
                 <Image src={saved} width={20} height={20} alt="profile" />
                 <Link href="#"> Saved Items </Link>
               </li>
-             
             </ul>
           </div>
         </aside>
