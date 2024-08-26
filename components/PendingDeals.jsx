@@ -36,7 +36,7 @@ const PendingDeals = ({ product }) => {
       <div className="flex flex-col gap-4 md:gap-1 border border-gray-500 rounded-large p-6 justify-around shadow-lg md:flex md:flex-row hover:-translate-y-1 hover:scale-10  duration-200">
         <div className="flex justify-center items-center">
           {
-            product?.product?.otherDetails?.imageUrl || product?.product?.otherDetails?.imageUrl !== "string" && (  
+            product?.product?.otherDetails?.imageUrl && product?.product?.otherDetails?.imageUrl !== "string" && (  
               <Image src={product?.product?.otherDetails?.imageUrl} width={100} height={100} alt="product" />
             )
           }
