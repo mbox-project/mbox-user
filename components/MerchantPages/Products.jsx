@@ -76,7 +76,7 @@ const Products = ({ product }) => {
     <div className="relative group rounded-2xl overflow-hidden shadow-md ">
       <div className="card rectCard flex flex-col items-center justify-center space-y-5  duration-200 relative">
       <div className="prodImg">
-            {firstImage ? (
+            {firstImage && firstImage !== "string" ? (
               <Image src={firstImage} alt="product" width={130} height={110} />
             ) : (
               <div style={{ width: 130, height: 110, backgroundColor: '#f0f0f0' }}>
