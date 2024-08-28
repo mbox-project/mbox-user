@@ -323,8 +323,8 @@ const PrivacyPolicy = () => {
               </li>
               <li className="">
                 (c) &nbsp; By telephone, on{" "}
-                <a href="tel:+2348134567876" className=" hover:underline">
-                  (+234) 813 4567 876
+                <a href="tel:+2347051784675" className=" hover:underline">
+                  (+234) 705 178 4675
                 </a>
                 ; or
               </li>
