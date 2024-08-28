@@ -116,14 +116,14 @@ const PrivacyPolicy = () => {
               information by visiting{" "}
               <a
                 href="https://www.google.com/policies/privacy/partners/"
-                className="underline"
+                className="underline break-words"
               >
                 https://www.google.com/policies/privacy/partners/
               </a>{" "}
               and you can review Google's privacy policy at {""}
               <a
                 href="https://policies.google.com/privacy."
-                className="underline"
+                className="underline break-words"
               >
                 https://policies.google.com/privacy.
               </a>
@@ -140,20 +140,23 @@ const PrivacyPolicy = () => {
               Google's personalised advertising by visiting {""}
               <a
                 href="https://www.google.com/settings/ads"
-                className="underline"
+                className="underline break-words"
               >
                 https://www.google.com/settings/ads
               </a>{" "}
               {""}
               and you can opt out of third party cookies use for personalised
               advertising by visiting {""}
-              <a href="http://www.aboutads.info" className="underline">
+              <a
+                href="http://www.aboutads.info"
+                className="underline break-words"
+              >
                 http://www.aboutads.info
               </a>
               . You can review Google's privacy policy at {""}
               <a
                 href="https://policies.google.com/privacy."
-                className="underline"
+                className="underline break-words"
               >
                 https://policies.google.com/privacy.
               </a>
@@ -167,7 +170,7 @@ const PrivacyPolicy = () => {
               data generally, see the Facebook cookie policy at {""}
               <a
                 href="https://www.facebook.com/policies/cookies/"
-                className="underline"
+                className="underline break-words"
               >
                 https://www.facebook.com/policies/cookies/
               </a>{" "}
@@ -175,7 +178,7 @@ const PrivacyPolicy = () => {
               and the Facebook privacy policy at {""}
               <a
                 href="https://www.facebook.com/about/privacy"
-                className="underline"
+                className="underline break-words"
               >
                 https://www.facebook.com/about/privacy
               </a>
@@ -185,7 +188,7 @@ const PrivacyPolicy = () => {
               advertisements are targeted by following the instructions at {""}
               <a
                 href="https://www.facebook.com/help/568137493302217."
-                className="underline"
+                className="underline break-words"
               >
                 https://www.facebook.com/help/568137493302217.
               </a>
@@ -207,7 +210,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://support.google.com/chrome/answer/95647 "
-                  className=" hover:underline"
+                  className=" hover:underline break-words"
                   // text-brightRed
                 >
                   {""}
@@ -221,7 +224,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop"
-                  className=" hover:underline"
+                  className=" hover:underline break-words"
                 >
                   {""}
                   https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop
@@ -234,7 +237,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://help.opera.com/en/latest/security-and-privacy/"
-                  className=" hover:underline"
+                  className=" hover:underline break-words"
                 >
                   {""}
                   https://help.opera.com/en/latest/security-and-privacy/
@@ -247,7 +250,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://support.microsoft.com/en-gb/help/17442/windows-internet-explorer-delete-manage-cookies"
-                  className=" hover:underline"
+                  className=" hover:underline break-words"
                 >
                   {""}
                   https://support.microsoft.com/en-gb/help/17442/windows-internet-explorer-delete-manage-cookies
@@ -260,7 +263,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://support.apple.com/en-gb/guide/safari/manage-cookies-and-website-data-sfri11471/mac"
-                  className=" hover:underline"
+                  className=" hover:underline break-words"
                 >
                   {""}
                   https://support.apple.com/en-gb/guide/safari/manage-cookies-and-website-data-sfri11471/mac
@@ -273,7 +276,7 @@ const PrivacyPolicy = () => {
                 <a
                   target="_blank"
                   href="https://support.microsoft.com/en-gb/help/4468242/microsoft-edge-browsing-data-and-privacy"
-                  className=" hover:underline"
+                  className=" hover:underline break-words"
                 >
                   https://support.microsoft.com/en-gb/help/4468242/microsoft-edge-browsing-data-and-privacy
                 </a>{" "}
@@ -323,14 +326,20 @@ const PrivacyPolicy = () => {
               </li>
               <li className="">
                 (c) &nbsp; By telephone, on{" "}
-                <a href="tel:+2348134567876" className=" hover:underline">
-                  (+234) 813 4567 876
+                <a
+                  href="tel:+2347051784675"
+                  className=" hover:underline break-words"
+                >
+                  (+234) 705 178 4675
                 </a>
                 ; or
               </li>
               <li className="">
                 (d) &nbsp; By email, using{" "}
-                <a href="mailto:info@Marketbox.ng" className=" hover:underline">
+                <a
+                  href="mailto:info@Marketbox.ng"
+                  className=" hover:underline break-words"
+                >
                   {/*  */}
                   info@Marketbox.ng
                 </a>

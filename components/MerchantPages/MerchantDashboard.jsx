@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import lady from "../../public/img/lady.svg";
-import emoji from "../../public/img/smiling-emoji.jpeg";
+import emoji from "../../public/img/smiling-emoji-orange.png";
 import JpegIcon from "../assets/JpegIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -83,13 +83,15 @@ const MerchantDashboard = () => {
             <div className="flex flex-col space-y-2 bg-white rounded-lg px-10 py-4 items-center justify-between mt10 shadow-sm  hover:shadow-md">
               <Image
                 src={emoji}
-                width={60}
-                height={60}
-                // className="w-[48px] h-[48px] rounded-full border-solid border-2 border-black"
-                alt="profile-pics"
+                height={80}
+                width={80}
+                className=" rounded-full size-[80px] border-solid border-2 border-black-600"
+                alt="emoji"
               />
-              <h2 className="text-[20px] font-[600]">Hello, {username}</h2>
-              <span className="text-[16px] font-[400]">Welcome back!</span>
+              <div className="flex flex-col space-y-2 text-center sm:text-start">
+                <h2 className="text-3xl font-bold">Hello, {userName}</h2>
+                <span>Welcome back!</span>
+              </div>
               <button
                 onClick={() => {
                   push("/products");
