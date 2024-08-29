@@ -89,7 +89,7 @@ const MerchantDashboard = () => {
                 alt="emoji"
               />
               <div className="flex flex-col space-y-2 text-center sm:text-start">
-                <h2 className="text-3xl font-bold">Hello, {userName}</h2>
+                <h2 className="text-3xl font-bold">Hello, {username}</h2>
                 <span>Welcome back!</span>
               </div>
               <button

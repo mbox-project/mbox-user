@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.auth.user);
-  const userName = user?.username?.split(" ")[0] || "";
+   const userName = user?.username?.split(" ")[0] || "";
   return (
     <section className="flex flex-col gap-12">
       {/* first section --Welcome buyer */}
