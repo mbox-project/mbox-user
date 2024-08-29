@@ -10,13 +10,13 @@ import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.auth.user);
-  const userName = user.fullname?.split(" ")[0];
+  const userName = user.username?.split(" ")[0];
   return (
     <section className="flex flex-col gap-12">
       {/* first section --Welcome buyer */}
       <section className="flex flex-col-reverse bg-white rounded-lg px-10 py-2 items-center justify-between mt-10 shadow-sm  hover:shadow-md md:flex-row">
         <div className="flex flex-col space-y-2 text-center sm:text-start">
-          <h2 className="text-3xl font-bold">Hello, {userName}</h2>
+          <h2 className="text-3xl font-bold">Hello, {userName || ""}</h2>
           <span>Welcome back!</span>
         </div>
         <div>
