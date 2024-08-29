@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import banner from "../../public/img/banner.png";
-import emoji from "../../public/img/smiling-emoji.jpeg"
+import emoji from "../../public/img/smiling-emoji-orange.png";
 import lady from "../../public/img/lady.svg";
 import edit from "../../public/img/edit.svg";
 import caret from "../../public/img/caret.svg";
@@ -15,17 +15,17 @@ const Dashboard = () => {
     <section className="flex flex-col gap-12">
       {/* first section --Welcome buyer */}
       <section className="flex flex-col-reverse bg-white rounded-lg px-10 py-2 items-center justify-between mt-10 shadow-sm  hover:shadow-md md:flex-row">
-        <div className="flex flex-col space-y-2">
-          <h2 className="text-3xl font-bold">Hello, {userName || ""}</h2>
+        <div className="flex flex-col space-y-2 text-center sm:text-start">
+          <h2 className="text-3xl font-bold">Hello, {userName}</h2>
           <span>Welcome back!</span>
         </div>
         <div>
           <Image
             src={emoji}
-            height={100}
-            width={100}
-            className=" rounded-full border-solid border-2 border-black-600"
-            alt="profile-pics"
+            height={80}
+            width={80}
+            className=" rounded-full size-[80px] border-solid border-2 border-black-600"
+            alt="emoji"
           />
         </div>
       </section>
@@ -148,19 +148,19 @@ const Dashboard = () => {
           <div className="md:basis-1/2">
             <h1 className="font-bold text-lg">Personal Information</h1>
             <ul className="mt-4 space-y-4">
-              <li className="flex items-center space-x-24 text-sm hover:text-gray-600">
+              <li className="flex-col sm:flex-row items-center sm:space-x-24 text-sm hover:text-gray-600">
                 <h2 className="font-bold text-md">Name: </h2>
                 <span>{user?.fullname}</span>
               </li>
-              <li className="flex items-center text-sm space-x-24 hover:text-gray-600">
+              <li className="flex-col sm:flex-row items-center text-sm sm:space-x-24 hover:text-gray-600">
                 <h2 className="font-bold text-md">Email: </h2>
                 <span>{user?.email}</span>
               </li>
-              <li className="flex items-center text-sm space-x-12 hover:text-gray-600">
+              <li className="flex-col sm:flex-row items-center text-sm sm:space-x-12 hover:text-gray-600">
                 <h2 className="font-bold text-md">WhatsApp No: </h2>
                 <span>{user?.phoneNumber}</span>
               </li>
-              <li className="flex items-center text-sm space-x-20 hover:text-gray-600">
+              <li className="flex-col sm:flex-row items-center text-sm sm:space-x-20 hover:text-gray-600">
                 <h2 className="font-bold text-md">Address: </h2>
                 <span>No 5, Idumota Lagos, Nigeria</span>
               </li>
@@ -170,15 +170,15 @@ const Dashboard = () => {
           <div className="md:basis-1/2">
             <h1 className="font-bold text-lg">Bank Information</h1>
             <ul className="mt-4 space-y-4">
-              <li className="flex items-center space-x-32 text-sm hover:text-gray-600">
+              <li className="flex-col sm:flex-row items-center sm:space-x-32 text-sm hover:text-gray-600">
                 <h2 className="font-bold">Bank Name:</h2>
                 <span>Not Provided</span>
               </li>
-              <li className="flex items-center space-x-24 text-sm hover:text-gray-600">
+              <li className="flex-col sm:flex-row items-center sm:space-x-24 text-sm hover:text-gray-600">
                 <h2 className="font-bold">Account Name: </h2>
                 <span>Not Provided</span>
               </li>
-              <li className="flex items-center space-x-20 text-sm hover:text-gray-600">
+              <li className="flex-col sm:flex-row items-center sm:space-x-20 text-sm hover:text-gray-600">
                 <h2 className="font-bold">Account Number: </h2>
                 <span>Not Provided</span>
               </li>
