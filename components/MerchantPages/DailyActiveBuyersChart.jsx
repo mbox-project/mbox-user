@@ -30,7 +30,12 @@ const DailyActiveBuyersChart = () => {
         <XAxis dataKey="day" />
         <YAxis ticks={[0, 10, 20, 30, 40]} domain={[0, 40]} />
         <Tooltip />
-        <Line type="monotone" dataKey="value" stroke="#7B61FF" />
+        <Line
+          type="monotone"
+          dataKey="value"
+          stroke="#7B61FF"
+          strokeWidth={2.5}
+        />
       </LineChart>
     </ResponsiveContainer>
   );
