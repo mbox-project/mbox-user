@@ -24,7 +24,7 @@ const DailyActiveBuyersChart = () => {
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
         data={data}
-        margin={{ top: 20, right: 0, left: -30, bottom: 5 }}
+        margin={{ top: 20, right: 10, left: -30, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="day" />
