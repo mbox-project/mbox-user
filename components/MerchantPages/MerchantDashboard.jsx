@@ -16,6 +16,8 @@ import { getVendorDashboard } from "../../store/users/userService";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiArrowDownRight, FiArrowUpRight } from "react-icons/fi";
 import DailyActiveBuyersChart from "./DailyActiveBuyersChart";
+import DailyStoreVisitsChart from "./DailyStoreVisitsChart";
+import InventoryManagementChart from "./InventoryManagementChart";
 
 const MerchantDashboard = () => {
   const dispatch = useDispatch();
@@ -236,6 +238,7 @@ const MerchantDashboard = () => {
               </div>
             </div>
 
+            {/* Revenue Comparisons */}
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold text-[#444444]">
                 Revenue Comparisons
@@ -319,6 +322,32 @@ const MerchantDashboard = () => {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Store Stats */}
+            <div className="space-y-4">
+              <h2 className="text-2xl font-semibold text-[#444444]">
+                Store Stats
+              </h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                {/* Daily Store Visit */}
+                <div className="p-6 rounded-3xl flex flex-col gap-6 shadow-xl text-[#444444]">
+                  <h3 className="text-[#444444] text-xl sm:text-2xl font-medium">
+                    Daily Store Visit
+                  </h3>
+
+                  <DailyStoreVisitsChart />
+                </div>
+
+                {/* Inventory Management */}
+                <div className="p-6 rounded-3xl flex flex-col gap-6 shadow-xl text-[#444444]">
+                  <h3 className="text-[#444444] text-xl sm:text-2xl font-medium">
+                    Inventory Management
+                  </h3>
+
+                  <InventoryManagementChart />
                 </div>
               </div>
             </div>
