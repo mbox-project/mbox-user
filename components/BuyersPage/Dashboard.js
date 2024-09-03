@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.auth.user);
-   const userName = user?.username?.split(" ")[0] || "";
+  const userName = user?.username?.split(" ")[0] || "";
   return (
     <section className="flex flex-col gap-12">
       {/* first section --Welcome buyer */}
@@ -145,43 +145,47 @@ const Dashboard = () => {
         </div>
 
         <div className="p-6 flex flex-col gap-y-8 lg:flex-row">
+          {/* Personal Information Section */}
           <div className="md:basis-1/2">
-            <h1 className="font-bold text-lg">Personal Information</h1>
-            <ul className="mt-4 space-y-4">
-              <li className="flex-col sm:flex-row items-center sm:space-x-24 text-sm hover:text-gray-600">
-                <h2 className="font-bold text-md">Name: </h2>
-                <span>{user?.fullname}</span>
-              </li>
-              <li className="flex-col sm:flex-row items-center text-sm sm:space-x-24 hover:text-gray-600">
-                <h2 className="font-bold text-md">Email: </h2>
-                <span>{user?.email}</span>
-              </li>
-              <li className="flex-col sm:flex-row items-center text-sm sm:space-x-12 hover:text-gray-600">
-                <h2 className="font-bold text-md">WhatsApp No: </h2>
-                <span>{user?.phoneNumber}</span>
-              </li>
-              <li className="flex-col sm:flex-row items-center text-sm sm:space-x-20 hover:text-gray-600">
-                <h2 className="font-bold text-md">Address: </h2>
-                <span>No 5, Idumota Lagos, Nigeria</span>
-              </li>
+            <h1 className="font-bold text-lg mb-4">Personal Information</h1>
+            <ul className="space-y-4">
+              {[
+                { label: "Name", value: user?.fullname },
+                { label: "Email", value: user?.email },
+                {
+                  label: "WhatsApp No",
+                  value: user?.phoneNumber || "Not Provided",
+                },
+                { label: "Address", value: "No 5, Idumota Lagos, Nigeria" },
+              ].map(({ label, value }) => (
+                <li
+                  key={label}
+                  className="flex sm:items-center text-sm space-x-2 sm:space-x-4"
+                >
+                  <h2 className="font-bold text-md">{label}:</h2>
+                  <span className="text-gray-700">{value}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* Bank Information Section */}
           <div className="md:basis-1/2">
-            <h1 className="font-bold text-lg">Bank Information</h1>
-            <ul className="mt-4 space-y-4">
-              <li className="flex-col sm:flex-row items-center sm:space-x-32 text-sm hover:text-gray-600">
-                <h2 className="font-bold">Bank Name:</h2>
-                <span>Not Provided</span>
-              </li>
-              <li className="flex-col sm:flex-row items-center sm:space-x-24 text-sm hover:text-gray-600">
-                <h2 className="font-bold">Account Name: </h2>
-                <span>Not Provided</span>
-              </li>
-              <li className="flex-col sm:flex-row items-center sm:space-x-20 text-sm hover:text-gray-600">
-                <h2 className="font-bold">Account Number: </h2>
-                <span>Not Provided</span>
-              </li>
+            <h1 className="font-bold text-lg mb-4">Bank Information</h1>
+            <ul className="space-y-4">
+              {[
+                { label: "Bank Name", value: "Not Provided" },
+                { label: "Account Name", value: "Not Provided" },
+                { label: "Account Number", value: "Not Provided" },
+              ].map(({ label, value }) => (
+                <li
+                  key={label}
+                  className="flex sm:items-center text-sm space-x-2 sm:space-x-4"
+                >
+                  <h2 className="font-bold text-md">{label}:</h2>
+                  <span className="text-gray-700">{value}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
