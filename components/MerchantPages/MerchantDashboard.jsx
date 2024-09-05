@@ -88,7 +88,7 @@ const MerchantDashboard = () => {
                 className=" rounded-full size-[80px] border-solid border-2 border-black-600"
                 alt="emoji"
               />
-              <div className="flex flex-col space-y-2 text-center sm:text-start">
+              <div className="flex flex-col px-2 space-y-2 text-center sm:text-start">
                 <h2 className="text-3xl font-bold">Hello, {username}</h2>
                 <span>Welcome back!</span>
               </div>
