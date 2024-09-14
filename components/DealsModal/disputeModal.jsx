@@ -9,6 +9,8 @@ import { toastify } from "../../helpers";
 import CommentAndRatingModal from "./CommentAndRatingsModal";
 import { LoadingOutlined } from "@ant-design/icons";
 import { approveDeal, disputeDeals } from "../../store/deals/dealService";
+import { SET_PENDING_DEALS } from "../../store/deals/dealsSlice";
+import CustomAlertModal from "../../Utils/CustomAlertModal";
 
 
 const DisputeDealModal = ({ open, setOpen, dealId }) => {
@@ -17,6 +19,9 @@ const DisputeDealModal = ({ open, setOpen, dealId }) => {
 
   const dispatch = useDispatch();
 
+  function updateState() {
+    dispatch(SET_PENDING_DEALS(true))
+   }
   const approve = () => {
     setLoading(true);
     dispatch(disputeDeals(
@@ -27,14 +32,14 @@ const DisputeDealModal = ({ open, setOpen, dealId }) => {
     ))
       .unwrap()
       .then(() => {
-        toastify.alertSuccess("Dispute Created", 3000);
         setLoading(false);
-        setOpen(false)
+        setOpen(false);
+        CustomAlertModal.show("success", "Dispute Created","You’ve have successfully creted a dispute", updateState)
       })
       .catch(() => {
-        toastify.alertError("Dispute failed", 3000);
         setLoading(false);
-        setOpen(false)
+        setOpen(false);
+        CustomAlertModal.show("error", "Dispute Failed","Error creating dispute")
       });
   };
 
@@ -81,8 +86,9 @@ const DisputeDealModal = ({ open, setOpen, dealId }) => {
 
           </button>
         </div>
-
       </div>
+
+      <CustomAlertModal />
     </Modal>
   );
 };
