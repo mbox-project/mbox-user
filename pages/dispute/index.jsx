@@ -4,33 +4,53 @@ import { orderProducts } from "../../components/data";
 import DisputePage from "../../components/DisputePage";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllDeals, getVendorAllDeals } from "../../store/deals/dealService";
+import { Skeleton } from "antd";
+import { SET_PENDING_DEALS } from "../../store/deals/dealsSlice";
 
 const index = () => {
   const dispatch = useDispatch();
   const [deals, setDeals] = useState();
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(3);
+  const [pageSize, setPageSize] = useState(5);
+  const [totalCount, setTotalCount] = useState(0);
+  const [loading , setLoading] = useState(false)
   const dealStatus = 2;
   const user = useSelector((state) => state.auth.user);
+  const endPage = totalCount/pageSize //to get last page
+
+  const pendingdState = useSelector((state) => state.deals.pendingDeal)
 
   useEffect(() => {
-    if(user?.role === "user"){
-      dispatch(getAllDeals({ dealStatus, pageNumber, pageSize })).unwrap()
-      .then((res) => {
-        console.log(res?.data?.items?.$values);
-        setDeals(res?.data?.items?.$values || []);
-      })
-      .catch((error) => console.log(error));
-    }else {
-      dispatch(getVendorAllDeals({ dealStatus, pageNumber, pageSize })).unwrap()
-      .then((res) => {
-        console.log(res?.data?.items?.$values);
-        setDeals(res?.data?.items?.$values || []);
-      })
-      .catch((error) => console.log(error));;
+    setLoading(true)
+    if (user?.role === "user" || pendingdState) {
+      dispatch(getAllDeals({ dealStatus, pageNumber, pageSize }))
+        .unwrap()
+        .then((res) => {
+          console.log(res?.data?.items?.$values);
+          setDeals(res?.data?.items?.$values || []);
+          setTotalCount(res?.data?.totalCount);
+          setLoading(false);
+          dispatch(SET_PENDING_DEALS(false))
+        })
+        .catch((error) =>( 
+          console.log(error),
+          setLoading(false)
+        ));
+    } if(user?.role === "vendor" || pendingdState) {
+      dispatch(getVendorAllDeals({ dealStatus, pageNumber, pageSize }))
+        .unwrap()
+        .then((res) => {
+          console.log(res?.data?.items?.$values);
+          setDeals(res?.data?.items?.$values || []);
+          setLoading(false);
+          dispatch(SET_PENDING_DEALS(false))
+        })
+        .catch((error) => (
+          console.log(error),
+          setLoading(false)
+        ));
     }
-  
-  }, [dispatch, pageNumber, pageSize]);
+  }, [dispatch, pageNumber, pageSize, pendingdState]);
 
   const handleNextPage = () => {
     setPageNumber(pageNumber + 1);
@@ -44,8 +64,8 @@ const index = () => {
 
   const renderDeals = () => {
     return deals?.map((product) => (
-        <DisputePage product={product} key={product.id} />
-        // <PendingProducts key={product.id} product={product} />
+      <DisputePage product={product} key={product.id} />
+      // <PendingProducts key={product.id} product={product} />
     ));
   };
 
@@ -53,23 +73,30 @@ const index = () => {
     return (
       <div className="flex justify-center items-center mt-8 space-x-4">
         <button
-          className={`px-4 py-2 border border-gray-300 rounded-md ${pageNumber === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
+          className={`px-4 py-2 border border-gray-300 rounded-md ${
+            pageNumber === 1
+              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+              : "bg-white text-gray-700 hover:bg-gray-50"
+          }`}
           onClick={handlePrevPage}
           disabled={pageNumber === 1}
         >
           Previous
         </button>
         <button
-          className="px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50"
+          className={`px-4 py-2 border border-gray-300 rounded-md ${
+            pageNumber >= endPage
+              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+              : "bg-white text-gray-700 hover:bg-gray-50"
+          }`}
           onClick={handleNextPage}
+          disabled={pageNumber >= endPage}
         >
           Next
         </button>
       </div>
     );
   };
-
-
 
   return (
     <Layout>
@@ -89,19 +116,22 @@ const index = () => {
         </form>
       </section>
       {/* Orders Content  */}
-      <section className="card rectCard flex flex-col space-y-5">
-      {renderDeals()}
-        {/* {orderProducts.map((prod) => {
-          return <DisputePage product={prod} key={prod.id} />;
-        })} */}
+      {
+        loading ? <Skeleton active className=" mt-5"/> : (
+          <section className="card rectCard flex flex-col space-y-5">
+        {renderDeals()}
       </section>
+        )
+      }
+      
       {renderPaginationButtons()}
 
-      <div className="flex justify-end mt-5 space-x-3">
-        <p className="text-brightRed underline">Show More</p>
-      </div>
+      
     </Layout>
   );
 };
 
 export default index;
+
+
+

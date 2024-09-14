@@ -10,6 +10,7 @@ import CommentAndRatingModal from "./CommentAndRatingsModal";
 import { LoadingOutlined } from "@ant-design/icons";
 import { approveDeal, getAllDeals } from "../../store/deals/dealService";
 import CustomAlertModal from "../../Utils/CustomAlertModal";
+import { SET_PENDING_DEALS } from "../../store/deals/dealsSlice";
 
 const ApproveDealModal = ({
   open,
@@ -33,6 +34,7 @@ const ApproveDealModal = ({
     dispatch(approveDeal({ dealId: dealId }))
       .unwrap()
       .then(() => {
+       
         setLoading(false);
         CustomAlertModal.show("success", "Deal Approved","You’ve have successfully approved this deal", modVisibility)
       })

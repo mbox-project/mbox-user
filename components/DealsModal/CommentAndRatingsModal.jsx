@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { message, Modal } from "antd";
-import Input from "../Input";
-import Label from "../Label";
-import Button from "../Button";
-import Spinner from "../Spinner";
-import { toastify } from "../../helpers";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+
 import "@fortawesome/fontawesome-free/css/all.css";
 import { Rate } from 'antd';
 import { ratingDeals } from "../../store/deals/dealService";
 import { LoadingOutlined } from "@ant-design/icons";
+import { SET_PENDING_DEALS } from "../../store/deals/dealsSlice";
 
 
 const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, invoiceId , setOpen}) => {
@@ -31,16 +26,18 @@ const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, inv
 
   const dispatch = useDispatch();
 
-  const closeAllModals = () => {
-    setCommentOpen(false); // Close the CommentAndRatingModal first
-    setTimeout(() => {
+  //const closeAllModals = () => {
+    //setCommentOpen(false); // Close the CommentAndRatingModal first
+   // setTimeout(() => {
         //closeCustomAlertModal(); // Close the CustomAlertModal after a brief delay
-        setOpen(false); // Close the ApproveDealModal after a brief delay
-    }, 300); // Adjust the delay as needed (300ms should be sufficient)
-    console.log("closing all modals");
-};
+    //    dispatch(SET_PENDING_DEALS(true))
+   //     setOpen(false); // Close the ApproveDealModal after a brief delay
+   // }, 300); // Adjust the delay as needed (300ms should be sufficient)
+  //  console.log("closing all modals");
+//};
   const closeModal = () => {
     setCommentOpen(false); // Close the CommentAndRatingModal
+    dispatch(SET_PENDING_DEALS(true));
     console.log("closing rate")
   };
 
@@ -51,7 +48,7 @@ const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, inv
     .then(()=> {
       message.success("Rating successful")
       setLoading(false);
-      closeAllModals()
+      closeModal();
        // Reset state
        setReviewRating();
        setComment("");
@@ -92,7 +89,7 @@ const CommentAndRatingModal = ({ openComment, setCommentOpen, buyer, seller, inv
   }, [reviewRating, comment]);
 
   return (
-    <Modal open={openComment} onCancel={closeAllModals} footer={null} maskClosable={false} wrapClassName="commentModal">
+    <Modal open={openComment} onCancel={closeModal} footer={null} maskClosable={false} wrapClassName="commentModal">
       <div className=" bg-[#FAFAFA]">
         <div className="text-center">
           {/* <h3 className="mb-5 text-lg font-bold text-green-600 dark:text-gray-400">
