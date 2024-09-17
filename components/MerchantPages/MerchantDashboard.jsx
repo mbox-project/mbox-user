@@ -332,10 +332,10 @@ const MerchantDashboard = () => {
                 Store Stats
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                {/* Daily Store Visit */}
+                {/* Daily Store Visits */}
                 <div className="p-6 rounded-3xl flex flex-col gap-6 shadow-xl text-[#444444]">
                   <h3 className="text-[#444444] text-xl sm:text-2xl font-medium">
-                    Daily Store Visit
+                    Daily Store Visits
                   </h3>
 
                   <DailyStoreVisitsChart />
