@@ -3,8 +3,8 @@ import { RWebShare } from "react-web-share";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { FaRegCopy } from "react-icons/fa6";
-import { toastify } from "../../helpers";
 import { copyToClipboard } from "../../Utils/copyToClipboard";
+import { message } from "antd";
 
 const Edit = ({ data, tag }) => {
   const router = useRouter();
@@ -14,7 +14,7 @@ const Edit = ({ data, tag }) => {
 
   const handleCopy = async () => {
     await copyToClipboard(`${tag}`);
-    toastify.alertSuccess("Invoice Tag copied", 300)
+    message.success("Invoice Tag copied")
   };
   
   return (

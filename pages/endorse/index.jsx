@@ -17,12 +17,10 @@ const endorse = () => {
   const [pageSize, setPageSize] = useState(3);
   const [loading, setLoading] = useState(false);
 
-  
-
   const [endorseData, setData] = useState({
     storeName: "",
     comment: "",
-    endorse: 1
+    endorse: 1,
   });
 
   const onChangeInput = (e) => {
@@ -33,20 +31,20 @@ const endorse = () => {
   };
 
   useEffect(() => {
-    dispatch(getEndorsements({ pageNumber, pageSize })).unwrap()
-    .then((res) => {
-      console.log(res);
+    dispatch(getEndorsements({ pageNumber, pageSize }))
+      .unwrap()
+      .then((res) => {
+        console.log(res);
 
-      console.log(res.data?.items?.$values);
-      setEndorse(res.data?.items?.$values || []);
-    })
-    .catch((error) => console.log(error));;
+        console.log(res.data?.items?.$values);
+        setEndorse(res.data?.items?.$values || []);
+      })
+      .catch((error) => console.log(error));
   }, [dispatch, pageNumber, pageSize]);
-
 
   const handleEndorseForm = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
     const response = await fetch(`${baseURL}Endorsement/endorse`, {
       method: "POST",
@@ -61,30 +59,32 @@ const endorse = () => {
 
     if (response.ok) {
       const result = await response.text();
-      if(result === 'true'){
-        toastify.alertSuccess("Endorsement successful");
-        CustomAlertModal.show("success", "Endorsement","You have successfully endorsed this merchant")
+      if (result === "true") {
+        CustomAlertModal.show(
+          "success",
+          "Endorsement",
+          "You have successfully endorsed this merchant"
+        )
         // Update endorsements after successful endorsement
-        dispatch(getEndorsements({ pageNumber, pageSize })).unwrap()
+        dispatch(getEndorsements({ pageNumber, pageSize }))
+          .unwrap()
           .then((res) => {
             console.log(res);
             setEndorse(res.data?.items?.$values || []);
-            setLoading(false)
+            setLoading(false);
           })
           .catch((error) => console.log(error));
       } else {
         //toastify.alertError(result.message);
-        CustomAlertModal.show("error", "Endorsement failed", result.message)
-        setLoading(false) 
+        setLoading(false);
+        CustomAlertModal.show("error", "Endorsement failed", result.message);
       }
       //window.reload();
-      
     } else {
       const errorResult = await response.text();
-      toastify.alertError(errorResult);
-      setLoading(false)
+      CustomAlertModal.show("error", "Endorsement failed", errorResult)
+      setLoading(false);
     }
-   
   };
 
   return (
@@ -99,7 +99,6 @@ const endorse = () => {
         <section className="!bg-[#FAFAFA]">
           <form onSubmit={handleEndorseForm}>
             <div className="py-5 poppins rounded-sm">
-              
               <div className=" px-4 pt-3">
                 <Label
                   className="text-[#C1C1C1]  text-sm"
@@ -136,10 +135,11 @@ const endorse = () => {
                   type="submit"
                   className=" w-24 my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white left-96 text-base poppins"
                 >
-                  {
-                    loading ? <LoadingOutlined style={{ fontSize: 24 }} spin /> : "Submit"
-                  }
-                  
+                  {loading ? (
+                    <LoadingOutlined style={{ fontSize: 24 }} spin />
+                  ) : (
+                    "Submit"
+                  )}
                 </Button>
               </div>
             </div>

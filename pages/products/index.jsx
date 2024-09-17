@@ -40,6 +40,7 @@ const Index = () => {
   const [pageSize, setPageSize] = useState(10);
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
+  const endPage = totalProducts / pageSize; //to get last page
 
 
   useEffect(() => {
@@ -110,8 +111,13 @@ const Index = () => {
           Previous
         </button>
         <button
-          className="px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50"
+         className={`px-4 py-2 border border-gray-300 rounded-md ${
+          pageNumber >= endPage
+            ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+            : "bg-white text-gray-700 hover:bg-gray-50"
+        }`}
           onClick={handleNextPage}
+          disabled={pageNumber >= endPage}
         >
           Next
         </button>

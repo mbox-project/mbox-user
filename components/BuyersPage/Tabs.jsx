@@ -79,13 +79,14 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
           <h4 className="text-gray-500">Profile Image</h4>
           <UpdateProfileImages setData={setRes} />
         </div>
-        <div className="p-5 flex justify-center items-center h-48 mt-5 mb-3 bg-gray-200 w-48 profilePics">
+        <div className="p-2 flex justify-center items-center h-48 mt-5 mb-3 bg-gray-200 w-48 profilePics">
           {data?.profilePicture ? (
             <Image
               src={data?.profilePicture}
               alt="Profile Image" // Adding alt attribute
               height={300}
               width={300}
+              className=" rounded-full"
             />
           ) : (
             <BsFillCameraFill size={60} className="text-white" />
