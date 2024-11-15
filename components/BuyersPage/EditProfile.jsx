@@ -3,12 +3,12 @@ import { useState } from "react";
 
 import { useMemo } from "react";
 import React from "react";
-import { PersonalDetails, BankInformation } from "./Tabs";
+import { PersonalDetails, BankInformation, PasswordDetails } from "./Tabs";
 const onChange = (key) => {
   console.log(key);
 };
 
-const EditProfile = ({ data, setData }) => {
+const EditProfile = ({ data, setData, userData }) => {
   const [activeKey, setActiveKey] = useState("1");
   const items = useMemo(
     () => [
@@ -19,12 +19,27 @@ const EditProfile = ({ data, setData }) => {
             Personal Details
           </div>
         ),
-        children: <PersonalDetails data={data} setData={setData} setActiveKey={setActiveKey} />,
+        children: <PersonalDetails data={data} userData={userData} setData={setData} setActiveKey={setActiveKey} />,
       },
       {
         key: "2",
         label: (
           <div className="text-gray-500" onClick={() => setActiveKey("2")}>
+           Change Password
+          </div>
+        ),
+        children: (
+          <PasswordDetails
+            data={data}
+            setData={setData}
+            //setActiveKey={setActiveKey}
+          />
+        ),
+      },
+      {
+        key: "3",
+        label: (
+          <div className="text-gray-500" onClick={() => setActiveKey("3")}>
             Bank Information
           </div>
         ),

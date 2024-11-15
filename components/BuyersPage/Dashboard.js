@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import banner from "../../public/img/banner.png";
@@ -6,11 +6,67 @@ import emoji from "../../public/img/smiling-emoji-orange.png";
 import lady from "../../public/img/lady.svg";
 import edit from "../../public/img/edit.svg";
 import caret from "../../public/img/caret.svg";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { getBeneficiary, getUserProfile } from "../../store/users/userService";
+
+import { Collapse } from 'antd';
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const userName = user?.username?.split(" ")[0] || "";
+  const [bankDetails, setBanDetails] = useState({})
+  const [userDetails, setUserDetails] = useState({})
+
+  useEffect(()=>{
+    dispatch(getBeneficiary())
+    .unwrap()
+    .then((response) => {
+      setBanDetails(response?.$values)
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+      toastify.alertError("Could not get Profile data", 300)
+    });
+    dispatch(getUserProfile())
+    .unwrap()
+    .then((response) => {
+      setUserDetails(response?.data)
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+      toastify.alertError("Could not get Profile data", 300)
+    });
+  },[])
+
+  const onChange = (key) => {
+    console.log(key);
+  };
+  const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`;
+
+const items = [
+  {
+    key: '1',
+    label: 'This is panel header 1',
+    children: <p>{text}</p>,
+  },
+  {
+    key: '2',
+    label: 'This is panel header 2',
+    children: <p>{text}</p>,
+  },
+  {
+    key: '3',
+    label: 'This is panel header 3',
+    children: <p>{text}</p>,
+  },
+];
   return (
     <section className="flex flex-col gap-12">
       {/* first section --Welcome buyer */}
@@ -135,6 +191,7 @@ const Dashboard = () => {
       <section className="card">
         <div className="flex justify-between shadow-sm p-6">
           <h1 className="font-bold text-2xl">Account Details</h1>
+          <Link href={"/editprofile"}>
           <Image
             src={edit}
             className="cursor-pointer"
@@ -142,6 +199,7 @@ const Dashboard = () => {
             height={25}
             alt="Edit Info"
           />
+          </Link>
         </div>
 
         <div className="p-6 flex flex-col gap-y-8 lg:flex-row">
@@ -150,13 +208,13 @@ const Dashboard = () => {
             <h1 className="font-bold text-lg mb-4">Personal Information</h1>
             <ul className="space-y-4">
               {[
-                { label: "Name", value: user?.fullname },
-                { label: "Email", value: user?.email },
+                { label: "Name", value: userDetails?.fullname || "Not Provided"},
+                { label: "Email", value: userDetails?.email || "Not Provided"},
                 {
                   label: "WhatsApp No",
-                  value: user?.phoneNumber || "Not Provided",
+                  value: userDetails?.phoneNumber || "Not Provided",
                 },
-                { label: "Address", value: "No 5, Idumota Lagos, Nigeria" },
+                { label: "Address", value: userDetails?.address || "Not Provided" },
               ].map(({ label, value }) => (
                 <li
                   key={label}
@@ -172,21 +230,30 @@ const Dashboard = () => {
           {/* Bank Information Section */}
           <div className="md:basis-1/2">
             <h1 className="font-bold text-lg mb-4">Bank Information</h1>
-            <ul className="space-y-4">
-              {[
-                { label: "Bank Name", value: "Not Provided" },
-                { label: "Account Name", value: "Not Provided" },
-                { label: "Account Number", value: "Not Provided" },
-              ].map(({ label, value }) => (
-                <li
-                  key={label}
-                  className="flex sm:items-center text-sm space-x-2 sm:space-x-4"
-                >
-                  <h2 className="font-bold text-md">{label}:</h2>
-                  <span className="text-gray-700">{value}</span>
-                </li>
-              ))}
-            </ul>
+            {bankDetails?.length > 0 ? (
+    <Collapse defaultActiveKey={['0']} onChange={onChange}>
+      {bankDetails.map((detail, index) => (
+        <Collapse.Panel 
+          header={`${detail.bankName || "Unknown"}`} 
+          key={index}
+        >
+          <ul className="space-y-2">
+            <li>
+              <strong>Bank Name:</strong> {detail.bankName || "Not Provided"}
+            </li>
+            <li>
+              <strong>Account Name:</strong> {detail.accountName || "Not Provided"}
+            </li>
+            <li>
+              <strong>Account Number:</strong> {detail.accountNumber || "Not Provided"}
+            </li>
+          </ul>
+        </Collapse.Panel>
+      ))}
+    </Collapse>
+  ) : (
+    <p className="text-gray-700">No Bank Information Available</p>
+  )}
           </div>
         </div>
       </section>

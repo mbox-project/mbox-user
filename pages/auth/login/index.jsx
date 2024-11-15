@@ -31,7 +31,11 @@ const Login = () => {
   const { email, password, rememberMe } = loginData;
 
   const onChangeInput = (e) => {
-    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+    const { name, type, checked, value } = e.target;
+    setLoginData({
+      ...loginData,
+      [name]: type === "checkbox" ? checked : value,
+    });
   };
 
   const onSubmitHandler = (e) => {
@@ -123,7 +127,7 @@ const Login = () => {
                   type="checkbox"
                   className="cursor-pointer"
                   name="rememberMe"
-                  required={false}
+                  
                   value={rememberMe}
                   onChange={onChangeInput}
                 />

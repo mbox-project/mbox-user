@@ -13,16 +13,17 @@ import { getUserProfile } from "../../store/users/userService";
 const index = () => {
   const dispatch = useDispatch();
   const { isLoading, user } = useSelector((state) => state.auth);
+  const [userData, setUserData] = useState({});
   const [data, setData] = useState({
-    userId: user?.userId,
+    id: "",
     fullname: "",
     email: "",
-    accountNumber: "",
-    bankName: "",
-    accountName: "",
     gender: "",
     profilePicture:"",
+    role: "",
+    phoneNumber:""
   });
+
   const [vendorData, setVendorData] = useState({
     userId: user?.userId,
     accountName: vendorData?.accountName,
@@ -46,7 +47,7 @@ const index = () => {
       dispatch(getUserProfile())
       .unwrap()
       .then((response) => {
-        setData(response?.data)
+        setUserData(response?.data)
         console.log(response)
       })
       .catch((error) => {
@@ -55,9 +56,23 @@ const index = () => {
       });
     }
    
-
   },[user, dispatch])
   const role = useSelector(selectRole);
+
+  useEffect(() => {
+    if (userData) {
+      setData({
+        id: userData?.id || "",
+        fullname: userData?.fullname || "",
+        email: userData?.email || "",
+        gender: userData?.gender || "",
+        role: userData?.role || "",
+        phoneNumber: userData?.phoneNumber || "",
+        profilePicture: userData?.profilePicture || "",
+      });
+    }
+  }, [userData]);
+
   return (
     <>
       <Layout>
@@ -67,7 +82,7 @@ const index = () => {
         {role === "vendor" ? (
           <VendorEditProfile data={vendorData} setData={setVendorData} />
         ) : (
-          <EditProfile data={data} setData={setData} />
+          <EditProfile data={data} setData={setData} userData={userData} />
         )}
       </Layout>
     </>

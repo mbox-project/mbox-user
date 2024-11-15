@@ -2,7 +2,7 @@ import React from "react";
 import Label from "../Label";
 import { useState, useEffect } from "react";
 import SearchSelect from "../combobox";
-import { banks } from "../data";
+//import { banks } from "../data";
 import { BsFillCameraFill } from "react-icons/bs";
 import { BiEditAlt, BiTrashAlt } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,19 +15,16 @@ import Image from "next/image";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import {
+  addUserBeneficiary,
+  getBankList,
   getUserProfile,
   ResetUserPassword,
   UpdateUserProfile,
 } from "../../store/users/userService";
 
-export const PersonalDetails = ({ data, setData, setActiveKey }) => {
+export const PersonalDetails = ({ data, setData,userData, setActiveKey }) => {
   const dispatch = useDispatch();
-  const [pass, setPass] = useState({
-    oldPassowrd: "",
-    newPassowrd: "",
-    confirmPassword: "",
-  });
-  const [passLoad, setPassLoad] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [res, setRes] = useState("");
 
@@ -47,28 +44,22 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
     }));
   };
 
-  const handlePasswordChange = (e) => {
-    const { id, value } = e.target;
-    setPass((prevData) => ({
-      ...prevData,
-      [id]: value,
-    }));
-  };
-
-  const changePassword = () => {
-    setPassLoad(true);
-    dispatch(ResetUserPassword(pass))
+  const handleSubmit = (e, data) => {
+    e.preventDefault();
+    console.log(data);
+    setLoading(true);
+    dispatch(UpdateUserProfile(data))
       .unwrap()
-      .then(() => {
-        message.success("Password changed");
-        setPassLoad(false);
+      .then((action) => {
+        toastify.alertSuccess("Updated profile successfully");
+        dispatch(getUserProfile());
+        setLoading(false);
       })
-      .catch(() => {
-        message.error("password change failed");
-        setPassLoad(false);
+      .catch((error) => {
+        toastify.alertError(error.name || "Update failed", 3000);
+        setLoading(false);
       });
   };
-
   return (
     <form>
       <section
@@ -99,7 +90,7 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
             </label>
             <input
               type="text"
-              id="name"
+              id="fullname"
               className="bg-gray-50 border text-gray-900 text-sm rounded-md block w-full p-2.5"
               placeHolder="Taylor Mason"
               value={data?.fullname || ""}
@@ -133,7 +124,7 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               containerClass="!w-full !h-full "
               inputClass="phone-input-input !w-full !border-2 !border-[#9F9F9F] !md:rounded-md !h-[43px]"
               className=" "
-              value={data.phoneNumber}
+              value={data?.phoneNumber}
               onChange={(value) =>
                 setData((prevState) => ({
                   ...prevState,
@@ -149,13 +140,13 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
             </label>
             <select
               id="gender"
-              value={data.gender}
+              value={data?.gender}
               onChange={handleInputChange}
               className="bg-gray-50 border text-sm rounded-md block w-full p-2.5 hover:cursor-pointer"
             >
               <option value="">Select an option</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
             </select>
           </div>
           <div className="mb-2">
@@ -172,6 +163,67 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               required
             />
           </div>
+        </div>
+      </section>
+      <div className="flex justify-end mt-5">
+        <button
+          onClick={(e) => handleSubmit(e, data)}
+          className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
+        >
+          {loading ? (
+              <LoadingOutlined style={{ fontSize: 24 }} spin />
+            ) : (
+              "Update"
+            )}
+        </button>
+      </div>
+    </form>
+  );
+};
+
+export const PasswordDetails = ({ setActiveKey }) => {
+  const dispatch = useDispatch();
+  const [pass, setPass] = useState({
+    oldPassowrd: "",
+    newPassowrd: "",
+    confirmPassword: "",
+  });
+  const [passLoad, setPassLoad] = useState(false);
+
+  
+
+  const handlePasswordChange = (e) => {
+    const { id, value } = e.target;
+    setPass((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const changePassword = (e) => {
+    e.preventDefault();
+    setPassLoad(true);
+    dispatch(ResetUserPassword(pass))
+      .unwrap()
+      .then(() => {
+        message.success("Password changed");
+        setPassLoad(false);
+      })
+      .catch(() => {
+        message.error("password change failed");
+        setPassLoad(false);
+      });
+  };
+
+  return (
+    <form>
+      <section
+        className="card flex flex-col py-2 !px-7"
+        style={{ borderRadius: "0px" }}
+      >
+        
+        <div className="flex flex-col gap-5">
+          
           {/************PASSWORD CHANGE********/}
           <div className="mb-2">
             <label
@@ -223,41 +275,49 @@ export const PersonalDetails = ({ data, setData, setActiveKey }) => {
               onChange={handlePasswordChange}
               required
             />
-            <div className=" w-full flex justify-end p-3">
-              <span
-                className=" font-medium text-sm underline text-red-500 cursor-pointer"
-                onClick={changePassword}
-              >
-                Change Password
-              </span>
-              <LoadingOutlined
-                style={{ fontSize: 20 }}
-                spin
-                className={`${passLoad ? "" : " hidden"}`}
-              />
-            </div>
+           
           </div>
         </div>
       </section>
       <div className="flex justify-end mt-5">
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            setActiveKey("2");
-          }}
+          onClick={changePassword}
           className="text-lg p-3 bg-brightRed text-white rounded-md w-44"
         >
-          Next
+           {passLoad ? (
+              <LoadingOutlined style={{ fontSize: 24 }} spin />
+            ) : (
+              "Change Password"
+            )}
         </button>
       </div>
     </form>
   );
 };
 
-export const BankInformation = ({ data, setData }) => {
+export const BankInformation = () => {
   const dispatch = useDispatch();
+  const [banks, setBanks] = useState([]);
   const [bankName, setBankName] = useState("");
   const [loading, setLoading] = useState(false);
+  const [data, setData] = useState({
+    accountNumber: "",
+    bankName: "",
+    bankCode:""
+    //accountName: "",
+  });
+
+  useEffect(()=>{
+    dispatch(getBankList())
+    .unwrap()
+    .then((res) => {
+      setBanks(res?.data?.$values)
+    })
+    .catch((error) => {
+      toastify.alertError(error, 3000);
+      setLoading(false);
+    });
+  },[])
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
@@ -272,6 +332,7 @@ export const BankInformation = ({ data, setData }) => {
     setData((prev) => ({
       ...prev,
       bankName: selectedBank.name, // Assuming 'name' is the property containing the bank name
+      bankCode: selectedBank.code, // Assuming 'code' is the property containing the bank code
     }));
     console.log(bankName);
   };
@@ -279,15 +340,15 @@ export const BankInformation = ({ data, setData }) => {
     e.preventDefault();
     console.log(data);
     setLoading(true);
-    dispatch(UpdateUserProfile(data))
+    dispatch(addUserBeneficiary(data))
       .unwrap()
       .then((action) => {
-        toastify.alertSuccess("Updated profile successfully");
+        toastify.alertSuccess("Beneficiary added");
         dispatch(getUserProfile());
         setLoading(false);
       })
       .catch((error) => {
-        toastify.alertError(error, 3000);
+        toastify.alertError(error.message || "An error occurred", 3000);
         setLoading(false);
       });
   };
@@ -365,7 +426,7 @@ export const BankInformation = ({ data, setData }) => {
             {loading ? (
               <LoadingOutlined style={{ fontSize: 24 }} spin />
             ) : (
-              "Save"
+              "add Beneficiary"
             )}
           </button>
         </div>

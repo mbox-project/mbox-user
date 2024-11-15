@@ -49,6 +49,27 @@ export const UpdateUserProfile = createAsyncThunk(
     return response.data;
   }
 );
+export const addUserBeneficiary = createAsyncThunk(
+  "user/addBeneficiary",
+  async(body) => {
+    const response = await postApi("Beneficiary/add", body);
+    return response.data;
+  }
+);
+export const getBeneficiary = createAsyncThunk(
+  "user/getBeneficiary",
+  async() => {
+    const response = await getApi("Beneficiary/all");
+    return response.data;
+  }
+);
+export const getBankList = createAsyncThunk(
+  "user/getBankList",
+  async() => {
+    const response = await getApi("Beneficiary/banklist");
+    return response.data;
+  }
+);
 
 export const ResetUserPassword = createAsyncThunk(
   "user/resetUserPassword",
