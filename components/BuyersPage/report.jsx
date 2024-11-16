@@ -49,13 +49,13 @@ const BuyerReport = () => {
     .then(()=> (
       dispatch(getReport()).unwrap()
       .then((res) => {
-        setReport(res.data?.$values || []);
+        setReport(res.data?.$values || []); 
       })
       .catch((error) => console.log(error)),
       CustomAlertModal.show("success", "Report Vendor","You have successfully reported this vendor"),
       setLoading(false)
      )).catch((err)=> (
-      CustomAlertModal.show("error", "Vendor Report",err),
+      CustomAlertModal.show("error", "Vendor Report",err?.name),
       setLoading(false)
      ))
   };
