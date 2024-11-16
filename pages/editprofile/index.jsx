@@ -21,7 +21,8 @@ const index = () => {
     gender: "",
     profilePicture:"",
     role: "",
-    phoneNumber:""
+    phoneNumber:"",
+    address:""
   });
 
   const [vendorData, setVendorData] = useState({

@@ -55,7 +55,7 @@ const BuyerReport = () => {
       CustomAlertModal.show("success", "Report Vendor","You have successfully reported this vendor"),
       setLoading(false)
      )).catch((err)=> (
-      CustomAlertModal.show("error", "Vendor Report",err),
+      CustomAlertModal.show("error", "Vendor Report",err?.name),
       setLoading(false)
      ))
   };
