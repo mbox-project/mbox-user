@@ -18,6 +18,7 @@ import { FiArrowDownRight, FiArrowUpRight } from "react-icons/fi";
 import DailyActiveBuyersChart from "./DailyActiveBuyersChart";
 import DailyStoreVisitsChart from "./DailyStoreVisitsChart";
 import InventoryManagementChart from "./InventoryManagementChart";
+import { getVendor } from "../../store/auth/vendorService";
 
 const MerchantDashboard = () => {
   const dispatch = useDispatch();
@@ -31,9 +32,8 @@ const MerchantDashboard = () => {
     lastWeek: {},
     lastMonth: {},
   });
-  const username = useSelector((state) => state.auth.user.username)?.split(
-    " "
-  )[0];
+  const [vendorName, setVendorName] = useState(""); 
+  const username = vendorName?.split(" " )[0];
   const { push } = useRouter();
   const generateFlyer = () => {
     setLoading(true);
@@ -77,6 +77,12 @@ const MerchantDashboard = () => {
         console.log(res);
       })
       .catch();
+      dispatch(getVendor())
+      .unwrap()
+      .then((res)=>{
+        setVendorName(res?.data?.accountName);
+        console.log(res)
+  });
   }, [dispatch]);
 
   return (
@@ -96,7 +102,7 @@ const MerchantDashboard = () => {
                 <h2 className="text-xl md:text-3xl font-bold break-words">
                   Hello, {username}
                 </h2>
-                <p>Welcome back!</p>
+                <p>Welcome back Vendor!</p>
               </span>
               <button
                 onClick={() => {
