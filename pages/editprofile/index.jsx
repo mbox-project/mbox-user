@@ -69,6 +69,7 @@ const index = () => {
         gender: userData?.gender || "",
         role: userData?.role || "",
         phoneNumber: userData?.phoneNumber || "",
+        address: userData?.address || "",
         profilePicture: userData?.profilePicture || "",
       });
     }
