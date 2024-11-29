@@ -26,14 +26,9 @@ const MerchantDashboard = () => {
   const [flyerImage, setFlyerImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [imageGenerated, setImageGenerated] = useState(false);
-  const [vendoranalytics, setVendorAnalytics] = useState({
-    thisWeek: {},
-    thisMonth: {},
-    lastWeek: {},
-    lastMonth: {},
-  });
-  const [vendorName, setVendorName] = useState(""); 
-  const username = vendorName?.split(" " )[0];
+  const [vendoranalytics, setVendorAnalytics] = useState();
+  const [vendorName, setVendorName] = useState("");
+  const username = vendorName?.split(" ")[0];
   const { push } = useRouter();
   const generateFlyer = () => {
     setLoading(true);
@@ -75,14 +70,15 @@ const MerchantDashboard = () => {
       .unwrap()
       .then((res) => {
         console.log(res);
+        setVendorAnalytics(res);
       })
       .catch();
-      dispatch(getVendor())
+    dispatch(getVendor())
       .unwrap()
-      .then((res)=>{
+      .then((res) => {
         setVendorName(res?.data?.accountName);
-        console.log(res)
-  });
+        console.log(res);
+      });
   }, [dispatch]);
 
   return (
@@ -258,7 +254,7 @@ const MerchantDashboard = () => {
                     <div className="space-y-3">
                       <div className="py-6 px-4 space-y-2 bg-white bg-opacity-15 rounded-lg text-center">
                         <h3 className="text-2xl md:text-4xl font-bold">
-                          14,766
+                          {vendoranalytics?.currentWeekRevenue}
                         </h3>
                         <h4>Naira</h4>
                       </div>
@@ -266,16 +262,29 @@ const MerchantDashboard = () => {
                         <p className="capitalize text-white/60 text-sm">
                           This week
                         </p>
-                        <span className="text-[#F90808] font-semibold flex items-center justify-center">
-                          3.65%
-                          <FiArrowDownRight className="size-6" />
+                        <span
+                          className={`
+                        ${
+                          vendoranalytics?.currentWeekGrowthColor === "green"
+                            ? "text-[#26A17B]"
+                            : "text-[#F90808]"
+                        }
+                           font-semibold flex items-center justify-center`}
+                        >
+                          {vendoranalytics?.currentWeekGrowthRate} %
+                          {vendoranalytics?.currentWeekGrowthColor ===
+                          "green" ? (
+                            <FiArrowUpRight className="size-6" />
+                          ) : (
+                            <FiArrowDownRight className="size-6" />
+                          )}
                         </span>
                       </div>
                     </div>
                     <div className="space-y-3">
                       <div className="py-6 px-4 space-y-2 bg-white bg-opacity-15 rounded-lg text-center">
                         <h3 className="text-2xl md:text-4xl font-bold">
-                          15,766
+                          {vendoranalytics?.lastWeekRevenue}
                         </h3>
                         <h4>Naira</h4>
                       </div>
@@ -283,9 +292,21 @@ const MerchantDashboard = () => {
                         <p className="capitalize text-white/60 text-sm">
                           last week
                         </p>
-                        <span className="text-[#26A17B] font-semibold flex items-center justify-center">
-                          5.85%
-                          <FiArrowUpRight className="size-6" />
+                        <span className={`
+                          ${
+                          vendoranalytics?.lastWeekGrowthColor === "green"
+                            ? "text-[#26A17B]"
+                            : "text-[#F90808]"
+                        }
+                           font-semibold flex items-center justify-center
+                          `}>
+                        {vendoranalytics?.lastWeekGrowthRate}% 
+                          {vendoranalytics?.lastWeekGrowthColor ===
+                          "green" ? (
+                            <FiArrowUpRight className="size-6" />
+                          ) : (
+                            <FiArrowDownRight className="size-6" />
+                          )}
                         </span>
                       </div>
                     </div>
@@ -300,30 +321,48 @@ const MerchantDashboard = () => {
                     <div className="space-y-3">
                       <div className="py-6 px-4 space-y-2 bg-[#EFEFEF] rounded-lg text-center">
                         <h3 className="text-2xl md:text-4xl font-bold">
-                          14,766
+                        {vendoranalytics?.currentMonthRevenue} 
                         </h3>
                         <h4>Naira</h4>
                       </div>
                       <div className="text-center text-lg">
                         <p className="capitalize text-sm">This Month</p>
-                        <span className="text-[#F90808] font-semibold flex items-center justify-center">
-                          3.65%
-                          <FiArrowDownRight className="size-6" />
+                        <span className={`
+                        ${
+                          vendoranalytics?.currentMonthGrowthColor === "green"
+                            ? "text-[#26A17B]"
+                            : "text-[#F90808]"
+                        }
+                           font-semibold flex items-center justify-center
+                          `}>
+                        {vendoranalytics?.currentMonthGrowthRate}% 
+                          {vendoranalytics?.currentMonthGrowthColor ===
+                          "green" ? (
+                            <FiArrowUpRight className="size-6" />
+                          ) : (
+                            <FiArrowDownRight className="size-6" />
+                          )}
                         </span>
                       </div>
                     </div>
                     <div className="space-y-3">
                       <div className="py-6 px-4 space-y-2 bg-[#EFEFEF] rounded-lg text-center">
                         <h3 className="text-2xl md:text-4xl font-bold">
-                          45,766
+                        {vendoranalytics?.lastMonthRevenue} 
                         </h3>
                         <h4>Naira</h4>
                       </div>
                       <div className="text-center text-lg">
                         <p className="capitalize text-sm">last Month</p>
                         <span className="text-[#26A17B] font-semibold flex items-center justify-center">
-                          26.34%
-                          <FiArrowUpRight className="size-6" />
+                        {vendoranalytics?.lastMonthGrowthRate}%
+                        {vendoranalytics?.lastMonthGrowthColor ===
+                          "green" ? (
+                            <FiArrowUpRight className="size-6" />
+                          ) : (
+                            <FiArrowDownRight className="size-6" />
+                          )}
+                          
                         </span>
                       </div>
                     </div>
