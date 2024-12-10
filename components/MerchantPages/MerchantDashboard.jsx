@@ -241,15 +241,20 @@ console.log(data)
                   Top Selling Items
                 </h2>
 
-                {
-                  topSelling.map((item, index)=>(
-                    <ul className="list-decimal list-inside flex flex-col gap-4 text-[#444444]" key={index}>
-                       <li className="text-lg bg-[#FAFAFA] px-4 py-2 rounded-sm">
-                    {item.name}
-                  </li>
-                      </ul>
-                  ))
-                }
+                {Array.isArray(topSelling) && topSelling.length > 0 ? (
+        topSelling.map((item, index) => (
+          <ul
+            className="list-decimal list-inside flex flex-col gap-4 text-[#444444]"
+            key={index}
+          >
+            <li className="text-lg bg-[#FAFAFA] px-4 py-2 rounded-sm">
+              {item.name}
+            </li>
+          </ul>
+        ))
+      ) : (
+        <p className="text-[#444444] text-lg">No top-selling items available.</p>
+      )}
 
               </div>
             </div>

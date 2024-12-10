@@ -132,15 +132,21 @@ const Dashboard = () => {
                 Top Items purchased
               </h6>
               <ul className="flex flex-col divide-y-2">
-                {TopPurchased?.map((item, index) => (
-                  <li
-                    className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600"
-                    key={index}
-                  >
-                    {item.productName}
-                    <Image src={caret} width={15} height={15} alt="profile" />
-                  </li>
-                ))}
+                {Array.isArray(TopPurchased) && TopPurchased.length > 0 ? (
+                  TopPurchased?.map((item, index) => (
+                    <li
+                      className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600"
+                      key={index}
+                    >
+                      {item.productName}
+                      <Image src={caret} width={15} height={15} alt="profile" />
+                    </li>
+                  ))
+                ) : (
+                  <p className="text-[#444444] text-lg">
+                    No active purchase available.
+                  </p>
+                )}
               </ul>
             </div>
           </div>
