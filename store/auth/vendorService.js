@@ -45,9 +45,7 @@ export const reportBuyer = createAsyncThunk(
       const response = await postApi(`Report/buyer`, body);
       return response.data;
     } catch (error) {
-      const message =
-        (error.response && error.response.data && error.response.data.message) ||
-        error.message ||
+      const message = error;
         error.toString();
       return thunkAPI.rejectWithValue(message);
     }
