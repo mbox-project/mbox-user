@@ -23,6 +23,7 @@
     "dayjs": "^1.11.11",
     "html-to-image": "^1.11.11",
     "html2canvas": "^1.4.1",
+    "market-box": "file:",
     "moment": "^2.30.1",
     "multer": "^1.4.5-lts.1",
     "next": "12.1.6",

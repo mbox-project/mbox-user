@@ -54,10 +54,12 @@ const BuyerReport = () => {
       .catch((error) => console.log(error)),
       CustomAlertModal.show("success", "Report Vendor","You have successfully reported this vendor"),
       setLoading(false)
-     )).catch((err)=> (
-      CustomAlertModal.show("error", "Vendor Report",err?.name),
+     )).catch((err)=> {
+      console.log(err?.response.data)
+      CustomAlertModal.show("error", "Vendor Report",err?.response.data),
       setLoading(false)
-     ))
+     
+     })
   };
 
   function formatDateTime(isoString) {
@@ -86,7 +88,7 @@ const BuyerReport = () => {
 
           <section className="rounded-b-3xl">
             <form onSubmit={handleEndorseForm}>
-              <div className="py-5 md:px-10 poppins rounded-sm">
+              <div className="py-5 rounded-sm md:px-10 poppins">
 
                 <div className="px-4 pt-3">
                   <Label

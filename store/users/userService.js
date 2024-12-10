@@ -7,20 +7,25 @@ import {
 
 
 
+
 export const reportVendor = createAsyncThunk(
   "user/reportVendor",
-  async (body) => {
-    const response = await postApi("Report/businss", body);
-    return response.data;
+  async (body, thunkAPI) => {
+    try {
+      const response = await postApi(`Report/businss`, body);
+      return response.data;
+    } catch (error) {
+      const message = error;
+      error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
 );
-export const getUserProfile = createAsyncThunk(
-  "user/userProfile",
-  async() => {
-    const response = await getApi("User");
-    return response.data;
-  }
-);
+export const getUserProfile = createAsyncThunk("user/userProfile", async () => {
+  const response = await getApi("User");
+  return response.data;
+});
+
 export const getUserById = createAsyncThunk(
   "user/userById",
   async(id) => {

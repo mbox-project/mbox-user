@@ -11,6 +11,8 @@ import invoice from "./invoice/invoiceSlice";
 import wallet from "./fundwallet/walletSlice";
 import product from "./product/productSlice";
 import deals from "./deals/dealsSlice"
+import vendorAnalytic from "./dashboardAnalytics/vendorSlice";
+import buyerAnalytic from "./dashboardAnalytics/buyerSlice";
 
 // Adding all the reducers to the global Store..
 const rootReducer = combineReducers({
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
   wallet,
   product,
   deals,
+  vendorAnalytic,
+  buyerAnalytic,
 });
 
 const masterReducer = (state, action) => {

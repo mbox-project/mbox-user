@@ -19,6 +19,7 @@ import DailyActiveBuyersChart from "./DailyActiveBuyersChart";
 import DailyStoreVisitsChart from "./DailyStoreVisitsChart";
 import InventoryManagementChart from "./InventoryManagementChart";
 import { getVendor } from "../../store/auth/vendorService";
+import { getVendorActiveBuys, getVendorTimeSeries, getVendorTopBuyer, getVendorTopSales, getVendorTopSelling, getVendorTopSellingItems, getVendorTotalRev } from "../../store/dashboardAnalytics/vendorAnalytics";
 
 const MerchantDashboard = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ const MerchantDashboard = () => {
   const [vendorName, setVendorName] = useState("");
   const username = vendorName?.split(" ")[0];
   const { push } = useRouter();
+
+  const topSelling = useSelector((state) => state.vendorAnalytic.VendorTopSelling);//Top selling items
+  const activeBuys = useSelector((state) => state.vendorAnalytic.VendorTimeSeries);//Active buy
+  
   const generateFlyer = () => {
     setLoading(true);
     toPng(document.querySelector(".flyer"))
@@ -79,14 +84,36 @@ const MerchantDashboard = () => {
         setVendorName(res?.data?.accountName);
         console.log(res);
       });
+
+      dispatch(getVendorTopSellingItems())
+      dispatch(getVendorTopSelling())
+      dispatch(getVendorActiveBuys(0))
+      dispatch(getVendorTimeSeries(0)).unwrap()
+      .then((res)=>(
+        console.log(res)
+      ));
+      dispatch(getVendorTopBuyer())
+      dispatch(getVendorTopSales())
+      dispatch(getVendorTotalRev())
   }, [dispatch]);
 
+  // Array for days of the week
+const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+
+// Map the response to the desired structure
+const data = activeBuys?.map(item => {
+  const date = new Date(item.date);
+  const day = daysOfWeek[date.getDay()]; // Get the day of the week
+  return { day, value: item.totalSales };
+});
+
+console.log(data)
   return (
     <>
       {showFlyer ? (
         <>
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 pt-8 pb-6">
-            <div className="flex flex-col gap-4 bg-white rounded-lg p-8 items-center justify-between mt10 shadow-sm  hover:shadow-md">
+          <section className="grid grid-cols-1 gap-4 pt-8 pb-6 lg:grid-cols-2 md:gap-8">
+            <div className="flex flex-col items-center justify-between gap-4 p-8 bg-white rounded-lg shadow-sm mt10 hover:shadow-md">
               <Image
                 src={emoji}
                 height={80}
@@ -95,7 +122,7 @@ const MerchantDashboard = () => {
                 alt="emoji"
               />
               <span className="flex flex-col gap-3 text-center">
-                <h2 className="text-xl md:text-3xl font-bold break-words">
+                <h2 className="text-xl font-bold break-words md:text-3xl">
                   Hello, {username}
                 </h2>
                 <p>Welcome back Vendor!</p>
@@ -125,8 +152,8 @@ const MerchantDashboard = () => {
             </div>
           </section>
 
-          <section className="px-2 sm:px-6 py-8 bg-white rounded-md space-y-4 md:space-y-12">
-            <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
+          <section className="px-2 py-8 space-y-4 bg-white rounded-md sm:px-6 md:space-y-12">
+            <div className="grid gap-6 lg:grid-cols-2 md:gap-12">
               <div className="flex flex-col gap-8">
                 {/* Buyers Overview */}
                 <div className="space-y-4">
@@ -134,11 +161,11 @@ const MerchantDashboard = () => {
                     Buyers Overview
                   </h2>
                   <div className="p-6 rounded-3xl shadow-xl shadow-[#03469412] bg-[#034694] flex flex-col gap-6 text-white">
-                    <h3 className="text-white/75 text-xl sm:text-2xl font-medium">
+                    <h3 className="text-xl font-medium text-white/75 sm:text-2xl">
                       Buyers maintenance overview
                     </h3>
-                    <div className="grid sm:grid-cols-3 gap-4 gap-y-8 sm:gap-8">
-                      <div className="flex flex-col gap-6 items-center justify-between text-center">
+                    <div className="grid gap-4 sm:grid-cols-3 gap-y-8 sm:gap-8">
+                      <div className="flex flex-col items-center justify-between gap-6 text-center">
                         <Image
                           src="/img/merchant-dashboard/calendar.svg"
                           alt="calendar"
@@ -146,7 +173,7 @@ const MerchantDashboard = () => {
                           height={44}
                         />
                         <div className="space-y-3">
-                          <h3 className="text-2xl md:text-4xl font-bold uppercase">
+                          <h3 className="text-2xl font-bold uppercase md:text-4xl">
                             47.6K
                           </h3>
 
@@ -157,7 +184,7 @@ const MerchantDashboard = () => {
                         </div>
                       </div>
 
-                      <div className="flex flex-col gap-6 items-center justify-between text-center">
+                      <div className="flex flex-col items-center justify-between gap-6 text-center">
                         <Image
                           src="/img/merchant-dashboard/week.svg"
                           alt="calendar"
@@ -165,7 +192,7 @@ const MerchantDashboard = () => {
                           height={22}
                         />
                         <div className="space-y-3">
-                          <h3 className="text-2xl md:text-4xl font-bold uppercase">
+                          <h3 className="text-2xl font-bold uppercase md:text-4xl">
                             290K
                           </h3>
 
@@ -176,7 +203,7 @@ const MerchantDashboard = () => {
                         </div>
                       </div>
 
-                      <div className="flex flex-col gap-6 items-center justify-between text-center">
+                      <div className="flex flex-col items-center justify-between gap-6 text-center">
                         <Image
                           src="/img/merchant-dashboard/icon-group.svg"
                           alt="calendar"
@@ -184,7 +211,7 @@ const MerchantDashboard = () => {
                           height={44}
                         />
                         <div className="space-y-3">
-                          <h3 className="text-2xl md:text-4xl font-bold uppercase">
+                          <h3 className="text-2xl font-bold uppercase md:text-4xl">
                             770K
                           </h3>
 
@@ -204,39 +231,26 @@ const MerchantDashboard = () => {
                     Daily Active Buyers
                   </h3>
 
-                  <DailyActiveBuyersChart />
+                  <DailyActiveBuyersChart data={data} />
                 </div>
               </div>
 
               {/* Top Selling Items */}
-              <div className="space-y-4">
+              <div className="p-5 space-y-4 shadow-xl">
                 <h2 className="text-2xl font-semibold text-[#444444]">
                   Top Selling Items
                 </h2>
 
-                <ul className="list-decimal list-inside flex flex-col gap-4 text-[#444444]">
-                  <li className="text-lg bg-[#FAFAFA] px-4 py-2 rounded-sm">
-                    Longshort Sneakers
+                {
+                  topSelling.map((item, index)=>(
+                    <ul className="list-decimal list-inside flex flex-col gap-4 text-[#444444]" key={index}>
+                       <li className="text-lg bg-[#FAFAFA] px-4 py-2 rounded-sm">
+                    {item.name}
                   </li>
-                  <li className="text-lg bg-[#FAFAFA] px-4 py-2 rounded-sm">
-                    Modern XLE banzo El-caporal
-                  </li>
-                  <li className="text-lg bg-[#FAFAFA] px-4 py-2 rounded-sm">
-                    Mummy Bisola Skincare
-                  </li>
-                  <li className="text-lg bg-[#FAFAFA] px-4 py-2 rounded-sm">
-                    Warizi Bata tanatana
-                  </li>
-                  <li className="text-lg bg-[#FAFAFA] px-4 py-2 rounded-sm">
-                    Vero’s Massage Oil limited
-                  </li>
-                  <li className="text-lg bg-[#FAFAFA] px-4 py-2 rounded-sm">
-                    Think Like A Man Sanders Four
-                  </li>
-                  <li className="text-lg bg-[#FAFAFA] px-4 py-2 rounded-sm">
-                    Artificial Cargo Boxers
-                  </li>
-                </ul>
+                      </ul>
+                  ))
+                }
+
               </div>
             </div>
 
@@ -245,21 +259,21 @@ const MerchantDashboard = () => {
               <h2 className="text-2xl font-semibold text-[#444444]">
                 Revenue Comparisons
               </h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+              <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
                 <div className="p-6 rounded-3xl shadow-xl shadow-[#49154612] bg-brightPurple flex flex-col gap-6 text-white">
-                  <h3 className="text-white/75 text-xl sm:text-2xl font-medium">
+                  <h3 className="text-xl font-medium text-white/75 sm:text-2xl">
                     Weekly Revenue Generated
                   </h3>
-                  <div className="grid sm:grid-cols-2 gap-5 sm:gap-10">
+                  <div className="grid gap-5 sm:grid-cols-2 sm:gap-10">
                     <div className="space-y-3">
-                      <div className="py-6 px-4 space-y-2 bg-white bg-opacity-15 rounded-lg text-center">
-                        <h3 className="text-2xl md:text-4xl font-bold">
+                      <div className="px-4 py-6 space-y-2 text-center bg-white rounded-lg bg-opacity-15">
+                        <h3 className="text-2xl font-bold md:text-4xl">
                           {vendoranalytics?.currentWeekRevenue}
                         </h3>
                         <h4>Naira</h4>
                       </div>
-                      <div className="text-center text-lg">
-                        <p className="capitalize text-white/60 text-sm">
+                      <div className="text-lg text-center">
+                        <p className="text-sm capitalize text-white/60">
                           This week
                         </p>
                         <span
@@ -282,14 +296,14 @@ const MerchantDashboard = () => {
                       </div>
                     </div>
                     <div className="space-y-3">
-                      <div className="py-6 px-4 space-y-2 bg-white bg-opacity-15 rounded-lg text-center">
-                        <h3 className="text-2xl md:text-4xl font-bold">
+                      <div className="px-4 py-6 space-y-2 text-center bg-white rounded-lg bg-opacity-15">
+                        <h3 className="text-2xl font-bold md:text-4xl">
                           {vendoranalytics?.lastWeekRevenue}
                         </h3>
                         <h4>Naira</h4>
                       </div>
-                      <div className="text-center text-lg">
-                        <p className="capitalize text-white/60 text-sm">
+                      <div className="text-lg text-center">
+                        <p className="text-sm capitalize text-white/60">
                           last week
                         </p>
                         <span className={`
@@ -317,16 +331,16 @@ const MerchantDashboard = () => {
                   <h3 className="text-[#444444] text-xl sm:text-2xl font-medium">
                     Total Revenue Generated
                   </h3>
-                  <div className="grid sm:grid-cols-2 gap-5 sm:gap-10">
+                  <div className="grid gap-5 sm:grid-cols-2 sm:gap-10">
                     <div className="space-y-3">
                       <div className="py-6 px-4 space-y-2 bg-[#EFEFEF] rounded-lg text-center">
-                        <h3 className="text-2xl md:text-4xl font-bold">
+                        <h3 className="text-2xl font-bold md:text-4xl">
                         {vendoranalytics?.currentMonthRevenue} 
                         </h3>
                         <h4>Naira</h4>
                       </div>
-                      <div className="text-center text-lg">
-                        <p className="capitalize text-sm">This Month</p>
+                      <div className="text-lg text-center">
+                        <p className="text-sm capitalize">This Month</p>
                         <span className={`
                         ${
                           vendoranalytics?.currentMonthGrowthColor === "green"
@@ -347,13 +361,13 @@ const MerchantDashboard = () => {
                     </div>
                     <div className="space-y-3">
                       <div className="py-6 px-4 space-y-2 bg-[#EFEFEF] rounded-lg text-center">
-                        <h3 className="text-2xl md:text-4xl font-bold">
+                        <h3 className="text-2xl font-bold md:text-4xl">
                         {vendoranalytics?.lastMonthRevenue} 
                         </h3>
                         <h4>Naira</h4>
                       </div>
-                      <div className="text-center text-lg">
-                        <p className="capitalize text-sm">last Month</p>
+                      <div className="text-lg text-center">
+                        <p className="text-sm capitalize">last Month</p>
                         <span className="text-[#26A17B] font-semibold flex items-center justify-center">
                         {vendoranalytics?.lastMonthGrowthRate}%
                         {vendoranalytics?.lastMonthGrowthColor ===
@@ -372,12 +386,16 @@ const MerchantDashboard = () => {
             </div>
 
             {/* Store Stats */}
-            <div className="space-y-4">
+            
+           
+           
+            {/** 
+              <div className="space-y-4">
               <h2 className="text-2xl font-semibold text-[#444444]">
                 Store Stats
               </h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                {/* Daily Store Visits */}
+              <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+               
                 <div className="p-6 rounded-3xl flex flex-col gap-6 shadow-xl text-[#444444]">
                   <h3 className="text-[#444444] text-xl sm:text-2xl font-medium">
                     Daily Store Visits
@@ -386,7 +404,7 @@ const MerchantDashboard = () => {
                   <DailyStoreVisitsChart />
                 </div>
 
-                {/* Inventory Management */}
+               
                 <div className="p-6 rounded-3xl flex flex-col gap-6 shadow-xl text-[#444444]">
                   <h3 className="text-[#444444] text-xl sm:text-2xl font-medium">
                     Inventory Management
@@ -396,19 +414,20 @@ const MerchantDashboard = () => {
                 </div>
               </div>
             </div>
+            */}
           </section>
         </>
       ) : (
         <div>
           <button
             onClick={handleFlyerVisiblity}
-            className=" flex gap-2 items-center text-xl my-5"
+            className="flex items-center gap-2 my-5 text-xl "
           >
             {" "}
             <IoMdArrowRoundBack /> Back
           </button>
 
-          <div className=" flex flex-col md:flex-row gap-3 mb-5">
+          <div className="flex flex-col gap-3 mb-5 md:flex-row">
             <button
               onClick={generateFlyer}
               className="rounded-[4px] bg-[#491546] py-[12px] px-[48px] text-[16px] font-[500] text-[#E5E7EB]"

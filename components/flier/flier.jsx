@@ -47,9 +47,9 @@ const Flyer = () => {
       <div className="purple-background">
         <div className="text-content">
           <h1 className="endorse">ENDORSE</h1>
-          <h2 className=" marv leading-none">
+          <h2 className="leading-none marv">
             {loading === true ? (
-              <Skeleton rows={1} active className=" " title={false} />
+              <Skeleton rows={1} active className="" title={false} />
             ) : (
               <>
                 {" "}
@@ -68,7 +68,7 @@ const Flyer = () => {
           <p className="txt1">
             Where people buy and sell online with confidence
           </p>
-          <div className="circle-parent relative">
+          <div className="relative circle-parent">
             <Image src={tri} className=" tri-image" />
             <div className="white-circle">
               <div className=" inner-circle">
@@ -84,12 +84,12 @@ const Flyer = () => {
                 )}
               </div>
             </div>
-            <div className=" absolute right-3 md:right-10 top-0 ">
+            <div className="absolute top-0 right-3 md:right-10">
               <Image src={cross} className="" />
-              <Image src={cross} className=" " />
+              <Image src={cross} className="" />
             </div>
           </div>
-          <div className=" descripton-parent flex gap-2">
+          <div className="flex gap-2 descripton-parent">
             <p className=" descripton">
               {loading === true ? (
                 <Skeleton
@@ -107,7 +107,7 @@ const Flyer = () => {
           <Link href="" className="social-link">
             <FaFacebookF className="social-icon size-4" />
           </Link>
-          <p className="social">@mboxexpress</p>
+          
           <span className=" flex items-center text-[#feb808] gap-2 font-medium text-base">
             <FaXTwitter className=" p-1 bg-[#feb808] rounded-full" color="#4a1546" size={20} />
             <p>@Marketbox_ng</p>

@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
+const datas = [
   { day: "Mon", value: 10 },
   { day: "Tues", value: 20 },
   { day: "Wed", value: 30 },
@@ -19,16 +19,18 @@ const data = [
   { day: "Sun", value: 5 },
 ];
 
-const DailyActiveBuyersChart = () => {
+
+
+const DailyActiveBuyersChart = ({data}) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
         data={data}
-        margin={{ top: 20, right: 10, left: -30, bottom: 5 }}
+        margin={{ top: 20, right: 10, left: -25, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="day" />
-        <YAxis ticks={[0, 10, 20, 30, 40]} domain={[0, 40]} />
+        <YAxis  />
         <Tooltip />
         <Line
           type="monotone"

@@ -77,11 +77,11 @@ const VendorReport = () => {
                 CustomAlertModal.show("success", "Report Buyer","You have successfully reported this buyer"),
                 setLoading(false)
 
-            )).catch((err) => (
+            )).catch((err) => {
               
-                  CustomAlertModal.show("error", "Buyer Report",err),
+                  CustomAlertModal.show("error", "Buyer Report",err.response.data),
                 setLoading(false)
-            ))
+    })
     };
 
     function formatDateTime(isoString) {
@@ -112,7 +112,7 @@ const VendorReport = () => {
 
                     <section className="rounded-b-3xl">
                         <form onSubmit={handleEndorseForm}>
-                            <div className="py-5 md:px-10 poppins rounded-sm">
+                            <div className="py-5 rounded-sm md:px-10 poppins">
 
                                 <div className="px-4 pt-3">
                                     <Label
@@ -140,7 +140,7 @@ const VendorReport = () => {
                                         onlyCountries={['ng']}
                                         containerClass="!w-full !h-full "
                                         inputClass="phone-input-input !w-full !border-2 !border-[#9F9F9F] !md:rounded-md !h-[43px]"
-                                        className=" "
+                                        className=""
                                         value={reportData.buyerNumber}
                                         onChange={(value)=>
                                             setData((prevState) => ({
