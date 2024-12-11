@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/PagesLayout/Layout";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getTransactions,
@@ -29,6 +29,14 @@ const index = () => {
   const { email } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { reference, trxref } = router.query;
+  
+
+  useEffect(() => {
+    if (reference && trxref) {
+      router.replace('/wallet', undefined, { shallow: true });
+    }
+  }, [reference, trxref]);
 
   useLayoutEffect(() => {
     dispatch(getWallet(email))
@@ -42,8 +50,9 @@ const index = () => {
       .unwrap()
       .then((actions) => {})
       .catch((error) => console.log(error));
-  }, []);
 
+      console.log('useLayoutEffect triggered');
+  }, []);
   const handleButtonClick = (id) => {
     setLoading((prevState) => ({ ...prevState, [id]: true }));
     dispatch(getTransactionDetails(id))
@@ -61,15 +70,15 @@ const index = () => {
 
   return (
     <Layout>
-          <section className="card rectCard flex justify-between flex-col text-lg border-b-2 mt-8 md:flex-row ">
+          <section className="flex flex-col justify-between mt-8 text-lg border-b-2 card rectCard md:flex-row ">
         <h4>Marketbox Wallet Balance </h4>
-        <h2 className="text-blue-700 text-2xl">NGN {wallet?.balance}</h2>
+        <h2 className="text-2xl text-blue-700">NGN {wallet?.balance}</h2>
       </section>
       {/* Transaction Card Summary */}
-      <section className="card rectCard flex flex-col justify-around md:flex md:flex-row  ">
+      <section className="flex flex-col justify-around card rectCard md:flex md:flex-row ">
         <div className="flex flex-col items-start p-3 space-y-3">
-          <h4 className="tracking-wide text-sm">Total spent</h4>
-          <div className="flex justify-center items-center gap-4">
+          <h4 className="text-sm tracking-wide">Total spent</h4>
+          <div className="flex items-center justify-center gap-4">
             <div className="bg-[#F90808] px-4 py-2.5 rounded-2xl">
              <Debit className=" fill-white"/>
             </div>
@@ -77,8 +86,8 @@ const index = () => {
           </div>
         </div>
         <div className="flex flex-col items-start p-3 space-y-3">
-          <h4 className="tracking-wide text-sm">Total Received</h4>
-          <div className="flex justify-center items-center gap-4">
+          <h4 className="text-sm tracking-wide">Total Received</h4>
+          <div className="flex items-center justify-center gap-4">
             <div className="bg-[#26A17B] px-4 py-2.5 rounded-2xl">
              <Credit className=" fill-white"/>
             </div>
@@ -86,8 +95,8 @@ const index = () => {
           </div>
         </div>
         <div className="flex flex-col items-start p-3 space-y-3">
-          <h4 className="tracking-wide text-sm">Total Purchase</h4>
-          <div className="flex justify-center items-center gap-4">
+          <h4 className="text-sm tracking-wide">Total Purchase</h4>
+          <div className="flex items-center justify-center gap-4">
             <div className="bg-blue-800 px-4 py-2.5 rounded-2xl">
               <svg
                 width="17"
@@ -110,7 +119,7 @@ const index = () => {
       <section className="flex flex-col gap-5 px-8 mt-5 md:flex-row">
         <button
           type="button"
-          className="bg-blue-900 text-white flex justify-center items-center rounded-lg gap-3 p-4 px-10 w-full md:w-1/2"
+          className="flex items-center justify-center w-full gap-3 p-4 px-10 text-white bg-blue-900 rounded-lg md:w-1/2"
         >
           <svg
             width="29"
@@ -133,7 +142,7 @@ const index = () => {
         </button>
         <button
           type="button"
-          className="text-blue-900 border border-blue-800 flex justify-center items-center rounded-lg gap-3 p-4 px-10 w-full md:w-1/2"
+          className="flex items-center justify-center w-full gap-3 p-4 px-10 text-blue-900 border border-blue-800 rounded-lg md:w-1/2"
         >
           <svg
             width="31"
@@ -155,9 +164,9 @@ const index = () => {
         </button>
       </section>
       {/* Transaction Recents History */}
-      <section className="card rectCard flex justify-between items-center flex-col text-lg border-b-2 mt-8 md:flex-row ">
-        <h4 className="text-2xl font-medium mt-5">Recent Transactions</h4>
-        <form className=" hidden md:block">
+      <section className="flex flex-col items-center justify-between mt-8 text-lg border-b-2 card rectCard md:flex-row ">
+        <h4 className="mt-5 text-2xl font-medium">Recent Transactions</h4>
+        <form className="hidden md:block">
           <select
             id="sort"
             className="bg-gray-50 border text-gray-500 text-sm rounded-md p-2.5 px-6 mt-5"
@@ -175,13 +184,13 @@ const index = () => {
           const date = new Date(e.dateCreated).toDateString();
           return (
             <div key={e.id} className="card rectCard w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[35%_25%_15%_15%] justify-between items-center overflow-x-auto text-sm">
-              <div className="flex gap-5 justify-start items-center">
+              <div className="flex items-center justify-start gap-5">
                 {e.type === "Debit" ? (
-                  <span className="border-red-400 border h-10 px-4 flex items-center rounded-full">
+                  <span className="flex items-center h-10 px-4 border border-red-400 rounded-full">
                     <Debit className="!fill-red-600" />
                   </span>
                 ) : (
-                  <span className="border-green-400 border h-10 px-4 flex items-center rounded-full">
+                  <span className="flex items-center h-10 px-4 border border-green-400 rounded-full">
                     <Credit className="!fill-[#26A17B]" />
                   </span>
                 )}

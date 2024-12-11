@@ -6,13 +6,15 @@ import emoji from "../../public/img/smiling-emoji-orange.png";
 import lady from "../../public/img/lady.svg";
 import edit from "../../public/img/edit.svg";
 import caret from "../../public/img/caret.svg";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getBeneficiary, getUserProfile } from "../../store/users/userService";
 
 import { Collapse, message } from "antd";
 import {
+  getBuyerEndorsedMerchant,
   getBuyerMostBought,
   getBuyerMostPurchasedStore,
+  getBuyerReportedMerchant,
 } from "../../store/dashboardAnalytics/buyerAnalytics";
 
 const Dashboard = () => {
@@ -24,7 +26,13 @@ const Dashboard = () => {
 
   const TopPurchased = useSelector(
     (state) => state.buyerAnalytic.TopPurchased.$values
-  ); //Active buy
+  ); // TopPurchased
+  const mostReported = useSelector(
+    (state) => state.buyerAnalytic.BuyerReportedStore.$values
+  ); //Reported merchants
+  const mostEndorsed = useSelector(
+    (state) => state.buyerAnalytic.BuyerEndorsedStore.$values
+  ); //most endorsed store
   useEffect(() => {
     dispatch(getBeneficiary())
       .unwrap()
@@ -45,13 +53,15 @@ const Dashboard = () => {
       })
       .catch((error) => {
         console.log(error);
-        toastify.alertError("Could not get Profile data", 300);
+        message.error("Could not get Profile data");
       });
   }, []);
 
   useEffect(() => {
     dispatch(getBuyerMostBought());
     dispatch(getBuyerMostPurchasedStore());
+    dispatch(getBuyerEndorsedMerchant());
+    dispatch(getBuyerReportedMerchant());
   }, [dispatch]);
 
   const onChange = (key) => {
@@ -85,43 +95,59 @@ const Dashboard = () => {
           </h2>
           <div className="flex flex-col gap-8 lg:flex-row">
             <div className="flex flex-col flex-1 gap-8">
-              <div className="text-[#444444] flex flex-col gap-3 p-6 bg-[#F0FAF7] rounded-md">
+              <div className="text-[#444444] flex flex-col gap-3 p-6 bg-[#F0FAF7] rounded-md min-h-[250px]">
                 <h6 className="font-medium text-[#26A17B] text-[20px]">
                   Top Merchant Endorsed
                 </h6>
                 <ul className="flex flex-col divide-y-2">
-                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
-                    <Link href="#"> Longshort Sneakers </Link>
-                    <Image src={caret} width={15} height={15} alt="profile" />
-                  </li>
-                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
-                    <Link href="#"> Veros Skincare products </Link>
-                    <Image src={caret} width={15} height={15} alt="profile" />
-                  </li>
-                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
-                    <Link href="#"> Close up toothpaste </Link>
-                    <Image src={caret} width={15} height={15} alt="profile" />
-                  </li>
+                  {Array.isArray(mostEndorsed) && mostEndorsed.length > 0 ? (
+                    mostEndorsed.map((item, index) => (
+                      <li
+                        className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600"
+                        key={index}
+                      >
+                        {item.storeName}
+                        <Image
+                          src={caret}
+                          width={15}
+                          height={15}
+                          alt="profile"
+                        />
+                      </li>
+                    ))
+                  ) : (
+                    <p className="text-[#444444] text-lg">
+                      No Endorsed Merchant.
+                    </p>
+                  )}
                 </ul>
               </div>
 
-              <div className="text-[#444444] flex flex-col gap-3 p-6 bg-[#FFF4EF] rounded-md">
+              <div className="text-[#444444] flex flex-col gap-3 p-6 bg-[#FFF4EF] rounded-md min-h-[250px]">
                 <h6 className="font-medium text-[#F90808] text-[20px]">
                   Top Merchant Reported
                 </h6>
                 <ul className="flex flex-col divide-y-2">
-                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
-                    <Link href="#"> Longshort Sneakers </Link>
-                    <Image src={caret} width={15} height={15} alt="profile" />
-                  </li>
-                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
-                    <Link href="#"> Veros Skincare products </Link>
-                    <Image src={caret} width={15} height={15} alt="profile" />
-                  </li>
-                  <li className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600">
-                    <Link href="#"> Close up toothpaste </Link>
-                    <Image src={caret} width={15} height={15} alt="profile" />
-                  </li>
+                  {Array.isArray(mostReported) && mostReported.length > 0 ? (
+                    mostReported.map((item, index) => (
+                      <li
+                        className="flex items-center text-[18px] py-3 justify-between cursor-pointer hover:text-gray-600"
+                        key={index}
+                      >
+                        {item.storeName}
+                        <Image
+                          src={caret}
+                          width={15}
+                          height={15}
+                          alt="profile"
+                        />
+                      </li>
+                    ))
+                  ) : (
+                    <p className="text-[#444444] text-lg">
+                      No Reported Merchant.
+                    </p>
+                  )}
                 </ul>
               </div>
             </div>

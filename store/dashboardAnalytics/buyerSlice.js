@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  getBuyerEndorsedMerchant,
   getBuyerMostBought,
   getBuyerMostPurchasedStore,
+  getBuyerReportedMerchant,
 } from "./buyerAnalytics";
 
 // import { HYDRATE } from "next-redux-wrapper";
@@ -15,6 +17,8 @@ import {
 const initialState = {
   TopPurchased: [],
   BuyerTopStore: [],
+  BuyerReportedStore: [],
+  BuyerEndorsedStore: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -47,6 +51,18 @@ export const buyerAnalyticSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.BuyerTopStore = action.payload;
+        state.message = action.payload.message;
+      })
+      .addCase(getBuyerReportedMerchant.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.BuyerReportedStore = action.payload.data.data;
+        state.message = action.payload.message;
+      })
+      .addCase(getBuyerEndorsedMerchant.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.BuyerEndorsedStore = action.payload.data.data;
         state.message = action.payload.message;
       });
   },
