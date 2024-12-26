@@ -101,15 +101,15 @@ const InvoiceEdit = () => {
   };
   return (
     <>
-      <div className="font-poppins w-full">
+      <div className="w-full font-poppins">
         <div className="pt-5">
           <div className="border rounded-md shadow-lg w-full md:w-[60%] mx-auto relative">
-            <div className="bg-brightRed sticky top-0">
-              <p className="py-4 px-2 md:px-10 text-white text-xl text-center">
+            <div className="sticky top-0 bg-brightRed">
+              <p className="px-2 py-4 text-xl text-center text-white md:px-10">
                 Edit Invoice
               </p>
               <div className="bg-lightPink ">
-                <p className="py-3 text-center font-poppins text-sm">
+                <p className="py-3 text-sm text-center font-poppins">
                   Please ensure you enter the following requirement carefully
                   and accurately
                 </p>
@@ -118,7 +118,7 @@ const InvoiceEdit = () => {
 
             <div className="w-[90%] pt-3 mx-auto">
               <Label
-                className="text-lightAsh text-sm"
+                className="text-sm text-lightAsh"
                 htmlFor="text"
                 title="Buyers Email"
               />
@@ -137,7 +137,7 @@ const InvoiceEdit = () => {
                 
                 <div className="w-[90%] pt-2 mx-auto">
                   <Label
-                    className="text-lightAsh text-sm"
+                    className="text-sm text-lightAsh"
                     htmlFor="text"
                     title="Product Description"
                   />
@@ -153,7 +153,7 @@ const InvoiceEdit = () => {
                 </div>
                 <div className="w-[90%] pt-2 mx-auto">
                   <Label
-                    className="text-lightAsh text-sm"
+                    className="text-sm text-lightAsh"
                     htmlFor="text"
                     title="Unit Price"
                   />
@@ -169,7 +169,7 @@ const InvoiceEdit = () => {
                 </div>
                 <div className="w-[90%] pt-2 mx-auto">
                   <Label
-                    className="text-lightAsh text-sm"
+                    className="text-sm text-lightAsh"
                     htmlFor="text"
                     title="Product Qty"
                   />
@@ -220,7 +220,7 @@ const InvoiceEdit = () => {
             </div>
             <div className="w-[90%] pt-3 mx-auto">
               <Label
-                className="text-lightAsh text-sm"
+                className="text-sm text-lightAsh"
                 htmlFor="text"
                 title="Total price"
               />

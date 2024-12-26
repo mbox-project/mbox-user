@@ -53,8 +53,8 @@ const DetailsModal = ({ open, setOpen, dealId, image, name}) => {
     <Modal open={open} onCancel={() => setOpen(false)} footer={null} >
       <div className="">
 
-        <div className=" flex justify-between mt-7">
-          <div className=" flex gap-3 items-center">
+        <div className="flex justify-between mt-7">
+          <div className="flex items-center gap-3 ">
           <div>
             {
               image && (
@@ -69,7 +69,7 @@ const DetailsModal = ({ open, setOpen, dealId, image, name}) => {
            
           </div>
           <div>
-            <span>Purchased from Giveon’s Crib </span>
+            <span className="font-bold ">Purchased from {successfulDetails?.vendorName} </span>
             <h4>{name}</h4>
             <h5>{formatDateTime(successfulDetails?.dateCreated)}</h5>
           </div>
@@ -77,7 +77,7 @@ const DetailsModal = ({ open, setOpen, dealId, image, name}) => {
           <div >{formatMoney(successfulDetails?.total)}</div>
         </div>
 
-        <div className=" text-center mt-8">Invoice Tag: {successfulDetails?.invoiceTag}</div>
+        <div className="mt-8 text-center ">Invoice Tag: {successfulDetails?.invoiceTag}</div>
        
       </div>
     </Modal>

@@ -16,5 +16,12 @@ export const getReports = createAsyncThunk(
     return response.data;
   }
 );
+export const endorseVendor = createAsyncThunk(
+  "Endorsement/report",
+  async (body) => {
+    const response = await postApi(`Endorsement/report`, body);
+    return response.data;
+  }
+);
 
 
