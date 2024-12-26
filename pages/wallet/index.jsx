@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/PagesLayout/Layout";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useLayoutEffect, useState,useEffect } from "react";
+import { useLayoutEffect, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getTransactions,
@@ -26,15 +26,15 @@ const index = () => {
   const [transactionDetails, setTransactionDetails] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { wallet, transactions } = useSelector((state) => state.wallet);
+  const { role } = useSelector((state) => state.auth.user);
   const { email } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const router = useRouter();
   const { reference, trxref } = router.query;
-  
 
   useEffect(() => {
     if (reference && trxref) {
-      router.replace('/wallet', undefined, { shallow: true });
+      router.replace("/wallet", undefined, { shallow: true });
     }
   }, [reference, trxref]);
 
@@ -51,7 +51,7 @@ const index = () => {
       .then((actions) => {})
       .catch((error) => console.log(error));
 
-      console.log('useLayoutEffect triggered');
+    console.log("useLayoutEffect triggered");
   }, []);
   const handleButtonClick = (id) => {
     setLoading((prevState) => ({ ...prevState, [id]: true }));
@@ -70,32 +70,40 @@ const index = () => {
 
   return (
     <Layout>
-          <section className="flex flex-col justify-between mt-8 text-lg border-b-2 card rectCard md:flex-row ">
+      <section className="flex flex-col justify-between mt-8 text-lg border-b-2 card rectCard md:flex-row ">
         <h4>Marketbox Wallet Balance </h4>
         <h2 className="text-2xl text-blue-700">NGN {wallet?.balance}</h2>
       </section>
       {/* Transaction Card Summary */}
       <section className="flex flex-col justify-around card rectCard md:flex md:flex-row ">
         <div className="flex flex-col items-start p-3 space-y-3">
-          <h4 className="text-sm tracking-wide">Total spent</h4>
+          <h4 className="text-sm tracking-wide">
+            {role === "vendor" ? "Total spent/Withdrawal" : "Total Withdrawal"}
+          </h4>
           <div className="flex items-center justify-center gap-4">
             <div className="bg-[#F90808] px-4 py-2.5 rounded-2xl">
-             <Debit className=" fill-white"/>
+              <Debit className=" fill-white" />
             </div>
-            <h5>NGN {wallet?.totalSpent}</h5>
+            {role === "vendor" ? (
+              <h5>NGN {wallet?.totalSpent + wallet?.totalWithdrawal}</h5>
+            ) : (
+              <h5>NGN {wallet?.totalWithdrawal}</h5>
+            )}
           </div>
         </div>
         <div className="flex flex-col items-start p-3 space-y-3">
-          <h4 className="text-sm tracking-wide">Total Received</h4>
+          <h4 className="text-sm tracking-wide">Total Deposited</h4>
           <div className="flex items-center justify-center gap-4">
             <div className="bg-[#26A17B] px-4 py-2.5 rounded-2xl">
-             <Credit className=" fill-white"/>
+              <Credit className=" fill-white" />
             </div>
-            <h5>NGN {wallet?.totalReceived}</h5>
+            <h5>NGN {wallet?.totalDeposit}</h5>
           </div>
         </div>
         <div className="flex flex-col items-start p-3 space-y-3">
-          <h4 className="text-sm tracking-wide">Total Purchase</h4>
+          <h4 className="text-sm tracking-wide">
+            {role === "vendor" ? "Total Sales" : "Total Purchase"}
+          </h4>
           <div className="flex items-center justify-center gap-4">
             <div className="bg-blue-800 px-4 py-2.5 rounded-2xl">
               <svg
@@ -111,7 +119,11 @@ const index = () => {
                 />
               </svg>
             </div>
-            <h5>NGN {wallet?.totalSpent}</h5>
+            {role === "vendor" ? (
+              <h5>NGN {wallet?.totalSales}</h5>
+            ) : (
+              <h5>NGN {wallet?.totalPurchase}</h5>
+            )}
           </div>
         </div>
       </section>
@@ -183,7 +195,10 @@ const index = () => {
         {transactions?.map((e, i) => {
           const date = new Date(e.dateCreated).toDateString();
           return (
-            <div key={e.id} className="card rectCard w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[35%_25%_15%_15%] justify-between items-center overflow-x-auto text-sm">
+            <div
+              key={e.id}
+              className="card rectCard w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[35%_25%_15%_15%] justify-between items-center overflow-x-auto text-sm"
+            >
               <div className="flex items-center justify-start gap-5">
                 {e.type === "Debit" ? (
                   <span className="flex items-center h-10 px-4 border border-red-400 rounded-full">

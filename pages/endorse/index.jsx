@@ -6,7 +6,7 @@ import Button from "../../components/Button";
 import { useSelector, useDispatch } from "react-redux";
 import baseURL from "../../config/api";
 import { toastify } from "../../helpers";
-import { getEndorsements } from "../../store/endorseandreport/endorseandreport";
+import { endorseVendor, getEndorsements } from "../../store/endorseandreport/endorseandreport";
 import { LoadingOutlined } from "@ant-design/icons";
 import CustomAlertModal from "../../Utils/CustomAlertModal";
 
@@ -46,45 +46,29 @@ const endorse = () => {
     e.preventDefault();
     setLoading(true);
 
-    const response = await fetch(`${baseURL}Endorsement/endorse`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${
-          typeof window !== "undefined" ? sessionStorage.getItem("token") : null
-        }`,
-      },
-      body: JSON.stringify(endorseData),
-    });
-
-    if (response.ok) {
-      const result = await response.text();
-      if (result === "true") {
-        CustomAlertModal.show(
-          "success",
-          "Endorsement",
-          "You have successfully endorsed this merchant"
-        )
-        // Update endorsements after successful endorsement
-        dispatch(getEndorsements({ pageNumber, pageSize }))
-          .unwrap()
-          .then((res) => {
-            console.log(res);
-            setEndorse(res.data?.items?.$values || []);
-            setLoading(false);
-          })
-          .catch((error) => console.log(error));
-      } else {
-        //toastify.alertError(result.message);
-        setLoading(false);
-        CustomAlertModal.show("error", "Endorsement failed", result.message);
-      }
-      //window.reload();
-    } else {
-      const errorResult = await response.text();
-      CustomAlertModal.show("error", "Endorsement failed", errorResult)
+    dispatch(endorseVendor(endorseData)).unwrap()
+    .then(()=>{
+      CustomAlertModal.show(
+        "success",
+        "Endorsement",
+        "You have successfully endorsed this merchant"
+      )
+      // Update endorsements after successful endorsement
+      dispatch(getEndorsements({ pageNumber, pageSize }))
+        .unwrap()
+        .then((res) => {
+          console.log(res);
+          setEndorse(res.data?.items?.$values || []);
+          setLoading(false);
+        })
+        .catch((error) => console.log(error));
+    })
+    .catch((err)=>{
       setLoading(false);
-    }
+      CustomAlertModal.show("error", "Endorsement failed", err.message);
+    })
+
+   
   };
 
   return (
@@ -98,8 +82,8 @@ const endorse = () => {
 
         <section className="!bg-[#FAFAFA]">
           <form onSubmit={handleEndorseForm}>
-            <div className="py-5 poppins rounded-sm">
-              <div className=" px-4 pt-3">
+            <div className="py-5 rounded-sm poppins">
+              <div className="px-4 pt-3 ">
                 <Label
                   className="text-[#C1C1C1]  text-sm"
                   htmlFor="text"
@@ -115,7 +99,7 @@ const endorse = () => {
                   required
                 />
               </div>
-              <div className=" px-4 pt-3">
+              <div className="px-4 pt-3 ">
                 <Label
                   className="text-[#C1C1C1]  text-sm"
                   htmlFor="text"
@@ -133,7 +117,7 @@ const endorse = () => {
               <div className="flex justify-end px-5">
                 <Button
                   type="submit"
-                  className=" w-24 my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white left-96 text-base poppins"
+                  className="w-24 py-2 my-4 text-base text-white rounded-md shadow-lg bg-brightRed left-96 poppins"
                 >
                   {loading ? (
                     <LoadingOutlined style={{ fontSize: 24 }} spin />
