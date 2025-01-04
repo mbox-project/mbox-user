@@ -58,7 +58,7 @@ const index = () => {
   return (
     <Layout>
       <section className="card rectCard flex justify-between items-center text-lg border-b-2 mt-8 md:flex-row !bg-[#FAFAFA] !shadow-none ">
-        <h4 className="text-2xl font-medium mt-5">Pending Deals ({counter})</h4>
+        <h4 className="mt-5 text-2xl font-medium">Pending Deals ({counter})</h4>
         <form>
           <select
             id="sort"
@@ -74,7 +74,7 @@ const index = () => {
       </section>
       {/* Saved Content  */}
       {
-        loading ? <Skeleton active className=" mt-5"/> : 
+        loading ? <Skeleton active className="mt-5 "/> : 
         (
           <section className="card rectCard flex flex-col  space-y-5 !bg-[#FAFAFA]">
           {pendingDeals?.map((prod) => {

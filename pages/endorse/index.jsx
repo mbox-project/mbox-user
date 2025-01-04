@@ -14,7 +14,7 @@ const endorse = () => {
   const dispatch = useDispatch();
   const [endorse, setEndorse] = useState();
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(3);
+  const [pageSize, setPageSize] = useState(5);
   const [loading, setLoading] = useState(false);
 
   const [endorseData, setData] = useState({
@@ -65,7 +65,8 @@ const endorse = () => {
     })
     .catch((err)=>{
       setLoading(false);
-      CustomAlertModal.show("error", "Endorsement failed", err.message);
+      CustomAlertModal.show("error", "Endorsement failed", err.data);
+      //console.log(err.data)
     })
 
    

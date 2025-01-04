@@ -33,8 +33,8 @@ const PendingDeals = ({ product }) => {
 
   return (
     <>
-      <div className="flex flex-col gap-4 md:gap-1 border border-gray-500 rounded-large p-6 justify-around shadow-lg md:flex md:flex-row hover:-translate-y-1 hover:scale-10  duration-200">
-        <div className="flex justify-center items-center">
+      <div className="flex flex-col justify-around gap-4 p-6 duration-200 border border-gray-500 shadow-lg md:gap-1 rounded-large md:flex md:flex-row hover:-translate-y-1 hover:scale-10">
+        <div className="flex items-center justify-center">
           {
             product?.product?.otherDetails?.imageUrl && product?.product?.otherDetails?.imageUrl !== "string" && (  
               <Image src={product?.product?.otherDetails?.imageUrl} width={100} height={100} alt="product" />
@@ -43,26 +43,26 @@ const PendingDeals = ({ product }) => {
           
         </div>
         <div className="flex flex-col space-y-4">
-          <h2 className="text-gray-900 font-bold">{product?.product?.description}</h2>
+          <h2 className="font-bold text-gray-900">{product?.product?.description}</h2>
           <h3 className="text-sm">{"type"}</h3>
-          <h2 className="text-md  text-gray-500">Invoice Tag: {product?.invoiceTag}</h2>
-          <h2 className="text-md  text-gray-500">{"owner"}</h2>
+          <h2 className="text-gray-500 text-md">Invoice Tag: {product?.invoiceTag}</h2>
+          <h2 className="text-gray-500 text-md">{"owner"}</h2>
         </div>
         <div className="flex flex-col space-y-4">
-          <h2 className="text-gray-900 font-bold">{formatMoney(product?.product?.price)}</h2>
-          <h3 className="text-md  text-gray-500">Size: {"size"}</h3>
+          <h2 className="font-bold text-gray-900">{formatMoney(product?.product?.price)}</h2>
+          <h3 className="text-gray-500 text-md">Size: {"size"}</h3>
           <h2>
-            <span className="text-md  text-gray-500">Color:</span>
+            <span className="text-gray-500 text-md">Color:</span>
             <span className="font-bold"> {product?.product?.otherDetails?.colors?.$values[0]}</span>
           </h2>
-          <h2 className="text-md  text-gray-500">
+          <h2 className="text-gray-500 text-md">
             QTY: <span className="text-red-500">{product?.product?.quantity}</span>
           </h2>
         </div>
 
         {
           user.role === "user" ? (
-            <div className="flex flex-col gap-6 justify-between">
+            <div className="flex flex-col justify-between gap-6">
               <span className="flex justify-center md:justify-end">
                 <button
                   type="button"
@@ -81,7 +81,7 @@ const PendingDeals = ({ product }) => {
               </button>
             </div>
           ) : (
-            <div className="flex flex-col gap-6 justify-between">
+            <div className="flex flex-col justify-between gap-6">
               <button
                 type="button"
                 className=" bg-[#F90808] text-[white] rounded-md px-5 py-3 drop-shadow-custom "

@@ -16,12 +16,29 @@ export const getReports = createAsyncThunk(
     return response.data;
   }
 );
+//export const endorseVendor = createAsyncThunk("Endorsement/endorse", async (body) => {
+  //const response = await postApi(`Endorsement/endorse`, body);
+  //return response.data;
+//});
+
+
 export const endorseVendor = createAsyncThunk(
-  "Endorsement/report",
-  async (body) => {
-    const response = await postApi(`Endorsement/report`, body);
-    return response.data;
+  "Endorsement/endorse",
+  async (body, thunkAPI) => {
+    try {
+      const response = await postApi(`Endorsement/endorse`, body);
+      return response.data;
+    } catch (error) {
+      // Serialize the error object to extract meaningful and serializable data
+      const message = {
+        message: error.message,
+        code: error.code,
+        status: error.response?.status,
+        data: error.response?.data,
+      };
+
+      return thunkAPI.rejectWithValue(message);
+    }
   }
 );
-
 
