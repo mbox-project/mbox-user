@@ -11,6 +11,22 @@ const api = axios.create({
 // Flag to prevent multiple network alerts
 let networkErrorAlerted = false;
 
+// Check for initial connection status
+if (typeof window !== "undefined" && !navigator.onLine) {
+  message.warning("You are offline. Please check your internet connection.");
+}
+
+// Listen for network changes
+if (typeof window !== "undefined") {
+  window.addEventListener("online", () => {
+    message.success("You are back online.");
+  });
+
+  window.addEventListener("offline", () => {
+    message.warning("You are offline. Please check your internet connection.");
+  });
+}
+
 // Add a request interceptor to check for the token
 api.interceptors.request.use(
   (config) => {
@@ -34,18 +50,17 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.message === "Network Error") {
-      // Network error (no response from server)
+    if (!navigator.onLine) {
+      // Network error or user is offline
       if (!networkErrorAlerted) {
         networkErrorAlerted = true;
         message.warning(
           "Network error. Please check your internet connection."
         );
-        //alert("Network error. Please check your internet connection.");
         // Reset the flag after a delay to allow future alerts
         setTimeout(() => {
           networkErrorAlerted = false;
-        }, 10000); // 5 seconds debounce
+        }, 10000); // 10 seconds debounce
       }
     } else if (
       error.response?.status === 401 &&
