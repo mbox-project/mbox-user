@@ -43,8 +43,10 @@ const index = () => {
       .unwrap()
       .then((action) => console.log(action))
       .catch((error) => {
-        if (error?.message === "Wallet does not exist")
+        if (error?.message === "Wallet does not exist"){
           dispatch(createWallet());
+        }
+         
       });
     dispatch(userGetTransactions())
       .unwrap()
@@ -53,6 +55,7 @@ const index = () => {
 
     console.log("useLayoutEffect triggered");
   }, []);
+  
   const handleButtonClick = (id) => {
     setLoading((prevState) => ({ ...prevState, [id]: true }));
     dispatch(getTransactionDetails(id))

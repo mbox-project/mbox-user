@@ -18,9 +18,13 @@ const Index = () => {
       .unwrap()
       .then((action) => console.log(action))
       .catch((error) => {
-        if (error?.message === "Wallet does not exist")
+        
+        if (error?.message === "Wallet does not exist"){
           dispatch(createWallet());
-      });
+        }
+      
+      }
+    );
   }, []);
   return (
     <>

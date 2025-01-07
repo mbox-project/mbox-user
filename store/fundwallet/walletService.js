@@ -2,10 +2,20 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { checkwalletApi } from "../../config/invoiceApi";
 import { getApi, postApi } from "../../config/api";
 
-export const getWallet = createAsyncThunk("Wallet/balance", async (email) => {
-  const response = await checkwalletApi(email);
-  return response.data;
-});
+export const getWallet = createAsyncThunk(
+  "Wallet/balance",
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await checkwalletApi(email);
+      return response.data;
+    } catch (error) {
+      // Pass the error object to the rejected action
+      return rejectWithValue(
+        error.response ? error.response.data : error.message
+      );
+    }
+  }
+);
 
 export const createWallet = createAsyncThunk(
   "createWallet/wallet",
