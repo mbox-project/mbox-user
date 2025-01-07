@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Modal } from "antd";
+import { message, Modal } from "antd";
 import Input from "../Input";
 import Label from "../Label";
 import Button from "../Button";
@@ -37,7 +37,7 @@ const FundWallet = ({ openFund, setOpenFund }) => {
         })
         .catch((error) => {
           console.log(error);
-          toastify.alertError(error, 3000);
+          message.error(error?.message);
         });
     }
   };
@@ -48,7 +48,7 @@ const FundWallet = ({ openFund, setOpenFund }) => {
         {isLoading && <Spinner />}
 
         <div className="bg-brightRed">
-          <p className=" py-4 px-4 text-white font-poppins text-xl">
+          <p className="px-4 py-4 text-xl text-white font-poppins">
             Fund your wallet
           </p>
         </div>
@@ -62,7 +62,7 @@ const FundWallet = ({ openFund, setOpenFund }) => {
           <p className="text-[#9A9A9A] text-sm text-semibold poppins py-2 border-b  border-t-0 border-x-0  mx-3 mt-2 md:mt-0 md:mx-12 pt-4  shadow-sm bg-white px-4 ">
             Enter Amount
           </p>
-          <div className=" px-3 md:px-5 lg:px-12 pt-6">
+          <div className="px-3 pt-6 md:px-5 lg:px-12">
             <Label
               className="text-[#C1C1C1] text-xs"
               htmlFor="text"
@@ -79,9 +79,9 @@ const FundWallet = ({ openFund, setOpenFund }) => {
             />
           </div>
 
-          <div className=" flex px-12 pt-2">
+          <div className="flex px-12 pt-2 ">
             <Button
-              className=" w-full my-4 rounded-md shadow-lg bg-brightRed  py-2  text-white flex justify-center text-base poppins"
+              className="flex justify-center w-full py-2 my-4 text-base text-white rounded-md shadow-lg bg-brightRed poppins"
               onClick={onSubmitHandler}
             >
               Pay Now
